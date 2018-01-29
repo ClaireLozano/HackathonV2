@@ -1,0 +1,33 @@
+
+/* =============== NAV ==================*/
+
+.container-fluid {
+    padding: 0;
+}
+
+/* =============== FOOTER ===============*/
+
+.topHalfCircle {
+    height: 30px;
+    width: 60px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    background: #3b8bd4;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+#arrowFooter {
+    font-size: 23px;
+    color: white;
+    margin: auto;
+    margin-top: 7px;
+}
+
+footer{
+    margin-top: 0;
+    height: 80px;
+    background-color: #333;
+}
