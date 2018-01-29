@@ -1,0 +1,25 @@
+
+{
+  "dataType": "HistorisedNotLocalisable",
+  "link" : "bp_2017_fonction",
+  "graph":{
+    "possibleGraphs": ["horizontalBar"],
+    "dataComposition": {
+      "title": "Budget 2017",
+      "description": "",
+      "excludeLines": [],
+	  "selectList": "budg_ss_fction",
+      "onlyOneElement": "budg_montant"
+    }
+  },
+  "timeline":{
+    "year":"2017"
+  },
+  "table":{
+    "dataComposition":{
+      "title": "Budget 2017",
+      "keys_list": ["budg_cat", "budg_dep_rec", "bugd_exercice", "budg_montant", "budg_ss_fction"],
+      "value_list": ["Catégorie", "Dépense/recette", "Année", "Montant", "Fonction"]
+    }
+  }
+}

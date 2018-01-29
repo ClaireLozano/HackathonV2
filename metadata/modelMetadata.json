@@ -1,0 +1,20 @@
+
+{
+  "dataType": "string",
+  "graph": {
+    "possibleGraphs": "[string]",
+    "dataComposition": {
+      "title": "String",
+      "description": "String",
+      "excludeLines": ["String"],
+      "selectList": "String", 
+      "onlyOneElement": "String"
+    }
+  },
+  "timeline":{
+
+  },
+  "map":{
+
+  }
+}

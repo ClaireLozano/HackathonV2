@@ -1,0 +1,28 @@
+
+{
+  "dataType": "NotHistorisedLocalisable",
+  "link": "disponibilite_parking",
+  "graph":{
+    "possibleGraphs": ["pie", "bar", "doughnut", "horizontalBar"],
+    "dataComposition": {
+      "title": "Places disponibles",
+      "description": "",
+      "excludeLines": [],
+      "selectList": "dp_libelle",
+      "onlyOneElement": "dp_place_disponible"
+    }
+  },
+  "timeline":{
+
+  },
+  "map":{
+
+  },
+  "table":{
+    "dataComposition":{
+      "title": "Places disponibles",
+      "keys_list": ["dp_libelle", "dp_place_disponible", "dp_date"],
+      "value_list": ["Parking", "Places disponibles", "Dernière mise à jour"]
+    }
+  }
+}
