@@ -1,18 +1,21 @@
-
 {
   "dataType": "string",
+  "title": "String",
+  "description": "String",
+  "dictionnaire": "String",
   "graph": {
-    "possibleGraphs": "[string]",
+    "possibleGraphs": ["string"],
     "dataComposition": {
-      "title": "String",
-      "description": "String",
       "excludeLines": ["String"],
-      "selectList": "String", 
+      "selectList": ["String"], 
       "onlyOneElement": "String"
-    }
+    }, 
   },
   "timeline":{
-
+    "dates": {
+      "date": "num",
+      "date": "num"
+    }
   },
   "map":{
 
