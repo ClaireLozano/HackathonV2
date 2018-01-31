@@ -4,9 +4,10 @@
 	<?php include '../header/header.php'; ?>
 	
 	<body>
-
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
+		<div class="textDiv">
+			<h1>Comment utiliser la plateforme</h1>
+			<p>à remplir ... </p>
+		</div>
 
 	</body>
 

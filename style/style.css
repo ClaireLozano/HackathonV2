@@ -3,10 +3,20 @@
     margin: 10px;
 }
 
+.textDiv {
+    margin: 40px;
+}
+
 /* =============== NAV ==================*/
 
 .container-fluid {
     padding: 0;
+}
+
+.container {
+    padding: 0;
+    margin: 0 20px 0 20px;
+    width: auto;
 }
 
 /* =============== FOOTER ===============*/
@@ -93,6 +103,9 @@ footer{
 @media (max-width: 620px) {
     #welcome {
         margin: 5px 10px 5px 10px;
+    }
+    .textDiv {
+        margin: 10px;
     }
     .box-wrapper-inner {
         -webkit-box-orient: vertical;
