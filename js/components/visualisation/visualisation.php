@@ -157,6 +157,8 @@
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
+	<script type="text/javascript" src="../controller.js"></script>
+	<script type="text/javascript" src="../util.js"></script>
 	<script type="text/javascript" src="visualisation.js"></script>
 
 </html>

@@ -8,77 +8,25 @@ $(document).ready(function(){
 	 * @return
 	 */
 	function init() {
+        var result = getUrlPage();
+        var typeVisualisation = result[0]; 
+        var nomDonnee = result[1]; 
 
-		// Get url pour récupérer le nom de la donnée et le type de visualisation
-		var url = window.location.href.split("?");
-
-		// Si pas de données renseignées dans l'url, return
-		if (!url[1]) {
-			console.log('pas de données')
-			return;
-		}
-
-		var d = url[1];
-		d = d.split("&");
-		var display = d[0].split("=")[1];
-		var donnee = d[1].split("=")[1];
-
-		switch (donnee){
-            case 'population_2008':
-                $.getJSON( "../../metadata/insee.json", function(metadata){
-                    
-                    // Fin de l'url qui servira à récupérer les données
-                    var endUrl = "&db=insee&table=population_2008&format=json"
-                    
-                    // Get data
-                    console.log('get insee data')
-
-                    // Draw function
-
+        if (typeVisualisation && nomDonnee) {
+            // Get metadata
+            getMetadata(nomDonnee, function(metadata) {
+                // Get end url
+                var endUrl = getUrl(nomDonnee);
+                // With end url, get data
+                getData(endUrl, function(data) {
+                    // Draw visualisation
+                    draw(typeVisualisation, metadata, data);
+                    console.log('metadata')
+                    console.log(metadata)
+                    console.log('data')
+                    console.log(data)
                 });
-                break;
-
-            case 'disponibilite_parking':
-                $.getJSON( "../../metadata/parking.json", function(metadata){
-                    
-                    // Fin de l'url qui servira à récupérer les données
-                    var endUrl = "&db=stationnement&table=disponibilite_parking&format=json"
-                    
-                    // Get data
-                    console.log('get parking data')
-
-                    // Draw function
-
-                });
-                break;
-
-            case 'fiche':
-                $.getJSON( "../../metadata/archive.json", function(metadata){
-                    
-                    // Fin de l'url qui servira à récupérer les données
-                    var endUrl = "&db=archive&table=fiche&format=json"
-                    
-                    // Get data
-                    console.log('get archive data')
-
-                    // Draw function
-
-                });
-                break;
-
-            case 'bp_2017_fonction':
-                $.getJSON( "../../metadata/budget.json", function(metadata){
-                    
-                    // Fin de l'url qui servira à récupérer les données
-                    var endUrl = "&db=budget&table=bp_2017_fonction&format=json"
-                    
-                    // Get data
-                    console.log('get budget data')
-
-                    // Draw function
-
-                });
-                break;
+            });
         }
 	};
 
@@ -90,7 +38,30 @@ $(document).ready(function(){
 	var bindListeners = function() {
 
 	};
-	
+
+    /**
+     * Get arguments from url
+     *
+     * @return (type visualisation, nom data)
+     */
+    var getUrlPage = function() {
+        // Get url pour récupérer le nom de la donnée et le type de visualisation
+        var url = window.location.href.split("?");
+
+        // Si pas de données renseignées dans l'url, return
+        if (!url[1]) {
+            console.log('pas de données')
+            return null;
+        }
+
+        // Récupération des arguments contenu dans l'url
+        var d = url[1];
+        d = d.split("&");
+        var typeVisualisation = d[0].split("=")[1];
+        var nomDonnee = d[1].split("=")[1];
+
+        return [typeVisualisation, nomDonnee];
+    };
 
 	init();
 	bindListeners();
