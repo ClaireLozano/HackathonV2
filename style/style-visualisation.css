@@ -1,0 +1,88 @@
+
+h1 {
+	color: #ef7439;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+h2 {
+	color: #0b3d72;
+	font-size: 18px;
+	font-weight: 700;
+	margin-top: 40px;
+}
+
+/* =============== PANEL =============== */
+
+.panel-title {
+	color: white;
+}
+
+#container {
+	margin: auto;
+}
+
+.panel {
+	margin: 0;
+}
+
+.panel-content-visualisation {
+	padding: 15px;
+}
+
+#content-page {
+	margin: 0;
+	margin: 20px 20% 20px 20%;
+	padding: 0;
+}
+
+/* =============== SOCIAL NETWORK =============== */
+
+#rs {
+	display: inline;
+}
+.rs {
+	float: left;
+	margin-right: 10px;
+}
+
+/* =============== COMMENTS =============== */
+
+.comment-body {
+	margin-left: 50px;
+}
+
+.comment-heading {
+	display: block;
+    width: 100%;
+}
+
+.user {
+    font-size: 14px;
+    font-weight: bold;
+    display: inline;
+    margin-top: 0;
+    margin-right: 10px;
+}
+
+.time {
+	font-size: 12px;
+    color: #aaa;
+    margin-top: 0;
+    display: inline;	
+}
+
+.comments-list {
+    padding: 0;
+    margin-top: 20px;
+    list-style-type: none;
+}
+
+/* =============== BOX VISU =============== */
+
+.box-visu {
+	width: 100%;
+	height: 200px;
+}
