@@ -34,8 +34,26 @@ h2 {
 
 #content-page {
 	margin: 0;
-	margin: 20px 20% 20px 20%;
+	margin: 20px 100px 20px 100px;
 	padding: 0;
+}
+
+.nav-visualisation > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+
+.nav-visualisation {
+    text-align:center;
+}
+
+@media (max-width: 1000px) {
+	#content-page {
+		margin: 0;
+		margin: 20px 10px 20px 10px;
+		padding: 0;
+	}
 }
 
 /* =============== SOCIAL NETWORK =============== */
