@@ -20,7 +20,7 @@ $(document).ready(function(){
                 // With end url, get data
                 getData(endUrl, function(data) {
                     // Draw visualisation
-                    draw(typeVisualisation, metadata, data);
+                    draw(typeVisualisation, metadata, data, 'box1');
                     console.log('metadata')
                     console.log(metadata)
                     console.log('data')

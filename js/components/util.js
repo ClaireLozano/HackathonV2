@@ -82,18 +82,62 @@ var getData = function(endUrl, callback) {
  *
  * @return null
  */
-var draw = function(typeVisualisation, metadata, data) {
+var draw = function(typeVisualisation, metadata, data, idBox) {
     switch (typeVisualisation) {
         case 'graph':
-            // Call draw graph method
+            $("#tab-pane-2").show();
+            // Call draw table method
+            drawTable(data, metadata, idBox);
             break;
 
         case 'table':
+            $("#tab-pane-1").show();
             // Call draw table method
+            drawTable(data, metadata, idBox);
             break;
 
         case 'map':
-            // Call draw map method
+            $("#tab-pane-3").show();
+            // Call draw table method
+            drawTable(data, metadata, idBox);
             break;
     }
 };
+
+/**
+ * Draw table
+ *
+ * @param  {Object}         data                Data from open data la rochelle plateform
+ * @param  {Object}         metadata            Meta data
+ * @param  {Number}         position            Position of random box
+ *
+ * @return null
+ */
+function drawTable(data, metadata, idBox) {
+
+    // Initialization
+    var keys_list_table =[];
+    var value_list_table = [];
+
+    keys_list_table = metadata.table.dataComposition.keys_list;
+    value_list_table = metadata.table.dataComposition.value_list;
+    
+    // Create table
+    val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+    value_list_table.forEach(function(d) {
+        val_html += "<th>" + d + "</th>"
+    });
+    val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+    
+    // Draw table
+    document.getElementById(idBox).innerHTML = val_html;
+    data.forEach(function(d, i) {
+        var table = document.getElementById("my_table");
+        var tr = table.insertRow(i);
+        keys_list_table.forEach(function(p, j) {
+            tr.insertCell(j).innerHTML = d[p];
+            document.getElementById("table_element").appendChild(tr);     
+        });
+    }); 
+};
+
