@@ -13,7 +13,34 @@
 			
 			<div class="panel panel-default box">
                 <div class="panel-heading">
-                    <p class="panel-title">Visualisation</p>
+                    <p class="panel-title pull-left">Visualisation</p>
+
+                    <!-- Bouton "un probleme?" -->
+                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
+
+                    <div class="modal fade" tabindex="-1" role="dialog" id="example">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title">Un problème ? </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="checkbox">
+                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
+                                    </div>
+                                    <div class="checkbox"> 
+                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <div class="clearfix"></div>
                 </div>
 
 				
