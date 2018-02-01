@@ -20,12 +20,12 @@
           </button>
           <a class="navbar-brand" href="#">Opendata</a>
         </div>
-    
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-4">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../home/index.php">Accueil</a></li>
-            <li><a href="../visualisation/visualisation.php">Visualisation</a></li>
+            <li><a href="../donnees/donnes.php">Données</a></li>
             <li><a href="../demarche/demarche.php">La démarche</a></li>
             <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
           </ul>

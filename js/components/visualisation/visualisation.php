@@ -5,6 +5,9 @@
 
 	<body>
 		<h1>Page de visualisation</h1>
+		<div class="col-sm-4">
+				<p> Données : <?php echo $_GET['data'] .' , Graphe : '. $_GET['type'];?> </p>
+		</div>
 
 	</body>
 

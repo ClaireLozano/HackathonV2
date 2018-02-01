@@ -9,12 +9,11 @@ $(document).ready(function(){
 	 */
 
 	function init() {
-		
-	};
+};
 
 	var bindListeners = function() {
 	};
-	
+
 
 	init();
 	bindListeners();
