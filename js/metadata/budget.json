@@ -2,22 +2,27 @@
 {
   "dataType": "HistorisedNotLocalisable",
   "link" : "bp_2017_fonction",
+  "dictionnaire": "",
+  "title": "Budget primitif et compte administratif – BP 2017 – Fonction",
+  "descritpion": "",
   "graph":{
     "possibleGraphs": ["horizontalBar"],
     "dataComposition": {
-      "title": "Budget 2017",
-      "description": "",
       "excludeLines": [],
-	  "selectList": "budg_ss_fction",
+	    "selectList": "budg_ss_fction",
       "onlyOneElement": "budg_montant"
     }
   },
   "timeline":{
-    "year":"2017"
+    "2017":"db=budget&table=bp_2017_fonction",
+    "2016":"db=budget&table=bp_2016_fonction",
+    "2015":"db=budget&table=ca_2015_fonction",
+    "2014":"db=budget&table=ca_2014_fonction",
+    "2013":"db=budget&table=ca_2013_fonction",
+    "2012":"db=budget&table=ca_2012_fonction"
   },
   "table":{
     "dataComposition":{
-      "title": "Budget 2017",
       "keys_list": ["budg_cat", "budg_dep_rec", "bugd_exercice", "budg_montant", "budg_ss_fction"],
       "value_list": ["Catégorie", "Dépense/recette", "Année", "Montant", "Fonction"]
     }
