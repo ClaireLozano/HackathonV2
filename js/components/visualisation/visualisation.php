@@ -32,6 +32,7 @@
                                     <div class="checkbox"> 
                                         <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
                                     </div>
+                                    <textarea class="form-control" style="min-width: 100%"></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
