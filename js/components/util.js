@@ -85,19 +85,16 @@ var getData = function(endUrl, callback) {
 var draw = function(typeVisualisation, metadata, data, idBox) {
     switch (typeVisualisation) {
         case 'graph':
-            $("#tab-pane-2").show();
             // Call draw table method
             drawTable(data, metadata, idBox);
             break;
 
         case 'table':
-            $("#tab-pane-1").show();
             // Call draw table method
             drawTable(data, metadata, idBox);
             break;
 
         case 'map':
-            $("#tab-pane-3").show();
             // Call draw table method
             drawTable(data, metadata, idBox);
             break;
