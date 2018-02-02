@@ -3,7 +3,7 @@
   "dataType": "HistorisedLocalisable",
   "link": "population_2008",
   "dictionnaire": "db=insee&table=pop_2009_dictionnaire",
-  "title": "",
+  "title": "RECENSEMENT DE LA POPULATION – POPULATION",
   "descritpion": "",
   "graph":{
     "possibleGraphs": ["horizontalBar"],
