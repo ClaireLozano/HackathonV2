@@ -10,7 +10,7 @@
 		<div id="content-page">
 
 			<h1> Nom de le donnée </h1>
-			
+
 			<div class="panel panel-default box">
                 <div class="panel-heading">
                     <p class="panel-title pull-left">Visualisation</p>
@@ -29,7 +29,7 @@
                                     <div class="checkbox">
                                         <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
                                     </div>
-                                    <div class="checkbox"> 
+                                    <div class="checkbox">
                                         <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
                                     </div>
                                 </div>
@@ -43,12 +43,12 @@
                     <div class="clearfix"></div>
                 </div>
 
-				
+
                 <div class="panel-content-visualisation">
 
 					<!-- PANEL -->
 
-					<div class="container"> 
+					<div class="container">
 						<ul class="nav nav-tabs nav-visualisation">
 							<li id="tab-nav-2"><a href="#tab-pane-1" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Tableau</a></li>
 							<li id="tab-nav-1"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
@@ -65,7 +65,10 @@
 								<div id='box2' class="box-visu"> <!-- CHART --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
-								<div id='box3' class="box-visu"> <!-- MAP --></div>
+								<div id='box3' class="box-visu">
+									<!-- MAP -->
+									<?php include 'map/map.php'; ?>
+								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
 								<div id='box4' class="box-visu"> <!-- INFO --></div>
@@ -83,11 +86,11 @@
 					<h2>Partager </h2>
 					<p>Vous pouvez partager cette page sur facebook ainsi que twitter : </p>
 			        <div id="rs">
-			            
+
 			            <!-- FACEBOOK -->
 			            <div id="fb-root" class="rs"></div>
 			            <script>(
-			                function(d, s, id) {	
+			                function(d, s, id) {
 			                    var js, fjs = d.getElementsByTagName(s)[0];
 			                    if (d.getElementById(id)) return;
 			                    js = d.createElement(s); js.id = id;
@@ -98,7 +101,7 @@
 
 			            <!-- TWITTER -->
 			            <div class="rs">
-			                <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a> 
+			                <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
 			                <script>
 			                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 			                </script>
@@ -143,10 +146,10 @@
 								</div>
 							</li>
 						</ul>
-						<div class="input-group"> 
+						<div class="input-group">
 							<input class="form-control" placeholder="Add a comment" type="text">
 							<span class="input-group-addon">
-								<a href="#"><i class="glyphicon glyphicon-pencil"></i></a>  
+								<a href="#"><i class="glyphicon glyphicon-pencil"></i></a>
 							</span>
 						</div>
 					</div>

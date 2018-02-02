@@ -121,14 +121,14 @@ function drawTable(data, metadata, idBox) {
 
     keys_list_table = metadata.table.dataComposition.keys_list;
     value_list_table = metadata.table.dataComposition.value_list;
-    
+
     // Create table
     val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
     value_list_table.forEach(function(d) {
         val_html += "<th>" + d + "</th>"
     });
     val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
-    
+
     // Draw table
     document.getElementById(idBox).innerHTML = val_html;
     data.forEach(function(d, i) {
@@ -136,8 +136,31 @@ function drawTable(data, metadata, idBox) {
         var tr = table.insertRow(i);
         keys_list_table.forEach(function(p, j) {
             tr.insertCell(j).innerHTML = d[p];
-            document.getElementById("table_element").appendChild(tr);     
+            document.getElementById("table_element").appendChild(tr);
         });
-    }); 
+    });
 };
 
+/**
+ * Get arguments from url
+ *
+ * @return (type visualisation, nom data)
+ */
+var getUrlPage = function() {
+    // Get url pour récupérer le nom de la donnée et le type de visualisation
+    var url = window.location.href.split("?");
+
+    // Si pas de données renseignées dans l'url, return
+    if (!url[1]) {
+        console.log('pas de données')
+        return null;
+    }
+
+    // Récupération des arguments contenu dans l'url
+    var d = url[1];
+    d = d.split("&");
+    var typeVisualisation = d[0].split("=")[1];
+    var nomDonnee = d[1].split("=")[1];
+
+    return [typeVisualisation, nomDonnee];
+};
