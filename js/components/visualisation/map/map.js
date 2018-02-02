@@ -26,6 +26,7 @@ $(document).ready(function () {
 
     //Définition de la projection de la carte en Lambert 93
     var projection = new ol.proj.Projection({code: "EPSG:2154", units: 'm'});
+
     //definition de l'emprise de la carte
     var extent = [375000, 6566000, 382500, 6574000];
     //ajout d'une photo aérienne
@@ -51,45 +52,47 @@ $(document).ready(function () {
     var nomDonnee = result[1];
     var endUrl = getUrl(nomDonnee);
 
-    var vectorSource = new ol.source.Vector();
-    var vectorLayer = new ol.layer.Vector({
-        source: vectorSource
-    });
 
-    console.log("Markers List Before");
     getData(endUrl, function (data) {
-        console.log("During");
-        console.log(data.map(data => [data.dp_x, data.dp_y]));
+
+        all_points = [];
         var markers = data.map(data => [data.dp_x, data.dp_y]);
 
-                for (marker in markers) {
-                    console.log(markers[marker]);
-                    var feature = new ol.Feature({
-                        labelPoint : new ol.geom.Point(markers[marker][0], markers[marker][1]),
-                        name: 'myPoint',
-                        population: 4000,
-                        rainfall: 500
-                    });
-                    vectorSource.addFeature(feature);
-                }
-        //vectorSource.addFeatures(markers);
+        for (marker in markers) {
 
+            p2 = new ol.Feature({
+                geometry: new ol.geom.Point([markers[marker][0], markers[marker][1]])
+            });
 
-        //vectorLayer.addFeatures(feature);
-        //vectorSource.addFeatures(markers);
+            p2.setStyle(new ol.style.Style({
+                image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+                    color: '#4271AE',
+                    crossOrigin: 'anonymous',
+                    src: 'https://openlayers.org/en/v4.6.4/examples/data/dot.png'
+                }))
+            }));
+            all_points.push(p2);
+        }
+
+        var vectorSource = new ol.source.Vector({
+            features: all_points
+        });
+
+        var vectorLayer = new ol.layer.Vector({
+            source: vectorSource
+        });
+
+        var map = new ol.Map({
+            layers: [layer_ortho, cad_parcelle, vectorLayer],
+            target: document.getElementById('map'),
+            view: new ol.View({
+                projection: projection,
+                center: [379500, 6570000],
+                zoom: 16,
+                extent: extent
+            })
+        });
     });
 
-    //Declaration de la carte
-    var map = new ol.Map({
-        //layers: [layer_ortho,cad_parcelle, vectorLayer],
-        layers: [cad_parcelle, layer_ortho, vectorLayer],
-        target: 'map',
-        view: new ol.View({
-            projection: projection,
-            center: [379500, 6570000],
-            extent: extent,
-            zoom: 16
-        })
-    });
 
 });
