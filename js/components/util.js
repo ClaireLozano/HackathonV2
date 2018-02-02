@@ -78,30 +78,6 @@ var getData = function(endUrl, callback) {
 };
 
 /**
- * Draw visualisation
- *
- * @return null
- */
-var draw = function(typeVisualisation, metadata, data, idBox) {
-    switch (typeVisualisation) {
-        case 'graph':
-            // Call draw table method
-            drawTable(data, metadata, idBox);
-            break;
-
-        case 'table':
-            // Call draw table method
-            drawTable(data, metadata, idBox);
-            break;
-
-        case 'map':
-            // Call draw table method
-            drawTable(data, metadata, idBox);
-            break;
-    }
-};
-
-/**
  * Draw table
  *
  * @param  {Object}         data                Data from open data la rochelle plateform
