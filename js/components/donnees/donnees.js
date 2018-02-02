@@ -7,9 +7,12 @@ $(document).ready(function(){
 	 *
 	 * @return
 	 */
+	 
 
 	function init() {
-};
+	};
+
+
 
 	var bindListeners = function() {
 	};

@@ -2,7 +2,9 @@
 <html>
 
 	<?php include '../header/header.php'; ?>
-
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../style/donnees.css">
+	</head>
 	<body>
 		<!-- The side menu-->
 		<div class="container">
@@ -36,7 +38,7 @@
 								<div class="col-sm-4">
 									<div class="card">
 										<div class="card-block">
-											<a href="../visualisation/visualisation.php?type=graphe&amp;data=budget_2018"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+											<a href="../visualisation/visualisation.php?type=graphe&amp;data=budget_2018"><img src="http://placehold.it/350x150" class="img-rounded pull-left"></a>
 										</div>
 									</div>
 								</div>
@@ -45,6 +47,7 @@
 					</div>
 
 					<!-- Citoyenneté -->
+
 					<div class="tab-pane text-style" id="tab1">
 						<h2>Citoyenneté</h2>
 		      		<p>Cette catégorie contient deux type de données: les données INSEE et les données Archive.</p>
@@ -106,14 +109,12 @@
 								<hr>
 								<div class="row">
 									<div class="col-xs-6 col-md-3" id="block41">
+										<h3 class="card-title">Budget</h3>
 										<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							  	</div>
-									<div class="col-xs-6 col-md-3" id="block42">
-										<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
-									</div>
 								</div>
 						</div>
-
+					</div>
 			</div>
 		</div>
 	</body>
