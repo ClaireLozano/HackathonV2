@@ -9,8 +9,7 @@
 
 		<div id="content-page">
 
-			<h1> Nom de le donnée </h1>
-
+			<h1></h1>
 			<div class="panel panel-default box">
                 <div class="panel-heading">
                     <p class="panel-title pull-left">Visualisation</p>
@@ -23,7 +22,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Un problème ? </h4>
+                                    <h4 class="modal-title">Un problème ?</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="checkbox">
@@ -32,6 +31,7 @@
                                     <div class="checkbox">
                                         <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
                                     </div>
+                                    <textarea class="form-control" style="min-width: 100%"></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
@@ -50,11 +50,11 @@
 
 					<div class="container">
 						<ul class="nav nav-tabs nav-visualisation">
-							<li id="tab-nav-2"><a href="#tab-pane-1" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Tableau</a></li>
-							<li id="tab-nav-1"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
-							<li id="tab-nav-3"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
-							<li id="tab-nav-4"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
-							<li id="tab-nav-5"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
+							<li id="tab-nav-1" class="tab-nav"><a href="#tab-pane-1" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Tableau</a></li>
+							<li id="tab-nav-2" class="tab-nav"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
+							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
+							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
+							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
 
 						<div class="tab-content">

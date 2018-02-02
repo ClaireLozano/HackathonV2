@@ -85,19 +85,16 @@ var getData = function(endUrl, callback) {
 var draw = function(typeVisualisation, metadata, data, idBox) {
     switch (typeVisualisation) {
         case 'graph':
-            $("#tab-pane-2").show();
             // Call draw table method
             drawTable(data, metadata, idBox);
             break;
 
         case 'table':
-            $("#tab-pane-1").show();
             // Call draw table method
             drawTable(data, metadata, idBox);
             break;
 
         case 'map':
-            $("#tab-pane-3").show();
             // Call draw table method
             drawTable(data, metadata, idBox);
             break;
@@ -116,29 +113,61 @@ var draw = function(typeVisualisation, metadata, data, idBox) {
 function drawTable(data, metadata, idBox) {
 
     // Initialization
-    var keys_list_table =[];
+    var keys_list_table = [];
     var value_list_table = [];
-
+    
     keys_list_table = metadata.table.dataComposition.keys_list;
-    value_list_table = metadata.table.dataComposition.value_list;
 
-    // Create table
-    val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
-    value_list_table.forEach(function(d) {
-        val_html += "<th>" + d + "</th>"
-    });
-    val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+    // Get dictionnary 
+    if (metadata.dictionnaire) {
+        urlDict = metadata.dictionnaire[0];
+        initValue = metadata.dictionnaire[1];
+        newValue = metadata.dictionnaire[2];
 
-    // Draw table
-    document.getElementById(idBox).innerHTML = val_html;
-    data.forEach(function(d, i) {
-        var table = document.getElementById("my_table");
-        var tr = table.insertRow(i);
-        keys_list_table.forEach(function(p, j) {
-            tr.insertCell(j).innerHTML = d[p];
-            document.getElementById("table_element").appendChild(tr);
+        getData(urlDict, function(dict) {
+            // Create table
+            val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+
+            // Create header table
+            dict.forEach(function(d) {
+                val_html += "<th>" + d[newValue] + "</th>"
+            });
+            val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+
+            // Insert Row
+            document.getElementById(idBox).innerHTML = val_html;
+            data.forEach(function(d, i) {
+                var table = document.getElementById("my_table");
+                var tr = table.insertRow(i);
+                keys_list_table.forEach(function(p, j) {
+                    tr.insertCell(j).innerHTML = d[p];
+                    document.getElementById("table_element").appendChild(tr);     
+                });
+            }); 
         });
-    });
+    } else {
+        value_list_table = metadata.table.dataComposition.value_list;
+        
+        // Create table
+        val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+
+        // Create header table
+        value_list_table.forEach(function(d) {
+            val_html += "<th>" + d + "</th>"
+        });
+        val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+
+        // Insert Row
+        document.getElementById(idBox).innerHTML = val_html;
+        data.forEach(function(d, i) {
+            var table = document.getElementById("my_table");
+            var tr = table.insertRow(i);
+            keys_list_table.forEach(function(p, j) {
+                tr.insertCell(j).innerHTML = d[p];
+                document.getElementById("table_element").appendChild(tr);     
+            });
+        }); 
+    }
 };
 
 /**
