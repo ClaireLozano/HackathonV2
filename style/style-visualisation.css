@@ -123,6 +123,11 @@ h2 {
 	background-color: #EAEAEA;
 }
 
+#my_table td, 
+#my_table th {
+    white-space: nowrap;
+    width: 1%;
+}
 
 
 

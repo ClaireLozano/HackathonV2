@@ -113,28 +113,60 @@ var draw = function(typeVisualisation, metadata, data, idBox) {
 function drawTable(data, metadata, idBox) {
 
     // Initialization
-    var keys_list_table =[];
+    var keys_list_table = [];
     var value_list_table = [];
-
+    
     keys_list_table = metadata.table.dataComposition.keys_list;
-    value_list_table = metadata.table.dataComposition.value_list;
-    
-    // Create table
-    val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
-    value_list_table.forEach(function(d) {
-        val_html += "<th>" + d + "</th>"
-    });
-    val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
-    
-    // Draw table
-    document.getElementById(idBox).innerHTML = val_html;
-    data.forEach(function(d, i) {
-        var table = document.getElementById("my_table");
-        var tr = table.insertRow(i);
-        keys_list_table.forEach(function(p, j) {
-            tr.insertCell(j).innerHTML = d[p];
-            document.getElementById("table_element").appendChild(tr);     
+
+    // Get dictionnary 
+    if (metadata.dictionnaire) {
+        urlDict = metadata.dictionnaire[0];
+        initValue = metadata.dictionnaire[1];
+        newValue = metadata.dictionnaire[2];
+
+        getData(urlDict, function(dict) {
+            // Create table
+            val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+
+            // Create header table
+            dict.forEach(function(d) {
+                val_html += "<th>" + d[newValue] + "</th>"
+            });
+            val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+
+            // Insert Row
+            document.getElementById(idBox).innerHTML = val_html;
+            data.forEach(function(d, i) {
+                var table = document.getElementById("my_table");
+                var tr = table.insertRow(i);
+                keys_list_table.forEach(function(p, j) {
+                    tr.insertCell(j).innerHTML = d[p];
+                    document.getElementById("table_element").appendChild(tr);     
+                });
+            }); 
         });
-    }); 
+    } else {
+        value_list_table = metadata.table.dataComposition.value_list;
+        
+        // Create table
+        val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+
+        // Create header table
+        value_list_table.forEach(function(d) {
+            val_html += "<th>" + d + "</th>"
+        });
+        val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+
+        // Insert Row
+        document.getElementById(idBox).innerHTML = val_html;
+        data.forEach(function(d, i) {
+            var table = document.getElementById("my_table");
+            var tr = table.insertRow(i);
+            keys_list_table.forEach(function(p, j) {
+                tr.insertCell(j).innerHTML = d[p];
+                document.getElementById("table_element").appendChild(tr);     
+            });
+        }); 
+    }
 };
 

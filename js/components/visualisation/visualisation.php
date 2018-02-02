@@ -9,7 +9,7 @@
 
 		<div id="content-page">
 
-			<h1> Nom de le donnée </h1>
+			<h1></h1>
 			
 			<div class="panel panel-default box">
                 <div class="panel-heading">
@@ -23,7 +23,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Un problème ? </h4>
+                                    <h4 class="modal-title">Un problème ?</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="checkbox">
