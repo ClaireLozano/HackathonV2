@@ -14,7 +14,6 @@
 						<!-- <li class="active"> -->
 						<li class=""><a href="#tab1" class="accordion-toggle" data-toggle="tab">Citoyenneté</a></li>
 						<li class=""><a href="#tab2" class="accordion-toggle" data-toggle="tab">Déplacement</a></li>
-						<li class=""><a href="#tab3" class="accordion-toggle" data-toggle="tab">Espace public</a></li>
 						<li class=""><a href="#tab4" class="accordion-toggle" data-toggle="tab">Finance</a></li>
 					</ul>
 				</nav>
@@ -32,7 +31,7 @@
 						<div class="col-sm-4">
 							<div class="card">
 								<div class="card-block">
-									<a href="../visualisation/visualisation.php?type=graphe&amp;data=budget_2018"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+									<a href="../visualisation/visualisation.php?type=table&amp;data=budget_2018"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 								</div>
 							</div>
 						</div>
@@ -51,7 +50,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">INSEE</h3>
-								<a href="../visualisation/visualisation.php?type=graphe_bar&amp;data=insee"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=population_2008"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
@@ -76,23 +75,9 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Parkings</h3>
-								<a href="../visualisation/visualisation.php?type=graphe_bar&amp;data=disponibilite_parking"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=disponibilite_parking"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Espace public -->
-			<div class="tab-pane text-style" id="tab3">
-				<h2>Espace public</h2>
-				<hr>
-				<div class="row">
-					<div class="col-xs-6 col-md-3" id="block31">
-						<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
-					</div>
-					<div class="col-xs-6 col-md-3" id="block32">
-						<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 					</div>
 				</div>
 			</div>
@@ -102,13 +87,14 @@
 				<h2>Finance</h2>
 				<hr>
 				<div class="row">
-					<div class="col-xs-6 col-md-3" id="block41">
-						<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+					<div class="col-sm-4" id="block31">
+						<div class="card">
+							<div class="card-block">
+								<h3 class="card-title">Budget 2017 - Fonction</h3>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=bp_2017_fonction"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+							</div>
+						</div>
 					</div>
-					<div class="col-xs-6 col-md-3" id="block42">
-						<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
-					</div>
-				</div>
 				</div>
 		</div>
 	</div>
