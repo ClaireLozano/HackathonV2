@@ -19,13 +19,20 @@ $(document).ready(function(){
                 if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'NotHistorisedNotLocalisable') {
                     $("#tab-nav-3").css('display', 'none');
                 }
+
                 // Set a select list on historisable data
                 if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'HistorisedLocalisable') {
-                    $('#select-list-date').append("<p>Choisissez l'année : </p>");
+                    $('#select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
                     var sel = $('<select>').appendTo('#select-list-date');
-                    $('#select-list-date').append("<p>La comparer avec : </p>");
-                    var selCompare = $('<select>').appendTo('#select-list-date');
+                    sel.addClass("select-list");
+                    sel.addClass("select-list-select");
+
+                    $('#select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
+                    var selCompare = $('<select>').appendTo('#select-list-date-compare');
+                    selCompare.addClass("select-list");
+                    selCompare.addClass("select-list-select");
                     selCompare.append($("<option>").attr('value','none').text('...'));
+
                     for (var key in metadata.timeline) {
                         sel.append($("<option>").attr('value',metadata.timeline[key]).text(key));
                         selCompare.append($("<option>").attr('value',metadata.timeline[key]).text(key));
