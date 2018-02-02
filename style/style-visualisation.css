@@ -136,3 +136,26 @@ h2 {
 	height: 100%;
 	margin: 0;
 }
+
+/* SELECT LIST DATE */
+.select-list {
+	display: inline;
+	margin: 5px;
+}
+
+.select-list-select {
+	width: 200px;
+}
+
+.select-list-text {
+	margin-right: 10px;
+}
+
+.option-panel {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+
+
+

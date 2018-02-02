@@ -15,12 +15,35 @@ $(document).ready(function(){
         if (typeVisualisation && nomDonnee) {
             // Get metadata
             getMetadata(nomDonnee, function(metadata) {
+                // Remove map panel if the data is not localisable
+                if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'NotHistorisedNotLocalisable') {
+                    $("#tab-nav-3").css('display', 'none');
+                }
+
+                // Set a select list on historisable data
+                if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'HistorisedLocalisable') {
+                    $('#select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
+                    var sel = $('<select>').appendTo('#select-list-date');
+                    sel.addClass("select-list");
+                    sel.addClass("select-list-select");
+
+                    $('#select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
+                    var selCompare = $('<select>').appendTo('#select-list-date-compare');
+                    selCompare.addClass("select-list");
+                    selCompare.addClass("select-list-select");
+                    selCompare.append($("<option>").attr('value','none').text('...'));
+
+                    for (var key in metadata.timeline) {
+                        sel.append($("<option>").attr('value',metadata.timeline[key]).text(key));
+                        selCompare.append($("<option>").attr('value',metadata.timeline[key]).text(key));
+                    }
+                }
                 // Get end url
                 var endUrl = getUrl(nomDonnee);
                 // With end url, get data
                 getData(endUrl, function(data) {
                     // Draw visualisation
-                    draw(typeVisualisation, metadata, data, 'box1');
+                    draw(typeVisualisation, metadata, data);
                     // Set title
                     setTitle(metadata.title);
                     // Set active panel
@@ -73,6 +96,43 @@ $(document).ready(function(){
         });
 
 	};
+
+    /**
+     * Draw visualisation
+     *
+     * @return null
+     */
+    var draw = function(typeVisualisation, metadata, data) {
+        switch (metadata.dataType) {
+            case 'HistorisedLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawMap(data, metadata, 'box2');
+                //drawGraph(data, metadata, 'box3');
+                //setSeletList(data, metadata);
+                break;
+
+            case 'HistorisedNotLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawGraph(data, metadata, 'box3');
+                //setSeletList(data, metadata);
+                break;
+
+            case 'NotHistorisedLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawMap(data, metadata, 'box2');
+                //drawGraph(data, metadata, 'box3');
+                break;
+
+            case 'NotHistorisedNotLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawGraph(data, metadata, 'box3');
+                break;
+        }
+    };
 
     /**
      * Set the title of the page
