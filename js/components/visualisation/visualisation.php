@@ -60,22 +60,22 @@
 						<div class="tab-content">
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
-									<div id="select-list-date"></div>
-									<div id="select-list-date-compare"></div>	
+									<div class="select-list-date"></div>
+									<div class="select-list-date-compare"></div>	
 								</div>
 								<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-2">
 								<div class="option-panel">
-									<div id="select-list-date"></div>
-									<div id="select-list-date-compare"></div>	
+									<div class="select-list-date"></div>
+									<div class="select-list-date-compare"></div>	
 								</div>
 								<div id='box2' class="box-visu"> <!-- CHART --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div class="option-panel">
-									<div id="select-list-date"></div>
-									<div id="select-list-date-compare"></div>	
+									<div class="select-list-date"></div>
+									<div class="select-list-date-compare"></div>	
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->

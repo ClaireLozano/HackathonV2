@@ -22,13 +22,13 @@ $(document).ready(function(){
 
                 // Set a select list on historisable data
                 if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'HistorisedLocalisable') {
-                    $('#select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
-                    var sel = $('<select>').appendTo('#select-list-date');
+                    $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
+                    var sel = $('<select>').appendTo('.select-list-date');
                     sel.addClass("select-list");
                     sel.addClass("select-list-select");
 
-                    $('#select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
-                    var selCompare = $('<select>').appendTo('#select-list-date-compare');
+                    $('.select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
+                    var selCompare = $('<select>').appendTo('.select-list-date-compare');
                     selCompare.addClass("select-list");
                     selCompare.addClass("select-list-select");
                     selCompare.append($("<option>").attr('value','none').text('...'));
