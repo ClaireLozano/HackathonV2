@@ -55,27 +55,45 @@ $(document).ready(function () {
 
     getData(endUrl, function (data) {
 
-        all_points = [];
-        var markers = data.map(data => [data.dp_x, data.dp_y]);
+        var parking_coord = [];
 
-        for (marker in markers) {
+        console.log(data);
+
+        for (marker in data) {
+
+            var nb_dispo = data[marker].dp_place_disponible;
+            var nb_places = data[marker].dp_nb_places;
+            var color = '#B82010';
+            if (nb_dispo>nb_places/3){
+                color = '#DD985C'
+            }
+            if (nb_dispo>(nb_places*2/3)){
+                color='#C2F732'
+            }
 
             p2 = new ol.Feature({
-                geometry: new ol.geom.Point([markers[marker][0], markers[marker][1]])
+                geometry: new ol.geom.Point([data[marker].dp_x, data[marker].dp_y]),
+                labelPoint: new ol.geom.Point([data[marker].dp_x, data[marker].dp_y]),
+                name: data[marker].dp_libelle,
+                dispo: nb_dispo,
+                total: nb_places
             });
+
 
             p2.setStyle(new ol.style.Style({
                 image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                    color: '#4271AE',
+                    color: color,
                     crossOrigin: 'anonymous',
                     src: 'https://openlayers.org/en/v4.6.4/examples/data/dot.png'
                 }))
             }));
-            all_points.push(p2);
+            parking_coord.push(p2);
+
+
         }
 
         var vectorSource = new ol.source.Vector({
-            features: all_points
+            features: parking_coord
         });
 
         var vectorLayer = new ol.layer.Vector({
@@ -91,6 +109,49 @@ $(document).ready(function () {
                 zoom: 16,
                 extent: extent
             })
+        });
+
+        var element = document.getElementById('popup');
+
+        var popup = new ol.Overlay({
+            element: element,
+            positioning: 'bottom-center',
+            stopEvent: false
+        });
+
+        map.addOverlay(popup);
+
+        // display popup on click
+        map.on('click', function(evt) {
+            var feature = map.forEachFeatureAtPixel(evt.pixel,
+                function(feature, layer) {
+                    return feature;
+                });
+            if (feature) {
+                var geometry = feature.getGeometry();
+                var coord = geometry.getCoordinates();
+                popup.setPosition(coord);
+                $(element).popover({
+                    'title': feature.get('name'),
+                    'placement': 'top',
+                    'html': true,
+                    'content': '<p>Places : </p><code>' + feature.get('dispo') + '/'+feature.get('total') + '</code>'
+                });
+                $(element).popover('show');
+            } else {
+                $(element).popover('destroy');
+            }
+        });
+
+        // change mouse cursor when over marker
+        map.on('pointermove', function(e) {
+            if (e.dragging) {
+                $(element).popover('destroy');
+                return;
+            }
+            var pixel = map.getEventPixel(e.originalEvent);
+            var hit = map.hasFeatureAtPixel(pixel);
+            map.getTarget().style.cursor = hit ? 'pointer' : '';
         });
     });
 
