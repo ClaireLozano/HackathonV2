@@ -1,8 +1,21 @@
+#welcome {
+    margin: 10px;
+}
+
+.textDiv {
+    margin: 40px;
+}
 
 /* =============== NAV ==================*/
 
 .container-fluid {
     padding: 0;
+}
+
+.container {
+    padding: 0;
+    margin: 0 20px 0 20px;
+    width: auto;
 }
 
 /* =============== FOOTER ===============*/
@@ -12,7 +25,7 @@
     width: 60px;
     border-top-left-radius: 60px;
     border-top-right-radius: 60px;
-    background: #3b8bd4;
+    background: rgba(11,61,114,.7);
     margin: auto;
     margin-top: 80px;
     margin-bottom: 0;
@@ -31,3 +44,101 @@ footer{
     height: 80px;
     background-color: #333;
 }
+
+/* =============== BOX ALEATOIRE =============== */
+.box-wrapper-inner {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
+
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    box-direction: normal;
+
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    box-align: stretch;
+}
+
+.box {
+    width: 100%;
+    margin-right: 10px; 
+    margin-left: 10px; 
+    border-radius: 0;
+
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    box-ordinal-group: 1;
+
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+}
+
+.bottomButton {
+    border-radius: 0;
+    font-size: 20px;
+    margin-bottom: 3px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.label-warning {
+    background-color: white;
+    color: black;
+}
+
+.label-warning:hover {
+    background-color: #D44B4B;
+    color: white;
+}
+
+.panel-default>.panel-heading {
+    border-radius: 0;
+    background-color: rgba(11,61,114,.7);
+}
+
+@media (max-width: 620px) {
+    #welcome {
+        margin: 5px 10px 5px 10px;
+    }
+    .textDiv {
+        margin: 10px;
+    }
+    .box-wrapper-inner {
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        box-orient: vertical;
+        margin: 5px 10px 5px 10px;
+    }
+    .box {
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
