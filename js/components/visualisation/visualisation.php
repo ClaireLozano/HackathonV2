@@ -62,7 +62,9 @@
 								<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-2">
-								<div id='box2' class="box-visu"> <!-- CHART --></div>
+								<div id='box2' class="box-visu">
+									<?php include 'chart/chart.php';?>
+								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div id='box3' class="box-visu">
@@ -163,5 +165,7 @@
 	<script type="text/javascript" src="../controller.js"></script>
 	<script type="text/javascript" src="../util.js"></script>
 	<script type="text/javascript" src="visualisation.js"></script>
+	<script type="text/javascript" src="chart/chart.js"></script>
+
 
 </html>

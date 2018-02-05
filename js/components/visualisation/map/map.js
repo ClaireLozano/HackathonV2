@@ -1,28 +1,4 @@
 $(document).ready(function () {
-    /**
-     * Get arguments from url
-     *
-     * @return (type visualisation, nom data)
-     */
-    var getUrlPage = function () {
-        // Get url pour récupérer le nom de la donnée et le type de visualisation
-        var url = window.location.href.split("?");
-
-        // Si pas de données renseignées dans l'url, return
-        if (!url[1]) {
-            console.log('pas de données')
-            return null;
-        }
-
-        // Récupération des arguments contenu dans l'url
-        var d = url[1];
-        d = d.split("&");
-        var typeVisualisation = d[0].split("=")[1];
-        var nomDonnee = d[1].split("=")[1];
-
-        return [typeVisualisation, nomDonnee];
-    };
-
 
     //Définition de la projection de la carte en Lambert 93
     var projection = new ol.proj.Projection({code: "EPSG:2154", units: 'm'});
