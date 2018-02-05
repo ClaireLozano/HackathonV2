@@ -102,7 +102,7 @@ function drawTable(data, metadata, idBox) {
 
         getData(urlDict, function(dict) {
             // Create table
-            val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+            val_html = "<table id='my_table' class='table table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
 
             // Create header table
             dict.forEach(function(d) {
@@ -125,7 +125,7 @@ function drawTable(data, metadata, idBox) {
         value_list_table = metadata.table.dataComposition.value_list;
         
         // Create table
-        val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
+        val_html = "<table id='my_table' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
 
         // Create header table
         value_list_table.forEach(function(d) {
