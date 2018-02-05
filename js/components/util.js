@@ -102,7 +102,7 @@ function drawTable(data, metadata, idBox) {
 
         getData(urlDict, function(dict) {
             // Create table
-            val_html = "<table id='my_table' class='table table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+            val_html = "<table id='my_table' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
 
             // Create header table
             dict.forEach(function(d) {
@@ -119,7 +119,8 @@ function drawTable(data, metadata, idBox) {
                     tr.insertCell(j).innerHTML = d[p];
                     document.getElementById("table_element").appendChild(tr);     
                 });
-            }); 
+            });
+            $('#my_table').DataTable(); 
         });
     } else {
         value_list_table = metadata.table.dataComposition.value_list;
@@ -143,6 +144,7 @@ function drawTable(data, metadata, idBox) {
                 document.getElementById("table_element").appendChild(tr);     
             });
         }); 
+        $('#my_table').DataTable();
     }
 };
 
