@@ -26,12 +26,14 @@ $(document).ready(function(){
                     var sel = $('<select>').appendTo('.select-list-date');
                     sel.addClass("select-list");
                     sel.addClass("select-list-select");
+                    sel.addClass("form-control");
 
                     $('.select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
                     var selCompare = $('<select>').appendTo('.select-list-date-compare');
                     selCompare.addClass("select-list");
                     selCompare.addClass("select-list-select");
                     selCompare.append($("<option>").attr('value','none').text('...'));
+                    selCompare.addClass("form-control");
 
                     for (var key in metadata.timeline) {
                         sel.append($("<option>").attr('value',metadata.timeline[key]).text(key));

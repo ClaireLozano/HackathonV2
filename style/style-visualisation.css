@@ -109,6 +109,13 @@ h2 {
 	overflow: auto;
 }
 
+.form-control {
+    height: 25px;
+}
+
+select.input-sm {
+    height: 25px; 
+}
 
 /* TABLE */
 #my_table{
@@ -155,7 +162,8 @@ tbody:hover tr:hover td {
 /* SELECT LIST DATE */
 .select-list {
 	display: inline;
-	margin: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .select-list-select {
