@@ -5,7 +5,6 @@ $(document).ready(function () {
     var endUrl = getUrl(nomDonnee);
 
     getData(endUrl, function(dataToTreat){
-
       console.log(dataToTreat);
 
       var svg = d3.select("svg");
@@ -18,23 +17,16 @@ $(document).ready(function () {
       var y = d3.scale.linear().range([height, 0]);
 
       // define the axis
-      var xAxis = d3.svg.axis()
-          .scale(x)
-          .orient("bottom")
-
-      var yAxis = d3.svg.axis()
-          .scale(y)
-          .orient("left")
-          .ticks(10);
+      var xAxis = d3.svg.axis().scale(x).orient("bottom")
+      var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
 
       // add the SVG element
       var svg = d3.select("#chart").append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", "100%")
+          .attr("height", "100%")
         .append("g")
           .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
-
 
       // load the data
       dataToTreat.forEach(function(d) {
