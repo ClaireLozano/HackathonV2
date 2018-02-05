@@ -59,27 +59,19 @@
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>	
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-2">
-<<<<<<< HEAD
-								<div class="option-panel">
-									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>	
-								</div>
-								<div id='box2' class="box-visu"> <!-- CHART --></div>
-=======
 								<div id='box2' class="box-visu">
 									<?php include 'chart/chart.php';?>
 								</div>
->>>>>>> visualisationpage
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>	
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->

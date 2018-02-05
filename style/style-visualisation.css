@@ -117,7 +117,7 @@ h2 {
 }
 
 select.input-sm {
-    height: 25px; 
+    height: 25px;
 }
 
 .chart {
@@ -147,7 +147,7 @@ select.input-sm {
 }
 
 tbody:hover td {
-	color: transparent; 
+	color: transparent;
 	text-shadow: 0 0 3px #aaa;
 }
 
@@ -168,8 +168,6 @@ tbody:hover tr:hover td {
 	margin: 0;
 }
 
-<<<<<<< HEAD
-
 /* SELECT LIST DATE */
 .select-list {
 	display: inline;
@@ -189,23 +187,3 @@ tbody:hover tr:hover td {
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
-
-
-
-
-=======
-/* CHART */
-.bar rect {
-  shape-rendering: crispEdges;
-}
-
-.bar text {
-  fill: #999999;
-}
-
-.axis path, .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
->>>>>>> visualisationpage
