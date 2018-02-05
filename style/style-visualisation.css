@@ -105,8 +105,11 @@ h2 {
 }
 
 #box1 {
-	width: 100%;
 	overflow: auto;
+}
+
+#box3 {
+	height: 500px;
 }
 
 .form-control {
