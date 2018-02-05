@@ -20,8 +20,8 @@ h2 {
 	color: white;
 }
 
-#container {
-	margin: auto;
+.container {
+	margin: 0;
 }
 
 .panel {
@@ -29,7 +29,7 @@ h2 {
 }
 
 .panel-content-visualisation {
-	padding: 15px;
+	padding: 25px;
 }
 
 #content-page {
@@ -45,7 +45,7 @@ h2 {
 }
 
 .nav-visualisation {
-    text-align:center;
+    text-align:left;
 }
 
 @media (max-width: 1000px) {
@@ -152,8 +152,8 @@ h2 {
 }
 
 .option-panel {
-	margin-bottom: 10px;
-	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 
