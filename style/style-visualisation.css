@@ -104,6 +104,10 @@ h2 {
 
 /* =============== BOX VISU =============== */
 
+#description-page {
+	margin-top: 20px;
+}
+
 .box-visu {
 	width: 100%;
 	margin-right: 10px;
@@ -138,7 +142,7 @@ select.input-sm {
         box-orient: vertical;
         margin: 5px 10px 5px 10px;
     }
-    
+
     .box-visu {
         width: 100%;
         margin: auto;

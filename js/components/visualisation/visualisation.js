@@ -20,7 +20,7 @@ $(document).ready(function(){
                     $("#tab-nav-3").css('display', 'none');
                 }
 
-                // Set a select list on historisable data
+                // Set 2 select lists on historisable data
                 if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'HistorisedLocalisable') {
                     $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
                     var sel = $('<select>').appendTo('.select-list-date');
@@ -42,6 +42,9 @@ $(document).ready(function(){
 
                     // Set active select
                     $(".select-list-date select").val(metadata.timeline.dates[metadata.timeline.actualDate]);
+
+                    // Set description
+                    setDescription(metadata);
                 }
                 // With end url, get data
                 getData(metadata.link, function(data) {
@@ -232,8 +235,8 @@ $(document).ready(function(){
      *
      * @return
      */
-    var setSecondTitle = function(title) {
-        $("#second-title-page").html(title);
+    var setDescription = function(metadata) {
+        $("#description-page").html(metadata.description);
     };
 
     /**

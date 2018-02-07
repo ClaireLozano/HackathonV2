@@ -58,10 +58,11 @@
 						</ul>
 
 						<div class="tab-content">
+							<p id="description-page"></p>	
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>	
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div class="box-wrapper-inner">
 									<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
@@ -70,7 +71,7 @@
 							<div class="tab-pane" id="tab-pane-2">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>	
+									<div class="select-list-date-compare"></div>		
 								</div>
 								<div id='box2' class="box-visu"> <!-- CHART --></div>
 							</div>
