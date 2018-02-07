@@ -98,7 +98,12 @@ function drawTable(data, metadata, idBox) {
                     document.getElementById("table_element_" + idBox).appendChild(tr);     
                 });
             });
-            $('#my_table_' + idBox).DataTable(); 
+            $('#my_table_' + idBox).DataTable({
+                // "language": {
+                //     "url": "/dataTables/i18n/French.lang"
+                // }
+            });
+            setTable();
         });
     } else {
         value_list_table = metadata.table.dataComposition.value_list;
@@ -122,8 +127,23 @@ function drawTable(data, metadata, idBox) {
                 document.getElementById("table_element_" + idBox).appendChild(tr);     
             });
         }); 
-        $('#my_table_' + idBox).DataTable();
+        $('#my_table_' + idBox).DataTable({
+            // "language": {
+            //     "url": "/dataTables/i18n/French.lang"
+            // }
+        });
+        setTable();
     }
+};
+
+/**
+ * Get only element we need + translate en french
+ *
+ * @return type if visualisation 
+ */
+var setTable = function() {
+    $(".dataTables_info").remove();
+    // $("#my_table_box1_filter label").html("Rechercher: ");
 };
 
 /**

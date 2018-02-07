@@ -115,7 +115,7 @@ $(document).ready(function(){
             if (nomDonnee == "none") {
                 // Remove the table compare
                 if ($("#my_table_box1Compare_wrapper").length) {
-                    $("#my_table_box1Compare_wrapper").remove();
+                    $("#box1Compare").remove();
                 }
             } else {
                 // Get metadata
@@ -130,6 +130,11 @@ $(document).ready(function(){
         });
 	};
 
+    /**
+     * Get the panel active
+     *
+     * @return type if visualisation 
+     */
     var getActivePanel = function() {
         if ($("#tab-nav-1").hasClass("active")) {
             return "table";
@@ -138,7 +143,7 @@ $(document).ready(function(){
         } else {
             return "map";
         }
-    }
+    };
 
     /**
      * Draw visualisation
@@ -152,14 +157,24 @@ $(document).ready(function(){
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#my_table_box1Compare_wrapper").remove();
                 }
+                // Create div compare
+                var div = document.createElement('div');
+                div.id = 'box1Compare';
+                div.className = 'box-visu';
+                $("#tab-pane-1 .box-wrapper-inner").append(div);
                 // Set the second title
-                setSecondTitle(metadata.title);
+                // setSecondTitle(metadata.title);
                 // Call draw table method
                 drawTable(data, metadata, 'box1Compare');
                 break;
 
             case 'graph':
                 // Call draw graph method
+                // Create div compare
+                var div = document.createElement('div');
+                div.id = 'box2Compare';
+                div.className = 'box-visu';
+                $("#tab-pane-2 .box-wrapper-inner").append(div);
                 //drawGraph(data, metadata, 'box2Compare');
                 //setSeletList(data, metadata);
                 break;
