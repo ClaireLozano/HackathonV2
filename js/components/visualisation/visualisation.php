@@ -2,8 +2,6 @@
 <html>
 
 	<?php include '../header/header.php'; ?>
-    <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
-
 
 	<body>
 
@@ -73,12 +71,14 @@
 									<div class="select-list-date"></div>
 									<div class="select-list-date-compare"></div>		
 								</div>
-								<div id='box2' class="box-visu"> <!-- CHART --></div>
+								<div id='box2' class="box-visu">
+									<?php include 'chart/chart.php';?>
+								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>	
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
@@ -178,5 +178,7 @@
 	<script type="text/javascript" src="../controller.js"></script>
 	<script type="text/javascript" src="../util.js"></script>
 	<script type="text/javascript" src="visualisation.js"></script>
+	<script type="text/javascript" src="chart/chart.js"></script>
+
 
 </html>
