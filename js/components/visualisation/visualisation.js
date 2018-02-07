@@ -98,6 +98,7 @@ $(document).ready(function(){
             $("#tab-nav-5").addClass('active');
         });
 
+        // Reload the page with the new date
         $(".select-list-date").change(function() {
             // Get value of the selected item 
             var nomDonnee = $('.select-list-date :selected').val();
@@ -106,18 +107,26 @@ $(document).ready(function(){
             reloadPage(url[0], nomDonnee, activePanel);
         });
 
+        // Load the compare table
         $(".select-list-date-compare").change(function() {
             // Get value of the selected item 
             var nomDonnee = $('.select-list-date-compare :selected').val();
             var typeVisualisation = getActivePanel();
-            // Get metadata
-            getMetadata(nomDonnee, function(metadata) {
-                // With end url, get data
-                getData(metadata.link, function(data) {
-                    // Draw visualisation
-                    drawCompare(typeVisualisation, metadata, data);
+            if (nomDonnee == "none") {
+                // Remove the table compare
+                if ($("#my_table_box1Compare_wrapper").length) {
+                    $("#my_table_box1Compare_wrapper").remove();
+                }
+            } else {
+                // Get metadata
+                getMetadata(nomDonnee, function(metadata) {
+                    // With end url, get data
+                    getData(metadata.link, function(data) {
+                        // Draw visualisation
+                        drawCompare(typeVisualisation, metadata, data);
+                    });
                 });
-            });
+            }
         });
 	};
 
@@ -139,15 +148,18 @@ $(document).ready(function(){
     var drawCompare = function(typeVisualisation, metadata, data) {
         switch (typeVisualisation) {
             case 'table':
-                // Call draw table method
+                // Remove the table compare
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#my_table_box1Compare_wrapper").remove();
                 }
+                // Set the second title
+                setSecondTitle(metadata.title);
+                // Call draw table method
                 drawTable(data, metadata, 'box1Compare');
                 break;
 
             case 'graph':
-                // Call draw table method
+                // Call draw graph method
                 //drawGraph(data, metadata, 'box2Compare');
                 //setSeletList(data, metadata);
                 break;
@@ -197,7 +209,16 @@ $(document).ready(function(){
      * @return
      */
     var setTitle = function(title) {
-        $("h1").html(title);
+        $("#title-page").html(title);
+    };
+
+    /**
+     * Set the second title of the page
+     *
+     * @return
+     */
+    var setSecondTitle = function(title) {
+        $("#second-title-page").html(title);
     };
 
     /**

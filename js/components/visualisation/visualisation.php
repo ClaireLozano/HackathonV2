@@ -9,7 +9,7 @@
 
 		<div id="content-page">
 
-			<h1></h1>
+			<h1 id="title-page"></h1>
 			<div class="panel panel-default box">
                 <div class="panel-heading">
                     <p class="panel-title pull-left">Visualisation</p>
@@ -64,7 +64,8 @@
 									<div class="select-list-date-compare"></div>	
 								</div>
 								<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
-								<div id='box1Compare' class="box-visu"> <!-- TABLEAU --></div>
+								<h1 id="second-title-page"></h1>
+								<div id='box1Compare' class="box-visu"> <!-- TABLEAU --> </div>
 							</div>
 							<div class="tab-pane" id="tab-pane-2">
 								<div class="option-panel">
@@ -72,7 +73,8 @@
 									<div class="select-list-date-compare"></div>	
 								</div>
 								<div id='box2' class="box-visu"> <!-- CHART --></div>
-								<div id='box2Compare' class="box-visu"> <!-- CHART --></div>
+								<h1 id="second-title-page"></h1>
+								<div id='box2Compare' class="box-visu"> <!-- CHART --> </div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div class="option-panel">
