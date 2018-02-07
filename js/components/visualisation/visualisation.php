@@ -2,9 +2,8 @@
 <html>
 
 	<?php include '../header/header.php'; ?>
-
+    <script type="text/javascript" src="../util.js"></script>
 	<body>
-
 		<div id="content-page">
 
 			<h1></h1>
@@ -13,18 +12,18 @@
                     <p class="panel-title pull-left">Visualisation</p>
 
                     <!-- Bouton "un probleme?" -->
-                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
+                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un probl?me ?</button>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="example">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Un problème ?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">?</span></button>
+                                    <h4 class="modal-title">Un probl?me ?</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
+                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les donn?es vous semble incorrecte ...</label>
                                     </div>
                                     <div class="checkbox">
                                         <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
@@ -52,9 +51,8 @@
 							<li id="tab-nav-2" class="tab-nav"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
 							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
 							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
-							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
+							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> T?l?charger</a></li>
 						</ul>
-
 						<div class="tab-content">
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
@@ -75,7 +73,7 @@
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
-									<?php include 'map/map.php'; ?>
+                                    <?php include 'map/map.php'; ?>
 								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
@@ -132,7 +130,7 @@
 										<h4 class="user">Annonyme</h4>
 										<h5 class="time">Il y a 8 minutes</h5>
 									</div>
-									<p>Commentaire numéro 1</p>
+									<p>Commentaire num?ro 1</p>
 								</div>
 							</li>
 							<li class="comment">
@@ -141,7 +139,7 @@
 										<h4 class="user">Open Data La Rochelle</h4>
 										<h5 class="time">Il y a 3 minutes</h5>
 									</div>
-									<p>Commentaire numéro 2</p>
+									<p>Commentaire num?ro 2</p>
 								</div>
 							</li>
 							<li class="comment">
@@ -150,7 +148,7 @@
 										<h4 class="user">Annonyme</h4>
 										<h5 class="time">Il y a 2 minutes</h5>
 									</div>
-									<p>Commentaire numéro 3</p>
+									<p>Commentaire num?ro 3</p>
 								</div>
 							</li>
 						</ul>
@@ -164,14 +162,14 @@
 				</div>
 			</div>
 		</div> <!-- END CONTENT PAGE -->
-
+        <script type="text/javascript" src="map/map.js"></script>
+        	<script type="text/javascript" src="../controller.js"></script>
+        	<script type="text/javascript" src="visualisation.js"></script>
+        	<script type="text/javascript" src="chart/chart.js"></script>
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
-	<script type="text/javascript" src="../controller.js"></script>
-	<script type="text/javascript" src="../util.js"></script>
-	<script type="text/javascript" src="visualisation.js"></script>
-	<script type="text/javascript" src="chart/chart.js"></script>
+
 
 
 </html>
