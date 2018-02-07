@@ -156,15 +156,16 @@ $(document).ready(function(){
     var drawCompare = function(typeVisualisation, metadata, data) {
         switch (typeVisualisation) {
             case 'table':
-                // Remove the table compare
+                // Remove the table compare if exists
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#my_table_box1Compare_wrapper").remove();
+                } else {
+                    // Else, create div compare
+                    var div = document.createElement('div');
+                    div.id = 'box1Compare';
+                    div.className = 'box-visu';
+                    $("#tab-pane-1 .box-wrapper-inner").append(div);
                 }
-                // Create div compare
-                var div = document.createElement('div');
-                div.id = 'box1Compare';
-                div.className = 'box-visu';
-                $("#tab-pane-1 .box-wrapper-inner").append(div);
                 // Set the second title
                 // setSecondTitle(metadata.title);
                 // Call draw table method
