@@ -35,15 +35,16 @@ $(document).ready(function(){
                     selCompare.append($("<option>").attr('value','none').text('...'));
                     selCompare.addClass("form-control");
 
-                    for (var key in metadata.timeline) {
-                        sel.append($("<option>").attr('value',metadata.timeline[key]).text(key));
-                        selCompare.append($("<option>").attr('value',metadata.timeline[key]).text(key));
+                    for (var key in metadata.timeline.dates) {
+                        sel.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
+                        selCompare.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
                     }
+
+                    // Set active select
+                    $(".select-list-date select").val(metadata.timeline.dates[metadata.timeline.actualDate]);
                 }
-                // Get end url
-                var endUrl = getUrl(nomDonnee);
                 // With end url, get data
-                getData(endUrl, function(data) {
+                getData(metadata.link, function(data) {
                     // Draw visualisation
                     draw(typeVisualisation, metadata, data);
                     // Set title
@@ -97,7 +98,61 @@ $(document).ready(function(){
             $("#tab-nav-5").addClass('active');
         });
 
+        $(".select-list-date").change(function() {
+            // Get value of the selected item 
+            var nomDonnee = $('.select-list-date :selected').val();
+            var url = window.location.href.split("?");
+            var activePanel = getActivePanel();
+            reloadPage(url[0], nomDonnee, activePanel);
+        });
+
+        $(".select-list-date-compare").change(function() {
+            // Get value of the selected item 
+            var nomDonnee = $('.select-list-date-compare :selected').val();
+            var typeVisualisation = getActivePanel();
+            // Get metadata
+            getMetadata(nomDonnee, function(metadata) {
+                // With end url, get data
+                getData(metadata.link, function(data) {
+                    // Draw visualisation
+                    drawCompare(typeVisualisation, metadata, data);
+                });
+            });
+        });
 	};
+
+    var getActivePanel = function() {
+        if ($("#tab-nav-1").hasClass("active")) {
+            return "table";
+        } else if ($("#tab-nav-2").hasClass("active")) {
+            return "graph";
+        } else {
+            return "map";
+        }
+    }
+
+    /**
+     * Draw visualisation
+     *
+     * @return null
+     */
+    var drawCompare = function(typeVisualisation, metadata, data) {
+        switch (typeVisualisation) {
+            case 'table':
+                // Call draw table method
+                if ($("#my_table_box1Compare_wrapper").length) {
+                    $("#my_table_box1Compare_wrapper").remove();
+                }
+                drawTable(data, metadata, 'box1Compare');
+                break;
+
+            case 'graph':
+                // Call draw table method
+                //drawGraph(data, metadata, 'box2Compare');
+                //setSeletList(data, metadata);
+                break;
+        }
+    };
 
     /**
      * Draw visualisation

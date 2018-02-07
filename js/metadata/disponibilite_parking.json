@@ -1,7 +1,7 @@
 
 {
   "dataType": "NotHistorisedLocalisable",
-  "link": "disponibilite_parking",
+  "link": "&db=stationnement&table=disponibilite_parking&format=json",
   "dictionnaire": "",
   "title": "STATIONNEMENT – DISPONIBILITÉ DES PARKINGS",
   "description": "",

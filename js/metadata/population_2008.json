@@ -1,7 +1,7 @@
 
 {
   "dataType": "HistorisedLocalisable",
-  "link": "population_2008",
+  "link": "&db=insee&table=population_2008&format=json",
   "dictionnaire": ["&db=insee&table=population_dico_2008&format=json", "VAR_ID", "VAR_LIB"],
   "title": "RECENSEMENT DE LA POPULATION – POPULATION",
   "descritpion": "",

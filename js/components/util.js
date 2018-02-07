@@ -5,31 +5,9 @@
  */
 var getMetadata = function(nomDonnee, callback) {
     var metadata = [];
-    switch (nomDonnee) {
-        case 'population_2008':
-            $.getJSON("../../metadata/insee.json", function(m) {
-                return callback(m);
-            });
-            break;
-
-        case 'disponibilite_parking':
-            $.getJSON("../../metadata/parking.json", function(m) {
-                return callback(m);
-            });
-            break;
-
-        case 'fiche':
-            $.getJSON("../../metadata/archive.json", function(m) {
-                return callback(m);
-            });
-            break;
-
-        case 'bp_2017_fonction':
-            $.getJSON("../../metadata/budget.json", function(m) {
-                return callback(m);
-            });
-            break;
-    }
+    $.getJSON("../../metadata/" + nomDonnee + ".json", function(m) {
+        return callback(m);
+    });
 };
 
 /**
@@ -48,7 +26,7 @@ var getUrl = function(nomDonnee) {
             return "&db=stationnement&table=disponibilite_parking&format=json";
             break;
 
-        case 'fiche':
+        case 'archive_fiche':
             return "&db=archive&table=fiche&format=json";
             break;
 
@@ -102,49 +80,49 @@ function drawTable(data, metadata, idBox) {
 
         getData(urlDict, function(dict) {
             // Create table
-            val_html = "<table id='my_table' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+            val_html = "<table id='my_table_" + idBox + "' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
 
             // Create header table
             dict.forEach(function(d) {
                 val_html += "<th>" + d[newValue] + "</th>"
             });
-            val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+            val_html += "</tr></thead><tbody id='table_element_" + idBox + "'></tbody></table>";
 
             // Insert Row
             document.getElementById(idBox).innerHTML = val_html;
             data.forEach(function(d, i) {
-                var table = document.getElementById("my_table");
+                var table = document.getElementById('my_table_' + idBox);
                 var tr = table.insertRow(i);
                 keys_list_table.forEach(function(p, j) {
                     tr.insertCell(j).innerHTML = d[p];
-                    document.getElementById("table_element").appendChild(tr);     
+                    document.getElementById("table_element_" + idBox).appendChild(tr);     
                 });
             });
-            $('#my_table').DataTable(); 
+            $('#my_table_' + idBox).DataTable(); 
         });
     } else {
         value_list_table = metadata.table.dataComposition.value_list;
         
         // Create table
-        val_html = "<table id='my_table' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+        val_html = "<table id='my_table_" + idBox + "' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
 
         // Create header table
         value_list_table.forEach(function(d) {
             val_html += "<th>" + d + "</th>"
         });
-        val_html += "</tr></thead><tbody id=\"table_element\"></tbody></table>";
+        val_html += "</tr></thead><tbody id='table_element_" + idBox + "'></tbody></table>";
 
         // Insert Row
         document.getElementById(idBox).innerHTML = val_html;
         data.forEach(function(d, i) {
-            var table = document.getElementById("my_table");
+            var table = document.getElementById('my_table_' + idBox);
             var tr = table.insertRow(i);
             keys_list_table.forEach(function(p, j) {
                 tr.insertCell(j).innerHTML = d[p];
-                document.getElementById("table_element").appendChild(tr);     
+                document.getElementById("table_element_" + idBox).appendChild(tr);     
             });
         }); 
-        $('#my_table').DataTable();
+        $('#my_table_' + idBox).DataTable();
     }
 };
 
@@ -171,3 +149,13 @@ var getUrlPage = function() {
 
     return [typeVisualisation, nomDonnee];
 };
+
+/**
+ * Reload page
+ *
+ * @return 
+ */
+var reloadPage = function(url, endUrl, typeVisualisation) {
+    window.location.replace(url + '?type=' + typeVisualisation + '&data=' + endUrl);
+};
+

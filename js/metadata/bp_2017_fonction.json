@@ -1,0 +1,33 @@
+
+{
+  "dataType": "HistorisedNotLocalisable",
+  "link" : "&db=budget&table=bp_2017_fonction&format=json",
+  "dictionnaire": "",
+  "title": "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF – BP 2017 – FONCTION",
+  "descritpion": "",
+  "graph":{
+    "possibleGraphs": ["horizontalBar"],
+    "dataComposition": {
+      "excludeLines": [],
+      "selectList": "budg_ss_fction",
+      "onlyOneElement": "budg_montant"
+    }
+  },
+  "timeline":{
+    "actualDate": "2017",
+    "dates" :{ 
+      "2017":"bp_2017_fonction",
+      "2016":"bp_2016_fonction",
+      "2015":"bp_2015_fonction",
+      "2014":"bp_2014_fonction",
+      "2013":"bp_2013_fonction",
+      "2012":"bp_2012_fonction"
+    }
+  },
+  "table":{
+    "dataComposition":{
+      "keys_list": ["budg_cat", "budg_dep_rec", "budg_budget", "budg_section", "budg_ss_fction", "budg_montant"],
+      "value_list": ["Catégorie", "Dépense/recette", "Budget", "Section", "Fonction", "Montant"]
+    }
+  }
+}
