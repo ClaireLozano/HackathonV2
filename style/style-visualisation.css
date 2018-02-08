@@ -110,8 +110,6 @@ h2 {
 
 .box-visu {
 	width: 100%;
-	margin-right: 10px;
-	margin-left: 10px;
 	overflow: auto;
 
 	-webkit-box-ordinal-group: 1;
@@ -128,6 +126,7 @@ h2 {
 }
 
 .form-control {
+	padding: 0;
     height: 25px;
 }
 
@@ -140,7 +139,6 @@ select.input-sm {
         -webkit-box-orient: vertical;
         -moz-box-orient: vertical;
         box-orient: vertical;
-        margin: 5px 10px 5px 10px;
     }
 
     .box-visu {
@@ -183,6 +181,14 @@ tbody:hover tr:hover td {
     margin-right: 0px;
 }
 
+@media screen and (max-width: 767px) {
+	div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info {
+		text-align: left; 
+	}
+	div.dataTables_wrapper div.dataTables_paginate {
+		text-align: center;
+	}
+}
 
 /* MAP */
 #map {

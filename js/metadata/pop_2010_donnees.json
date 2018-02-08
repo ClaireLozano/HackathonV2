@@ -1,9 +1,9 @@
 
 {
   "dataType": "HistorisedLocalisable",
-  "link": "&db=insee&table=population_2008&format=json",
+  "link": "&db=insee&table=table=pop_2010_donnees&format=json",
   "dictionnaire": ["&db=insee&table=population_dico_2008&format=json", "VAR_ID", "VAR_LIB"],
-  "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2008",
+  "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2010",
   "descritpion": "",
   "graph":{
     "possibleGraphs": ["horizontalBar"],
@@ -14,12 +14,12 @@
     }
   },
   "timeline":{
-    "actualDate": "2008",
+    "actualDate": "2010",
     "dates" :{ 
       "2010":"pop_2010_donnees",
       "2009":"pop_2009_donnees",
       "2008":"population_2008"
-    }   
+    }
   },
   "map":{
 

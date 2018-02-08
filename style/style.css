@@ -126,8 +126,18 @@ footer{
     }
 }
 
-
-
+/* TABLEAU */
+.pagination>li>a, .pagination>li>span {
+    line-height: 1.42857;
+    position: relative;
+    float: left;
+    margin-left: -1px;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #0b3d72;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
 
 
 

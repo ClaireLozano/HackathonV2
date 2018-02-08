@@ -16,6 +16,7 @@
     <!-- Table -->
 	  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"></script> MARCHE PAS... -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 
