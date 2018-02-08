@@ -109,6 +109,7 @@ h2 {
 }
 
 .box-visu {
+	margin: 10px;
 	width: 100%;
 	overflow: auto;
 
