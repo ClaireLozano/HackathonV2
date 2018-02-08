@@ -12,7 +12,9 @@
                 <div class="panel-heading">
                     <p class="panel-title pull-left">Visualisation</p>
 
-                    <!-- Bouton "un probleme?" -->
+					<!-- Bouton "un probleme?" -->
+                    <!-- <button class="btn btn-default label label-warning pull-right" href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme"> Un problème ?</button> -->
+                    
                     <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="example">
@@ -34,9 +36,9 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
                                 </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="clearfix"></div>
                 </div>

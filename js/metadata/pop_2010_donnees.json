@@ -2,17 +2,17 @@
 {
   "dataType": "HistorisedLocalisable",
   "link": "&db=insee&table=table=pop_2010_donnees&format=json",
-  "dictionnaire-x": {
+  "dictionnaireX": {
     "link": "&db=insee&table=population_dico_2008&format=json",
-    "value": "VAR_ID", 
+    "initValue": "VAR_ID", 
     "newValue": "VAR_LIB"
   },
-  "dictionnaire-y": {
+  "dictionnaireY": {
     "link": "&db=insee&table=iris_2008&format=json",
-    "value": "qu_code_zone", 
-    "newValue": "qu_libelle",
-    "split": ["173000", "173001"]
-  },
+    "value": "IRIS",
+    "initValue": "IRIS", 
+    "newValue": "LIBIRIS"
+  },  
   "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2010",
   "descritpion": "",
   "graph":{
