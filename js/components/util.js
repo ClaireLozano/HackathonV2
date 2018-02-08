@@ -56,6 +56,39 @@ var getData = function(endUrl, callback) {
 };
 
 /**
+ * Get arguments from url
+ *
+ * @return (type visualisation, nom data)
+ */
+var getUrlPage = function() {
+    // Get url pour récupérer le nom de la donnée et le type de visualisation
+    var url = window.location.href.split("?");
+
+    // Si pas de données renseignées dans l'url, return
+    if (!url[1]) {
+        console.log('pas de données')
+        return null;
+    }
+
+    // Récupération des arguments contenu dans l'url
+    var d = url[1];
+    d = d.split("&");
+    var typeVisualisation = d[0].split("=")[1];
+    var nomDonnee = d[1].split("=")[1];
+
+    return [typeVisualisation, nomDonnee];
+};
+
+/**
+ * Reload page
+ *
+ * @return 
+ */
+var reloadPage = function(url, endUrl, typeVisualisation) {
+    window.location.replace(url + '?type=' + typeVisualisation + '&data=' + endUrl);
+};
+
+/**
  * Draw table
  *
  * @param  {Object}         data                Data from open data la rochelle plateform
@@ -65,6 +98,12 @@ var getData = function(endUrl, callback) {
  * @return null
  */
 function drawTable(data, metadata, idBox) {
+
+    // Be sure to have data
+    if (!data) {
+        alert("Une erreur est survenue: Impossible de construire le tableau.");
+        return;
+    }
 
     // Initialization
     var keys_list_table = [];
@@ -81,15 +120,29 @@ function drawTable(data, metadata, idBox) {
         getData(urlDict, function(dict) {
             // Create table
             val_html = "<table id='my_table_" + idBox + "' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
-
+            var found = false;
             // Create header table
-            dict.forEach(function(d) {
-                val_html += "<th>" + d[newValue] + "</th>";
+            keys_list_table.forEach(function(key, j) {
+                found = false;
+                dict.forEach(function(d, i, arr) {
+                    // If element is on the dictionnary, take the dictionnary value
+                    if (d[initValue] === key) {
+                        val_html += "<th>" + d[newValue] + "</th>";
+                        found = true;
+                        return;
+                    }
+                    // If the element isn't found in the dictionnary, keep the keys_list_table value
+                    if (i === arr.length - 1 && !found) { 
+                       val_html += "<th>" + key + "</th>";
+                    }
+                });
             });
+            
             val_html += "</tr></thead><tbody id='table_element_" + idBox + "'></tbody></table>";
 
             // Insert Row
             document.getElementById(idBox).innerHTML = val_html;
+            console.log(data)
             data.forEach(function(d, i) {
                 var table = document.getElementById('my_table_' + idBox);
                 var tr = table.insertRow(i);
@@ -112,8 +165,8 @@ function drawTable(data, metadata, idBox) {
                     "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
                     "oPaginate": {
                         "sFirst":      "Premier",
-                        "sPrevious":   "Pr&eacute;c&eacute;dent",
-                        "sNext":       "Suivant",
+                        "sPrevious":   "←",
+                        "sNext":       "→",
                         "sLast":       "Dernier"
                     },
                     "oAria": {
@@ -183,37 +236,3 @@ var setTable = function() {
     $(".dataTables_info").remove();
     // $("#my_table_box1_filter label").html("Rechercher: ");
 };
-
-/**
- * Get arguments from url
- *
- * @return (type visualisation, nom data)
- */
-var getUrlPage = function() {
-    // Get url pour récupérer le nom de la donnée et le type de visualisation
-    var url = window.location.href.split("?");
-
-    // Si pas de données renseignées dans l'url, return
-    if (!url[1]) {
-        console.log('pas de données')
-        return null;
-    }
-
-    // Récupération des arguments contenu dans l'url
-    var d = url[1];
-    d = d.split("&");
-    var typeVisualisation = d[0].split("=")[1];
-    var nomDonnee = d[1].split("=")[1];
-
-    return [typeVisualisation, nomDonnee];
-};
-
-/**
- * Reload page
- *
- * @return 
- */
-var reloadPage = function(url, endUrl, typeVisualisation) {
-    window.location.replace(url + '?type=' + typeVisualisation + '&data=' + endUrl);
-};
-
