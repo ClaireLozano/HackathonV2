@@ -36,13 +36,13 @@ getData(endUrl, function (data) {
 
         var nb_dispo = data[marker].dp_place_disponible;
         var nb_places = data[marker].dp_nb_places;
-        var color = '#B82010';
-        if (nb_dispo > nb_places / 3) {
+        var color = '#ffffff';
+        /*if (nb_dispo > nb_places / 3) {
             color = '#DD985C'
         }
         if (nb_dispo > (nb_places * 2 / 3)) {
             color = '#C2F732'
-        }
+        }*/
 
         p2 = new ol.Feature({
             geometry: new ol.geom.Point([data[marker].dp_x, data[marker].dp_y]),
@@ -57,7 +57,8 @@ getData(endUrl, function (data) {
             image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
                 color: color,
                 crossOrigin: 'anonymous',
-                src: 'https://openlayers.org/en/v4.6.4/examples/data/dot.png'
+                src: '../../../images/icone_parking.svg',
+                scale:0.05
             }))
         }));
         parking_coord.push(p2);
@@ -84,7 +85,6 @@ getData(endUrl, function (data) {
             extent: extent
         })
     });
-    map.updateSize();
 
     var element = document.getElementById('popup');
 
@@ -93,9 +93,8 @@ getData(endUrl, function (data) {
         positioning: 'bottom-center',
         stopEvent: false
     });
-    map.updateSize();
     map.addOverlay(popup);
-    map.updateSize();
+
 
     // display popup on click
     map.on('click', function (evt) {
@@ -107,18 +106,15 @@ getData(endUrl, function (data) {
             var geometry = feature.getGeometry();
             var coord = geometry.getCoordinates();
             popup.setPosition(coord);
-            $(element).popover({
-                'title': feature.get('name'),
-                'placement': 'top',
-                'html': true,
-                'content': '<p>Places : </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>'
-            });
+            $(element).attr('data-placement', 'top');
+            $(element).attr('data-html', true);
+            $(element).attr('data-content', '<p>Places : </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
+            $(element).attr('data-original-title', feature.get('name'));
             $(element).popover('show');
         } else {
             $(element).popover('destroy');
         }
     });
-    map.updateSize();
 
     // change mouse cursor when over marker
     map.on('pointermove', function (e) {
@@ -130,7 +126,6 @@ getData(endUrl, function (data) {
         var hit = map.hasFeatureAtPixel(pixel);
         map.getTarget().style.cursor = hit ? 'pointer' : '';
     });
-    map.updateSize();
 
     document.getElementById('tab-nav-3').onclick = function() {
         setTimeout( function() { map.updateSize();}, 200);
