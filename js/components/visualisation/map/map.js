@@ -30,8 +30,6 @@ getData(endUrl, function (data) {
 
     var parking_coord = [];
 
-    console.log(data);
-
     for (marker in data) {
 
         var nb_dispo = data[marker].dp_place_disponible;
@@ -102,7 +100,7 @@ getData(endUrl, function (data) {
             function (feature, layer) {
                 return feature;
             });
-        if (feature) {
+        if (feature && feature.get('name')) {
             var geometry = feature.getGeometry();
             var coord = geometry.getCoordinates();
             popup.setPosition(coord);
@@ -130,4 +128,45 @@ getData(endUrl, function (data) {
     document.getElementById('tab-nav-3').onclick = function() {
         setTimeout( function() { map.updateSize();}, 200);
     }
+
+
+
+
+
+
+
+
+    var geolocation = new ol.Geolocation({
+        projection: projection
+    });
+
+    geolocation.setTracking(true);
+
+    var accuracyFeature = new ol.Feature();
+    geolocation.on('change:accuracyGeometry', function() {
+        accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+    });
+
+    var positionFeature = new ol.Feature();
+    positionFeature.setStyle(new ol.style.Style({
+        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+            crossOrigin: 'anonymous',
+            color:"#000000",
+            src: '../../../images/icone_drapeau.svg',
+            scale:0.15
+        }))
+    }));
+
+    geolocation.on('change:position', function() {
+        var coordinates = geolocation.getPosition();
+        positionFeature.setGeometry(coordinates ?
+            new ol.geom.Point(coordinates) : null);
+    });
+
+    new ol.layer.Vector({
+        map: map,
+        source: new ol.source.Vector({
+            features: [accuracyFeature, positionFeature]
+        })
+    });
 });
