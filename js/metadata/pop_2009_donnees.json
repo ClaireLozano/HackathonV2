@@ -2,8 +2,17 @@
 {
   "dataType": "HistorisedLocalisable",
   "link": "&db=insee&table=table=pop_2009_donnees&format=json",
-  "dictionnaire": ["&db=insee&table=population_dico_2008&format=json", "VAR_ID", "VAR_LIB"],
-  "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2009",
+  "dictionnaire-x": {
+    "link": "&db=insee&table=population_dico_2008&format=json",
+    "value": "VAR_ID", 
+    "newValue": "VAR_LIB"
+  },
+  "dictionnaire-y": {
+    "link": "&db=insee&table=iris_2008&format=json",
+    "value": "qu_code_zone", 
+    "newValue": "qu_libelle",
+    "split": ["173000", "173001"]
+  },  "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2009",
   "descritpion": "",
   "graph":{
     "possibleGraphs": ["horizontalBar"],

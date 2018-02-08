@@ -2,7 +2,17 @@
 {
   "dataType": "HistorisedLocalisable",
   "link": "&db=insee&table=population_2008&format=json",
-  "dictionnaire": ["&db=insee&table=population_dico_2008&format=json", "VAR_ID", "VAR_LIB"],
+  "dictionnaireX": {
+    "link": "&db=insee&table=population_dico_2008&format=json",
+    "initValue": "VAR_ID", 
+    "newValue": "VAR_LIB"
+  },
+  "dictionnaireY": {
+    "link": "&db=insee&table=iris_2008&format=json",
+    "value": "IRIS",
+    "initValue": "IRIS", 
+    "newValue": "LIBIRIS"
+  },  
   "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2008",
   "descritpion": "",
   "graph":{
