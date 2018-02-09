@@ -70,7 +70,6 @@ footer{
 
 .box {
     overflow: scroll;
-    height: 600px;
     width: 100%;
     margin-right: 10px; 
     margin-left: 10px; 
@@ -110,6 +109,11 @@ footer{
 
 .panel-title {
     color: white;
+}
+
+.panel-body {
+    height: 500px;
+    overflow: auto;
 }
 
 @media (max-width: 620px) {
