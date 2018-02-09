@@ -19,9 +19,9 @@
 
 		<!-- Première box --> 
 		<div class="box-wrapper-inner">
-                <div id='box0' class="panel panel-default box">
+                <div class="panel panel-default box">
                     <div class="panel-heading">
-                        <h4 class="panel-title pull-left"></h4>
+                        <p id="panel-title-box0" class="panel-title pull-left"></p>
                         <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                         <div class="modal fade" tabindex="-1" role="dialog" id="example">
@@ -49,7 +49,7 @@
                         <div class="clearfix"></div>
                     </div>
 
-                    <div class="panel-body form-group panelBody">
+                    <div id='box0' class="panel-body form-group panelBody">
                         <a id="seeMoreBox0"> <!-- Mettre les visualisations ici--></a>
                     </div>
                     <a id="seeMore0" style="float:right" class="glyphicon glyphicon-zoom-in btn btn-default bottomButton" aria-hidden="true"></a>
@@ -57,9 +57,9 @@
                 </div>
 
                 <!-- Deusième box --> 
-                <div id='box2' class="panel panel-default box">
+                <div class="panel panel-default box">
                     <div class="panel-heading">
-                        <h4 class="panel-title pull-left"></h4>
+                        <p id="panel-title-box1" class="panel-title pull-left"></p>
                         <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">un problème ?</button>
                         
                         <div class="modal fade" tabindex="-1" role="dialog" id="example">
@@ -86,7 +86,7 @@
                         
                         <div class="clearfix"></div>
                     </div>
-                    <div class="panel-body form-group panelBody">
+                    <div id='box1' class="panel-body form-group panelBody">
                         <a id="seeMoreBox1"> <!-- Mettre les visualisations ici--></a>
                     </div>
                     <a id="seeMore1" style="float:right" class="glyphicon glyphicon-zoom-in btn btn-default bottomButton" aria-hidden="true"></a>
@@ -97,6 +97,8 @@
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
+    <script type="text/javascript" src="../util.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
 </html>
 

@@ -265,6 +265,11 @@ $(document).ready(function(){
                 $('#tab-pane-3').css('display', 'block');
                 $("#tab-nav-3").addClass('active');
                 break;
+
+            case 'info':
+                $('#tab-pane-4').css('display', 'block');
+                $("#tab-nav-4").addClass('active');
+                break;
         }
     };
 

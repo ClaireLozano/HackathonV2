@@ -13,7 +13,7 @@
     "initValue": "IRIS", 
     "newValue": "LIBIRIS"
   },  
-  "title": "RECENSEMENT DE LA POPULATION – POPULATION - 2008",
+  "title": "Recensement de la population - Population - 2008",
   "descritpion": "",
   "graph":{
     "possibleGraphs": ["horizontalBar"],

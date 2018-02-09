@@ -3,7 +3,7 @@
   "dataType": "NotHistorisedLocalisable",
   "link": "&db=stationnement&table=disponibilite_parking&format=json",
   "dictionnaire": "",
-  "title": "STATIONNEMENT – DISPONIBILITÉ DES PARKINGS",
+  "title": "Stationnement - Disponibilité des parkings",
   "description": "",
   "graph":{
     "possibleGraphs": ["pie", "bar", "doughnut", "horizontalBar"],

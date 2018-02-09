@@ -69,6 +69,8 @@ footer{
 }
 
 .box {
+    overflow: scroll;
+    height: 600px;
     width: 100%;
     margin-right: 10px; 
     margin-left: 10px; 
@@ -106,6 +108,10 @@ footer{
     background-color: rgba(11,61,114,.7);
 }
 
+.panel-title {
+    color: white;
+}
+
 @media (max-width: 620px) {
     #welcome {
         margin: 5px 10px 5px 10px;
@@ -139,7 +145,9 @@ footer{
     background-color: #fff;
 }
 
-
+table {
+    font-size: .85em;
+}
 
 
 
