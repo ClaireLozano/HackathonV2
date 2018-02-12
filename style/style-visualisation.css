@@ -194,6 +194,9 @@ tbody:hover tr:hover td {
 	shape-rendering: crispEdges;
 }
 
+.selectGraph{
+	float:left;
+}
 
 /* SELECT LIST DATE */
 .select-list {

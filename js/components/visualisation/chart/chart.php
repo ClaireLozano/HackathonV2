@@ -1,1 +1,5 @@
-<div class="chart"></div>
+<div class="graph">
+  <div class="chart">
+
+  </div>
+</div>
