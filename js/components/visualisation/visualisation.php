@@ -162,6 +162,7 @@
 				</div>
 			</div>
 		</div> <!-- END CONTENT PAGE -->
+		<script type="text/javascript" src="map/geoloc.js"></script>
         <script type="text/javascript" src="map/map.js"></script>
         	<script type="text/javascript" src="../controller.js"></script>
         	<script type="text/javascript" src="visualisation.js"></script>

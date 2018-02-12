@@ -97,14 +97,15 @@ getData(endUrl, function (data) {
         p2 = new ol.Feature({
             geometry: new ol.geom.Point([json_obj[marker].Longitude, json_obj[marker].Latitude]),//.transform("EPSG:4326","EPSG:2154"),
             labelPoint: new ol.geom.Point([json_obj[marker].Longitude, json_obj[marker].Latitude]),
-            name: json_obj[marker].Name
+            name: json_obj[marker].Name,
+            type:"Arrêt de bus"
         });
 
         p2.setStyle(new ol.style.Style({
             image: new ol.style.Icon( ({
                 crossOrigin: 'anonymous',
                 src: '../../../images/icone_bus.svg',
-                scale: 0.05
+                scale: 0.045
             }))
         }));
         bus.push(p2);
@@ -125,7 +126,7 @@ getData(endUrl, function (data) {
     var map = new ol.Map({
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
-        }), vectorLayer, vectorLayerBus],
+        }), vectorLayerBus,vectorLayer],
         target: document.getElementById('map'),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],
@@ -152,7 +153,17 @@ getData(endUrl, function (data) {
                 return feature;
             });
         if (feature) {
-            if (feature.get('name')) {
+            if (feature.get('type') && feature.get('type')=="Arrêt de bus") {
+                var geometry = feature.getGeometry();
+                var coord = geometry.getCoordinates();
+                popup.setPosition(coord);
+                $(element).attr('data-placement', 'top');
+                $(element).attr('data-html', true);
+                $(element).attr('data-original-title', feature.get('type'));
+                $(element).attr('data-content','<p>'+feature.get('name') + '</p>');
+                $(element).popover('show');
+            }
+            else {
                 var geometry = feature.getGeometry();
                 var coord = geometry.getCoordinates();
                 popup.setPosition(coord);
@@ -162,20 +173,16 @@ getData(endUrl, function (data) {
                 $(element).attr('data-original-title', feature.get('name'));
                 $(element).popover('show');
             }
-            else {
-                var geometry = feature.getGeometry();
-                var coord = geometry.getCoordinates();
-                popup.setPosition(coord);
-                $(element).attr('data-placement', 'top');
-                $(element).attr('data-html', true);
-                $(element).attr('data-original-title', feature.get('name'));
-                $(element).popover('show');
-            }
         }
         else {
             $(element).popover('destroy');
         }
     });
+
+
+
+    // Geoloc
+    addGeoloc(map);
 
     // change mouse cursor when over marker
     map.on('pointermove', function (e) {
@@ -186,43 +193,6 @@ getData(endUrl, function (data) {
         var pixel = map.getEventPixel(e.originalEvent);
         var hit = map.hasFeatureAtPixel(pixel);
         map.getTarget().style.cursor = hit ? 'pointer' : '';
-    });
-
-
-
-    // Geoloc
-    var geolocation = new ol.Geolocation({
-    });
-
-    geolocation.setTracking(true);
-
-    var accuracyFeature = new ol.Feature();
-    geolocation.on('change:accuracyGeometry', function () {
-        accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
-    });
-
-    var positionFeature = new ol.Feature();
-    positionFeature.setStyle(new ol.style.Style({
-        image: new ol.style.Icon(({
-            crossOrigin: 'anonymous',
-            color: "#000000",
-            src: '../../../images/icone_drapeau.svg',
-            scale: 0.15
-        }))
-    }));
-
-    geolocation.on('change:position', function () {
-        var coordinates = geolocation.getPosition();
-        console.log(coordinates);
-        positionFeature.setGeometry(coordinates ?
-            new ol.geom.Point(coordinates) : null);
-    });
-
-    new ol.layer.Vector({
-        map: map,
-        source: new ol.source.Vector({
-            features: [accuracyFeature, positionFeature]
-        })
     });
 
 
