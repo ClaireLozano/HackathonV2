@@ -222,6 +222,21 @@ $(document).ready(function () {
             	});
 
               break;
+            case "pie":
+              d3.selectAll("svg").remove();
+              d3.selectAll(".chart>p").remove();
+
+              break;
+            case "doughnut":
+              d3.selectAll("svg").remove();
+              d3.selectAll(".chart>p").remove();
+
+              break;
+            case "horizontalBar":
+              d3.selectAll("svg").remove();
+              d3.selectAll(".chart>p").remove();
+
+              break;
             default:
               d3.selectAll("svg").remove();
               d3.selectAll(".chart>p").remove();
