@@ -28,12 +28,10 @@
 			<div class="tab-pane text-style active" id="allcat">
 				<p> Toutes les données ...</p>
 				<div class="container" id="moreData">
-					<div class="row">
+					<div class="row" id="block0">
 						<div class="col-sm-4">
 							<div class="card">
-								<div class="card-block">
-									<a href="../visualisation/visualisation.php?type=graphe&amp;data=budget_2018"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
-								</div>
+								<canvas id="myChart0" width="400" height="400"></canvas>
 							</div>
 						</div>
 					</div>
@@ -46,7 +44,7 @@
 				<h2>Citoyenneté</h2>
 				<p>Cette catégorie contient deux type de données: les données INSEE et les données Archive.</p>
 				<hr>
-				<div class="row">
+				<div class="row" id="block1">
 					<div class="col-sm-4" id="block11">
 						<div class="card">
 							<div class="card-block">
@@ -71,7 +69,7 @@
 				<h2>Déplacement</h2>
 				<p>Les données concernant le déplacement à la ville de La Rochelle.</p>
 				<hr>
-				<div class="row">
+				<div class="row" id="block2">
 					<div class="col-sm-4" id="block21">
 						<div class="card">
 							<div class="card-block">
@@ -87,7 +85,7 @@
 			<div class="tab-pane text-style" id="tab3">
 				<h2>Espace public</h2>
 				<hr>
-				<div class="row">
+				<div class="row" id="block3">
 					<div class="col-xs-6 col-md-3" id="block31">
 						<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 					</div>
@@ -101,7 +99,7 @@
 			<div class="tab-pane text-style" id="tab4">
 				<h2>Finance</h2>
 				<hr>
-				<div class="row">
+				<div class="row" id="block4">
 					<div class="col-xs-6 col-md-3" id="block41">
 						<a href="#"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 					</div>
@@ -116,5 +114,10 @@
 
 <?php include '../footer/footer.php'; ?>
 <script type="text/javascript" src="donnees.js"></script>
+<script type="text/javascript" src="../controller.js"></script>
+<script type="text/javascript" src="../util.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<!-- <script src="https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.min.js" ></script> -->
+
 
 </html>

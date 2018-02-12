@@ -115,10 +115,10 @@ function drawTable(data, metadata, idBox) {
     // Initialization
     var keys_list_table = [];
     var value_list_table = [];
-    
+
     keys_list_table = metadata.table.dataComposition.keys_list;
 
-    // Get dictionnary 
+    // Get dictionnary
     if (metadata.dictionnaire) {
         urlDict = metadata.dictionnaire[0];
         initValue = metadata.dictionnaire[1];
@@ -141,13 +141,13 @@ function drawTable(data, metadata, idBox) {
                 var tr = table.insertRow(i);
                 keys_list_table.forEach(function(p, j) {
                     tr.insertCell(j).innerHTML = d[p];
-                    document.getElementById("table_element").appendChild(tr);     
+                    document.getElementById("table_element").appendChild(tr);
                 });
-            }); 
+            });
         });
     } else {
         value_list_table = metadata.table.dataComposition.value_list;
-        
+
         // Create table
         val_html = "<table id=\"my_table\" class=\"table table-list-search\"><thead><tr>";
 
@@ -164,9 +164,9 @@ function drawTable(data, metadata, idBox) {
             var tr = table.insertRow(i);
             keys_list_table.forEach(function(p, j) {
                 tr.insertCell(j).innerHTML = d[p];
-                document.getElementById("table_element").appendChild(tr);     
+                document.getElementById("table_element").appendChild(tr);
             });
-        }); 
+        });
     }
 };
 
