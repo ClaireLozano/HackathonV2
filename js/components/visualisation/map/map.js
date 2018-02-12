@@ -189,10 +189,9 @@ getData(endUrl, function (data) {
     });
 
 
-    /*
+
     // Geoloc
     var geolocation = new ol.Geolocation({
-        projection: projection
     });
 
     geolocation.setTracking(true);
@@ -224,7 +223,7 @@ getData(endUrl, function (data) {
         source: new ol.source.Vector({
             features: [accuracyFeature, positionFeature]
         })
-    });*/
+    });
 
 
     document.getElementById('tab-nav-3').onclick = function () {
