@@ -145,21 +145,31 @@ $(document).ready(function(){
      */
     var setMapButton = function() {
         $(".button-icone").on("click", function() {
-            if ($(".button-icone").val() === "true") {
-                $(".button-icone").val("false");
-                $(".button-icone").css({opacity: 0.5});
+            if ($(this).val() === "true") {
+                $(this).val("false");
+                $(this).css({opacity: 0.5});
 
+                if($(this).attr('id') === "button-icone-bus") {
+                    // Remove bus marks
+                    console.log("Remove bus marks")
+                }
+
+                if($(this).attr('id') === "button-icone-poste") {
+                    // Remove poste marks
+                    console.log("Remove poste marks")
+                }
+            } else {
+                $(this).val("true");
+                $(this).css({opacity: 1});
+                
                 if($(this).attr('id') === "button-icone-bus") {
                     // Draw bus marks
                     console.log("Draw bus marks")
                 }
-            } else {
-                $(".button-icone").val("true");
-                $(".button-icone").css({opacity: 1});
-                
-                if($(this).attr('id') === "button-icone-bus") {
-                    // Remove bus marks
-                    console.log("Remove bus marks")
+
+                if($(this).attr('id') === "button-icone-poste") {
+                    // Draw poste marks
+                    console.log("Draw poste marks")
                 }
             }
         });
