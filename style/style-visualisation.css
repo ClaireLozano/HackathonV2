@@ -175,10 +175,6 @@ tbody:hover tr:hover td {
 	opacity: 0.5;
 }
 
-.button-icone:hover {
-	opacity: 1;
-}
-
 /* SELECT LIST DATE */
 .select-list {
 	display: inline;
