@@ -7,6 +7,25 @@ var extent = [-1.16, 46.1, -1.17, 46.2];
 var result = getUrlPage();
 var nomDonnee = result[1];
 var endUrl = getUrl(nomDonnee);
+var vectorDataLayer = new ol.layer.Vector();
+var vectorLayerBus = getBusLayer();
+var vectorLayerPoste = getPosteLayer();
+
+function showLayerBus() {
+    vectorLayerBus.setVisible(true)
+}
+
+function hideLayerBus() {
+    vectorLayerBus.setVisible(false)
+}
+
+function showLayerPoste() {
+    vectorLayerPoste.setVisible(true)
+}
+
+function hideLayerPoste() {
+    vectorLayerPoste.setVisible(false)
+}
 
 function Get(yourUrl) {
     var Httpreq = new XMLHttpRequest(); // a new request
@@ -14,6 +33,8 @@ function Get(yourUrl) {
     Httpreq.send(null);
     return Httpreq.responseText;
 }
+
+var map = new ol.Map();
 
 getData(endUrl, function (data) {
 
@@ -34,10 +55,11 @@ getData(endUrl, function (data) {
 
         p2 = new ol.Feature({
             geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(data[marker].dp_x), parseFloat(data[marker].dp_y)])),
-            labelPoint:  new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(data[marker].dp_x), parseFloat(data[marker].dp_y)])),
+            labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(data[marker].dp_x), parseFloat(data[marker].dp_y)])),
             name: data[marker].dp_libelle,
             dispo: nb_dispo,
-            total: nb_places
+            total: nb_places,
+            type:"openData"
         });
 
         p2.setStyle(new ol.style.Style({
@@ -51,20 +73,16 @@ getData(endUrl, function (data) {
         parking_coord.push(p2);
     }
 
-    var vectorSource = new ol.source.Vector({
-        features: parking_coord
+    vectorDataLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+            features: parking_coord
+        })
     });
 
-    var vectorDataLayer = new ol.layer.Vector({
-        source: vectorSource
-    });
-
-    var vectorLayerBus = addBusLayer(map);
-
-    var map = new ol.Map({
+    map = new ol.Map({
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
-        }), vectorLayerBus,vectorDataLayer],
+        }), vectorLayerBus, vectorLayerPoste, vectorDataLayer],
         target: document.getElementById('map'),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],
@@ -73,26 +91,27 @@ getData(endUrl, function (data) {
         })
     });
 
-    // change mouse cursor when over marker
-    map.on('pointermove', function (e) {
-        if (e.dragging) {
-            $(element).popover('destroy');
-            return;
-        }
-        var pixel = map.getEventPixel(e.originalEvent);
-        var hit = map.hasFeatureAtPixel(pixel);
-        map.getTarget().style.cursor = hit ? 'pointer' : '';
-    });
-
     // Geoloc
     addGeoloc(map);
 
-    // Popup
+// Popup
     addPopup(map);
-
-    document.getElementById('tab-nav-3').onclick = function () {
-        setTimeout(function () {
-            map.updateSize();
-        }, 200);
-    };
 });
+
+// change mouse cursor when over marker
+map.on('pointermove', function (e) {
+    if (e.dragging) {
+        $(element).popover('destroy');
+        return;
+    }
+    var pixel = map.getEventPixel(e.originalEvent);
+    var hit = map.hasFeatureAtPixel(pixel);
+    map.getTarget().style.cursor = hit ? 'pointer' : '';
+});
+
+
+document.getElementById('tab-nav-3').onclick = function () {
+    setTimeout(function () {
+        map.updateSize();
+    }, 200);
+};

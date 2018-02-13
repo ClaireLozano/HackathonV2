@@ -151,12 +151,14 @@ $(document).ready(function(){
 
                 if($(this).attr('id') === "button-icone-bus") {
                     // Remove bus marks
-                    console.log("Remove bus marks")
+                    console.log("Remove bus marks");
+                    hideLayerBus()
                 }
 
                 if($(this).attr('id') === "button-icone-poste") {
                     // Remove poste marks
-                    console.log("Remove poste marks")
+                    console.log("Remove poste marks");
+                    hideLayerPoste()
                 }
             } else {
                 $(this).val("true");
@@ -164,12 +166,14 @@ $(document).ready(function(){
                 
                 if($(this).attr('id') === "button-icone-bus") {
                     // Draw bus marks
-                    console.log("Draw bus marks")
+                    console.log("Draw bus marks");
+                    showLayerBus()
                 }
 
                 if($(this).attr('id') === "button-icone-poste") {
                     // Draw poste marks
-                    console.log("Draw poste marks")
+                    console.log("Draw poste marks");
+                    showLayerPoste()
                 }
             }
         });

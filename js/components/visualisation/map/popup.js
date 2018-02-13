@@ -16,14 +16,14 @@ function addPopup(map) {
                 return feature;
             });
         if (feature) {
-            if (feature.get('type') && feature.get('type') == "Arrêt de bus") {
+            if (feature.get('type') && feature.get('type') != "openData") {
                 var geometry = feature.getGeometry();
                 var coord = geometry.getCoordinates();
                 popup.setPosition(coord);
                 $(element).attr('data-placement', 'top');
                 $(element).attr('data-html', true);
-                $(element).attr('data-original-title', feature.get('type'));
-                $(element).attr('data-content', '<p>' + feature.get('name') + '</p>');
+                $(element).attr('data-original-title', '<p>' + feature.get('name') + '</p>');
+                $(element).attr('data-content', feature.get('type'));
                 $(element).popover('show');
             }
             else {

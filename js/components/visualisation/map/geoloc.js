@@ -26,6 +26,7 @@ function addGeoloc(map) {
     });
 
     new ol.layer.Vector({
+        name:'GeolocLayer',
         map: map,
         source: new ol.source.Vector({
             features: [accuracyFeature, positionFeature]
