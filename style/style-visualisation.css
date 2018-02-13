@@ -168,6 +168,17 @@ tbody:hover tr:hover td {
 	padding-left: 20%;
 }
 
+.button-icone {
+	width: 30px;
+	height: 30px;
+	margin-top: 10px;
+	opacity: 0.5;
+}
+
+.button-icone:hover {
+	opacity: 1;
+}
+
 /* SELECT LIST DATE */
 .select-list {
 	display: inline;

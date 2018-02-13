@@ -109,6 +109,7 @@ $(document).ready(function(){
             case 'HistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
+                setMapButton();
                 //drawMap(data, metadata, 'box2');
                 //drawGraph(data, metadata, 'box3');
                 //setSeletList(data, metadata);
@@ -124,6 +125,7 @@ $(document).ready(function(){
             case 'NotHistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
+                setMapButton();
                 //drawMap(data, metadata, 'box2');
                 //drawGraph(data, metadata, 'box3');
                 break;
@@ -134,6 +136,33 @@ $(document).ready(function(){
                 //drawGraph(data, metadata, 'box3');
                 break;
         }
+    };
+
+    /**
+     * Set buttons to map panel
+     *
+     * @return
+     */
+    var setMapButton = function() {
+        $(".button-icone").on("click", function() {
+            if ($(".button-icone").val() === "true") {
+                $(".button-icone").val("false");
+                $(".button-icone").css({opacity: 0.5});
+
+                if($(this).attr('id') === "button-icone-bus") {
+                    // Draw bus marks
+                    console.log("Draw bus marks")
+                }
+            } else {
+                $(".button-icone").val("true");
+                $(".button-icone").css({opacity: 1});
+                
+                if($(this).attr('id') === "button-icone-bus") {
+                    // Remove bus marks
+                    console.log("Remove bus marks")
+                }
+            }
+        });
     };
 
     /**
