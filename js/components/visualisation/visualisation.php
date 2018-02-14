@@ -73,7 +73,8 @@
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
-                                    <?php include 'map/map.php'; ?>
+									<div id="popup"></div>
+                                   <!--  <?php #include 'map/map.php'; ?> -->
 								</div>
 								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.svg"/>
 								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
@@ -168,7 +169,7 @@
 		<script type="text/javascript" src="map/bus.js"></script>
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>
-        <script type="text/javascript" src="map/map.js"></script>
+		<script type="text/javascript" src="map/map.js"></script>
         <script type="text/javascript" src="../controller.js"></script>
         <script type="text/javascript" src="visualisation.js"></script>
         <script type="text/javascript" src="chart/chart.js"></script>

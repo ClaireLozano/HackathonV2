@@ -19,6 +19,15 @@
 	  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- Map -->
+    <?php
+      header('Access-Control-Allow-Origin: *');
+      header("Access-Control-Allow-Credentials: true");
+      header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+      header('Access-Control-Max-Age: 1000');
+      header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+    ?>
 </head>
 
 <div class="container-fluid">

@@ -171,3 +171,15 @@ var getUrlPage = function() {
 
     return [typeVisualisation, nomDonnee];
 };
+
+/**
+ * Map
+ *
+ * @return (data)
+ */
+function Get(yourUrl) {
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET", yourUrl, false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+}

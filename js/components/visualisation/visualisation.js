@@ -109,8 +109,8 @@ $(document).ready(function(){
             case 'HistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
+                drawMap(data, metadata, 'box3');
                 setMapButton();
-                //drawMap(data, metadata, 'box2');
                 //drawGraph(data, metadata, 'box3');
                 //setSeletList(data, metadata);
                 break;
@@ -125,8 +125,8 @@ $(document).ready(function(){
             case 'NotHistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
+                drawMap(data, metadata, 'box3');
                 setMapButton();
-                //drawMap(data, metadata, 'box2');
                 //drawGraph(data, metadata, 'box3');
                 break;
 
@@ -153,12 +153,12 @@ $(document).ready(function(){
 
                 // Remove bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    hideLayerBus()
+                    hideLayerBus();
                 }
 
                 // Remove poste marks
                 if($(this).attr('id') === "button-icone-poste") {
-                    hideLayerPoste()
+                    hideLayerPoste();
                 }
 
             // Else, show them
@@ -168,12 +168,12 @@ $(document).ready(function(){
                 
                 // Draw bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    showLayerBus()
+                    showLayerBus();
                 }
 
                 // Draw poste marks
                 if($(this).attr('id') === "button-icone-poste") {
-                    showLayerPoste()
+                    showLayerPoste();
                 }
             }
         });
