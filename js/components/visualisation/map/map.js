@@ -55,7 +55,7 @@ function showMap(map) {
  *
  * @return null
  */
-function drawMap(data, metadata, myDiv) {
+function drawMap(data, metadata, myDiv, myPopup) {
 
     // Définition de la projection de la carte en Lambert 93
     var projection = new ol.proj.Projection({code: "EPSG:2154"});
@@ -127,7 +127,7 @@ function drawMap(data, metadata, myDiv) {
     addGeoloc(map);
 
     // Popup
-    addPopup(map);
+    addPopup(map, myPopup);
 
 
     // change mouse cursor when over marker

@@ -50,6 +50,7 @@
                     </div>
 
                     <div id='box0' class="panel-body form-group panelBody">
+                        <div id="popup0"></div>
                         <a id="seeMoreBox0"> <!-- Mettre les visualisations ici--></a>
                     </div>
                     <a id="seeMore0" style="float:right" class="glyphicon glyphicon-zoom-in btn btn-default bottomButton" aria-hidden="true"></a>
@@ -87,6 +88,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div id='box1' class="panel-body form-group panelBody">
+                        <div id="popup1"></div>
                         <a id="seeMoreBox1"> <!-- Mettre les visualisations ici--></a>
                     </div>
                     <a id="seeMore1" style="float:right" class="glyphicon glyphicon-zoom-in btn btn-default bottomButton" aria-hidden="true"></a>
@@ -97,6 +99,12 @@
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
+    <script type="text/javascript" src="../visualisation/map/popup.js"></script>
+    <script type="text/javascript" src="../visualisation/map/bus.js"></script>
+    <script type="text/javascript" src="../visualisation/map/poste.js"></script>
+    <script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
+    <script type="text/javascript" src="../visualisation/map/map.js"></script>
+    <script type="text/javascript" src="../controller.js"></script>
     <script type="text/javascript" src="../util.js"></script>
     <script type="text/javascript" src="index.js"></script>
 

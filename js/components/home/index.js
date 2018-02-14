@@ -44,7 +44,7 @@ $(document).ready(function(){
      */
     var addVisualizationOnBox = function() {
         var boxs = ["box0", "box1"];
-        var nomDonnee = ["disponibilite_parking", "population_2008", "bp_2017_fonction"];
+        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction"];
 
         boxs.forEach(function(box, i, arr) {
 
@@ -57,24 +57,46 @@ $(document).ready(function(){
                 // With end url, get data
                 getData(metadata.link, function(data) {
 
-                    // Generate random visualisation
-                    var randVisu = getRandomInt(3);
+                    if (metadata.dataType === ("NotHistorisedLocalisable" || "HistorisedLocalisable")) {
 
-                    // Draw visualisation
-                    // switch (randVisu) {
-                    switch (0) {
-                        case 0:
-                            drawTable(data, metadata, box);
-                            defineLinks("table", i, nomDonnee[randNomDonnee])
-                            break;
+                        // Generate random visualisation
+                        var randVisu = getRandomInt(2);
 
-                        case 1:
-                            //drawGraph(data, metadata, box);
-                            break;
+                        // Draw visualisation
+                        switch (randVisu) {
+                        // switch (0) {
+                            case 0:
+                                drawTable(data, metadata, box);
+                                defineLinks("table", i, nomDonnee[randNomDonnee])
+                                break;
 
-                        case 2:
-                            //drawMap(data, metadata, box);
-                            break;
+                            case 1:
+                                drawMap(data, metadata, box, "popup" + i);
+                                defineLinks("map", i, nomDonnee[randNomDonnee])
+                                break;
+
+                            case 2:
+                                //drawGraph(data, metadata, box);
+                                break;
+                        }
+
+                    } else {
+
+                        // Generate random visualisation
+                        var randVisu = getRandomInt(2);
+
+                        // Draw visualisation
+                        // switch (randVisu) {
+                        switch (0) {
+                            case 0:
+                                drawTable(data, metadata, box);
+                                defineLinks("table", i, nomDonnee[randNomDonnee])
+                                break;
+
+                            case 2:
+                                //drawGraph(data, metadata, box);
+                                break;
+                        }
                     }
                 });
             });

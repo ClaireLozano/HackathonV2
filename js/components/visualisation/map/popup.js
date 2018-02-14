@@ -1,5 +1,5 @@
-function addPopup(map) {
-    var element = document.getElementById('popup');
+function addPopup(map, myPopup) {
+    var element = document.getElementById(myPopup);
 
     var popup = new ol.Overlay({
         element: element,

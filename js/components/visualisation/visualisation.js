@@ -199,7 +199,7 @@ $(document).ready(function(){
             case 'HistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
-                drawMap(data, metadata, 'box3');
+                drawMap(data, metadata, 'box3', 'popup');
                 setMapButton();
                 //drawGraph(data, metadata, 'box3');
                 //setSeletList(data, metadata);
@@ -215,7 +215,7 @@ $(document).ready(function(){
             case 'NotHistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
-                drawMap(data, metadata, 'box3');
+                drawMap(data, metadata, 'box3', 'popup');
                 setMapButton();
                 //drawGraph(data, metadata, 'box3');
                 break;
