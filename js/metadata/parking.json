@@ -19,7 +19,12 @@
 
   },
   "map":{
-
+    "x": "dp_x",
+    "y": "dp_y",
+    "name": "dp_libelle",
+    "nominateur": "dp_place_disponible",
+    "denominateur": "dp_nb_places",
+    "description_popup": "Places :"
   },
   "table":{
     "dataComposition":{

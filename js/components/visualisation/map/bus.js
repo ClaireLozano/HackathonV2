@@ -1,3 +1,9 @@
+
+/**
+ * Get bus markers
+ *
+ * @return vectorLayerBus
+ */
 function getBusLayer() {
     var json_obj = JSON.parse(Get("https://yelo.agglo-larochelle.fr/yelo-api/-/data/bus-stops.json"));
 
@@ -28,6 +34,7 @@ function getBusLayer() {
             features: bus
         })
     });
+    
     vectorLayerBus.setVisible(false);
     return vectorLayerBus
-}
+};

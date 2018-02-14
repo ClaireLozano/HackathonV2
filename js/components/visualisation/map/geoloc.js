@@ -1,6 +1,12 @@
-function addGeoloc(map) {
-    var geolocation = new ol.Geolocation({});
 
+/**
+ * Add the geolocalization marker
+ *
+ * @return null
+ */
+function addGeoloc(map) {
+
+    var geolocation = new ol.Geolocation({});
 
     geolocation.setTracking(true);
 
@@ -32,4 +38,4 @@ function addGeoloc(map) {
             features: [accuracyFeature, positionFeature]
         })
     });
-}
+};

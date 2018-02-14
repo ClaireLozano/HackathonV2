@@ -1,4 +1,11 @@
-function addPopup(map) {
+
+/**
+ * Add popup
+ *
+ * @return null
+ */
+function addPopup(map, description) {
+
     var element = document.getElementById('popup');
 
     var popup = new ol.Overlay({
@@ -32,7 +39,7 @@ function addPopup(map) {
                 popup.setPosition(coord);
                 $(element).attr('data-placement', 'top');
                 $(element).attr('data-html', true);
-                $(element).attr('data-content', '<p>Places : </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
+                $(element).attr('data-content', '<p>' + description + ' </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
                 $(element).attr('data-original-title', feature.get('name'));
                 $(element).popover('show');
             }
@@ -41,4 +48,4 @@ function addPopup(map) {
             $(element).popover('destroy');
         }
     });
-}
+};
