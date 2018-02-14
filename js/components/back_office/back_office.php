@@ -30,26 +30,39 @@
             </tr> -->
 
 <!-- <input type="checkbox" name="case" checked="checked" /> -->
-<!--
+<!--<div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <label class="form-check-label" for="gridRadios2">
+            Second radio
+          </label>
+        </div>
         </tbody>
       </table>  -->
 
       <form action="postdata.php" method="post">
-        <hr>
-        <h3>Détails jeu de données</h3>
+
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-10">
+            <hr>
+            <h3>Détails jeu de données</h3>
             <label for="inputDataType">Type de données</label>
-            <input type="text" class="form-control" name="datatype">
+            <!-- <input type="text" class="form-control" name="datatype"> -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="datatype" value="NotHistorisedLocalisable"><label class="form-check-label">Non-historisable et localisable</label>
+              <input class="form-check-input" type="radio" name="datatype" value="HistorisedNotLocalisable"><label class="form-check-label">Historisable et non-localisable</label>
+              <input class="form-check-input" type="radio" name="datatype" value="HistorisedLocalisable"><label class="form-check-label">Historisable et localisable</label>
+              <input class="form-check-input" type="radio" name="datatype" value="NotHistorisedNotLocalisable"><label class="form-check-label">Non-historisable et non-localisable</label>
+            </div>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-10">
             <label for="inputLink">Lien vers les données</label>
             <input type="text" class="form-control" name="link">
           </div>
         </div>
-        <hr>
-        <h3>Détails du graphe</h3>
+
         <div class="form-group col-md-10">
+          <hr>
+          <h3>Détails du graphe</h3>
           <label for="inputGraphType">Type de graphe : </label>
           <label class="checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="pie">Camembert</label>
           <label class="checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
@@ -74,8 +87,12 @@
             <input type="text" class="form-control" name="dataComposition_onlyOneElement">
           </div>
         </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Valider</button>
+          </div>
+        </div>
+
       </form>
 
     <!-- <input type="submit" value="Valider" /> -->

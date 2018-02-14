@@ -21,7 +21,7 @@ $postArray = array(
 );
 
 $json = json_encode( $postArray );
-// foreach($_POST['possibleGraphs'] as $valeur)
+// foreach($_POST['datatype'] as $valeur)
 // {
 //    echo "La checkbox $valeur a été cochée<br>";
 // }
@@ -38,7 +38,6 @@ echo $json;
 
 // echo $_POST['possibleGraphs'];
 
-//echo $_POST['dataComposition'];
 
 //file_put_contents( $file, $json);
 
