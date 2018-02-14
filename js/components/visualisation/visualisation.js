@@ -145,34 +145,34 @@ $(document).ready(function(){
      */
     var setMapButton = function() {
         $(".button-icone").on("click", function() {
+
+            // If the marks are visible, hide them
             if ($(this).val() === "true") {
                 $(this).val("false");
                 $(this).css({opacity: 0.5});
 
+                // Remove bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    // Remove bus marks
-                    console.log("Remove bus marks");
                     hideLayerBus()
                 }
 
+                // Remove poste marks
                 if($(this).attr('id') === "button-icone-poste") {
-                    // Remove poste marks
-                    console.log("Remove poste marks");
                     hideLayerPoste()
                 }
+
+            // Else, show them
             } else {
                 $(this).val("true");
                 $(this).css({opacity: 1});
                 
+                // Draw bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    // Draw bus marks
-                    console.log("Draw bus marks");
                     showLayerBus()
                 }
 
+                // Draw poste marks
                 if($(this).attr('id') === "button-icone-poste") {
-                    // Draw poste marks
-                    console.log("Draw poste marks");
                     showLayerPoste()
                 }
             }
