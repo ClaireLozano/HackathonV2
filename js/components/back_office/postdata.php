@@ -34,13 +34,19 @@ $json = json_encode( $postArray );
 //$file = 'output.json';
 //$current = file_get_contents($file);
 
+// Nom du fichier dynamique:
+// $file = $_POST['fileName'];
+// $file.= ".json";
+// echo $file;
+
+
 echo $json;
 
 // echo $_POST['possibleGraphs'];
 
 
 //file_put_contents( $file, $json);
-
+//
 $fp = fopen('mdfile.json', 'w');
 fwrite($fp, $json);
 fclose($fp);

@@ -42,9 +42,13 @@
       <form action="postdata.php" method="post">
 
         <div class="form-row">
+          <hr>
+          <h3>Détails jeu de données</h3>
           <div class="form-group col-md-10">
-            <hr>
-            <h3>Détails jeu de données</h3>
+            <label for="inputLink">Nom du fichier métadonnées</label>
+            <input type="text" class="form-control" name="fileName">
+          </div>
+          <div class="form-group col-md-10">
             <label for="inputDataType">Type de données</label>
             <!-- <input type="text" class="form-control" name="datatype"> -->
             <div class="form-check">
