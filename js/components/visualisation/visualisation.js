@@ -199,6 +199,7 @@ $(document).ready(function(){
             case 'HistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
+                setMapButton();
                 //drawMap(data, metadata, 'box2');
                 //drawGraph(data, metadata, 'box3');
                 //setSeletList(data, metadata);
@@ -214,6 +215,7 @@ $(document).ready(function(){
             case 'NotHistorisedLocalisable':
                 // Call draw table method
                 drawTable(data, metadata, 'box1');
+                setMapButton();
                 //drawMap(data, metadata, 'box2');
                 //drawGraph(data, metadata, 'box3');
                 break;
@@ -224,6 +226,47 @@ $(document).ready(function(){
                 //drawGraph(data, metadata, 'box3');
                 break;
         }
+    };
+
+    /**
+     * Set buttons to map panel
+     *
+     * @return
+     */
+    var setMapButton = function() {
+        $(".button-icone").on("click", function() {
+
+            // If the marks are visible, hide them
+            if ($(this).val() === "true") {
+                $(this).val("false");
+                $(this).css({opacity: 0.5});
+
+                // Remove bus marks
+                if($(this).attr('id') === "button-icone-bus") {
+                    hideLayerBus()
+                }
+
+                // Remove poste marks
+                if($(this).attr('id') === "button-icone-poste") {
+                    hideLayerPoste()
+                }
+
+            // Else, show them
+            } else {
+                $(this).val("true");
+                $(this).css({opacity: 1});
+                
+                // Draw bus marks
+                if($(this).attr('id') === "button-icone-bus") {
+                    showLayerBus()
+                }
+
+                // Draw poste marks
+                if($(this).attr('id') === "button-icone-poste") {
+                    showLayerPoste()
+                }
+            }
+        });
     };
 
     /**

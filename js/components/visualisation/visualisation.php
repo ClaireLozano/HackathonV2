@@ -2,10 +2,11 @@
 <html>
 
 	<?php include '../header/header.php'; ?>
+
     <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
+    <script type="text/javascript" src="../util.js"></script>
 
 	<body>
-
 		<div id="content-page">
 
 			<h1 id="title-page"></h1>
@@ -22,7 +23,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">?</span></button>
                                     <h4 class="modal-title">Un problème ?</h4>
                                 </div>
                                 <div class="modal-body">
@@ -57,7 +58,6 @@
 							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
 							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
-
 						<div class="tab-content">
 							<p id="description-page"></p>	
 							<div class="tab-pane" id="tab-pane-1">
@@ -85,8 +85,10 @@
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
-									<?php include 'map/map.php'; ?>
+                                    <?php include 'map/map.php'; ?>
 								</div>
+								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.svg"/>
+								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
 								<div id='box4' class="box-visu"> <!-- INFO --></div>
@@ -174,14 +176,18 @@
 				</div>
 			</div>
 		</div> <!-- END CONTENT PAGE -->
-
+		<script type="text/javascript" src="map/popup.js"></script>
+		<script type="text/javascript" src="map/bus.js"></script>
+		<script type="text/javascript" src="map/poste.js"></script>
+		<script type="text/javascript" src="map/geoloc.js"></script>
+        <script type="text/javascript" src="map/map.js"></script>
+        <script type="text/javascript" src="../controller.js"></script>
+        <script type="text/javascript" src="visualisation.js"></script>
+        <script type="text/javascript" src="chart/chart.js"></script>
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
-	<script type="text/javascript" src="../controller.js"></script>
-	<script type="text/javascript" src="../util.js"></script>
-	<script type="text/javascript" src="visualisation.js"></script>
-	<script type="text/javascript" src="chart/chart.js"></script>
+
 
 
 </html>
