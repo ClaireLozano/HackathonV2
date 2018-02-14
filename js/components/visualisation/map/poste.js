@@ -1,7 +1,6 @@
 function getPosteLayer() {
     var json_obj = JSON.parse(Get("https://datanova.legroupe.laposte.fr/api/records/1.0/search/?dataset=laposte_poincont2&lang=Fr&facet=caracteristique_du_site&facet=code_postal&facet=localite&refine.code_postal=17000"));
     json_obj = json_obj['records'];
-    console.log(json_obj);
 
     var poste = [];
 

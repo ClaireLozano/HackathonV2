@@ -303,3 +303,15 @@ var setTable = function(idBox) {
     $(".dataTables_info").remove();
     // $("#my_table_box1_filter label").html("Rechercher: ");
 };
+
+/**
+ * Map
+ *
+ * @return (data)
+ */
+function Get(yourUrl) {
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET", yourUrl, false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+}

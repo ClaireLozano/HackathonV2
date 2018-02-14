@@ -1,43 +1,75 @@
-//Définition de la projection de la carte en Lambert 93
-var projection = new ol.proj.Projection({code: "EPSG:2154"});
-var projection4326 = new ol.proj.Projection({code: "EPSG:4326"});
-//definition de l'emprise de la carte
-var extent = [-1.16, 46.1, -1.17, 46.2];
 
-var result = getUrlPage();
-var nomDonnee = result[1];
-var endUrl = getUrl(nomDonnee);
-var vectorDataLayer = new ol.layer.Vector();
-var vectorLayerBus = getBusLayer();
-var vectorLayerPoste = getPosteLayer();
+// Variables globales
+vectorLayerPoste = [];
+vectorLayerBus = [];
 
+/**
+ * Show bus
+ *
+ * @return null
+ */
 function showLayerBus() {
     vectorLayerBus.setVisible(true)
-}
+};
 
+/**
+ * Hide bus
+ *
+ * @return null
+ */
 function hideLayerBus() {
     vectorLayerBus.setVisible(false)
-}
+};
 
+/**
+ * Show poste
+ *
+ * @return null
+ */
 function showLayerPoste() {
     vectorLayerPoste.setVisible(true)
-}
+};
 
+/**
+ * Hide poste
+ *
+ * @return null
+ */
 function hideLayerPoste() {
     vectorLayerPoste.setVisible(false)
-}
+};
 
-function Get(yourUrl) {
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET", yourUrl, false);
-    Httpreq.send(null);
-    return Httpreq.responseText;
-}
+/**
+ * Show map
+ *
+ * @return null
+ */
+function showMap(map) {
+    setTimeout(function () {
+        map.updateSize();
+    }, 200);
+};
 
-var map = new ol.Map();
+/**
+ * Draw map
+ *
+ * @return null
+ */
+function drawMap(data, metadata, myDiv) {
 
-getData(endUrl, function (data) {
+    // Définition de la projection de la carte en Lambert 93
+    var projection = new ol.proj.Projection({code: "EPSG:2154"});
+    var projection4326 = new ol.proj.Projection({code: "EPSG:4326"});
+    
+    // Definition de l'emprise de la carte
+    var extent = [-1.16, 46.1, -1.17, 46.2];
 
+    // Définition des vecteurs
+    var vectorDataLayer = new ol.layer.Vector();
+    vectorLayerBus = getBusLayer();
+    vectorLayerPoste = getPosteLayer();
+
+    var map = new ol.Map();
     var parking_coord = [];
 
     for (marker in data) {
@@ -83,7 +115,7 @@ getData(endUrl, function (data) {
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
         }), vectorLayerBus, vectorLayerPoste, vectorDataLayer],
-        target: document.getElementById('map'),
+        target: document.getElementById(myDiv),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],
             projection: 'EPSG:4326',
@@ -94,24 +126,20 @@ getData(endUrl, function (data) {
     // Geoloc
     addGeoloc(map);
 
-// Popup
+    // Popup
     addPopup(map);
-});
-
-// change mouse cursor when over marker
-map.on('pointermove', function (e) {
-    if (e.dragging) {
-        $(element).popover('destroy');
-        return;
-    }
-    var pixel = map.getEventPixel(e.originalEvent);
-    var hit = map.hasFeatureAtPixel(pixel);
-    map.getTarget().style.cursor = hit ? 'pointer' : '';
-});
 
 
-document.getElementById('tab-nav-3').onclick = function () {
-    setTimeout(function () {
-        map.updateSize();
-    }, 200);
+    // change mouse cursor when over marker
+    map.on('pointermove', function (e) {
+        if (e.dragging) {
+            $(element).popover('destroy');
+            return;
+        }
+        var pixel = map.getEventPixel(e.originalEvent);
+        var hit = map.hasFeatureAtPixel(pixel);
+        map.getTarget().style.cursor = hit ? 'pointer' : '';
+    });
+
+    showMap(map);
 };
