@@ -14,9 +14,9 @@
           <hr>
           <h3>Détails jeu de données</h3>
           <div class="form-group col-md-10">
-            <label for="inputTitleData">Titre de la données</label>
+            <label for="title">Titre de la données</label>
             <p>Correspond au titre à afficher sur la page de visualisation (Ex: "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF - BP 2017 - FONCTION"</p>
-            <input type="text" class="form-control" name="inputTitleData">
+            <input type="text" class="form-control" name="title">
           </div>
           <div class="form-group col-md-10">
             <label for="inputDescriptionData">Lien vers les données</label>
@@ -24,12 +24,12 @@
             <textarea form="form" type="text" class="form-control" name="inputDescriptionData"></textarea>
           </div>
           <div class="form-group col-md-10">
-            <label for="inputLink">Nom du fichier métadonnées</label>
+            <label for="fileName">Nom du fichier métadonnées</label>
             <p>Le fichier doit prendre le nom de l'identifiant de la données (Ex: "menu_allergenes_accomp")</p>
             <input type="text" class="form-control" name="fileName">
           </div>
           <div class="form-group col-md-10">
-            <label for="inputLink">Lien vers les données</label>
+            <label for="link">Lien vers les données</label>
             <p>Ce bout de lien sert à faire la relation entre la plateforme et le service web. (Ex: "&db=budget&table=bp_2014_fonction&format=json")</p>
             <input type="text" class="form-control" name="link">
           </div>
@@ -61,19 +61,15 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="inputGraphTitle">Titre du graphe</label>
-            <input type="text" class="form-control" name="dataComposition_title">
-          </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="inputGraphDescription">Description du graphe</label>
-            <input type="text" class="form-control" name="dataComposition_description">
+            <input type="text" class="form-control" name="dataComposition_excludeLines">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="inputGraphLibelle">Nom du libelle de données</label>
             <input type="text" class="form-control" name="dataComposition_selectList">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="inputGraphTitle">Nom du champ de données</label>
             <input type="text" class="form-control" name="dataComposition_onlyOneElement">
           </div>
