@@ -30,9 +30,17 @@
               <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" value="NotHistorisedNotLocalisable">Non-historisable et non-localisable</label>
             </div>
           </div>
-          <div class="form-group col-md-10">
+          <div class="form-group col-md-6">
             <label for="inputLink">Lien vers les données</label>
             <input type="text" class="form-control" name="link">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputTitle">Titre du jeu de données</label>
+            <input type="text" class="form-control" name="title">
+          </div>
+          <div class="form-group col-md-10">
+            <label for="inputTitle">Description du jeu de données</label>
+            <input type="text" class="form-control" name="description">
           </div>
         </div>
 
@@ -48,19 +56,15 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="inputGraphTitle">Titre du graphe</label>
-            <input type="text" class="form-control" name="dataComposition_title">
-          </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="inputGraphDescription">Description du graphe</label>
-            <input type="text" class="form-control" name="dataComposition_description">
+            <input type="text" class="form-control" name="dataComposition_excludeLines">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="inputGraphLibelle">Nom du libelle de données</label>
             <input type="text" class="form-control" name="dataComposition_selectList">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="inputGraphTitle">Nom du champ de données</label>
             <input type="text" class="form-control" name="dataComposition_onlyOneElement">
           </div>
@@ -79,7 +83,6 @@
           <div id="keyListInput" class="form-group col-md-3">
             <input type="button" value="Ajouter un mot clé" onclick="addInput()">
           </div>
-
         </div>
 
         <div class="form-group row">

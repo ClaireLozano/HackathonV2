@@ -9,11 +9,12 @@
 $postArray = array(
   "datatype" => $_POST['datatype'],
   "link" => $_POST['link'],
+  "title" => $_POST['title'],
+  "description" => $_POST['description'],
   "graph" => array(
         "possibleGraphs" => $_POST['possibleGraphs'],
         "dataComposition" => array(
-          "title" => $_POST['dataComposition_title'],
-          "description" => $_POST['dataComposition_description'],
+          "excludeLines" => $_POST['dataComposition_excludeLines'],
           "selectList" => $_POST['dataComposition_selectList'],
           "onlyOneElement" => $_POST['dataComposition_onlyOneElement']
         )
