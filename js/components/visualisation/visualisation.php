@@ -3,23 +3,27 @@
 
 	<?php include '../header/header.php'; ?>
 
-	<body>
+    <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
+    <script type="text/javascript" src="../util.js"></script>
 
+	<body>
 		<div id="content-page">
 
-			<h1></h1>
+			<h1 id="title-page"></h1>
 			<div class="panel panel-default box">
                 <div class="panel-heading">
                     <p class="panel-title pull-left">Visualisation</p>
 
-                    <!-- Bouton "un probleme?" -->
+					<!-- Bouton "un probleme?" -->
+                    <!-- <button class="btn btn-default label label-warning pull-right" href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme"> Un problème ?</button> -->
+                    
                     <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="example">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">?</span></button>
                                     <h4 class="modal-title">Un problème ?</h4>
                                 </div>
                                 <div class="modal-body">
@@ -34,9 +38,9 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
                                 </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="clearfix"></div>
                 </div>
@@ -54,16 +58,22 @@
 							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
 							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
-
 						<div class="tab-content">
+							<p id="description-page"></p>	
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
 									<div class="select-list-date-compare"></div>
 								</div>
-								<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
+								<div class="box-wrapper-inner">
+									<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
+								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-2">
+								<div class="option-panel">
+									<div class="select-list-date"></div>
+									<div class="select-list-date-compare"></div>		
+								</div>
 								<div id='box2' class="box-visu">
 									<?php include 'chart/chart.php';?>
 								</div>
@@ -75,8 +85,11 @@
 								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
-									<?php include 'map/map.php'; ?>
+									<div id="popup"></div>
+                                   <!--  <?php #include 'map/map.php'; ?> -->
 								</div>
+								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.svg"/>
+								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
 								<div id='box4' class="box-visu"> <!-- INFO --></div>
@@ -164,14 +177,18 @@
 				</div>
 			</div>
 		</div> <!-- END CONTENT PAGE -->
-
+		<script type="text/javascript" src="map/popup.js"></script>
+		<script type="text/javascript" src="map/bus.js"></script>
+		<script type="text/javascript" src="map/poste.js"></script>
+		<script type="text/javascript" src="map/geoloc.js"></script>
+		<script type="text/javascript" src="map/map.js"></script>
+        <script type="text/javascript" src="../controller.js"></script>
+        <script type="text/javascript" src="visualisation.js"></script>
+        <script type="text/javascript" src="chart/chart.js"></script>
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
-	<script type="text/javascript" src="../controller.js"></script>
-	<script type="text/javascript" src="../util.js"></script>
-	<script type="text/javascript" src="visualisation.js"></script>
-	<script type="text/javascript" src="chart/chart.js"></script>
+
 
 
 </html>

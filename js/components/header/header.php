@@ -8,15 +8,26 @@
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../../style/style.css">
-    <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/examples/resources/mapbox-streets-v6-style.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+
     <!-- Table -->
 	  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"></script> MARCHE PAS... -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- Map -->
+    <?php
+      header('Access-Control-Allow-Origin: *');
+      header("Access-Control-Allow-Credentials: true");
+      header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+      header('Access-Control-Max-Age: 1000');
+      header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+    ?>
 </head>
 
 <div class="container-fluid">
