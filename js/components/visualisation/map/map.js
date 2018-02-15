@@ -72,25 +72,17 @@ function drawMap(data, metadata, myDiv, myPopup) {
     var map = new ol.Map();
     var parking_coord = [];
 
-    for (marker in data) {
+    data.forEach(function(marker) {
 
-        var nb_dispo = data[marker].dp_place_disponible;
-        var nb_places = data[marker].dp_nb_places;
         var color = '#ffffff';
-        /*if (nb_dispo > nb_places / 3) {
-            color = '#DD985C'
-        }
-        if (nb_dispo > (nb_places * 2 / 3)) {
-            color = '#C2F732'
-        }*/
         var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
 
         p2 = new ol.Feature({
-            geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(data[marker].dp_x), parseFloat(data[marker].dp_y)])),
-            labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(data[marker].dp_x), parseFloat(data[marker].dp_y)])),
-            name: data[marker].dp_libelle,
-            dispo: nb_dispo,
-            total: nb_places,
+            geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
+            labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
+            name: marker[metadata.map.name],
+            dispo: marker[metadata.map.nominateur],
+            total: marker[metadata.map.denominateur],
             type:"openData"
         });
 
@@ -103,7 +95,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
             }))
         }));
         parking_coord.push(p2);
-    }
+    });
 
     vectorDataLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
@@ -127,7 +119,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     addGeoloc(map);
 
     // Popup
-    addPopup(map, myPopup);
+    addPopup(map, myPopup, metadata.map.description_popup);
 
 
     // change mouse cursor when over marker
