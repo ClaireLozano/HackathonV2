@@ -1,74 +1,137 @@
-$(document).ready(function () {
 
-    //Définition de la projection de la carte en Lambert 93
-    var projection = new ol.proj.Projection({code: "EPSG:2154", units: 'm'});
+// Variables globales
+vectorLayerPoste = [];
+vectorLayerBus = [];
 
-    //definition de l'emprise de la carte
-    var extent = [375000, 6566000, 382500, 6574000];
-    //ajout d'une photo aérienne
-    var layer_ortho = new ol.layer.Tile({
-        title: 'Ortho 2013',
-        source: new ol.source.TileWMS({
-            url: 'http://portail-sig.ville-larochelle.fr/opendata/carteWS.php?',
-            params: {'LAYERS': 'ortho_2013_lr', 'FORMAT': 'image/png', 'CRS': 'EPSG:2154', 'TILED': true},
-            serverType: 'mapserver'
+/**
+ * Show bus
+ *
+ * @return null
+ */
+function showLayerBus() {
+    vectorLayerBus.setVisible(true)
+};
+
+/**
+ * Hide bus
+ *
+ * @return null
+ */
+function hideLayerBus() {
+    vectorLayerBus.setVisible(false)
+};
+
+/**
+ * Show poste
+ *
+ * @return null
+ */
+function showLayerPoste() {
+    vectorLayerPoste.setVisible(true)
+};
+
+/**
+ * Hide poste
+ *
+ * @return null
+ */
+function hideLayerPoste() {
+    vectorLayerPoste.setVisible(false)
+};
+
+/**
+ * Show map
+ *
+ * @return null
+ */
+function showMap(map) {
+    setTimeout(function () {
+        map.updateSize();
+    }, 200);
+};
+
+/**
+ * Draw map
+ *
+ * @return null
+ */
+function drawMap(data, metadata, myDiv, myPopup) {
+
+    // Définition de la projection de la carte en Lambert 93
+    var projection = new ol.proj.Projection({code: "EPSG:2154"});
+    var projection4326 = new ol.proj.Projection({code: "EPSG:4326"});
+    
+    // Definition de l'emprise de la carte
+    var extent = [-1.16, 46.1, -1.17, 46.2];
+
+    // Définition des vecteurs
+    var vectorDataLayer = new ol.layer.Vector();
+    vectorLayerBus = getBusLayer();
+    vectorLayerPoste = getPosteLayer();
+
+    var map = new ol.Map();
+    var parking_coord = [];
+
+    data.forEach(function(marker) {
+
+        var color = '#ffffff';
+        var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+
+        p2 = new ol.Feature({
+            geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
+            labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
+            name: marker[metadata.map.name],
+            dispo: marker[metadata.map.nominateur],
+            total: marker[metadata.map.denominateur],
+            type:"openData"
+        });
+
+        p2.setStyle(new ol.style.Style({
+            image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+                color: color,
+                crossOrigin: 'anonymous',
+                src: '../../../images/icone_parking.svg',
+                scale: 0.05
+            }))
+        }));
+        parking_coord.push(p2);
+    });
+
+    vectorDataLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+            features: parking_coord
         })
     });
-    // Ajout d'une couche pour les parcelles cadastrales
-    var cad_parcelle = new ol.layer.Tile({
-        title: 'parcelle cadastrale',
-        source: new ol.source.TileWMS({
-            url: 'http://portail-sig.ville-larochelle.fr/opendata/carteWS.php?',
-            params: {'LAYERS': 'cad_parcelle', 'FORMAT': 'image/png', 'CRS': 'EPSG:2154', 'TILED': true},
-            serverType: 'mapserver'
+
+    map = new ol.Map({
+        layers: [new ol.layer.Tile({
+            source: new ol.source.OSM()
+        }), vectorLayerBus, vectorLayerPoste, vectorDataLayer],
+        target: document.getElementById(myDiv),
+        view: new ol.View({
+            center: [-1.1571302, 46.1476461],
+            projection: 'EPSG:4326',
+            zoom: 16
         })
     });
 
-    var result = getUrlPage();
-    var nomDonnee = result[1];
-    var endUrl = getUrl(nomDonnee);
+    // Geoloc
+    addGeoloc(map);
+
+    // Popup
+    addPopup(map, myPopup, metadata.map.description_popup);
 
 
-    getData(endUrl, function (data) {
-
-        all_points = [];
-        var markers = data.map(data => [data.dp_x, data.dp_y]);
-
-        for (marker in markers) {
-
-            p2 = new ol.Feature({
-                geometry: new ol.geom.Point([markers[marker][0], markers[marker][1]])
-            });
-
-            p2.setStyle(new ol.style.Style({
-                image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                    color: '#4271AE',
-                    crossOrigin: 'anonymous',
-                    src: 'https://openlayers.org/en/v4.6.4/examples/data/dot.png'
-                }))
-            }));
-            all_points.push(p2);
+    // change mouse cursor when over marker
+    map.on('pointermove', function (e) {
+        if (e.dragging) {
+            $(element).popover('destroy');
+            return;
         }
-
-        var vectorSource = new ol.source.Vector({
-            features: all_points
-        });
-
-        var vectorLayer = new ol.layer.Vector({
-            source: vectorSource
-        });
-
-        var map = new ol.Map({
-            layers: [layer_ortho, cad_parcelle, vectorLayer],
-            target: document.getElementById('map'),
-            view: new ol.View({
-                projection: projection,
-                center: [379500, 6570000],
-                zoom: 16,
-                extent: extent
-            })
-        });
+        var pixel = map.getEventPixel(e.originalEvent);
+        var hit = map.hasFeatureAtPixel(pixel);
+        map.getTarget().style.cursor = hit ? 'pointer' : '';
     });
 
-
-});
+    showMap(map);
+};

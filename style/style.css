@@ -6,6 +6,10 @@
     margin: 40px;
 }
 
+#panel-welcome {
+    padding: 5px;
+}
+
 /* =============== NAV ==================*/
 
 .container-fluid {
@@ -97,13 +101,22 @@ footer{
 }
 
 .label-warning:hover {
-    background-color: #D44B4B;
+    background-color: #ef7439;
     color: white;
 }
 
 .panel-default>.panel-heading {
     border-radius: 0;
     background-color: rgba(11,61,114,.7);
+}
+
+.panel-title {
+    color: white;
+}
+
+.panel-body {
+    height: 500px;
+    overflow: auto;
 }
 
 @media (max-width: 620px) {
@@ -126,10 +139,22 @@ footer{
     }
 }
 
+/* TABLEAU */
+.pagination>li>a, .pagination>li>span {
+    line-height: 1.42857;
+    position: relative;
+    float: left;
+    margin-left: -1px;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #0b3d72;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
 
-
-
-
+table {
+    font-size: .85em;
+}
 
 
 

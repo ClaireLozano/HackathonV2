@@ -58,7 +58,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Archives</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=archive"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=archive_fiche"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
