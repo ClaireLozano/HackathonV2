@@ -10,35 +10,7 @@
 	<body>
 
     <h2>Back office</h2>
-    <!-- <form action="postdata.php" method="post"> -->
-      <!-- <table class="postarea" id="postarea">
-          <tbody>
-            <tr><td class="postblock">Type de données:</td><td><input type="text" name="datatype"></td></tr>
-            <tr><td class="postblock">Lien vers données:</td><td><input type="text" name="link"></td></tr>
-            <tr><td class="postblock">Title:</td><td><input type="text" name="title"></input> </td> </tr>
-            <tr><td class="assetblock">Type de graphe:</td>
-                <td><input type="checkbox" name="possibleGraphs[]" value="pie"></input>Camembert</td>
-                <td><input type="checkbox" name="possibleGraphs[]" value="bar"></input>Barres</td>
-                <td><input type="checkbox" name="possibleGraphs[]" disabled="true" value="line"></input>Ligne</td>
-                <td><input type="checkbox" name="possibleGraphs[]" value="horizontalBar"></input>Barres horizontales</td>
-            </tr>
-            <tr><td class="assetblock">Données du graphe:</td>
-              <td>Titre du graphe <input type="text" name="dataComposition_title"></input> </td>
-              <td>Description du graphe <input type="text" name="dataComposition_description"></input> </td>
-              <td>Nom du libelle de données <input type="text" name="dataComposition_selectList"></input> </td>
-              <td>Nom du champ de données <input type="text" name="dataComposition_onlyOneElement"></input> </td>
-            </tr> -->
-
-<!-- <input type="checkbox" name="case" checked="checked" /> -->
-<!--<div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-          <label class="form-check-label" for="gridRadios2">
-            Second radio
-          </label>
-        </div>
-        </tbody>
-      </table>  -->
-
+    <p>Création de métadonnes pour les jeux de données </p>
       <form action="postdata.php" method="post">
 
         <div class="form-row">
@@ -46,16 +18,16 @@
           <h3>Détails jeu de données</h3>
           <div class="form-group col-md-10">
             <label for="inputLink">Nom du fichier métadonnées</label>
+            <h6>Ex: "parking", "insee" etc </h6>
             <input type="text" class="form-control" name="fileName">
           </div>
           <div class="form-group col-md-10">
-            <label for="inputDataType">Type de données</label>
-            <!-- <input type="text" class="form-control" name="datatype"> -->
+            <label for="inputDataType">Type de données :</label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="datatype" value="NotHistorisedLocalisable"><label class="form-check-label">Non-historisable et localisable</label>
-              <input class="form-check-input" type="radio" name="datatype" value="HistorisedNotLocalisable"><label class="form-check-label">Historisable et non-localisable</label>
-              <input class="form-check-input" type="radio" name="datatype" value="HistorisedLocalisable"><label class="form-check-label">Historisable et localisable</label>
-              <input class="form-check-input" type="radio" name="datatype" value="NotHistorisedNotLocalisable"><label class="form-check-label">Non-historisable et non-localisable</label>
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" value="NotHistorisedLocalisable">Non-historisable et localisable</label>
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" value="HistorisedNotLocalisable">Historisable et non-localisable</label>
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" value="HistorisedLocalisable">Historisable et localisable</label>
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" value="NotHistorisedNotLocalisable">Non-historisable et non-localisable</label>
             </div>
           </div>
           <div class="form-group col-md-10">
@@ -68,10 +40,12 @@
           <hr>
           <h3>Détails du graphe</h3>
           <label for="inputGraphType">Type de graphe : </label>
-          <label class="checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="pie">Camembert</label>
-          <label class="checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
-          <label class="checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="line" disabled>Ligne</label>
-          <label class="checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="horizontalBar">Barres horizontales</label>
+          <div class="form-check">
+            <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="pie">Camembert</label>
+            <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
+            <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="line">Ligne</label>
+            <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="horizontalBar">Barres horizontales</label>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-3">
@@ -91,6 +65,23 @@
             <input type="text" class="form-control" name="dataComposition_onlyOneElement">
           </div>
         </div>
+        <div class="form-group col-md-10">
+          <hr>
+          <h3>Détails du tableau</h3>
+            <label for="inputTableTitle">Titre du tableau</label>
+            <input type="text" class="form-control" name="table_dataComposition_title">
+        </div>
+        <div class="form-row">
+          <div id="keyListInput" class="form-group col-md-10">
+            <label for="inputKeyList">Liste des mots clés</label>
+            <input type="text" class="form-control" name="table_dataComposition_keys_list[]">
+          </div>
+          <div id="keyListInput" class="form-group col-md-3">
+            <input type="button" value="Ajouter un mot clé" onclick="addInput()">
+          </div>
+
+        </div>
+
         <div class="form-group row">
           <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Valider</button>
@@ -98,10 +89,6 @@
         </div>
 
       </form>
-
-    <!-- <input type="submit" value="Valider" /> -->
-<!-- </form> -->
-
 	</body>
-
+  <script type="text/javascript" src="back_office.js"></script>
 </html>
