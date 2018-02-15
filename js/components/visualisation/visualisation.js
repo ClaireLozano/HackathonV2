@@ -197,33 +197,27 @@ $(document).ready(function(){
     var draw = function(typeVisualisation, metadata, data) {
         switch (metadata.dataType) {
             case 'HistorisedLocalisable':
-                // Call draw table method
                 drawTable(data, metadata, 'box1');
+                drawGraph(data, metadata, 'box2');
                 drawMap(data, metadata, 'box3', 'popup');
                 setMapButton();
-                //drawGraph(data, metadata, 'box3');
-                //setSeletList(data, metadata);
                 break;
 
             case 'HistorisedNotLocalisable':
-                // Call draw table method
                 drawTable(data, metadata, 'box1');
-                //drawGraph(data, metadata, 'box3');
-                //setSeletList(data, metadata);
+                drawGraph(data, metadata, 'box2');
                 break;
 
             case 'NotHistorisedLocalisable':
-                // Call draw table method
                 drawTable(data, metadata, 'box1');
+                drawGraph(data, metadata, 'box2');
                 drawMap(data, metadata, 'box3', 'popup');
                 setMapButton();
-                //drawGraph(data, metadata, 'box3');
                 break;
 
             case 'NotHistorisedNotLocalisable':
-                // Call draw table method
                 drawTable(data, metadata, 'box1');
-                //drawGraph(data, metadata, 'box3');
+                drawGraph(data, metadata, 'box2');
                 break;
         }
     };

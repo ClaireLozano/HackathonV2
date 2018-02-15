@@ -11,32 +11,6 @@ var getMetadata = function(nomDonnee, callback) {
 };
 
 /**
- * Get end url
- *
- * @return end url
- */
-var getUrl = function(nomDonnee) {
-    var endUrl = "";
-    switch (nomDonnee) {
-        case 'population_2008':
-            return "&db=insee&table=population_2008&format=json";
-            break;
-
-        case 'disponibilite_parking':
-            return "&db=stationnement&table=disponibilite_parking&format=json";
-            break;
-
-        case 'archive_fiche':
-            return "&db=archive&table=fiche&format=json";
-            break;
-
-        case 'bp_2017_fonction':
-            return "&db=budget&table=bp_2017_fonction&format=json";
-            break;
-    }
-};
-
-/**
  * Get data
  *
  * @return
