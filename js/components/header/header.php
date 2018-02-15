@@ -51,6 +51,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../home/index.php">Accueil</a></li>
             <li><a href="../donnees/donnes.php">Données</a></li>
+            <li><a href="../back_office/back_office.php">Formulaire</a></li>
             <li><a href="../demarche/demarche.php">La démarche</a></li>
             <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
           </ul>
@@ -61,6 +62,7 @@
               <ul class="dropdown-menu" role="menu">
 	            <li><a href="../home/index.php">Accueil</a></li>
 	            <li><a href="../visualisation/visualisation.php">Visualisation</a></li>
+              <li><a href="../back_office/back_office.php">Formulaire</a></li>
 	            <li><a href="../demarche/demarche.php">La démarche</a></li>
 	            <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
               </ul>
