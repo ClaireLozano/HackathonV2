@@ -12,10 +12,16 @@ $postArray = array(
   "graph" => array(
         "possibleGraphs" => $_POST['possibleGraphs'],
         "dataComposition" => array(
-          "dataComposition_title" =>$_POST['dataComposition_title'],
-          "dataComposition_description" =>$_POST['dataComposition_description'],
-          "dataComposition_selectList" =>$_POST['dataComposition_selectList'],
-          "dataComposition_onlyOneElement" =>$_POST['dataComposition_onlyOneElement']
+          "title" => $_POST['dataComposition_title'],
+          "description" => $_POST['dataComposition_description'],
+          "selectList" => $_POST['dataComposition_selectList'],
+          "onlyOneElement" => $_POST['dataComposition_onlyOneElement']
+        )
+      ),
+  "table" => array(
+        "dataComposition" => array(
+          "title" => $_POST['table_dataComposition_title'],
+          "keys_list" => $_POST['table_dataComposition_keys_list']
         )
       )
 );
