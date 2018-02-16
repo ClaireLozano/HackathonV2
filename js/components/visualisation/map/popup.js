@@ -29,7 +29,7 @@ function addPopup(map, metadata, myPopup, description) {
                     popup.setPosition(coord);
                     $(element).attr('data-placement', 'top');
                     $(element).attr('data-html', true);
-                    $(element).attr('data-original-title', '<p>' + feature.get(metadata.map.name) + '</p>');
+                    $(element).attr('data-original-title', '<p>' + feature.get('name') + '</p>');
                     $(element).attr('data-content', feature.get('type'));
                     $(element).popover('show');
                 }
@@ -40,7 +40,7 @@ function addPopup(map, metadata, myPopup, description) {
                     $(element).attr('data-placement', 'top');
                     $(element).attr('data-html', true);
                     $(element).attr('data-content', '<p>' + description + ' </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
-                    $(element).attr('data-original-title', feature.get(metadata.map.name));
+                    $(element).attr('data-original-title', feature.get('name'));
                     $(element).popover('show');
                 }
             }
