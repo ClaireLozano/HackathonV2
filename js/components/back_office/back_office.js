@@ -1,8 +1,10 @@
 $(document).ready(function(){
-  function init() {
 
-  }
-  init();
+	function init() {
+
+	}
+
+ 	init();
 });
 
 function addInput(){
@@ -39,6 +41,11 @@ function dataTypeChoice() {
         document.getElementById('theTable').style.display = 'block';
      }
      else if(document.getElementById('h_l').checked){
+        document.getElementById('theMap').style.display = 'block';
+        document.getElementById('theGraph').style.display = 'block';
+        document.getElementById('theTable').style.display = 'block';
+     }
+     else if(document.getElementById('loc').checked){
         document.getElementById('theMap').style.display = 'block';
         document.getElementById('theGraph').style.display = 'block';
         document.getElementById('theTable').style.display = 'block';
