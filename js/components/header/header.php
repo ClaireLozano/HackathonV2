@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../../../style/style.css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/examples/resources/mapbox-streets-v6-style.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>

@@ -70,38 +70,65 @@ function drawMap(data, metadata, myDiv, myPopup) {
     vectorLayerPoste = getPosteLayer();
 
     var map = new ol.Map();
-    var parking_coord = [];
+    var coordonnees = [];
 
-    data.forEach(function(marker) {
+    // Define vectors with kml datas
+    if (metadata.map.kml) {
 
-        var color = '#ffffff';
-        var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+        // Define style
+        var style = new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 4
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.5)'
+            })
 
-        p2 = new ol.Feature({
-            geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
-            labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
-            name: marker[metadata.map.name],
-            dispo: marker[metadata.map.nominateur],
-            total: marker[metadata.map.denominateur],
-            type:"openData"
         });
 
-        p2.setStyle(new ol.style.Style({
-            image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                color: color,
-                crossOrigin: 'anonymous',
-                src: '../../../images/icone_parking.svg',
-                scale: 0.05
-            }))
-        }));
-        parking_coord.push(p2);
-    });
+        // Define vectors
+        vectorDataLayer = new ol.layer.Vector({
+            source: new ol.source.Vector({
+                url: "../../kml/" + metadata.map.kml,
+                format: new ol.format.KML()
+            }),
+            style: style
+        });
 
-    vectorDataLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({
-            features: parking_coord
-        })
-    });
+    // Define vectors with coordonnées datas
+    } else {
+        data.forEach(function(marker) {
+
+            var color = '#ffffff';
+            var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+
+            p2 = new ol.Feature({
+                geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
+                labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
+                name: marker[metadata.map.name],
+                dispo: marker[metadata.map.nominateur],
+                total: marker[metadata.map.denominateur],
+                type:"openData"
+            });
+
+            p2.setStyle(new ol.style.Style({
+                image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+                    color: color,
+                    crossOrigin: 'anonymous',
+                    src: '../../../images/icone_parking.svg',
+                    scale: 0.05
+                }))
+            }));
+            coordonnees.push(p2);
+        });
+
+        vectorDataLayer = new ol.layer.Vector({
+            source: new ol.source.Vector({
+                features: coordonnees
+            })
+        });
+    }
 
     map = new ol.Map({
         layers: [new ol.layer.Tile({
