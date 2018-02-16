@@ -2,6 +2,7 @@
 // Variables globales
 vectorLayerPoste = [];
 vectorLayerBus = [];
+var map = new ol.Map();
 
 /**
  * Show bus
@@ -10,7 +11,7 @@ vectorLayerBus = [];
  */
 function showLayerBus() {
     vectorLayerBus.setVisible(true)
-};
+}
 
 /**
  * Hide bus
@@ -19,7 +20,7 @@ function showLayerBus() {
  */
 function hideLayerBus() {
     vectorLayerBus.setVisible(false)
-};
+}
 
 /**
  * Show poste
@@ -28,7 +29,7 @@ function hideLayerBus() {
  */
 function showLayerPoste() {
     vectorLayerPoste.setVisible(true)
-};
+}
 
 /**
  * Hide poste
@@ -37,18 +38,18 @@ function showLayerPoste() {
  */
 function hideLayerPoste() {
     vectorLayerPoste.setVisible(false)
-};
+}
 
 /**
  * Show map
  *
  * @return null
  */
-function showMap(map) {
+function showMap() {
     setTimeout(function () {
         map.updateSize();
     }, 200);
-};
+}
 
 /**
  * Draw map
@@ -60,7 +61,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     // Définition de la projection de la carte en Lambert 93
     var projection = new ol.proj.Projection({code: "EPSG:2154"});
     var projection4326 = new ol.proj.Projection({code: "EPSG:4326"});
-    
+
     // Definition de l'emprise de la carte
     var extent = [-1.16, 46.1, -1.17, 46.2];
 
@@ -69,7 +70,6 @@ function drawMap(data, metadata, myDiv, myPopup) {
     vectorLayerBus = getBusLayer();
     vectorLayerPoste = getPosteLayer();
 
-    var map = new ol.Map();
     var coordonnees = [];
 
     // Define vectors with kml datas
@@ -77,21 +77,21 @@ function drawMap(data, metadata, myDiv, myPopup) {
 
         // Define style
         var style = new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 4
-            }),
             fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 255, 0.5)'
+                color: [0xff, 0xff, 0x33, 0.4]
+            }),
+            stroke: new ol.style.Stroke({
+                color: '#ffffff'
             })
-
         });
 
         // Define vectors
         vectorDataLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 url: "../../kml/" + metadata.map.kml,
-                format: new ol.format.KML()
+                format: new ol.format.KML({
+                    extractStyles: false
+                })
             }),
             style: style
         });
@@ -160,5 +160,5 @@ function drawMap(data, metadata, myDiv, myPopup) {
         map.getTarget().style.cursor = hit ? 'pointer' : '';
     });
 
-    showMap(map);
-};
+    showMap();
+}

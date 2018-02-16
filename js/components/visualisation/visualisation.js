@@ -89,6 +89,7 @@ $(document).ready(function(){
         $("#tab-nav-3").click(function() {
             $('#tab-pane-3').css('display', 'block');
             $("#tab-nav-3").addClass('active');
+            showMap()
         });
 
         $("#tab-nav-4").click(function() {
@@ -307,6 +308,7 @@ $(document).ready(function(){
             case 'map':
                 $('#tab-pane-3').css('display', 'block');
                 $("#tab-nav-3").addClass('active');
+                console.log("Map active");
                 break;
 
             case 'info':
