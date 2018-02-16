@@ -19,19 +19,9 @@
             <input type="text" class="form-control" name="title">
           </div>
           <div class="form-group col-md-10">
-<!-- <<<<<<< HEAD
-            <label for="inputDataType">Type de données :</label>
-            <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="nH_L" value="NotHistorisedLocalisable">Non-historisable et localisable</label>
-              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="h_NL" value="HistorisedNotLocalisable">Historisable et non-localisable</label>
-              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="h_l" value="HistorisedLocalisable">Historisable et localisable</label>
-              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="nH_nL" value="NotHistorisedNotLocalisable">Non-historisable et non-localisable</label>
-            </div>
-======= -->
             <label for="inputDescriptionData">Lien vers les données</label>
             <p>Il est possible d'afficher une description de la données et ainsi guider les utilisateurs dans la lecture des données.</p>
-            <textarea form="form" type="text" class="form-control" name="inputDescriptionData"></textarea>
-<!-- >>>>>>> 707ae697509e223f38bcb8cf8e08a66a6044cf44 -->
+            <textarea form="form" type="text" class="form-control" name="description"></textarea>
           </div>
           <div class="form-group col-md-10">
             <label for="fileName">Nom du fichier métadonnées</label>
