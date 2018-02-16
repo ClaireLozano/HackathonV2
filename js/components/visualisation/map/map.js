@@ -1,9 +1,7 @@
-
 // Variables globales
 vectorLayerPoste = [];
 vectorLayerBus = [];
 var map = new ol.Map();
-
 /**
  * Show bus
  *
@@ -76,14 +74,32 @@ function drawMap(data, metadata, myDiv, myPopup) {
     if (metadata.map.kml) {
 
         // Define style
-        var style = new ol.style.Style({
-            fill: new ol.style.Fill({
-                color: [0xff, 0xff, 0x33, 0.4]
-            }),
-            stroke: new ol.style.Stroke({
-                color: '#ffffff'
-            })
-        });
+        var styleFunction = function(feature) {
+            var array = vectorDataLayer.getSource().getFeatures();
+            var array2 = array.map(function(el){return el.get(metadata.map.value)});
+            array.map(function(el){return el.get(metadata.map.value)}).reduce(function(el){return Math.min(el)})
+            var min = Math.min.apply(null,array2);
+
+            var max = Math.max.apply(null,array2);
+
+            var number = feature.get(metadata.map.value);
+            number = ((number-min) / (max-min)*256)|0;
+
+            return new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: [number, 0, 255-number, 0.4]
+                }),
+                stroke: new ol.style.Stroke({
+                    color: '#ffffff'
+                }),
+                text:new ol.style.Text({
+                    text:feature.get(metadata.map.name)+"\n"+feature.get(metadata.map.value),
+                    fill: new ol.style.Fill({ color: "#000000" }),
+                    stroke: new ol.style.Stroke({ color: "#FFFFFF", width: 3 }),
+                    font: 12 + 'px Calibri,sans-serif'
+                })
+            });
+        };
 
         // Define vectors
         vectorDataLayer = new ol.layer.Vector({
@@ -93,12 +109,12 @@ function drawMap(data, metadata, myDiv, myPopup) {
                     extractStyles: false
                 })
             }),
-            style: style
+            style: styleFunction
         });
 
-    // Define vectors with coordonnées datas
+        // Define vectors with coordonnées datas
     } else {
-        data.forEach(function(marker) {
+        data.forEach(function (marker) {
 
             var color = '#ffffff';
             var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
@@ -109,7 +125,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
                 name: marker[metadata.map.name],
                 dispo: marker[metadata.map.nominateur],
                 total: marker[metadata.map.denominateur],
-                type:"openData"
+                type: "openData"
             });
 
             p2.setStyle(new ol.style.Style({
@@ -133,7 +149,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     map = new ol.Map({
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
-        }), vectorLayerBus, vectorLayerPoste, vectorDataLayer],
+        }), vectorDataLayer, vectorLayerBus, vectorLayerPoste],
         target: document.getElementById(myDiv),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],
@@ -146,13 +162,14 @@ function drawMap(data, metadata, myDiv, myPopup) {
     addGeoloc(map);
 
     // Popup
-    addPopup(map, myPopup, metadata.map.description_popup);
+    addPopup(map, metadata, myPopup, metadata.map.description_popup);
 
 
     // change mouse cursor when over marker
     map.on('pointermove', function (e) {
         if (e.dragging) {
-            $(element).popover('destroy');
+            if ($(element))
+                $(element).popover('destroy');
             return;
         }
         var pixel = map.getEventPixel(e.originalEvent);

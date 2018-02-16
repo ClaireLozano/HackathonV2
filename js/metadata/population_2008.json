@@ -32,7 +32,9 @@
     }   
   },
   "map":{
-    "kml": "quartier_iris_2008.kml"
+    "kml": "quartier_iris_2008.kml",
+    "value": "pop_rp_2009",
+    "name":"libellez"
   },
   "table":{
     "dataComposition":{

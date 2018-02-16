@@ -4,7 +4,7 @@
  *
  * @return null
  */
-function addPopup(map, myPopup, description) {
+function addPopup(map, metadata, myPopup, description) {
     var element = document.getElementById(myPopup);
 
     var popup = new ol.Overlay({
@@ -17,34 +17,36 @@ function addPopup(map, myPopup, description) {
 
     // display popup on click
     map.on('click', function (evt) {
-        var feature = map.forEachFeatureAtPixel(evt.pixel,
-            function (feature, layer) {
-                return feature;
-            });
-        if (feature) {
-            if (feature.get('type') && feature.get('type') != "openData") {
-                var geometry = feature.getGeometry();
-                var coord = geometry.getCoordinates();
-                popup.setPosition(coord);
-                $(element).attr('data-placement', 'top');
-                $(element).attr('data-html', true);
-                $(element).attr('data-original-title', '<p>' + feature.get('name') + '</p>');
-                $(element).attr('data-content', feature.get('type'));
-                $(element).popover('show');
+        if(!metadata.map.kml) {
+            var feature = map.forEachFeatureAtPixel(evt.pixel,
+                function (feature, layer) {
+                    return feature;
+                });
+            if (feature) {
+                if (feature.get('type') && feature.get('type') != "openData") {
+                    var geometry = feature.getGeometry();
+                    var coord = geometry.getCoordinates();
+                    popup.setPosition(coord);
+                    $(element).attr('data-placement', 'top');
+                    $(element).attr('data-html', true);
+                    $(element).attr('data-original-title', '<p>' + feature.get(metadata.map.name) + '</p>');
+                    $(element).attr('data-content', feature.get('type'));
+                    $(element).popover('show');
+                }
+                else {
+                    var geometry = feature.getGeometry();
+                    var coord = geometry.getCoordinates();
+                    popup.setPosition(coord);
+                    $(element).attr('data-placement', 'top');
+                    $(element).attr('data-html', true);
+                    $(element).attr('data-content', '<p>' + description + ' </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
+                    $(element).attr('data-original-title', feature.get(metadata.map.name));
+                    $(element).popover('show');
+                }
             }
             else {
-                var geometry = feature.getGeometry();
-                var coord = geometry.getCoordinates();
-                popup.setPosition(coord);
-                $(element).attr('data-placement', 'top');
-                $(element).attr('data-html', true);
-                $(element).attr('data-content', '<p>' + description + ' </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
-                $(element).attr('data-original-title', feature.get('name'));
-                $(element).popover('show');
+                $(element).popover('destroy');
             }
-        }
-        else {
-            $(element).popover('destroy');
         }
     });
 };
