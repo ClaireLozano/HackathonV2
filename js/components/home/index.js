@@ -44,7 +44,7 @@ $(document).ready(function(){
      */
     var addVisualizationOnBox = function() {
         var boxs = ["box0", "box1"];
-        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction"];
+        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction", "population_2008"];
 
         boxs.forEach(function(box, i, arr) {
 
@@ -57,14 +57,13 @@ $(document).ready(function(){
                 // With end url, get data
                 getData(metadata.link, function(data) {
 
-                    if (metadata.dataType === ("NotHistorisedLocalisable" || "HistorisedLocalisable")) {
+                    if (metadata.dataType === "NotHistorisedLocalisable" || metadata.dataType === "HistorisedLocalisable") {
 
                         // Generate random visualisation
                         var randVisu = getRandomInt(2);
 
                         // Draw visualisation
                         switch (randVisu) {
-                        // switch (0) {
                             case 0:
                                 drawTable(data, metadata, box);
                                 defineLinks("table", i, nomDonnee[randNomDonnee])
@@ -77,6 +76,7 @@ $(document).ready(function(){
 
                             case 2:
                                 //drawGraph(data, metadata, box);
+                                // defineLinks("graph", i, nomDonnee[randNomDonnee])
                                 break;
                         }
 
