@@ -22,9 +22,18 @@ $postArray = array(
   "table" => array(
         "dataComposition" => array(
           "title" => $_POST['table_dataComposition_title'],
-          "keys_list" => $_POST['table_dataComposition_keys_list']
+          "keys_list" => $_POST['table_dataComposition_keys_list'],
+          "value_list" => $_POST['table_dataComposition_value_list']
         )
-      )
+      ),
+  "map" => array(
+        "x" => $_POST['map_x'],
+        "y" => $_POST['map_y'],
+        "name" => $_POST['map_name'],
+        "nominateur" => $_POST['map_nominateur'],
+        "denominateur" => $_POST['map_denominateur'],
+        "description_popup" => $_POST['map_description_popup']
+  )
 );
 
 $json = json_encode( $postArray );
