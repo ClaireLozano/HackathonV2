@@ -12,7 +12,6 @@ function getPosteLayer() {
     var poste = [];
 
     for (marker in json_obj) {
-        console.log(json_obj[marker].geometry.coordinates)
         p2 = new ol.Feature({
             geometry: new ol.geom.Point(json_obj[marker].geometry.coordinates),
             labelPoint: new ol.geom.Point(json_obj[marker].geometry.coordinates),

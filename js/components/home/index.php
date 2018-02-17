@@ -57,7 +57,7 @@
                     <a id="info0" style="float:right" class="glyphicon glyphicon-info-sign btn btn-default bottomButton" aria-hidden="true"></a>
                 </div>
 
-                <!-- Deusième box --> 
+                <!-- Deuxième box -->
                 <div class="panel panel-default box">
                     <div class="panel-heading">
                         <p id="panel-title-box1" class="panel-title pull-left"></p>

@@ -1,8 +1,7 @@
-
 // Variables globales
 vectorLayerPoste = [];
 vectorLayerBus = [];
-
+var map = new ol.Map();
 /**
  * Show bus
  *
@@ -10,7 +9,7 @@ vectorLayerBus = [];
  */
 function showLayerBus() {
     vectorLayerBus.setVisible(true)
-};
+}
 
 /**
  * Hide bus
@@ -19,7 +18,7 @@ function showLayerBus() {
  */
 function hideLayerBus() {
     vectorLayerBus.setVisible(false)
-};
+}
 
 /**
  * Show poste
@@ -28,7 +27,7 @@ function hideLayerBus() {
  */
 function showLayerPoste() {
     vectorLayerPoste.setVisible(true)
-};
+}
 
 /**
  * Hide poste
@@ -37,18 +36,18 @@ function showLayerPoste() {
  */
 function hideLayerPoste() {
     vectorLayerPoste.setVisible(false)
-};
+}
 
 /**
  * Show map
  *
  * @return null
  */
-function showMap(map) {
+function showMap() {
     setTimeout(function () {
         map.updateSize();
     }, 200);
-};
+}
 
 /**
  * Draw map
@@ -60,7 +59,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     // Définition de la projection de la carte en Lambert 93
     var projection = new ol.proj.Projection({code: "EPSG:2154"});
     var projection4326 = new ol.proj.Projection({code: "EPSG:4326"});
-    
+
     // Definition de l'emprise de la carte
     var extent = [-1.16, 46.1, -1.17, 46.2];
 
@@ -69,36 +68,53 @@ function drawMap(data, metadata, myDiv, myPopup) {
     vectorLayerBus = getBusLayer();
     vectorLayerPoste = getPosteLayer();
 
-    var map = new ol.Map();
     var coordonnees = [];
 
     // Define vectors with kml datas
     if (metadata.map.kml) {
 
         // Define style
-        var style = new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 4
-            }),
-            fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 255, 0.5)'
-            })
+        var styleFunction = function(feature) {
+            var array = vectorDataLayer.getSource().getFeatures();
+            var array2 = array.map(function(el){return el.get(metadata.map.value)});
+            array.map(function(el){return el.get(metadata.map.value)}).reduce(function(el){return Math.min(el)})
+            var min = Math.min.apply(null,array2);
 
-        });
+            var max = Math.max.apply(null,array2);
+
+            var number = feature.get(metadata.map.value);
+            number = ((number-min) / (max-min)*256)|0;
+
+            return new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: [number, 0, 255-number, 0.4]
+                }),
+                stroke: new ol.style.Stroke({
+                    color: '#ffffff'
+                }),
+                text:new ol.style.Text({
+                    text:feature.get(metadata.map.name)+"\n"+feature.get(metadata.map.value),
+                    fill: new ol.style.Fill({ color: "#000000" }),
+                    stroke: new ol.style.Stroke({ color: "#FFFFFF", width: 3 }),
+                    font: 12 + 'px Calibri,sans-serif'
+                })
+            });
+        };
 
         // Define vectors
         vectorDataLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 url: "../../kml/" + metadata.map.kml,
-                format: new ol.format.KML()
+                format: new ol.format.KML({
+                    extractStyles: false
+                })
             }),
-            style: style
+            style: styleFunction
         });
 
-    // Define vectors with coordonnées datas
+        // Define vectors with coordonnées datas
     } else {
-        data.forEach(function(marker) {
+        data.forEach(function (marker) {
 
             var color = '#ffffff';
             var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
@@ -109,7 +125,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
                 name: marker[metadata.map.name],
                 dispo: marker[metadata.map.nominateur],
                 total: marker[metadata.map.denominateur],
-                type:"openData"
+                type: "openData"
             });
 
             p2.setStyle(new ol.style.Style({
@@ -133,7 +149,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     map = new ol.Map({
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
-        }), vectorLayerBus, vectorLayerPoste, vectorDataLayer],
+        }), vectorDataLayer, vectorLayerBus, vectorLayerPoste],
         target: document.getElementById(myDiv),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],
@@ -146,13 +162,14 @@ function drawMap(data, metadata, myDiv, myPopup) {
     addGeoloc(map);
 
     // Popup
-    addPopup(map, myPopup, metadata.map.description_popup);
+    addPopup(map, metadata, myPopup, metadata.map.description_popup);
 
 
     // change mouse cursor when over marker
     map.on('pointermove', function (e) {
         if (e.dragging) {
-            $(element).popover('destroy');
+            if ($(element))
+                $(element).popover('destroy');
             return;
         }
         var pixel = map.getEventPixel(e.originalEvent);
@@ -160,5 +177,5 @@ function drawMap(data, metadata, myDiv, myPopup) {
         map.getTarget().style.cursor = hit ? 'pointer' : '';
     });
 
-    showMap(map);
-};
+    showMap();
+}

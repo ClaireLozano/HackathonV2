@@ -5,7 +5,7 @@ $(document).ready(function () {
     var endUrl = getUrl(nomDonnee);
 
     getData(endUrl, function(dataToTreat){
-      console.log(dataToTreat);
+      //console.log(dataToTreat);
 
       var svg = d3.select("svg");
       var margin = {top: 20, right: 20, bottom: 70, left: 40},
