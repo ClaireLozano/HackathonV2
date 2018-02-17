@@ -17,13 +17,18 @@ function drawGraph(dataToTreat, metadata, box) {
             d[realValue] = +d[realValue];
         });
 
-        var budgetByCategory = d3.nest()
+        var dataToTreat = d3.nest()
             .key(function (d) {
-                return metadata.graph.dataComposition.category;
+                return d[metadata.graph.dataComposition.category];
             })
-            .map(dataToTreat);
-        console.log(budgetByCategory);
-        realTitle = metadata.graph.dataComposition.category;
+            .rollup(function(v) { return d3.sum(v, function(d) { return d[realValue]; })
+            })
+            .entries(dataToTreat);
+        dataToTreat.forEach(function(d) {
+            d[realTitle] = d.key;
+            d[realValue] = d.values;
+        });
+        console.log(dataToTreat);
     }
 
     var w = 800, h = 500;

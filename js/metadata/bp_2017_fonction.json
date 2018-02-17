@@ -10,7 +10,7 @@
       "excludeLines": [],
       "title": "budg_ss_fction",
       "value": "budg_montant",
-      "category":"budg_dep_rec"
+      "category":"budg_section"
     }
   },
   "timeline":{
