@@ -39,7 +39,7 @@ $(document).ready(function(){
      * @return
      */
     var addVisualizationOnBox = function() {
-        var boxs = ["population_2008", "disponibilite_parking", "archive_fiche", "bp_2017_fonction", "budget_2018"];
+        var boxs = ["disponibilite_parking", "population_2008", "archive_fiche", "bp_2017_fonction", "budget_2018"];
 
         boxs.forEach(function(box, i, arr) {
 			console.log(boxs[i]);
@@ -56,13 +56,13 @@ $(document).ready(function(){
 
                         // Generate random visualisation
                         var randVisu = getRandomInt(2);
-						//console.log(metadata.link)
+
                         // Draw visualisation
                         switch (randVisu) {
                             // switch (0) {
                             case 0:
-                                drawMap(data, metadata, box, "popup" + i);
-                                defineLinks("map", i, boxs[i]);
+                                drawTable(data, metadata, box);
+                                defineLinks("table", i, boxs[i]);
                                 break;
 
                             case 1:
@@ -76,6 +76,7 @@ $(document).ready(function(){
                         }
 
                     } else {
+
                         // Generate random visualisation
                         var randVisu = getRandomInt(1);
 
