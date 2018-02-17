@@ -1,74 +1,458 @@
-$(document).ready(function () {
 
-    var result = getUrlPage()
-    var nomDonnee = result[1];
-    var endUrl = getUrl(nomDonnee);
+/**
+ * Draw map
+ *
+ * @return null
+ */
+function drawGraph(dataToTreat, metadata, box) {
 
-    getData(endUrl, function(dataToTreat){
-      //console.log(dataToTreat);
+  console.log("metadata", metadata)
+  // load the data
+  dataToTreat.forEach(function(d) {
+      d[metadata.graph.dataComposition.titleElements] = d[metadata.graph.dataComposition.titleElements];
+      d[metadata.graph.dataComposition.onlyOneElement] = + d[metadata.graph.dataComposition.onlyOneElement];
+  });
 
-      var svg = d3.select("svg");
-      var margin = {top: 20, right: 20, bottom: 70, left: 40},
-      width = 600 - margin.left - margin.right,
-      height = 300 - margin.top - margin.bottom;
+  var w = 800, h = 500;
+	var margin = {
+		top:58,
+		bottom:150,
+		left:80,
+		right:40
+	};
 
-      // set the ranges
-      var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-      var y = d3.scale.linear().range([height, 0]);
+	var width = w - margin.left - margin.right;
+	var height = h - margin.top - margin.bottom;
+  var r = 200
+  //var ordinalScaleColor = d3.scale.category20b();
+  var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
-      // define the axis
-      var xAxis = d3.svg.axis().scale(x).orient("bottom")
-      var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
+  var select = d3.select('#' + box)
+                .append('select')
+                .classed('selectGraph',true)
+                .on('change',onChange);
 
-      // add the SVG element
-      var svg = d3.select("#chart").append("svg")
-          .attr("width", "100%")
-          .attr("height", "100%")
-        .append("g")
-          .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-
-      // load the data
-      dataToTreat.forEach(function(d) {
-          d.dp_libelle = d.dp_libelle;
-          d.dp_place_disponible = +d.dp_place_disponible;
-      });
-
-      // scale the range of the data
-      x.domain(dataToTreat.map(function(d) { return d.dp_libelle; }));
-      y.domain([0, d3.max(dataToTreat, function(d) { return d.dp_place_disponible; })]);
-
-      // add axis
-      svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(xAxis)
-        .selectAll("text")
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", "-.55em")
-          .attr("transform", "rotate(-90)" );
-
-      svg.append("g")
-          .attr("class", "y axis")
-          .call(yAxis)
-        .append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("y", 5)
-          .attr("dy", ".71em")
-          .style("text-anchor", "end")
-          .text("Frequency");
+  var options = select.selectAll('option')
+              	.data(metadata.graph.possibleGraphs).enter()
+              	.append('option')
+                .attr("value", function(d){ return d; })
+              	.text(function(d){ return d; });
 
 
-      // Add bar chart
-      svg.selectAll("bar")
-          .data(dataToTreat)
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return x(d.dp_libelle); })
-          .attr("width", x.rangeBand())
-          .attr("y", function(d) { return y(d.dp_place_disponible); })
-          .attr("height", function(d) { return height - y(d.dp_place_disponible); });
-    });
+  function onChange() {
 
-});
+    var selectValue = d3.select('.selectGraph').property('value')
+    console.log(selectValue);
+
+    switch (selectValue) {
+      case "bar":
+        //exit
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+
+        var x = d3.scale.ordinal()
+                .domain(dataToTreat.map(function(entry){
+                  return entry[metadata.graph.dataComposition.titleElements]
+                }))
+                .rangeBands([0,width]);
+
+        var y = d3.scale.linear()
+                .domain([0, d3.max(dataToTreat, function(d){return d[metadata.graph.dataComposition.onlyOneElement];})])
+                .range([height,0]);
+
+
+        var xAxis = d3.svg.axis()
+                          .scale(x)
+                          .orient("bottom");
+
+        var yAxis = d3.svg.axis()
+                          .scale(y)
+                          .orient("left");
+
+        var yGridlines = d3.svg.axis()
+              .scale(y)
+              .tickSize(-width,0,0)
+              .tickFormat("")
+              .orient("left");
+
+        var svg = d3.select('#' + box).append("svg")
+                  .attr("id","chart")
+                  .attr("width",w)
+                  .attr("height",h);
+
+        var chart = svg.append("g")
+                    .classed("display",true)
+                    .attr("transform","translate("+margin.left+","+margin.top+")");
+
+        function drawAxis(params) {
+      		  if(params.initialize) {
+              //this is title
+              this.append("text")
+                  .attr("x", (width / 2))
+                  .attr("y", 0 - (margin.top / 2))
+                  .attr("text-anchor", "middle")
+                  .style("font-size", "16px")
+                  .text("");
+
+              //this is gridline
+      				this.append("g")
+      					.call(params.gridlines)
+      					.classed("gridline", true)
+      					.attr("transform", "translate(0,0)")
+
+      		    //this is x axis
+      				this.append("g")
+      						.classed("x axis", true)
+      						.attr("transform","translate("+0+","+height+")")
+      						.call(params.axis.x)
+      							.selectAll("text")
+      							.style("text-anchor","end")
+      							.attr("dx",-8)
+      							.attr("dy",8)
+      							.attr("transform","translate(0,0) rotate(-45)");
+
+      				//this is y axis
+      				this.append("g")
+      						.classed("y axis", true)
+      						.attr("transform","translate(0,0)")
+      						.call(params.axis.y);
+
+      				//this is y label
+      				this.select(".y.axis")
+      						.append("text")
+      						.attr("x",0)
+      						.attr("y",0)
+      						.style("text-anchor","middle")
+      						.attr("transform","translate(-50,"+height/2+") rotate(-90)")
+      						.text("Nombre de places disponibles")
+
+      				//this is x label
+      				this.select(".x.axis")
+      						.append("text")
+      						.attr("x",0)
+      						.attr("y",0)
+      						.style("text-anchor","middle")
+      						.attr("transform","translate("+width/2+", 130)")
+      						.text("Parking")
+      		} else {
+      			this.selectAll("g.x.axis")
+      					.call(params.axis.x)
+      			this.selectAll("g.y.axis")
+      					.call(params.axis.y)
+      		}
+      	}
+
+      	function plot(params) {
+
+      			x.domain(dataToTreat.map(function(entry){
+      				return entry.dp_libelle
+      			}))
+
+      			y.domain([0, d3.max(dataToTreat, function(d){
+      				return d[metadata.graph.dataComposition.onlyOneElement];
+      			})])
+
+      			drawAxis.call(this,params);
+
+      			//enter
+      			this.selectAll(".bar")
+      					.data(params.data)
+      					.enter().append("rect")
+      									.classed("bar", true);
+
+      			this.selectAll(".bar-label")
+      					.data(params.data)
+      					.enter().append("text")
+      							.classed("bar-label", true)
+                    .style("font-size", "14px");
+
+      			//update
+      			this.selectAll(".bar")
+      								.attr("x",function(d,i){
+      									return x(d[metadata.graph.dataComposition.titleElements])
+      								})
+      								.attr("y",function(d,i){
+      									return y(d[metadata.graph.dataComposition.onlyOneElement]);
+      								})
+      								.attr("width",function(d,i){
+      									return x.rangeBand();
+      								})
+      								.attr("height",function(d){
+      									return height - y(d[metadata.graph.dataComposition.onlyOneElement]);
+      								})
+      								.style("fill",function(d,i){
+      									return ordinalScaleColor(i);
+      								});
+
+      			this.selectAll(".bar-label")
+      								.attr("x",function(d,i){
+      									return x(d[metadata.graph.dataComposition.titleElements]) +  (x.rangeBand()/2);
+      								})
+      								.attr("dx", 0) //-4
+      								.attr("y",function(d,i){
+      									return y(d[metadata.graph.dataComposition.onlyOneElement]);
+      								})
+      								.attr("dy",function(d,i){
+      									// return y(1)/1.5; //linear scale
+      									//return y.rangeBand()/1.5; //ordinal scale
+      									return -6;
+      								})
+      								.text(function(d,i){
+      									return d[metadata.graph.dataComposition.onlyOneElement];
+      								});
+      			//exit
+      			this.selectAll(".bar")
+      					.data(params.data)
+      					.exit()
+      					.remove();
+
+      			this.selectAll(".bar-label")
+      					.data(params.data)
+      					.exit()
+      					.remove();
+
+      	}
+
+  	    plot.call(chart, {
+      		data:dataToTreat,
+      		axis:{
+      			x: xAxis,
+      			y: yAxis
+      		},
+      		gridlines: yGridlines,
+      		initialize:true
+      	});
+
+        break;
+      case "pie":
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+
+        var vis = d3.select('#' + box)
+           .append("svg")
+           .data([dataToTreat])
+               .attr("width", w)
+               .attr("height", h)
+           .append("g")
+               .attr("transform", "translate(" + r + "," + r + ")")
+
+       var arc = d3.svg.arc()
+           .outerRadius(r);
+
+       var pie = d3.layout.pie()
+           .value(function(d) { return d[metadata.graph.dataComposition.onlyOneElement]; });
+
+       var arcs = vis.selectAll("g.slice")
+           .data(pie)
+           .enter()
+               .append("g")
+                   .classed("slice",true);
+
+           arcs.append("path")
+                   .style("fill",function(d,i){
+                     return ordinalScaleColor(i);
+                   })
+                   .attr("d", arc);
+
+
+           arcs.append("text")
+                   .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                       d.innerRadius = 0;
+                       d.outerRadius = r*2;
+                       return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+                   })
+                   .attr("text-anchor", "middle")                          //center the text on it's origin
+                   .text(function(d, i) { return dataToTreat[i][metadata.graph.dataComposition.titleElements] +
+                                                  "\n" +
+                                                  dataToTreat[i][metadata.graph.dataComposition.onlyOneElement]; });        //get the label from our original data array
+
+
+        break;
+      case "doughnut":
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+
+        var vis = d3.select('#' + box)
+           .append("svg")
+           .data([dataToTreat])
+               .attr("width", w)
+               .attr("height", h)
+           .append("g")
+               .attr("transform", "translate(" + r + "," + r + ")")
+
+       var arc = d3.svg.arc()
+           .innerRadius(r/2)
+           .outerRadius(r);
+
+       var pie = d3.layout.pie()
+           .value(function(d) { return d[metadata.graph.dataComposition.onlyOneElement]; });
+
+       var arcs = vis.selectAll("g.slice")
+           .data(pie)
+           .enter()
+               .append("g")
+                   .classed("slice",true);
+
+           arcs.append("path")
+                   .style("fill",function(d,i){
+                     return ordinalScaleColor(i);
+                   })
+                   .attr("d", arc);
+
+
+           arcs.append("text")
+                   .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                       d.innerRadius = 0;
+                       d.outerRadius = r*2;
+                       return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+                   })
+                   .attr("text-anchor", "middle")                          //center the text on it's origin
+                   .text(function(d, i) { return dataToTreat[i][metadata.graph.dataComposition.titleElements] +
+                                                  "\n" +
+                                                  dataToTreat[i][metadata.graph.dataComposition.onlyOneElement]; });        //get the label from our original data array
+
+
+
+        break;
+      case "horizontalBar":
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+
+        var x = d3.scale.linear()
+        		.domain([0, d3.max(dataToTreat, function(d){
+              return d[metadata.graph.dataComposition.onlyOneElement];
+        		})])
+        		.range([0, width]);
+
+        var y = d3.scale.ordinal()
+        		.domain(dataToTreat.map(function(entry){
+        			return entry[metadata.graph.dataComposition.titleElements];
+        		}))
+        		.rangeBands([0, height]);
+
+        var xAxis = d3.svg.axis()
+        			.scale(x)
+        			.orient("bottom");
+
+        var yAxis = d3.svg.axis()
+        			.scale(y)
+        			.orient("left");
+
+        var svg = d3.select('#' + box).append("svg")
+        			.attr("width", w)
+        			.attr("height", h);
+
+        var chart = svg.append("g")
+        			.classed("display", true)
+        			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        function plotHorizontal(params){
+        	this.selectAll(".bar")
+        		.data(params.data)
+        		.enter()
+        			.append("rect")
+        			.classed("bar", true)
+        			.attr("x", 0)
+        			.attr("y", function(d,i){
+        				return y(d[metadata.graph.dataComposition.titleElements]);
+        			})
+        			.attr("height", function(d,i){
+        				return y.rangeBand();
+        			})
+        			.attr("width", function(d){
+        				return x(d[metadata.graph.dataComposition.onlyOneElement]);
+        			})
+        			.style("fill", function(d,i){
+        				return ordinalScaleColor(i);
+        			});
+        	this.selectAll(".bar-label")
+        		.data(params.data)
+        		.enter()
+        			.append("text")
+        			.classed("bar-label", true)
+              .style("font-size", "14px")
+        			.attr("x", function(d){
+        				return x(d[metadata.graph.dataComposition.onlyOneElement]);
+        			})
+        			.attr("dx", 15)
+        			.attr("y", function(d,i){
+        				return y(d[metadata.graph.dataComposition.titleElements]);
+        			})
+        			.attr("dy", function(d,i){
+        				return y.rangeBand()/1.5+2;
+        			})
+        			.text(function(d){
+        				return d[metadata.graph.dataComposition.onlyOneElement];
+        			})
+        	this.append("g")
+        		.classed("x axis", true)
+        		.attr("transform", "translate(" + 0 + "," + height + ")")
+        		.call(xAxis);
+
+        	this.append("g")
+        		.classed("y axis", true)
+        		.attr("transform", "translate(0,0)")
+        		.call(yAxis);
+        }
+        plotHorizontal.call(chart, {data: dataToTreat});
+
+        break;
+      default:
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+
+        d3.select("'#" + box + "'")
+          .append('p')
+          .text("Veuillez séléctionner un type de graphe avant de continuer.")
+    }
+  }
+
+  /*
+  * Adding refresh method to reload new data
+  */
+  /*
+  function refresh(values){
+    // var values = d3.range(1000).map(d3.random.normal(20, 5));
+    var data = d3.layout.histogram()
+      .bins(x.ticks(20))
+      (values);
+
+    // Reset y domain using new data
+    var yMax = d3.max(data, function(d){return d.length});
+    var yMin = d3.min(data, function(d){return d.length});
+    y.domain([0, yMax]);
+    var colorScale = d3.scale.linear()
+                .domain([yMin, yMax])
+                .range([d3.rgb(color).brighter(), d3.rgb(color).darker()]);
+
+    var bar = svg.selectAll(".bar").data(data);
+
+    // Remove object with data
+    bar.exit().remove();
+
+    bar.transition()
+      .duration(1000)
+      .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+
+    bar.select("rect")
+        .transition()
+        .duration(1000)
+        .attr("height", function(d) { return height - y(d.y); })
+        .attr("fill", function(d) { return colorScale(d.y) });
+
+    bar.select("text")
+        .transition()
+        .duration(1000)
+        .text(function(d) { return formatCount(d.y); });
+
+  }
+
+  // Calling refresh repeatedly.
+  setInterval(function() {
+    var values = d3.range(1000).map(d3.random.normal(20, 5));
+    refresh(values);
+  }, 2000);
+  */
+
+  onChange();
+};

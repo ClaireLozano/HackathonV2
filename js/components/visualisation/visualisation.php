@@ -74,9 +74,7 @@
 									<div class="select-list-date"></div>
 									<div class="select-list-date-compare"></div>		
 								</div>
-								<div id='box2' class="box-visu">
-									<?php include 'chart/chart.php';?>
-								</div>
+								<div id='box2' class="box-visu"> <!-- GRAPH --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div class="option-panel">
@@ -182,9 +180,9 @@
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>
 		<script type="text/javascript" src="map/map.js"></script>
+        <script type="text/javascript" src="chart/chart.js"></script>
         <script type="text/javascript" src="../controller.js"></script>
         <script type="text/javascript" src="visualisation.js"></script>
-        <script type="text/javascript" src="chart/chart.js"></script>
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
