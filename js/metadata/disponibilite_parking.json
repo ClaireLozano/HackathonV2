@@ -9,8 +9,8 @@
     "possibleGraphs": ["bar", "pie", "doughnut", "horizontalBar"],
     "dataComposition": {
       "excludeLines": [],
-      "titleElements": "dp_libelle",
-      "onlyOneElement": "dp_place_disponible"
+      "title": "dp_libelle",
+      "value": "dp_place_disponible"
     }
   },
   "timeline":{
