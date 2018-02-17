@@ -34,14 +34,16 @@ function addPopup(map, metadata, myPopup, description) {
                     $(element).popover('show');
                 }
                 else {
-                    var geometry = feature.getGeometry();
-                    var coord = geometry.getCoordinates();
-                    popup.setPosition(coord);
-                    $(element).attr('data-placement', 'top');
-                    $(element).attr('data-html', true);
-                    $(element).attr('data-content', '<p>' + description + ' </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
-                    $(element).attr('data-original-title', feature.get('name'));
-                    $(element).popover('show');
+                    if(feature.get("dispo")) {
+                        var geometry = feature.getGeometry();
+                        var coord = geometry.getCoordinates();
+                        popup.setPosition(coord);
+                        $(element).attr('data-placement', 'top');
+                        $(element).attr('data-html', true);
+                        $(element).attr('data-content', '<p>' + description + ' </p><code>' + feature.get('dispo') + '/' + feature.get('total') + '</code>');
+                        $(element).attr('data-original-title', feature.get('name'));
+                        $(element).popover('show');
+                    }
                 }
             }
             else {
