@@ -8,19 +8,22 @@ function drawGraph(dataToTreat, metadata, box) {
     console.log("metadata", metadata);
     console.log("data : ", dataToTreat);
     // load the data
+    var realTitle = metadata.graph.dataComposition.title;
+    var realValue = metadata.graph.dataComposition.value;
 
     if(metadata.graph.dataComposition.category) {
         dataToTreat.forEach(function (d) {
-            d[metadata.graph.dataComposition.title] = d[metadata.graph.dataComposition.title];
-            d[metadata.graph.dataComposition.value] = +d[metadata.graph.dataComposition.value];
+            d[realTitle] = d[realTitle];
+            d[realValue] = +d[realValue];
         });
 
         var budgetByCategory = d3.nest()
             .key(function (d) {
-                return d[metadata.graph.dataComposition.category];
+                return metadata.graph.dataComposition.category;
             })
-            .entries(dataToTreat);
+            .map(dataToTreat);
         console.log(budgetByCategory);
+        realTitle = metadata.graph.dataComposition.category;
     }
 
     var w = 800, h = 500;
@@ -67,13 +70,13 @@ function drawGraph(dataToTreat, metadata, box) {
 
                 var x = d3.scale.ordinal()
                     .domain(dataToTreat.map(function (entry) {
-                        return entry[metadata.graph.dataComposition.title]
+                        return entry[realTitle]
                     }))
                     .rangeBands([0, width]);
 
                 var y = d3.scale.linear()
                     .domain([0, d3.max(dataToTreat, function (d) {
-                        return d[metadata.graph.dataComposition.value];
+                        return d[realValue];
                     })])
                     .range([height, 0]);
 
@@ -166,7 +169,7 @@ function drawGraph(dataToTreat, metadata, box) {
                 }))
 
                 y.domain([0, d3.max(dataToTreat, function (d) {
-                    return d[metadata.graph.dataComposition.value];
+                    return d[realValue];
                 })])
 
                 drawAxis.call(this, params);
@@ -186,16 +189,16 @@ function drawGraph(dataToTreat, metadata, box) {
                 //update
                 this.selectAll(".bar")
                     .attr("x", function (d, i) {
-                        return x(d[metadata.graph.dataComposition.title])
+                        return x(d[realTitle])
                     })
                     .attr("y", function (d, i) {
-                        return y(d[metadata.graph.dataComposition.value]);
+                        return y(d[realValue]);
                     })
                     .attr("width", function (d, i) {
                         return x.rangeBand();
                     })
                     .attr("height", function (d) {
-                        return height - y(d[metadata.graph.dataComposition.value]);
+                        return height - y(d[realValue]);
                     })
                     .style("fill", function (d, i) {
                         return ordinalScaleColor(i);
@@ -203,11 +206,11 @@ function drawGraph(dataToTreat, metadata, box) {
 
                 this.selectAll(".bar-label")
                     .attr("x", function (d, i) {
-                        return x(d[metadata.graph.dataComposition.title]) + (x.rangeBand() / 2);
+                        return x(d[realTitle]) + (x.rangeBand() / 2);
                     })
                     .attr("dx", 0) //-4
                     .attr("y", function (d, i) {
-                        return y(d[metadata.graph.dataComposition.value]);
+                        return y(d[realValue]);
                     })
                     .attr("dy", function (d, i) {
                         // return y(1)/1.5; //linear scale
@@ -215,7 +218,7 @@ function drawGraph(dataToTreat, metadata, box) {
                         return -6;
                     })
                     .text(function (d, i) {
-                        return d[metadata.graph.dataComposition.value];
+                        return d[realValue];
                     });
                 //exit
                 this.selectAll(".bar")
@@ -258,7 +261,7 @@ function drawGraph(dataToTreat, metadata, box) {
 
                 var pie = d3.layout.pie()
                     .value(function (d) {
-                        return d[metadata.graph.dataComposition.value];
+                        return d[realValue];
                     });
 
                 var arcs = vis.selectAll("g.slice")
@@ -282,9 +285,9 @@ function drawGraph(dataToTreat, metadata, box) {
                     })
                     .attr("text-anchor", "middle")                          //center the text on it's origin
                     .text(function (d, i) {
-                        return dataToTreat[i][metadata.graph.dataComposition.title] +
+                        return dataToTreat[i][realTitle] +
                             "\n" +
-                            dataToTreat[i][metadata.graph.dataComposition.value];
+                            dataToTreat[i][realValue];
                     });        //get the label from our original data array
 
 
@@ -307,7 +310,7 @@ function drawGraph(dataToTreat, metadata, box) {
 
                 var pie = d3.layout.pie()
                     .value(function (d) {
-                        return d[metadata.graph.dataComposition.value];
+                        return d[realValue];
                     });
 
                 var arcs = vis.selectAll("g.slice")
@@ -331,9 +334,9 @@ function drawGraph(dataToTreat, metadata, box) {
                     })
                     .attr("text-anchor", "middle")                          //center the text on it's origin
                     .text(function (d, i) {
-                        return dataToTreat[i][metadata.graph.dataComposition.title] +
+                        return dataToTreat[i][realTitle] +
                             "\n" +
-                            dataToTreat[i][metadata.graph.dataComposition.value];
+                            dataToTreat[i][realValue];
                     });        //get the label from our original data array
 
 
@@ -344,13 +347,13 @@ function drawGraph(dataToTreat, metadata, box) {
 
                 var x = d3.scale.linear()
                     .domain([0, d3.max(dataToTreat, function (d) {
-                        return d[metadata.graph.dataComposition.value];
+                        return d[realValue];
                     })])
                     .range([0, width]);
 
                 var y = d3.scale.ordinal()
                     .domain(dataToTreat.map(function (entry) {
-                        return entry[metadata.graph.dataComposition.title];
+                        return entry[realTitle];
                     }))
                     .rangeBands([0, height]);
 
@@ -378,13 +381,13 @@ function drawGraph(dataToTreat, metadata, box) {
                     .classed("bar", true)
                     .attr("x", 0)
                     .attr("y", function (d, i) {
-                        return y(d[metadata.graph.dataComposition.title]);
+                        return y(d[realTitle]);
                     })
                     .attr("height", function (d, i) {
                         return y.rangeBand();
                     })
                     .attr("width", function (d) {
-                        return x(d[metadata.graph.dataComposition.value]);
+                        return x(d[realValue]);
                     })
                     .style("fill", function (d, i) {
                         return ordinalScaleColor(i);
@@ -396,17 +399,17 @@ function drawGraph(dataToTreat, metadata, box) {
                     .classed("bar-label", true)
                     .style("font-size", "14px")
                     .attr("x", function (d) {
-                        return x(d[metadata.graph.dataComposition.value]);
+                        return x(d[realValue]);
                     })
                     .attr("dx", 15)
                     .attr("y", function (d, i) {
-                        return y(d[metadata.graph.dataComposition.title]);
+                        return y(d[realTitle]);
                     })
                     .attr("dy", function (d, i) {
                         return y.rangeBand() / 1.5 + 2;
                     })
                     .text(function (d) {
-                        return d[metadata.graph.dataComposition.value];
+                        return d[realValue];
                     })
                 this.append("g")
                     .classed("x axis", true)
