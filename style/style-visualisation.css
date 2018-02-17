@@ -173,7 +173,7 @@ tbody:hover tr:hover td {
 
 @media screen and (max-width: 767px) {
 	div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info {
-		text-align: left; 
+		text-align: left;
 	}
 	div.dataTables_wrapper div.dataTables_paginate {
 		text-align: center;
@@ -218,6 +218,11 @@ tbody:hover tr:hover td {
 	fill: none;
 	stroke: #ccc;
 	shape-rendering: crispEdges;
+}
+
+.slice text {
+ font-size: 10pt;
+ font-family: Arial;
 }
 
 .selectGraph{

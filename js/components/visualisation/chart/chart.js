@@ -6,6 +6,7 @@
  */
 function drawGraph(dataToTreat, metadata, box) {
 
+  console.log("metadata", metadata)
   // load the data
   dataToTreat.forEach(function(d) {
       d[metadata.graph.dataComposition.titleElements] = d[metadata.graph.dataComposition.titleElements];
@@ -22,6 +23,9 @@ function drawGraph(dataToTreat, metadata, box) {
 
 	var width = w - margin.left - margin.right;
 	var height = h - margin.top - margin.bottom;
+  var r = 200
+  var ordinalScaleColor = d3.scale.category20();
+
 
   var select = d3.select('#' + box)
                 .append('select')
@@ -34,7 +38,9 @@ function drawGraph(dataToTreat, metadata, box) {
                 .attr("value", function(d){ return d; })
               	.text(function(d){ return d; });
 
+
   function onChange() {
+
     var selectValue = d3.select('.selectGraph').property('value')
     console.log(selectValue);
 
@@ -54,7 +60,6 @@ function drawGraph(dataToTreat, metadata, box) {
                 .domain([0, d3.max(dataToTreat, function(d){return d[metadata.graph.dataComposition.onlyOneElement];})])
                 .range([height,0]);
 
-        var ordinalScaleColor = d3.scale.category20();
 
         var xAxis = d3.svg.axis()
                           .scale(x)
@@ -87,7 +92,7 @@ function drawGraph(dataToTreat, metadata, box) {
                   .attr("y", 0 - (margin.top / 2))
                   .attr("text-anchor", "middle")
                   .style("font-size", "16px")
-                  .text("Value vs Date Graph");
+                  .text("");
 
               //this is gridline
       				this.append("g")
@@ -223,15 +228,173 @@ function drawGraph(dataToTreat, metadata, box) {
         d3.selectAll("svg").remove();
         d3.selectAll(".chart>p").remove();
 
+        var vis = d3.select('#' + box)
+           .append("svg")
+           .data([dataToTreat])
+               .attr("width", w)
+               .attr("height", h)
+           .append("g")
+               .attr("transform", "translate(" + r + "," + r + ")")
+
+       var arc = d3.svg.arc()
+           .outerRadius(r);
+
+       var pie = d3.layout.pie()
+           .value(function(d) { return d[metadata.graph.dataComposition.onlyOneElement]; });
+
+       var arcs = vis.selectAll("g.slice")
+           .data(pie)
+           .enter()
+               .append("g")
+                   .classed("slice",true);
+
+           arcs.append("path")
+                   .style("fill",function(d,i){
+                     return ordinalScaleColor(i);
+                   })
+                   .attr("d", arc);
+
+
+           arcs.append("text")
+                   .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                       d.innerRadius = 0;
+                       d.outerRadius = r*2;
+                       return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+                   })
+                   .attr("text-anchor", "middle")                          //center the text on it's origin
+                   .text(function(d, i) { return dataToTreat[i][metadata.graph.dataComposition.titleElements] +
+                                                  "\n" +
+                                                  dataToTreat[i][metadata.graph.dataComposition.onlyOneElement]; });        //get the label from our original data array
+
+
         break;
       case "doughnut":
         d3.selectAll("svg").remove();
         d3.selectAll(".chart>p").remove();
 
+        var vis = d3.select('#' + box)
+           .append("svg")
+           .data([dataToTreat])
+               .attr("width", w)
+               .attr("height", h)
+           .append("g")
+               .attr("transform", "translate(" + r + "," + r + ")")
+
+       var arc = d3.svg.arc()
+           .innerRadius(r/2)
+           .outerRadius(r);
+
+       var pie = d3.layout.pie()
+           .value(function(d) { return d[metadata.graph.dataComposition.onlyOneElement]; });
+
+       var arcs = vis.selectAll("g.slice")
+           .data(pie)
+           .enter()
+               .append("g")
+                   .classed("slice",true);
+
+           arcs.append("path")
+                   .style("fill",function(d,i){
+                     return ordinalScaleColor(i);
+                   })
+                   .attr("d", arc);
+
+
+           arcs.append("text")
+                   .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                       d.innerRadius = 0;
+                       d.outerRadius = r*2;
+                       return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+                   })
+                   .attr("text-anchor", "middle")                          //center the text on it's origin
+                   .text(function(d, i) { return dataToTreat[i][metadata.graph.dataComposition.titleElements] +
+                                                  "\n" +
+                                                  dataToTreat[i][metadata.graph.dataComposition.onlyOneElement]; });        //get the label from our original data array
+
+
+
         break;
       case "horizontalBar":
         d3.selectAll("svg").remove();
         d3.selectAll(".chart>p").remove();
+
+        var x = d3.scale.linear()
+        		.domain([0, d3.max(dataToTreat, function(d){
+              return d[metadata.graph.dataComposition.onlyOneElement];
+        		})])
+        		.range([0, width]);
+
+        var y = d3.scale.ordinal()
+        		.domain(dataToTreat.map(function(entry){
+        			return entry[metadata.graph.dataComposition.titleElements];
+        		}))
+        		.rangeBands([0, height]);
+
+        var xAxis = d3.svg.axis()
+        			.scale(x)
+        			.orient("bottom");
+
+        var yAxis = d3.svg.axis()
+        			.scale(y)
+        			.orient("left");
+
+        var svg = d3.select('#' + box).append("svg")
+        			.attr("width", w)
+        			.attr("height", h);
+
+        var chart = svg.append("g")
+        			.classed("display", true)
+        			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        function plotHorizontal(params){
+        	this.selectAll(".bar")
+        		.data(params.data)
+        		.enter()
+        			.append("rect")
+        			.classed("bar", true)
+        			.attr("x", 0)
+        			.attr("y", function(d,i){
+        				return y(d[metadata.graph.dataComposition.titleElements]);
+        			})
+        			.attr("height", function(d,i){
+        				return y.rangeBand();
+        			})
+        			.attr("width", function(d){
+        				return x(d[metadata.graph.dataComposition.onlyOneElement]);
+        			})
+        			.style("fill", function(d,i){
+        				return ordinalScaleColor(i);
+        			});
+        	this.selectAll(".bar-label")
+        		.data(params.data)
+        		.enter()
+        			.append("text")
+        			.classed("bar-label", true)
+              .style("font-size", "14px")
+        			.attr("x", function(d){
+        				return x(d[metadata.graph.dataComposition.onlyOneElement]);
+        			})
+        			.attr("dx", 15)
+        			.attr("y", function(d,i){
+        				return y(d[metadata.graph.dataComposition.titleElements]);
+        			})
+        			.attr("dy", function(d,i){
+        				return y.rangeBand()/1.5+2;
+        			})
+        			.text(function(d){
+        				return d[metadata.graph.dataComposition.onlyOneElement];
+        			})
+        	this.append("g")
+        		.classed("x axis", true)
+        		.attr("transform", "translate(" + 0 + "," + height + ")")
+        		.call(xAxis);
+
+        	this.append("g")
+        		.classed("y axis", true)
+        		.attr("transform", "translate(0,0)")
+        		.call(yAxis);
+        }
+        plotHorizontal.call(chart, {data: dataToTreat});
 
         break;
       default:
@@ -242,8 +405,6 @@ function drawGraph(dataToTreat, metadata, box) {
           .append('p')
           .text("Veuillez séléctionner un type de graphe avant de continuer.")
     }
-
-
   }
 
   /*
