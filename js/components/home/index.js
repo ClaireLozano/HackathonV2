@@ -57,7 +57,7 @@ $(document).ready(function(){
                 // With end url, get data
                 getData(metadata.link, function(data) {
 
-                    if (metadata.dataType === ("NotHistorisedLocalisable" || "HistorisedLocalisable")) {
+                    if ((metadata.dataType === "NotHistorisedLocalisable") || (metadata.dataType === "HistorisedLocalisable")) {
 
                         // Generate random visualisation
                         var randVisu = getRandomInt(2);
@@ -67,12 +67,12 @@ $(document).ready(function(){
                         // switch (0) {
                             case 0:
                                 drawTable(data, metadata, box);
-                                defineLinks("table", i, nomDonnee[randNomDonnee])
+                                defineLinks("table", i, nomDonnee[randNomDonnee]);
                                 break;
 
                             case 1:
                                 drawMap(data, metadata, box, "popup" + i);
-                                defineLinks("map", i, nomDonnee[randNomDonnee])
+                                defineLinks("map", i, nomDonnee[randNomDonnee]);
                                 break;
 
                             case 2:
