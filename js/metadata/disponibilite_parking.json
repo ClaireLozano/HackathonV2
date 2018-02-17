@@ -6,12 +6,10 @@
   "title": "Stationnement - Disponibilité des parkings",
   "description": "",
   "graph":{
-    "possibleGraphs": ["pie", "bar", "doughnut", "horizontalBar"],
+    "possibleGraphs": ["bar", "pie", "doughnut", "horizontalBar"],
     "dataComposition": {
-      "title": "Places disponibles",
-      "description": "",
       "excludeLines": [],
-      "selectList": "dp_libelle",
+      "titleElements": "dp_libelle",
       "onlyOneElement": "dp_place_disponible"
     }
   },
