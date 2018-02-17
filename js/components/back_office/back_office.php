@@ -81,17 +81,36 @@
             <label for="inputTableTitle">Titre du tableau</label>
             <input type="text" class="form-control" name="table_dataComposition_title">
           </div>
-          <div id="keyListInput" class="form-group col-md-6">
+          <div id="sm" class="form-group col-md-5">
             <label for="inputKeyList">Liste des mots clés</label>
-            <input type="text" class="form-control" name="table_dataComposition_keys_list[]">
+            <br>
+            <input autocomplete="off" class="input form-control col-md-5" id="key1" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé"/>
+            <input autocomplete="off" class="input form-control col-md-5" id="value1" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur"/>
+            <button id="b1" class="btn add-more" type="button" onclick="addInput()">+</button>
           </div>
-          <div id="valueListInput" class="form-group col-md-6">
-            <label for="inputValueList">Valeur des mots clés</label>
-            <input type="text" class="form-control" name="table_dataComposition_value_list[]">
-          </div>
-          <div id="keyListInput" class="form-group col-md-3">
-            <input type="button" value="Ajouter un mot clé" onclick="addInput()">
-          </div>
+          <!-- <div id="valueListInput" class="form-group col-md-5">
+            <label for="inputValueList">Liste des mots clés</label>
+            <br>
+            <input autocomplete="off" class="input form-control" id="valueListInput1" name="table_dataComposition_value_list[]" type="text"/>
+            <button id="b1" class="btn add-more" type="button" onclick="addInputKeyWords()">+</button>
+          </div> -->
+
+
+          <!-- <div id="lineKeyWords" class="form-group"> -->
+            <!-- <div id="keyListInput" class="form-group col-md-5">
+              <label for="inputKeyList">Liste des mots clés</label>
+              <input type="text" class="form-control" name="table_dataComposition_keys_list[]">
+            </div>
+            <div id="valueListInput" class="form-group col-md-5">
+              <label for="inputValueList">Valeur des mots clés</label>
+              <input type="text" class="form-control" name="table_dataComposition_value_list[]">
+            </div> -->
+            <!-- <div id="removeLine" class="form-group col-md-2">
+            </div> -->
+          <!-- </div>
+          <div id="keyListInput" class="form-group col-md-2">
+            <input type="button" value="+" onclick="addInput()">
+          </div> -->
         </div>
 
         <div id="theMap" class="form-row" style="display:none">
