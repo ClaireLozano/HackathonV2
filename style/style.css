@@ -157,11 +157,26 @@ table {
 }
 
 
+/* CHART */
 
+.bar {
+  stroke: #FFF;
+}
 
+path {
+    stroke: #FFF;
+}
 
+.slice text {
+    font-size: 11pt;
+    font-family: Arial;
+    stroke-width: 0;
+}
 
-
+.legend rect {
+  fill:white;
+  stroke:black;
+}
 
 
 

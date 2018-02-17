@@ -24,8 +24,8 @@ function drawGraph(dataToTreat, metadata, box) {
 	var width = w - margin.left - margin.right;
 	var height = h - margin.top - margin.bottom;
   var r = 200
-  var ordinalScaleColor = d3.scale.category20();
-
+  //var ordinalScaleColor = d3.scale.category20b();
+  var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
   var select = d3.select('#' + box)
                 .append('select')
