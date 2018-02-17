@@ -1,15 +1,17 @@
 
 {
   "dataType": "NotHistorisedLocalisable",
-  "link": "&db=stationnement&table=disponibilite_parking&format=json",
+  "link": "disponibilite_parking",
   "dictionnaire": "",
-  "title": "Stationnement - Disponibilité des parkings",
+  "title": "STATIONNEMENT – DISPONIBILITÉ DES PARKINGS",
   "description": "",
   "graph":{
-    "possibleGraphs": ["bar", "pie", "doughnut", "horizontalBar"],
+    "possibleGraphs": ["pie", "bar", "doughnut", "horizontalBar"],
     "dataComposition": {
+      "title": "Places disponibles",
+      "description": "",
       "excludeLines": [],
-      "titleElements": "dp_libelle",
+      "selectList": "dp_libelle",
       "onlyOneElement": "dp_place_disponible"
     }
   },
@@ -17,12 +19,7 @@
 
   },
   "map":{
-    "x": "dp_x",
-    "y": "dp_y",
-    "name": "dp_libelle",
-    "nominateur": "dp_place_disponible",
-    "denominateur": "dp_nb_places",
-    "description_popup": "Places :"
+
   },
   "table":{
     "dataComposition":{

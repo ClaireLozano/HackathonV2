@@ -7,7 +7,7 @@
 
 		<div id="welcome" class="box-wrapper-inner">
 			<div class="panel panel-default">
-		        <div id="panel-welcome">
+		        <div class="panel-body">
 		            <h3>Bienvenue sur Opendata La Rochelle </h3>
 		            </br>
 		            <p>le site de la démarche Open Data de la Ville de La Rochelle. Vous trouverez ici l'ensemble des jeux de données publiés par les services de la Ville et ses partenaires sous plusieurs forme de visualisation : cartographique, graphique, tableau ainsi que line temporelle !</p>
@@ -19,9 +19,9 @@
 
 		<!-- Première box --> 
 		<div class="box-wrapper-inner">
-                <div class="panel panel-default box">
+                <div id='box0' class="panel panel-default box">
                     <div class="panel-heading">
-                        <p id="panel-title-box0" class="panel-title pull-left"></p>
+                        <h4 class="panel-title pull-left"></h4>
                         <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                         <div class="modal fade" tabindex="-1" role="dialog" id="example">
@@ -49,18 +49,17 @@
                         <div class="clearfix"></div>
                     </div>
 
-                    <div id='box0' class="panel-body form-group panelBody">
-                        <div id="popup0"></div>
+                    <div class="panel-body form-group panelBody">
                         <a id="seeMoreBox0"> <!-- Mettre les visualisations ici--></a>
                     </div>
                     <a id="seeMore0" style="float:right" class="glyphicon glyphicon-zoom-in btn btn-default bottomButton" aria-hidden="true"></a>
                     <a id="info0" style="float:right" class="glyphicon glyphicon-info-sign btn btn-default bottomButton" aria-hidden="true"></a>
                 </div>
 
-                <!-- Deuxième box -->
-                <div class="panel panel-default box">
+                <!-- Deusième box --> 
+                <div id='box2' class="panel panel-default box">
                     <div class="panel-heading">
-                        <p id="panel-title-box1" class="panel-title pull-left"></p>
+                        <h4 class="panel-title pull-left"></h4>
                         <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">un problème ?</button>
                         
                         <div class="modal fade" tabindex="-1" role="dialog" id="example">
@@ -87,8 +86,7 @@
                         
                         <div class="clearfix"></div>
                     </div>
-                    <div id='box1' class="panel-body form-group panelBody">
-                        <div id="popup1"></div>
+                    <div class="panel-body form-group panelBody">
                         <a id="seeMoreBox1"> <!-- Mettre les visualisations ici--></a>
                     </div>
                     <a id="seeMore1" style="float:right" class="glyphicon glyphicon-zoom-in btn btn-default bottomButton" aria-hidden="true"></a>
@@ -99,14 +97,6 @@
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
-    <script type="text/javascript" src="../visualisation/map/popup.js"></script>
-    <script type="text/javascript" src="../visualisation/map/bus.js"></script>
-    <script type="text/javascript" src="../visualisation/map/poste.js"></script>
-    <script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
-    <script type="text/javascript" src="../visualisation/map/map.js"></script>
-    <script type="text/javascript" src="../controller.js"></script>
-    <script type="text/javascript" src="../util.js"></script>
-    <script type="text/javascript" src="index.js"></script>
 
 </html>
 
