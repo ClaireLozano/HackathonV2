@@ -10,7 +10,9 @@
     "dataComposition": {
       "excludeLines": [],
       "title": "dp_libelle",
-      "value": "dp_place_disponible"
+      "value": "dp_place_disponible",
+      "y_axis":"Nombre de places disponibles",
+      "x_axis":"Parking"
     }
   },
   "timeline":{
