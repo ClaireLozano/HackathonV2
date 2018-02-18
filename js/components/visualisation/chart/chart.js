@@ -10,6 +10,7 @@ function drawGraph(dataToTreat, metadata, box) {
     var realValue = metadata.graph.dataComposition.value;
 
     if (metadata.graph.dataComposition.category) {
+
         dataToTreat.forEach(function (d) {
             d[realTitle] = d[realTitle];
             d[realValue] = +d[realValue];
@@ -30,6 +31,8 @@ function drawGraph(dataToTreat, metadata, box) {
 
             })
             .entries(dataToTreat);
+
+        console.log(dataToTreat);
 
         dataToTreat = nested.filter(function (d) {
             return d.key === "Investissement"

@@ -106,6 +106,7 @@
     <script type="text/javascript" src="../visualisation/map/poste.js"></script>
     <script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
     <script type="text/javascript" src="../visualisation/map/map.js"></script>
+    <script type="text/javascript" src="../visualisation/chart/chart.js"></script>
     <script type="text/javascript" src="../controller.js"></script>
     <script type="text/javascript" src="../util.js"></script>
     <script type="text/javascript" src="donnees.js"></script>
