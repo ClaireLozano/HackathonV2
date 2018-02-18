@@ -11,6 +11,17 @@ $postArray = array(
   "link" => $_POST['link'],
   "title" => $_POST['title'],
   "description" => $_POST['description'],
+  "dictionnaireX" => array(
+        "link" => $_POST['link_dictX'],
+        "initValue" => $_POST['initValue_dictX'],
+        "newValue" => $_POST['newValue_dictX']
+      ),
+  "dictionnaireY" => array(
+        "link" => $_POST['link_dictY'],
+        "value" => $_POST['value_dictY'],        
+        "initValue" => $_POST['initValue_dictY'],
+        "newValue" => $_POST['newValue_dictY']
+      ),
   "graph" => array(
         "possibleGraphs" => $_POST['possibleGraphs'],
         "dataComposition" => array(
