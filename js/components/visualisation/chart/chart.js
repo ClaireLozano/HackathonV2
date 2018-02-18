@@ -9,6 +9,7 @@ function drawGraph(dataToTreat, metadata, box) {
     var realTitle = metadata.graph.dataComposition.title;
     var realValue = metadata.graph.dataComposition.value;
     var originalData = dataToTreat;
+    var COLORHOVER = "brown"
 
     var catProfondeur = []
     for(value in metadata.graph.dataComposition){
@@ -204,7 +205,16 @@ function drawGraph(dataToTreat, metadata, box) {
                     this.selectAll(".bar")
                         .data(params.data)
                         .enter().append("rect")
-                        .classed("bar", true);
+                        .classed("bar", true)
+                        .on("mouseover", function(d,i){
+      										d3.select(this).style("fill",COLORHOVER);
+      									})
+      									.on("mousemove", function(d,i){
+
+      									})
+      									.on("mouseout", function(d,i){
+      										d3.select(this).style("fill",ordinalScaleColor(i))
+      									});
 
                     this.selectAll(".bar-label")
                         .data(params.data)
@@ -300,6 +310,15 @@ function drawGraph(dataToTreat, metadata, box) {
                     .style("fill", function (d, i) {
                         return ordinalScaleColor(i);
                     })
+                    .on("mouseover", function(d,i){
+                      d3.select(this).style("fill",COLORHOVER);
+                    })
+                    .on("mousemove", function(d,i){
+
+                    })
+                    .on("mouseout", function(d,i){
+                      d3.select(this).style("fill",ordinalScaleColor(i))
+                    })
                     .attr("d", arc)
                     .on("click", function (node, i){
 
@@ -344,10 +363,9 @@ function drawGraph(dataToTreat, metadata, box) {
                     })
                     .attr("text-anchor", "middle")                          //center the text on it's origin
                     .text(function (d, i) {
-                        console.log(d);
-                        return d.data.key +
-                            " "+
-                            d.data.values + " €";
+                        return dataToTreat[i][realTitle] +
+                            "\n" +
+                            dataToTreat[i][realValue];
                     });        //get the label from our original data array
 
                 function change(region) {
@@ -456,6 +474,15 @@ function drawGraph(dataToTreat, metadata, box) {
                     .style("fill", function (d, i) {
                         return ordinalScaleColor(i);
                     })
+                    .on("mouseover", function(d,i){
+                      d3.select(this).style("fill",COLORHOVER);
+                    })
+                    .on("mousemove", function(d,i){
+
+                    })
+                    .on("mouseout", function(d,i){
+                      d3.select(this).style("fill",ordinalScaleColor(i))
+                    })
                     .attr("d", arc);
 
 
@@ -524,6 +551,15 @@ function drawGraph(dataToTreat, metadata, box) {
                         })
                         .style("fill", function (d, i) {
                             return ordinalScaleColor(i);
+                        })
+                        .on("mouseover", function(d,i){
+                          d3.select(this).style("fill",COLORHOVER);
+                        })
+                        .on("mousemove", function(d,i){
+
+                        })
+                        .on("mouseout", function(d,i){
+                          d3.select(this).style("fill",ordinalScaleColor(i))
                         });
                     this.selectAll(".bar-label")
                         .data(params.data)
