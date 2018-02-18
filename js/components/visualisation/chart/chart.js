@@ -5,30 +5,39 @@
  */
 function drawGraph(dataToTreat, metadata, box) {
 
-    console.log("metadata", metadata);
-    console.log("data : ", dataToTreat);
     // load the data
     var realTitle = metadata.graph.dataComposition.title;
     var realValue = metadata.graph.dataComposition.value;
 
-    if(metadata.graph.dataComposition.category) {
+    if (metadata.graph.dataComposition.category) {
         dataToTreat.forEach(function (d) {
             d[realTitle] = d[realTitle];
             d[realValue] = +d[realValue];
         });
 
-        var dataToTreat = d3.nest()
+        var nested = d3.nest()
             .key(function (d) {
                 return d[metadata.graph.dataComposition.category];
             })
-            .rollup(function(v) { return d3.sum(v, function(d) { return d[realValue]; })
+            .key(function (d) {
+                return d["budg_ss_fction"];
+            })
+            .rollup(function (v) {
+                return d3.sum(v, function (d) {
+                        return d[realValue];
+                    }
+                )
+
             })
             .entries(dataToTreat);
-        dataToTreat.forEach(function(d) {
-            d[realTitle] = d.key;
-            d[realValue] = d.values;
-        });
+
+        dataToTreat = nested.filter(function (d) {
+            return d.key === "Investissement"
+        })[0].values;
+
         console.log(dataToTreat);
+        realTitle="key";
+        realValue="values"
     }
 
     var w = 800, h = 500;
