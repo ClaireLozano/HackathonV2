@@ -13,8 +13,11 @@ $(document).ready(function(){
         var nomDonnee = result[1];
 
         if (typeVisualisation && nomDonnee) {
+
             // Get metadata
             getMetadata(nomDonnee, function(metadata) {
+                // Set title
+                setTitle(metadata.title);
                 // Remove map panel if the data is not localisable
                 if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'NotHistorisedNotLocalisable') {
                     $("#tab-nav-3").css('display', 'none');
@@ -50,8 +53,7 @@ $(document).ready(function(){
                 getData(metadata.link, function(data) {
                     // Draw visualisation
                     draw(typeVisualisation, metadata, data);
-                    // Set title
-                    setTitle(metadata.title);
+
                     // Set active panel
                     setActivePanel(typeVisualisation);
 

@@ -55,7 +55,7 @@ $(document).ready(function(){
                     if ((metadata.dataType === "NotHistorisedLocalisable") || (metadata.dataType === "HistorisedLocalisable")) {
 
                         // Generate random visualisation
-                        var randVisu = getRandomInt(2);
+                        var randVisu = getRandomInt(3);
 
                         // Draw visualisation
                         switch (randVisu) {
@@ -71,25 +71,25 @@ $(document).ready(function(){
                                 break;
 
                             case 2:
-                                //drawGraph(data, metadata, box);
+                                drawGraph(data, metadata, box);
                                 break;
                         }
 
                     } else {
 
                         // Generate random visualisation
-                        var randVisu = getRandomInt(1);
+                        var randVisu = getRandomInt(2);
 
                         // Draw visualisation
                         // switch (randVisu) {
-                        switch (0) {
+                        switch (randVisu) {
                             case 0:
                                 drawTable(data, metadata, box);
                                 defineLinks("table", i, boxs[i])
                                 break;
 
                             case 1:
-                                //drawGraph(data, metadata, box);
+                                drawGraph(data, metadata, box);
                                 break;
                         }
                     }
