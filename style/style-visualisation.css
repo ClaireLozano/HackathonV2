@@ -199,6 +199,7 @@ tbody:hover tr:hover td {
 	fill:purple;
 	shape-rendering: crispEdges;
 }
+
 .bar-label{
 	fill:#000;
 	text-anchor: middle;

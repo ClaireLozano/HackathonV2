@@ -19,15 +19,13 @@
 				</nav>
 			</div>
 
-
 		<!-- tab content -->
-
 		<div class="tab-content" id="allTables">
 			<!-- All data -->
 			<div class="tab-pane text-style active" id="allcat">
 				<p> Toutes les données ...</p>
 				<div class="container" id="moreData">
-					<div class="row">
+					<div class="row" id="block0">
 						<div class="col-sm-4">
 							<div class="card">
 								<div class="card-block">
@@ -39,13 +37,12 @@
 				</div>
 			</div>
 
-
 			<!-- Citoyenneté -->
 			<div class="tab-pane text-style" id="tab1">
 				<h2>Citoyenneté</h2>
 				<p>Cette catégorie contient deux type de données: les données INSEE et les données Archive.</p>
 				<hr>
-				<div class="row">
+				<div class="row" id="block1">
 					<div class="col-sm-4" id="block11">
 						<div class="card">
 							<div class="card-block">
@@ -70,7 +67,7 @@
 				<h2>Déplacement</h2>
 				<p>Les données concernant le déplacement à la ville de La Rochelle.</p>
 				<hr>
-				<div class="row">
+				<div class="row" id="block2">
 					<div class="col-sm-4" id="block21">
 						<div class="card">
 							<div class="card-block">
@@ -96,18 +93,19 @@
 						</div>
 					</div>
 				</div>
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
 
-<?php include '../footer/footer.php'; ?>
-    <script type="text/javascript" src="../visualisation/map/popup.js"></script>
-    <script type="text/javascript" src="../visualisation/map/bus.js"></script>
-    <script type="text/javascript" src="../visualisation/map/poste.js"></script>
-    <script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
-    <script type="text/javascript" src="../visualisation/map/map.js"></script>
-    <script type="text/javascript" src="../controller.js"></script>
-    <script type="text/javascript" src="../util.js"></script>
-    <script type="text/javascript" src="donnees.js"></script>
+	<?php include '../footer/footer.php'; ?>
+	<script type="text/javascript" src="../visualisation/map/popup.js"></script>
+	<script type="text/javascript" src="../visualisation/map/bus.js"></script>
+	<script type="text/javascript" src="../visualisation/map/poste.js"></script>
+	<script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
+	<script type="text/javascript" src="../visualisation/map/map.js"></script>
+	<script type="text/javascript" src="../visualisation/chart/chart.js"></script>
+	<script type="text/javascript" src="../controller.js"></script>
+	<script type="text/javascript" src="../util.js"></script>
+	<script type="text/javascript" src="donnees.js"></script>
 
 </html>
