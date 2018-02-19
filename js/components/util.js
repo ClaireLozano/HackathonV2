@@ -87,8 +87,6 @@ function drawTable(data, metadata, idBox) {
             setTable(idBox);
         });
     });
-
-    
 };
 
 /**

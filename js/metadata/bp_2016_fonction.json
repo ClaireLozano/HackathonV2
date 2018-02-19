@@ -8,8 +8,9 @@
     "possibleGraphs": ["horizontalBar"],
     "dataComposition": {
       "excludeLines": [],
-      "selectList": "budg_ss_fction",
-      "onlyOneElement": "budg_montant"
+      "title": "budg_ss_fction",
+      "value": "budg_montant",
+      "category":"budg_section"
     }
   },
   "timeline":{

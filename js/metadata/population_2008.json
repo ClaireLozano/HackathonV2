@@ -16,11 +16,13 @@
   "title": "Recensement de la population - Population - 2008",
   "descritpion": "",
   "graph":{
-    "possibleGraphs": ["horizontalBar"],
+    "possibleGraphs": ["pie", "doughnut"],
     "dataComposition": {
-      "excludeLines": ["IRIS"],
-      "selectList": "IRIS",
-      "onlyOneElement": ""
+      "excludeLines": [],
+      "title": "IRIS",
+      "value": "P08_POP",
+      "y_axis":"Population",
+      "x_axis":"Quartier"
     }
   },
   "timeline":{

@@ -180,7 +180,13 @@
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>
 		<script type="text/javascript" src="map/map.js"></script>
+
+		<script type="text/javascript" src="chart/bar.js"></script>
+		<script type="text/javascript" src="chart/horizontalBar.js"></script>
+		<script type="text/javascript" src="chart/pie.js"></script>
+		<script type="text/javascript" src="chart/doughnut.js"></script>
         <script type="text/javascript" src="chart/chart.js"></script>
+
         <script type="text/javascript" src="../controller.js"></script>
         <script type="text/javascript" src="visualisation.js"></script>
 	</body>
