@@ -1,15 +1,17 @@
 <head>
     <title>Hackathon</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../../style/style.css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+
+    <!-- Open Layers -->
     <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/examples/resources/mapbox-streets-v6-style.js"></script>
@@ -18,7 +20,8 @@
     <!-- Table -->
 	  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <!-- <script src="https://cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"></script> MARCHE PAS... -->
+
+    <!-- D3js -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
 
     <!-- Map -->
@@ -52,6 +55,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../home/index.php">Accueil</a></li>
             <li><a href="../donnees/donnes.php">Données</a></li>
+            <li><a href="../back_office/back_office.php">Formulaire</a></li>
             <li><a href="../demarche/demarche.php">La démarche</a></li>
             <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
           </ul>
@@ -62,6 +66,7 @@
               <ul class="dropdown-menu" role="menu">
 	            <li><a href="../home/index.php">Accueil</a></li>
 	            <li><a href="../visualisation/visualisation.php">Visualisation</a></li>
+              <li><a href="../back_office/back_office.php">Formulaire</a></li>
 	            <li><a href="../demarche/demarche.php">La démarche</a></li>
 	            <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
               </ul>
