@@ -186,6 +186,7 @@
 		<script type="text/javascript" src="chart/pie.js"></script>
 		<script type="text/javascript" src="chart/doughnut.js"></script>
         <script type="text/javascript" src="chart/chart.js"></script>
+    	<script type="text/javascript" src="table/table.js"></script>
 
         <script type="text/javascript" src="../controller.js"></script>
         <script type="text/javascript" src="visualisation.js"></script>
