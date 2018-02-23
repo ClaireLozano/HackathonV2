@@ -4,7 +4,7 @@
   "title": "Recensement de la population - Population - 2009",
   "descritpion": "",
   "dictionnaireX": {
-    "link": "&db=insee&table=population_dico_2008&format=json",
+    "link": "&db=insee&table=pop_2009_dictionnaire&format=json",
     "initValue": "VAR_ID", 
     "newValue": "VAR_LIB"
   },
