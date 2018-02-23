@@ -83,12 +83,13 @@ $(document).ready(function(){
         // Load the compare table
         $(".select-list-date-compare").change(function() {
             // Get value of the selected item 
-            var nomDonnee = $('.select-list-date-compare :selected').val();
+            var nomDonnee = $("option:selected", this).val();
             var typeVisualisation = getActivePanel();
             
             if (nomDonnee == "none") {
                 removeDrawCompare(typeVisualisation);
             } else {
+
                 // Get metadata
                 getMetadata(nomDonnee, function(metadata) {
                     // With end url, get data
@@ -126,28 +127,33 @@ $(document).ready(function(){
      * @return null
      */
     var drawCompare = function(typeVisualisation, metadata, data) {
+
         switch (typeVisualisation) {
             case 'table':
                 // Remove the table compare if exists
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#my_table_box1Compare_wrapper").remove();
+                
+                // Else, create div compare
                 } else {
-                    // Else, create div compare
                     var div = document.createElement('div');
                     div.id = 'box1Compare';
                     div.className = 'box-visu';
                     $("#tab-pane-1 .box-wrapper-inner").append(div);
                 }
+
                 // Call draw table method
                 drawTable(data, metadata, 'box1Compare');
                 break;
 
             case 'graph':
+
                 // Remove the table compare if exists
                 if ($("#box2Compare").length) {
                     $("#box2Compare").remove();
+                
+                // Else, create div compare
                 } else {
-                    // Else, create div compare
                     var div = document.createElement('div');
                     div.id = 'box2Compare';
                     div.className = 'box-visu';
@@ -175,7 +181,7 @@ $(document).ready(function(){
             case 'graph':
                 // Remove the graph compare
                 if ($("#box2Compare").length) {
-                    $("#box1Compare").remove();
+                    $("#box2Compare").remove();
                 }
                 break;
         }
