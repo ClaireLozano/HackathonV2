@@ -74,13 +74,11 @@
 									<div class="select-list-date"></div>
 									<div class="select-list-date-compare"></div>		
 								</div>
-								<div id='box2' class="box-visu"> <!-- GRAPH --></div>
+								<div class="box-wrapper-inner">
+									<div id='box2' class="box-visu"> <!-- GRAPH --></div>
+								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
-								<div class="option-panel">
-									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>
-								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
 									<div id="popup"></div>
@@ -186,6 +184,7 @@
 		<script type="text/javascript" src="chart/pie.js"></script>
 		<script type="text/javascript" src="chart/doughnut.js"></script>
         <script type="text/javascript" src="chart/chart.js"></script>
+    	<script type="text/javascript" src="table/table.js"></script>
 
         <script type="text/javascript" src="../controller.js"></script>
         <script type="text/javascript" src="visualisation.js"></script>

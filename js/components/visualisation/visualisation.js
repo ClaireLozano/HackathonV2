@@ -16,51 +16,18 @@ $(document).ready(function(){
 
             // Get metadata
             getMetadata(nomDonnee, function(metadata) {
+
                 // Set title
                 setTitle(metadata.title);
-                // Remove map panel if the data is not localisable
-                if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'NotHistorisedNotLocalisable') {
-                    $("#tab-nav-3").css('display', 'none');
-                }
 
-                // Set 2 select lists on historisable data
-                if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'HistorisedLocalisable') {
-                    $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
-                    var sel = $('<select>').appendTo('.select-list-date');
-                    sel.addClass("select-list");
-                    sel.addClass("select-list-select");
-                    sel.addClass("form-control");
+                // Set active panel
+                setActivePanel(typeVisualisation);
 
-                    $('.select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
-                    var selCompare = $('<select>').appendTo('.select-list-date-compare');
-                    selCompare.addClass("select-list");
-                    selCompare.addClass("select-list-select");
-                    selCompare.append($("<option>").attr('value','none').text('...'));
-                    selCompare.addClass("form-control");
-
-                    for (var key in metadata.timeline.dates) {
-                        sel.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
-                        selCompare.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
-                    }
-
-                    // Set active select
-                    $(".select-list-date select").val(metadata.timeline.dates[metadata.timeline.actualDate]);
-
-                    // Set description
-                    setDescription(metadata);
-                }
                 // With end url, get data
                 getData(metadata.link, function(data) {
-                    // Draw visualisation
-                    draw(typeVisualisation, metadata, data);
 
-                    // Set active panel
-                    setActivePanel(typeVisualisation);
-
-                    /*console.log('metadata')
-                    console.log(metadata)
-                    console.log('data')
-                    console.log(data)*/
+                    // Set tab navbar and draw visualisation
+                    setTabNavBarAndDraw(metadata, data);
                 });
             });
         }
@@ -91,7 +58,7 @@ $(document).ready(function(){
         $("#tab-nav-3").click(function() {
             $('#tab-pane-3').css('display', 'block');
             $("#tab-nav-3").addClass('active');
-            showMap()
+            showMap();
         });
 
         $("#tab-nav-4").click(function() {
@@ -118,11 +85,9 @@ $(document).ready(function(){
             // Get value of the selected item 
             var nomDonnee = $('.select-list-date-compare :selected').val();
             var typeVisualisation = getActivePanel();
+            
             if (nomDonnee == "none") {
-                // Remove the table compare
-                if ($("#my_table_box1Compare_wrapper").length) {
-                    $("#box1Compare").remove();
-                }
+                removeDrawCompare(typeVisualisation);
             } else {
                 // Get metadata
                 getMetadata(nomDonnee, function(metadata) {
@@ -156,7 +121,7 @@ $(document).ready(function(){
     };
 
     /**
-     * Draw visualisation
+     * Draw compare visualisation
      *
      * @return null
      */
@@ -173,56 +138,48 @@ $(document).ready(function(){
                     div.className = 'box-visu';
                     $("#tab-pane-1 .box-wrapper-inner").append(div);
                 }
-                // Set the second title
-                // setSecondTitle(metadata.title);
                 // Call draw table method
                 drawTable(data, metadata, 'box1Compare');
                 break;
 
             case 'graph':
-                // Call draw graph method
-                // Create div compare
-                var div = document.createElement('div');
-                div.id = 'box2Compare';
-                div.className = 'box-visu';
-                $("#tab-pane-2 .box-wrapper-inner").append(div);
-                //drawGraph(data, metadata, 'box2Compare');
-                //setSeletList(data, metadata);
+                // Remove the table compare if exists
+                if ($("#box2Compare").length) {
+                    $("#box2Compare").remove();
+                } else {
+                    // Else, create div compare
+                    var div = document.createElement('div');
+                    div.id = 'box2Compare';
+                    div.className = 'box-visu';
+                    $("#tab-pane-2 .box-wrapper-inner").append(div);
+                }
+                drawGraph(data, metadata, 'box2Compare');
                 break;
         }
     };
 
     /**
-     * Draw visualisation
+     * Remove compare visualisation if existe
      *
      * @return null
      */
-    var draw = function(typeVisualisation, metadata, data) {
-        switch (metadata.dataType) {
-            case 'HistorisedLocalisable':
-                drawTable(data, metadata, 'box1');
-                drawGraph(data, metadata, 'box2');
-                drawMap(data, metadata, 'box3', 'popup');
-                setMapButton();
+    var removeDrawCompare = function(typeVisualisation) {
+        switch (typeVisualisation) {
+            case 'table':
+                // Remove the table compare
+                if ($("#my_table_box1Compare_wrapper").length) {
+                    $("#box1Compare").remove();
+                }
                 break;
 
-            case 'HistorisedNotLocalisable':
-                drawTable(data, metadata, 'box1');
-                drawGraph(data, metadata, 'box2');
-                break;
-
-            case 'NotHistorisedLocalisable':
-                drawTable(data, metadata, 'box1');
-                drawGraph(data, metadata, 'box2');
-                drawMap(data, metadata, 'box3', 'popup');
-                setMapButton();
-                break;
-
-            case 'NotHistorisedNotLocalisable':
-                drawTable(data, metadata, 'box1');
-                drawGraph(data, metadata, 'box2');
+            case 'graph':
+                // Remove the graph compare
+                if ($("#box2Compare").length) {
+                    $("#box1Compare").remove();
+                }
                 break;
         }
+        
     };
 
     /**
@@ -310,6 +267,59 @@ $(document).ready(function(){
                 $('#tab-pane-4').css('display', 'block');
                 $("#tab-nav-4").addClass('active');
                 break;
+        }
+    };
+
+    /**
+     * Set the tab navbar
+     *
+     * @return type if visualisation 
+     */
+    var setTabNavBarAndDraw = function(metadata, data) {
+
+        if(metadata.table) {
+            drawTable(data, metadata, 'box1');
+        } else {
+            $("#tab-nav-1").css('display', 'none');
+        }
+
+        if(metadata.graph) {
+            drawGraph(data, metadata, 'box2');
+        } else {
+            $("#tab-nav-2").css('display', 'none');
+        }
+
+        if(metadata.map) {
+            drawMap(data, metadata, 'box3', 'popup');
+        } else {
+            $("#tab-nav-3").css('display', 'none');
+        }
+
+        if(metadata.timeline) {
+            // Draw timeline
+            $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
+            var sel = $('<select>').appendTo('.select-list-date');
+            sel.addClass("select-list");
+            sel.addClass("select-list-select");
+            sel.addClass("form-control");
+
+            $('.select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
+            var selCompare = $('<select>').appendTo('.select-list-date-compare');
+            selCompare.addClass("select-list");
+            selCompare.addClass("select-list-select");
+            selCompare.append($("<option>").attr('value','none').text('...'));
+            selCompare.addClass("form-control");
+
+            for (var key in metadata.timeline.dates) {
+                sel.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
+                selCompare.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
+            }
+
+            // Set active select
+            $(".select-list-date select").val(metadata.timeline.dates[metadata.timeline.actualDate]);
+
+            // Set description
+            setDescription(metadata);
         }
     };
 
