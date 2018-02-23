@@ -1,7 +1,8 @@
 
 {
-  "dataType": "HistorisedLocalisable",
   "link": "&db=insee&table=pop_2010_donnees&format=json",
+  "title": "Recensement de la population - Population - 2010",
+  "descritpion": "",
   "dictionnaireX": {
     "link": "&db=insee&table=population_dico_2008&format=json",
     "initValue": "VAR_ID", 
@@ -13,14 +14,14 @@
     "initValue": "IRIS", 
     "newValue": "LIBIRIS"
   },  
-  "title": "Recensement de la population - Population - 2010",
-  "descritpion": "",
   "graph":{
-    "possibleGraphs": ["horizontalBar"],
+    "possibleGraphs": ["pie", "doughnut", "horizontalBar"],
     "dataComposition": {
-      "excludeLines": ["IRIS"],
-      "selectList": "IRIS",
-      "onlyOneElement": ""
+      "excludeLines": [],
+      "title": "IRIS",
+      "value": "P10_POP",
+      "y_axis":"Population",
+      "x_axis":"Quartier"
     }
   },
   "timeline":{
@@ -32,7 +33,9 @@
     }
   },
   "map":{
-
+    "kml": "quartier_iris_2008.kml",
+    "value": "pop_rp_2009",
+    "name":"libellez"
   },
   "table":{
     "dataComposition":{
