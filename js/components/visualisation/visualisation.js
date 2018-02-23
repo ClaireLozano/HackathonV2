@@ -85,11 +85,9 @@ $(document).ready(function(){
             // Get value of the selected item 
             var nomDonnee = $('.select-list-date-compare :selected').val();
             var typeVisualisation = getActivePanel();
+            
             if (nomDonnee == "none") {
-                // Remove the table compare
-                if ($("#my_table_box1Compare_wrapper").length) {
-                    $("#box1Compare").remove();
-                }
+                removeDrawCompare(typeVisualisation);
             } else {
                 // Get metadata
                 getMetadata(nomDonnee, function(metadata) {
@@ -123,7 +121,7 @@ $(document).ready(function(){
     };
 
     /**
-     * Draw visualisation
+     * Draw compare visualisation
      *
      * @return null
      */
@@ -140,23 +138,48 @@ $(document).ready(function(){
                     div.className = 'box-visu';
                     $("#tab-pane-1 .box-wrapper-inner").append(div);
                 }
-                // Set the second title
-                // setSecondTitle(metadata.title);
                 // Call draw table method
                 drawTable(data, metadata, 'box1Compare');
                 break;
 
             case 'graph':
-                // Call draw graph method
-                // Create div compare
-                var div = document.createElement('div');
-                div.id = 'box2Compare';
-                div.className = 'box-visu';
-                $("#tab-pane-2 .box-wrapper-inner").append(div);
-                //drawGraph(data, metadata, 'box2Compare');
-                //setSeletList(data, metadata);
+                // Remove the table compare if exists
+                if ($("#box2Compare").length) {
+                    $("#box2Compare").remove();
+                } else {
+                    // Else, create div compare
+                    var div = document.createElement('div');
+                    div.id = 'box2Compare';
+                    div.className = 'box-visu';
+                    $("#tab-pane-2 .box-wrapper-inner").append(div);
+                }
+                drawGraph(data, metadata, 'box2Compare');
                 break;
         }
+    };
+
+    /**
+     * Remove compare visualisation if existe
+     *
+     * @return null
+     */
+    var removeDrawCompare = function(typeVisualisation) {
+        switch (typeVisualisation) {
+            case 'table':
+                // Remove the table compare
+                if ($("#my_table_box1Compare_wrapper").length) {
+                    $("#box1Compare").remove();
+                }
+                break;
+
+            case 'graph':
+                // Remove the graph compare
+                if ($("#box2Compare").length) {
+                    $("#box1Compare").remove();
+                }
+                break;
+        }
+        
     };
 
     /**
@@ -253,8 +276,6 @@ $(document).ready(function(){
      * @return type if visualisation 
      */
     var setTabNavBarAndDraw = function(metadata, data) {
-
-        console.log("setTabNavBarAndDraw")
 
         if(metadata.table) {
             drawTable(data, metadata, 'box1');

@@ -74,7 +74,9 @@
 									<div class="select-list-date"></div>
 									<div class="select-list-date-compare"></div>		
 								</div>
-								<div id='box2' class="box-visu"> <!-- GRAPH --></div>
+								<div class="box-wrapper-inner">
+									<div id='box2' class="box-visu"> <!-- GRAPH --></div>
+								</div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
 								<div id='box3' class="box-visu">
