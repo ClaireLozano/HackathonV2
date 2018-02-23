@@ -77,10 +77,6 @@
 								<div id='box2' class="box-visu"> <!-- GRAPH --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
-								<div class="option-panel">
-									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>
-								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
 									<div id="popup"></div>
