@@ -15,7 +15,7 @@
     "newValue": "LIBIRIS"
   },  
   "graph":{
-    "possibleGraphs": ["pie", "doughnut"],
+    "possibleGraphs": ["pie", "doughnut", "horizontalBar"],
     "dataComposition": {
       "excludeLines": [],
       "title": "IRIS",
