@@ -197,7 +197,6 @@ $(document).ready(function(){
      */
     var setMapButton = function() {
         $(".button-icone").on("click", function() {
-        console.log("Button on click");
             // If the marks are visible, hide them
             if ($(this).val() === "true") {
                 $(this).val("false");
@@ -205,7 +204,6 @@ $(document).ready(function(){
 
                 // Remove bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    console.log("Hiding bus layer 1")
                     hideLayerBus();
                 }
 
@@ -213,21 +211,30 @@ $(document).ready(function(){
                 if($(this).attr('id') === "button-icone-poste") {
                     hideLayerPoste();
                 }
+                // Remove yelo marks
+                if($(this).attr('id') === "button-icone-yelo") {
+                    hideLayerYelo();
+                }
 
-            // Else, show them
+
+                // Else, show them
             } else {
                 $(this).val("true");
                 $(this).css({opacity: 1});
 
                 // Draw bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    console.log("Showing bus layer 1")
                     showLayerBus();
                 }
 
                 // Draw poste marks
                 if($(this).attr('id') === "button-icone-poste") {
                     showLayerPoste();
+                }
+
+                // Draw yelo marks
+                if($(this).attr('id') === "button-icone-yelo") {
+                    showLayerYelo();
                 }
             }
         });

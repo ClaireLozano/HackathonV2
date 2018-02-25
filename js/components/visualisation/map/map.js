@@ -1,6 +1,7 @@
 // Variables globales
 vectorLayerPoste = [];
 vectorLayerBus = [];
+vectorLayerYelo = [];
 var map = new ol.Map();
 /**
  * Show bus
@@ -39,6 +40,24 @@ function hideLayerPoste() {
 }
 
 /**
+ * Show yelo
+ *
+ * @return null
+ */
+function showLayerYelo() {
+    vectorLayerYelo.setVisible(true)
+}
+
+/**
+ * Hide yelo
+ *
+ * @return null
+ */
+function hideLayerYelo() {
+    vectorLayerYelo.setVisible(false)
+}
+
+/**
  * Show map
  *
  * @return null
@@ -66,7 +85,9 @@ function drawMap(data, metadata, myDiv, myPopup) {
     // Définition des vecteurs
     var vectorDataLayer = new ol.layer.Vector();
     vectorLayerBus = getBusLayer();
+    vectorLayerYelo = getYeloLayer();
     vectorLayerPoste = getPosteLayer();
+
 
     var coordonnees = [];
 
@@ -149,7 +170,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     map = new ol.Map({
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
-        }), vectorDataLayer, vectorLayerBus, vectorLayerPoste],
+        }), vectorDataLayer, vectorLayerBus, vectorLayerPoste, vectorLayerYelo],
         target: document.getElementById(myDiv),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],
