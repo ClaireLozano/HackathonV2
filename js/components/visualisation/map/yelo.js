@@ -10,11 +10,10 @@ function getYeloLayer() {
 
     var yelo = [];
     for (marker in json_obj) {
-
         p2 = new ol.Feature({
             geometry: new ol.geom.Point([json_obj[marker].longitude, json_obj[marker].latitude]),
             labelPoint: new ol.geom.Point([json_obj[marker].longitude, json_obj[marker].latitude]),
-            name: json_obj[marker].Name,
+            name: json_obj[marker].name,
             type: "Velo"
         });
 
