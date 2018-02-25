@@ -29,6 +29,8 @@ $(document).ready(function(){
                     // Set tab navbar and draw visualisation
                     setTabNavBarAndDraw(metadata, data);
                 });
+
+                setMapButton();
             });
         }
 	};
@@ -195,7 +197,7 @@ $(document).ready(function(){
      */
     var setMapButton = function() {
         $(".button-icone").on("click", function() {
-
+        console.log("Button on click");
             // If the marks are visible, hide them
             if ($(this).val() === "true") {
                 $(this).val("false");
@@ -203,6 +205,7 @@ $(document).ready(function(){
 
                 // Remove bus marks
                 if($(this).attr('id') === "button-icone-bus") {
+                    console.log("Hiding bus layer 1")
                     hideLayerBus();
                 }
 
@@ -215,9 +218,10 @@ $(document).ready(function(){
             } else {
                 $(this).val("true");
                 $(this).css({opacity: 1});
-                
+
                 // Draw bus marks
                 if($(this).attr('id') === "button-icone-bus") {
+                    console.log("Showing bus layer 1")
                     showLayerBus();
                 }
 
