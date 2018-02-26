@@ -197,7 +197,6 @@ $(document).ready(function(){
      */
     var setMapButton = function() {
         $(".button-icone").on("click", function() {
-        console.log("Button on click");
             // If the marks are visible, hide them
             if ($(this).val() === "true") {
                 $(this).val("false");
@@ -205,7 +204,6 @@ $(document).ready(function(){
 
                 // Remove bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    console.log("Hiding bus layer 1")
                     hideLayerBus();
                 }
 
@@ -221,7 +219,6 @@ $(document).ready(function(){
 
                 // Draw bus marks
                 if($(this).attr('id') === "button-icone-bus") {
-                    console.log("Showing bus layer 1")
                     showLayerBus();
                 }
 

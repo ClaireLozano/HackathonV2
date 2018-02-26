@@ -62,7 +62,6 @@
           <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse4">
             <li><a href="#">Support</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="https://pbs.twimg.com/profile_images/588909533428322304/Gxuyp46N.jpg" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
 	            <li><a href="../home/index.php">Accueil</a></li>
 	            <li><a href="../visualisation/visualisation.php">Visualisation</a></li>

@@ -15,9 +15,12 @@
                     <p class="panel-title pull-left">Visualisation</p>
 
 					<!-- Bouton "un probleme?" -->
-                    <!-- <button class="btn btn-default label label-warning pull-right" href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme"> Un problème ?</button> -->
+
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
+                    	<button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
+                    </a>
                     
-                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
+                    <!-- <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="example">
                         <div class="modal-dialog">
@@ -40,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="clearfix"></div>
                 </div>

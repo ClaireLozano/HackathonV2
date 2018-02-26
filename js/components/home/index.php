@@ -22,30 +22,9 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box0" class="panel-title pull-left"></p>
-                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
-
-                    <div class="modal fade" tabindex="-1" role="dialog" id="example">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Un problème ? </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
-                                    </div>
-                                    <div class="checkbox"> 
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
-
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
+                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
+                    </a>
                     <div class="clearfix"></div>
                 </div>
 
@@ -61,29 +40,9 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box1" class="panel-title pull-left"></p>
-                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">un problème ?</button>
-                    
-                    <div class="modal fade" tabindex="-1" role="dialog" id="example">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Modal title</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
-                                    </div>
-                                    <div class="checkbox"> 
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
+                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
+                    </a>
                     
                     <div class="clearfix"></div>
                 </div>
@@ -100,29 +59,9 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box2" class="panel-title pull-left"></p>
-                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
-
-                    <div class="modal fade" tabindex="-1" role="dialog" id="example">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Un problème ? </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
-                                    </div>
-                                    <div class="checkbox"> 
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
+                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
+                    </a>
 
                     <div class="clearfix"></div>
                 </div>
@@ -139,29 +78,9 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box3" class="panel-title pull-left"></p>
-                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">un problème ?</button>
-                    
-                    <div class="modal fade" tabindex="-1" role="dialog" id="example">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Modal title</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
-                                    </div>
-                                    <div class="checkbox"> 
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
+                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
+                    </a>
                     
                     <div class="clearfix"></div>
                 </div>
