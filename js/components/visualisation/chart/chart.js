@@ -11,7 +11,6 @@ function drawGraph(dataToTreat, metadata, box) {
       initPie(dataToTreat, metadata, box)
       initHorizontalBar(dataToTreat, metadata, box)
 
-
     } else {
       var select = d3.select('#' + box)
       .append('select')
