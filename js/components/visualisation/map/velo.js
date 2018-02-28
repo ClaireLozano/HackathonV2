@@ -20,7 +20,7 @@ function getYeloLayer() {
         p2.setStyle(new ol.style.Style({
             image: new ol.style.Icon(({
                 crossOrigin: 'anonymous',
-                src: '../../../images/icone_yelo.svg',
+                src: '../../../images/icone_velo.png',
                 scale: 0.045
             })),
             display:'none'

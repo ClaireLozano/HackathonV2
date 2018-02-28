@@ -84,9 +84,9 @@
 									<div id="popup"></div>
                                    <!--  <?php #include 'map/map.php'; ?> -->
 								</div>
-								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.svg"/>
+								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.png"/>
 								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
-                                <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_yelo.svg"/>
+                                <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_velo.png"/>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
 								<div id='box4' class="box-visu"> <!-- INFO --></div>
@@ -176,7 +176,7 @@
 		</div> <!-- END CONTENT PAGE -->
 
 		<script type="text/javascript" src="map/bus.js"></script>
-		<script type="text/javascript" src="map/yelo.js"></script>
+		<script type="text/javascript" src="map/velo.js"></script>
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/popup.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>
