@@ -15,15 +15,15 @@
 				left:       0;
 				height:     100%;
 				width:      100%;
-				background: rgba( 255, 255, 255, .8 ) 
-							url('http://i.stack.imgur.com/FhHRx.gif') 
-							50% 50% 
+				background: rgba( 255, 255, 255, .8 )
+							url('http://i.stack.imgur.com/FhHRx.gif')
+							50% 50%
 							no-repeat;
 			}
 			/* When the body has the loading class, we turn
 			the scrollbar off with overflow:hidden */
 			body.loading {
-				overflow: hidden;   
+				overflow: hidden;
 			}
 
 			/* Anytime the body has the loading class, our
@@ -100,7 +100,7 @@
 							<div class="tab-pane" id="tab-pane-6">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>		
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div class="box-wrapper-inner">
 									<div id='box6' class="box-visu"> <!-- CLOUD --></div>
@@ -199,10 +199,9 @@
 		<script type="text/javascript" src="chart/pie.js"></script>
 		<script type="text/javascript" src="chart/doughnut.js"></script>
         <script type="text/javascript" src="chart/chart.js"></script>
-
     	<script type="text/javascript" src="table/table.js"></script>
 
-    	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
 		<script type="text/javascript" src="cloud/drawCloud.js"></script>
 		<script type="text/javascript" src="cloud/cloud.js"></script>
 
