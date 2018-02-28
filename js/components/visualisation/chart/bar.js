@@ -76,10 +76,6 @@ function initBar(dataToTreat, metadata, box){
   var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
   var newDataToTreat
 
-  //exit
-  d3.selectAll("svg").remove()
-  d3.selectAll(".chart>p").remove()
-
   var x = d3.scale.ordinal()
       .domain(dataToTreat.map(function (entry) {
           return entry[realTitle]

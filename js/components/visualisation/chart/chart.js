@@ -7,7 +7,10 @@
 function drawGraph(dataToTreat, metadata, box) {
 
     if(metadata.graph.dataComposition.category0){
+      var originalData = dataToTreat
       initPie(dataToTreat, metadata, box)
+      initHorizontalBar(dataToTreat, metadata, box)
+
 
     } else {
       var select = d3.select('#' + box)
@@ -30,15 +33,27 @@ function drawGraph(dataToTreat, metadata, box) {
         console.log(selectValue)
         switch (selectValue) {
           case "bar":
+            //exit
+            d3.selectAll("svg").remove()
+            d3.selectAll(".chart>p").remove()
             initBar(dataToTreat, metadata, box)
             break
           case "pie":
+            //exit
+            d3.selectAll("svg").remove()
+            d3.selectAll(".chart>p").remove()
             initPie(dataToTreat, metadata, box)
             break
           case "doughnut":
+            //exit
+            d3.selectAll("svg").remove()
+            d3.selectAll(".chart>p").remove()
             initdoughnut(dataToTreat, metadata, box)
             break
           case "horizontalBar":
+            //exit
+            d3.selectAll("svg").remove()
+            d3.selectAll(".chart>p").remove()
             initHorizontalBar(dataToTreat, metadata, box)
             break
           default:
