@@ -141,9 +141,7 @@ function initPie(dataToTreat, metadata, box){
                       d[realTitle] = d2[newValue]
                   }
               })
-
           })
-          onChange()
       })
   }
 
