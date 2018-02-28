@@ -6,8 +6,11 @@
 //Afficher les données
 //echo $_POST['datatype'];
 
+$years = $_POST['timeline_dataComposition_year_list'];
+$years_value = $_POST['timeline_dataComposition_year_value_list'];
+
 $postArray = array(
-  "datatype" => $_POST['datatype'],
+
   "link" => $_POST['link'],
   "title" => $_POST['title'],
   "description" => $_POST['description'],
@@ -46,14 +49,23 @@ $postArray = array(
         "nominateur" => $_POST['map_nominateur'],
         "denominateur" => $_POST['map_denominateur'],
         "description_popup" => $_POST['map_description_popup']
+  ),
+  "timeline" => array(
+        "actualDate" => $_POST['actualDate']
   )
 );
+$dates_timeline = array();
+foreach( $years as $key=>$value)
+{
+  $dates_timeline[$years[$key]] =  $years_value[$key];
+
+}
+// Add the dates for the timeline :
+$postArray['dates'] = $dates_timeline;
 
 $json = json_encode( $postArray );
-// foreach($_POST['datatype'] as $valeur)
-// {
-//    echo "La checkbox $valeur a été cochée<br>";
-// }
+
+
 
 // make sure there were no problems
 //if( json_last_error() != JSON_ERROR_NONE ){
