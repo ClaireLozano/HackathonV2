@@ -16,42 +16,42 @@
           <div class="form-group col-md-10">
             <label for="title">Titre de la données</label>
             <p>Correspond au titre à afficher sur la page de visualisation (Ex: "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF - BP 2017 - FONCTION"</p>
-            <input type="text" class="form-control" name="title">
+            <input type="text" class="form-control" name="title" required>
           </div>
           <div class="form-group col-md-10">
             <label for="inputDescriptionData">Lien vers les données</label>
             <p>Il est possible d'afficher une description de la données et ainsi guider les utilisateurs dans la lecture des données.</p>
-            <textarea form="form" type="text" class="form-control" name="description"></textarea>
+            <textarea form="form" type="text" class="form-control" name="description" required></textarea>
           </div>
           <div class="form-group col-md-10">
             <label for="fileName">Nom du fichier métadonnées</label>
             <p>Le fichier doit prendre le nom de l'identifiant de la données (Ex: "menu_allergenes_accomp")</p>
-            <input type="text" class="form-control" name="fileName">
+            <input type="text" class="form-control" name="fileName" required>
           </div>
           <div class="form-group col-md-10">
             <label for="link">Lien vers les données</label>
             <p>Ce bout de lien sert à faire la relation entre la plateforme et le service web. (Ex: "&db=budget&table=bp_2014_fonction&format=json")</p>
-            <input type="text" class="form-control" name="link">
+            <input type="text" class="form-control" name="link" required>
           </div>
           <div class="form-group col-md-6">
             <label for="link">Titre des colonnes (dictionnaire)</label>
             <p>Lien vers le dictionnaire</p>
-            <input type="text" class="form-control col-md-4" name="link_dictX">
+            <input type="text" class="form-control col-md-4" name="link_dictX" required>
             <p>Valeur initianle qu'on souhaite remplacer</p>
-            <input type="text" class="form-control col-md-4" name="initValue_dictX">
+            <input type="text" class="form-control col-md-4" name="initValue_dictX" required>
             <p>Nouvelle valeur qui remplacera la valeur initiale</p>
-            <input type="text" class="form-control col-md-4" name="newValue_dictX">
+            <input type="text" class="form-control col-md-4" name="newValue_dictX" required>
           </div>
           <div class="form-group col-md-6">
             <label for="link">Toutes les colonnes (dictionnaire)</label>
             <p>Lien vers le dictionnaire</p>
-            <input type="text" class="form-control col-md-3" name="link_dictY">
+            <input type="text" class="form-control col-md-3" name="link_dictY" required>
             <p>Valeur de la colonne</p>
-            <input type="text" class="form-control col-md-3" name="value_dictY">
+            <input type="text" class="form-control col-md-3" name="value_dictY" required>
             <p>Valeur initianle qu'on souhaite remplacer</p>
-            <input type="text" class="form-control col-md-3" name="initValue_dictY">
+            <input type="text" class="form-control col-md-3" name="initValue_dictY" required>
             <p>Nouvelle valeur qui remplacera la valeur initiale</p>
-            <input type="text" class="form-control col-md-3" name="newValue_dictY">
+            <input type="text" class="form-control col-md-3" name="newValue_dictY" required>
           </div>
           <div class="form-group col-md-10">
             <label for="inputDataType">Type de données :</label>
@@ -81,15 +81,15 @@
           </div>
           <div class="form-group col-md-4">
             <label for="inputGraphDescription">Description du graphe</label>
-            <input type="text" class="form-control" name="dataComposition_excludeLines">
+            <input type="text" class="form-control" name="dataComposition_excludeLines" required>
           </div>
           <div class="form-group col-md-4">
             <label for="inputGraphLibelle">Nom du libelle de données</label>
-            <input type="text" class="form-control" name="dataComposition_selectList">
+            <input type="text" class="form-control" name="dataComposition_selectList" required>
           </div>
           <div class="form-group col-md-4">
             <label for="inputGraphTitle">Nom du champ de données</label>
-            <input type="text" class="form-control" name="dataComposition_onlyOneElement">
+            <input type="text" class="form-control" name="dataComposition_onlyOneElement" required>
           </div>
         </div>
 
@@ -99,13 +99,13 @@
             <h3>Détails du tableau</h3>
             <p>Dans un premier temps, veuillez lister toutes les colonnes à afficher ainsi que la valeur à afficher sur l'interface utilisateur.</p>
             <label for="inputTableTitle">Titre du tableau</label>
-            <input type="text" class="form-control" name="table_dataComposition_title">
+            <input type="text" class="form-control" name="table_dataComposition_title" required>
           </div>
           <div id="sm" class="form-group col-md-5">
             <label for="inputKeyList">Liste des mots clés</label>
             <br>
-            <input autocomplete="off" class="input form-control col-md-5" id="key1" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé"/>
-            <input autocomplete="off" class="input form-control col-md-5" id="value1" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur"/>
+            <input autocomplete="off" class="input form-control col-md-5" id="key1" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé" required/>
+            <input autocomplete="off" class="input form-control col-md-5" id="value1" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur" required/>
             <button id="b1" class="btn add-more" type="button" onclick="addInput()">+</button>
           </div>
           <!-- <div id="valueListInput" class="form-group col-md-5">
@@ -140,29 +140,29 @@
           </div>
           <div class="form-group col-md-6">
             <label for="inputMapTitle">Titre de la carte</label>
-            <input type="text" class="form-control" name="map_name">
+            <input type="text" class="form-control" name="map_name" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputMapDescription">Description de la carte</label>
-            <input type="text" class="form-control" name="map_description_popup">
+            <input type="text" class="form-control" name="map_description_popup" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputMapX">Coordonnées de longitude</label>
-            <input type="text" class="form-control" name="map_x">
+            <input type="text" class="form-control" name="map_x" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputMapY">Coordonnées de latitude</label>
-            <input type="text" class="form-control" name="map_y">
+            <input type="text" class="form-control" name="map_y" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputMapNominateur">Donnée précise</label>
             <h6>Ex: pour le jeu de données Parking, il faut mettre le champs des places libres "dp_place_disponible"</h6>
-            <input type="text" class="form-control" name="map_nominateur">
+            <input type="text" class="form-control" name="map_nominateur" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputMapDenominateur">Données générales</label>
             <h6>Ex: pour le jeu de données Parking, il faut mettre le champs du nombre de toutes les places "dp_nb_places"</h6>
-            <input type="text" class="form-control" name="map_denominateur">
+            <input type="text" class="form-control" name="map_denominateur" required>
           </div>
         </div>
 
