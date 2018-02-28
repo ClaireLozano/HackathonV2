@@ -21,7 +21,7 @@ function getBusLayer() {
         p2.setStyle(new ol.style.Style({
             image: new ol.style.Icon(({
                 crossOrigin: 'anonymous',
-                src: '../../../images/icone_bus.svg',
+                src: '../../../images/icone_bus.png',
                 scale: 0.045
             })),
             display:'none'

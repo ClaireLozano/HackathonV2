@@ -211,8 +211,13 @@ $(document).ready(function(){
                 if($(this).attr('id') === "button-icone-poste") {
                     hideLayerPoste();
                 }
+                // Remove yelo marks
+                if($(this).attr('id') === "button-icone-yelo") {
+                    hideLayerYelo();
+                }
 
-            // Else, show them
+
+                // Else, show them
             } else {
                 $(this).val("true");
                 $(this).css({opacity: 1});
@@ -225,6 +230,11 @@ $(document).ready(function(){
                 // Draw poste marks
                 if($(this).attr('id') === "button-icone-poste") {
                     showLayerPoste();
+                }
+
+                // Draw yelo marks
+                if($(this).attr('id') === "button-icone-yelo") {
+                    showLayerYelo();
                 }
             }
         });
