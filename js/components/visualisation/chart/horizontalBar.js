@@ -75,10 +75,7 @@ function initHorizontalBar(dataToTreat, metadata, box){
   var r = 200
   var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
   var newDataToTreat
-
-  d3.selectAll("svg").remove()
-  d3.selectAll(".chart>p").remove()
-
+  
   var x = d3.scale.linear()
       .domain([0, d3.max(dataToTreat, function (d) {
           return d[realValue]
