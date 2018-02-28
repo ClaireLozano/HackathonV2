@@ -70,6 +70,31 @@ function removeButton(elementId){
 }
 
 function dataTypeChoice() {
+    if (document.getElementById('type_map').checked) {
+        document.getElementById('theMap').style.display = 'block';
+    }
+		if (!document.getElementById('type_map').checked) {
+				document.getElementById('theMap').style.display = 'none';
+		}
+
+    if(document.getElementById('type_graphe').checked){
+        document.getElementById('theGraph').style.display = 'block';
+     }
+		if(!document.getElementById('type_graphe').checked){
+ 				document.getElementById('theGraph').style.display = 'none';
+ 		 }
+
+   	if(document.getElementById('type_table').checked){
+        document.getElementById('theTable').style.display = 'block';
+     }
+  	if(!document.getElementById('type_table').checked){
+         document.getElementById('theTable').style.display = 'none';
+    }
+
+
+}
+
+function dataTypeChoice_old() {
     if (document.getElementById('nH_L').checked) {
         document.getElementById('theMap').style.display = 'block';
         document.getElementById('theGraph').style.display = 'block';

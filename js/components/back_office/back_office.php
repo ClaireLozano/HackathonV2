@@ -53,7 +53,7 @@
             <p>Nouvelle valeur qui remplacera la valeur initiale</p>
             <input type="text" class="form-control col-md-3" name="newValue_dictY" required>
           </div>
-          <div class="form-group col-md-10">
+          <!-- <div class="form-group col-md-10">
             <label for="inputDataType">Type de données :</label>
             <p>Les données de l'open data peuvent être divers et varié. Elles peuvent être historisées, c'est-à-dire qu'une données a pu être enregistré à plusieurs moment dans le temps (Ex: bugdet 2015 et budget 2016) et elle peuvent être de type géographique et donc représentable sur une carte. On a finallement retenue 5 types de données qui sont : </p>
             <p>Todo : mettre une select list à la place (?)</p>
@@ -63,6 +63,17 @@
               <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="h_l" value="HistorisedLocalisable">Historisable et localisable</label>
               <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="nH_nL" value="NotHistorisedNotLocalisable">Non-historisable et non-localisable</label>
               <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="dataTypeChoice()" id="loc" value="Localisable">Localisable</label>
+            </div>
+          </div> -->
+          <div class="form-group col-md-10">
+            <label for="inputDataType">Type de données :</label>
+            <p>Choisir un ou plusieurs type(s) d'affichage des données: </p>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype" onclick="dataTypeChoice()" id="type_graphe" value="NotHistorisedLocalisable">Graphe</label>
+              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype" onclick="dataTypeChoice()" id="type_table" value="HistorisedNotLocalisable">Tableau</label>
+              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype" onclick="dataTypeChoice()" id="type_map" value="NotHistorisedNotLocalisable">Carte</label>
+              <!-- <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype" onclick="dataTypeChoice()" id="type_timeline" value="NotHistorisedNotLocalisable">Timeline</label> -->
+
             </div>
           </div>
         </div>
