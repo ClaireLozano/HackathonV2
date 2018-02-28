@@ -16,10 +16,10 @@
 
 					<!-- Bouton "un probleme?" -->
 
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !">
                     	<button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
                     </a>
-                    
+
                     <!-- <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="example">
@@ -62,7 +62,7 @@
 							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
 						<div class="tab-content">
-							<p id="description-page"></p>	
+							<p id="description-page"></p>
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
@@ -75,7 +75,7 @@
 							<div class="tab-pane" id="tab-pane-2">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>		
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div class="box-wrapper-inner">
 									<div id='box2' class="box-visu"> <!-- GRAPH --></div>
@@ -187,11 +187,11 @@
 		<script type="text/javascript" src="chart/horizontalBar.js"></script>
 		<script type="text/javascript" src="chart/pie.js"></script>
 		<script type="text/javascript" src="chart/doughnut.js"></script>
-        <script type="text/javascript" src="chart/chart.js"></script>
-    	<script type="text/javascript" src="table/table.js"></script>
+    <script type="text/javascript" src="chart/chart.js"></script>
+    <script type="text/javascript" src="table/table.js"></script>
 
-        <script type="text/javascript" src="../controller.js"></script>
-        <script type="text/javascript" src="visualisation.js"></script>
+    <script type="text/javascript" src="../controller.js"></script>
+    <script type="text/javascript" src="visualisation.js"></script>
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
