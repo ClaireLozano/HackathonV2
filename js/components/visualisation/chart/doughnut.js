@@ -76,9 +76,6 @@ function initdoughnut(dataToTreat, metadata, box){
   var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
   var newDataToTreat
 
-  d3.selectAll("svg").remove()
-  d3.selectAll(".chart>p").remove()
-
   var vis = d3.select('#' + box)
       .append("svg")
       .data([dataToTreat])

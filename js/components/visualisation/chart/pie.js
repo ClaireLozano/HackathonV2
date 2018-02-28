@@ -158,9 +158,6 @@ function initPie(dataToTreat, metadata, box){
   var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
   var newDataToTreat
 
-  d3.selectAll("svg").remove()
-  d3.selectAll(".chart>p").remove()
-
   var vis = d3.select('#' + box)
       .append("svg")
       .data([dataToTreat])
@@ -197,7 +194,7 @@ function initPie(dataToTreat, metadata, box){
           d3.select(this).style("fill", ordinalScaleColor(i))
       })
       .attr("d", arc)
-      .on("click", function (d, i) {
+      .on("click", function (node, i) {
         var nested = d3.nest()
             .key(function (d) {
                 // console.log("nest",d);
@@ -215,11 +212,11 @@ function initPie(dataToTreat, metadata, box){
             })
             .entries(originalData);
 
-        newDataToTreat = nested.filter(function (d) {
-            return d.key === node.data.key
-        })[0].values;
+            dataToTreat = nested.filter(function (d) {
+                return d.key === node.data.key
+            })[0].values;
 
-        console.log(newDataToTreat);
+            console.log('newDataToTreat', dataToTreat);
       })
 
 
