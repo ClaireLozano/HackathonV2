@@ -60,7 +60,6 @@ function initBar(dataToTreat, metadata, box){
               })
 
           })
-          onChange()
       })
   }
 

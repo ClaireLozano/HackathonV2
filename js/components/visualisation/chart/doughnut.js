@@ -60,7 +60,6 @@ function initdoughnut(dataToTreat, metadata, box){
               })
 
           })
-          onChange()
       })
   }
 
