@@ -18,7 +18,7 @@ $postArray = array(
       ),
   "dictionnaireY" => array(
         "link" => $_POST['link_dictY'],
-        "value" => $_POST['value_dictY'],        
+        "value" => $_POST['value_dictY'],
         "initValue" => $_POST['initValue_dictY'],
         "newValue" => $_POST['newValue_dictY']
       ),
@@ -26,8 +26,10 @@ $postArray = array(
         "possibleGraphs" => $_POST['possibleGraphs'],
         "dataComposition" => array(
           "excludeLines" => $_POST['dataComposition_excludeLines'],
-          "selectList" => $_POST['dataComposition_selectList'],
-          "onlyOneElement" => $_POST['dataComposition_onlyOneElement']
+          "title" => $_POST['dataComposition_title'],
+          "value" => $_POST['dataComposition_value'],
+          "y_axis" => $_POST['dataComposition_y_axis'],
+          "x_axis" => $_POST['dataComposition_x_axis']
         )
       ),
   "table" => array(

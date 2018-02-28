@@ -19,13 +19,13 @@
             <input type="text" class="form-control" name="title" required>
           </div>
           <div class="form-group col-md-10">
-            <label for="inputDescriptionData">Lien vers les données</label>
+            <label for="inputDescriptionData">Description des données</label>
             <p>Il est possible d'afficher une description de la données et ainsi guider les utilisateurs dans la lecture des données.</p>
             <textarea form="form" type="text" class="form-control" name="description" required></textarea>
           </div>
           <div class="form-group col-md-10">
             <label for="fileName">Nom du fichier métadonnées</label>
-            <p>Le fichier doit prendre le nom de l'identifiant de la données (Ex: "menu_allergenes_accomp")</p>
+            <p>Le fichier doit prendre le nom de l'identifiant de la données (Ex: "disponibilite_parking")</p>
             <input type="text" class="form-control" name="fileName" required>
           </div>
           <div class="form-group col-md-10">
@@ -52,7 +52,7 @@
             <input type="text" class="form-control col-md-3" name="initValue_dictY" required>
             <p>Nouvelle valeur qui remplacera la valeur initiale</p>
             <input type="text" class="form-control col-md-3" name="newValue_dictY" required>
-          </div>        
+          </div>
           <div class="form-group col-md-10">
             <label for="inputDataType">Type d'affichage de données :</label>
             <p>Choisir un ou plusieurs type(s) d'affichage des données: </p>
@@ -72,23 +72,40 @@
             <p>Un graphe peut-être représenté sous plusieurs formes. Veuillez choisir le type de réprésentation :</p>
             <label for="inputGraphType">Type de graphe : </label>
             <div class="form-check">
-              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="pie">Camembert</label>
+              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="pie" checked>Camembert</label>
               <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
               <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="line">Ligne</label>
               <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="horizontalBar">Barres horizontales</label>
             </div>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-8">
             <label for="inputGraphDescription">Description du graphe</label>
+            <p>Description des données affichées dans le graphe</p>
             <input type="text" class="form-control" name="dataComposition_excludeLines" required>
           </div>
-          <div class="form-group col-md-4">
-            <label for="inputGraphLibelle">Nom du libelle de données</label>
-            <input type="text" class="form-control" name="dataComposition_selectList" required>
+          <div class="form-group col-md-6">
+            <label for="inputGraphLibelle">Axe des abcisses</label>
+            <p>Pour un graphe avec des axes, il faut préciser les données qui seront sur l'axe des abcisses.</p>
+            <h6>Ex: pour le jeu de données Parking : dp_libelle</h6>
+            <input type="text" class="form-control" name="dataComposition_title" required>
           </div>
-          <div class="form-group col-md-4">
-            <label for="inputGraphTitle">Nom du champ de données</label>
-            <input type="text" class="form-control" name="dataComposition_onlyOneElement" required>
+          <div class="form-group col-md-6">
+            <label for="inputGraphLibelleName">Nom de l'axe des abcisses</label>
+            <p>Le nom de l'axe des abcisses qui sera visible sur le graphe.</p>
+            <h6>Ex: pour le jeu de données Parking : Parking</h6>
+            <input type="text" class="form-control" name="dataComposition_x_axis" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputGraphTitle">Axe des ordonnées</label>
+            <p>Pour un graphe avec des axes, il faut préciser les données qui seront sur l'axe des ordonnées.</p>
+            <h6>Ex: pour le jeu de données Parking : dp_place_disponible</h6>
+            <input type="text" class="form-control" name="dataComposition_value" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputGraphTitle">Nom de l'axe des ordonnées</label>
+            <p>Le nom de l'axe des ordonnées.</p>
+            <h6>Ex: pour le jeu de données Parking : Nombre de places disponibles</h6>
+            <input type="text" class="form-control" name="dataComposition_y_axis" required>
           </div>
         </div>
 
