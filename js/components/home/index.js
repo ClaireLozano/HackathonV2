@@ -38,79 +38,57 @@ $(document).ready(function(){
     }
 
     /**
-     * Add visualisation on random box
+     * Draw visualisation on random box
      *
      * @return
      */
     var addVisualizationOnBox = function() {
-        var boxs = ["box0", "box1"];
-        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction"];
 
-        boxs.forEach(function(box, i, arr) {
+        // Define data to display
+        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction", "disponibilite_parking", "population_2008"];
+        
+        // Define type of visualisation
+        var visu = ["map", "graph", "table", "map"];
 
-            var randNomDonnee = getRandomInt(nomDonnee.length);
-
-            // Get metadata
-            getMetadata(nomDonnee[randNomDonnee], function(metadata) {
-                $("#panel-title-box" + i).text(metadata.title);
-
-                // With end url, get data
-                getData(metadata.link, function(data) {
-
-                    if ((metadata.dataType === "NotHistorisedLocalisable") || (metadata.dataType === "HistorisedLocalisable")) {
-
-                        // Generate random visualisation
-                        var randVisu = getRandomInt(2);
-
-                        // Draw visualisation
-                        switch (randVisu) {
-                        // switch (0) {
-                            case 0:
-                                drawTable(data, metadata, box);
-                                defineLinks("table", i, nomDonnee[randNomDonnee]);
-                                break;
-
-                            case 1:
-                                drawMap(data, metadata, box, "popup" + i);
-                                defineLinks("map", i, nomDonnee[randNomDonnee]);
-                                break;
-
-                            case 2:
-                                //drawGraph(data, metadata, box);
-                                break;
-                        }
-
-                    } else {
-
-                        // Generate random visualisation
-                        var randVisu = getRandomInt(2);
-
-                        // Draw visualisation
-                        // switch (randVisu) {
-                        switch (0) {
-                            case 0:
-                                drawTable(data, metadata, box);
-                                defineLinks("table", i, nomDonnee[randNomDonnee])
-                                break;
-
-                            case 2:
-                                //drawGraph(data, metadata, box);
-                                break;
-                        }
-                    }
-                });
-            });
+        nomDonnee.forEach(function(n, i) {
+            drawVisualisationIndex(nomDonnee[i], visu[i], i);
         });
     };
 
     /**
-     * Get random integer
+     * Draw visualisation on random box
      *
-     * @return integer
+     * @return
      */
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-    }
+    var drawVisualisationIndex = function(nomDonnee, visu, i) {
+
+        // Get metadata
+        getMetadata(nomDonnee, function(metadata) {
+            $("#panel-title-box" + i).text(metadata.title);
+
+            // With end url, get data
+            getData(metadata.link, function(data) {
+
+                // Draw visualisation
+                switch (visu) {
+                    case "table":
+                        drawTable(data, metadata, "box" + i);
+                        defineLinks("table", i, nomDonnee);
+                        break;
+
+                    case "map":
+                        drawMap(data, metadata, "box" + i, "popup" + i);
+                        defineLinks("map", i, nomDonnee);
+                        break;
+
+                    case "graph":
+                        drawGraph(data, metadata, "box" + i);
+                        defineLinks("graph", i, nomDonnee)
+                        break;
+                }
+            });
+        });
+    };
 
     init();
     bindListeners();

@@ -1,8 +1,6 @@
 
 {
-  "dataType": "NotHistorisedLocalisable",
   "link": "&db=stationnement&table=disponibilite_parking&format=json",
-  "dictionnaire": "",
   "title": "Stationnement - Disponibilité des parkings",
   "description": "",
   "graph":{
@@ -14,9 +12,6 @@
       "y_axis":"Nombre de places disponibles",
       "x_axis":"Parking"
     }
-  },
-  "timeline":{
-
   },
   "map":{
     "x": "dp_x",
