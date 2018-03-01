@@ -128,3 +128,17 @@ function dataTypeChoice() {
 
 
 }
+
+function mapChoice() {
+    if (document.getElementById('map_newMap').checked) {
+        document.getElementById('new_map').style.display = 'block';
+				document.getElementById('kmlFile_map').style.display = 'none';
+     }
+    
+
+  	else if(document.getElementById('map_fileKml').checked){
+        document.getElementById('kmlFile_map').style.display = 'block';
+				document.getElementById('new_map').style.display = 'none';
+     }
+
+}

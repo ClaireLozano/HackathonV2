@@ -134,33 +134,66 @@
           <div class="form-group col-md-10">
             <hr>
             <h3>Détails de la carte</h3>
+            <p>Les détails d'une carte peuvent être récupérer depuis un fichier "kml" en choisisant "Carte depuis 'fichier.kml' "" ou peuvent être saisis à l'aide des champs ( il faut choisir "Nouvelle carte").</p>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="mapChoice()" id="map_newMap" value="newmap">Nouvelle carte</label>
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="datatype" onclick="mapChoice()" id="map_fileKml" value="kmlfile">Carte depuis 'fichier.kml'mapChoice</label>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputMapTitle">Titre de la carte</label>
-            <input type="text" class="form-control" name="map_name" >
+
+          <!-- Nouvelle carte  -->
+          <div id="new_map" style="display:none">
+            <div class="form-group col-md-6">
+              <label for="inputMapTitle">Titre de la carte</label>
+              <input type="text" class="form-control" name="map_name" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapDescription">Description de la carte</label>
+              <input type="text" class="form-control" name="map_description_popup" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapX">Coordonnées de longitude</label>
+              <input type="text" class="form-control" name="map_x" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapY">Coordonnées de latitude</label>
+              <input type="text" class="form-control" name="map_y" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapNominateur">Donnée précise</label>
+              <h6>Ex: pour le jeu de données Parking, il faut mettre le champs des places libres "dp_place_disponible"</h6>
+              <input type="text" class="form-control" name="map_nominateur" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapDenominateur">Données générales</label>
+              <h6>Ex: pour le jeu de données Parking, il faut mettre le champs du nombre de toutes les places "dp_nb_places"</h6>
+              <input type="text" class="form-control" name="map_denominateur" >
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputMapDescription">Description de la carte</label>
-            <input type="text" class="form-control" name="map_description_popup" >
+
+          <!-- Carte depuis fichier 'kml' -->
+          <div id="kmlFile_map" style="display:none">
+            <div class="form-group col-md-10">
+              <h3>KML file</h3>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="inputMapKmlfile">Fichier 'kml'</label>
+              <p> Entrer le fichier kml. </p>
+              <h6>Ex : pour le jeu de données IRIS "quartier_iris_2008.kml"</h6>
+              <input type="text" class="form-control" name="map_kml_file" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapKmlValue">Valeur</label>
+              <!-- <h6>Ex: pour le jeu de données Parking, il faut mettre le champs des places libres "dp_place_disponible"</h6> -->
+              <input type="text" class="form-control" name="map_kml_value" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMapKmlName">Nom</label>
+              <!-- <h6>Ex: pour le jeu de données Parking, il faut mettre le champs du nombre de toutes les places "dp_nb_places"</h6> -->
+              <input type="text" class="form-control" name="map_kml_file" >
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputMapX">Coordonnées de longitude</label>
-            <input type="text" class="form-control" name="map_x" >
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputMapY">Coordonnées de latitude</label>
-            <input type="text" class="form-control" name="map_y" >
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputMapNominateur">Donnée précise</label>
-            <h6>Ex: pour le jeu de données Parking, il faut mettre le champs des places libres "dp_place_disponible"</h6>
-            <input type="text" class="form-control" name="map_nominateur" >
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputMapDenominateur">Données générales</label>
-            <h6>Ex: pour le jeu de données Parking, il faut mettre le champs du nombre de toutes les places "dp_nb_places"</h6>
-            <input type="text" class="form-control" name="map_denominateur" >
-          </div>
+
         </div>
         <!-- The timeline  -->
         <div id="theTimeline" class="form-row" style="display:none">
