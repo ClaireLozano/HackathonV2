@@ -4,7 +4,13 @@
 <?php
 
 //Afficher les données
-//echo $_POST['datatype'];
+$datatypeArray =  $_POST['datatype'];
+$tableau = 'type_table';
+$carte = 'type_map';
+$graphe = 'type_graphe';
+$timeline = 'type_timeline';
+
+
 
 $years = $_POST['timeline_dataComposition_year_list'];
 $years_value = $_POST['timeline_dataComposition_year_value_list'];
@@ -24,44 +30,80 @@ $postArray = array(
         "value" => $_POST['value_dictY'],
         "initValue" => $_POST['initValue_dictY'],
         "newValue" => $_POST['newValue_dictY']
-      ),
-  "graph" => array(
-        "possibleGraphs" => $_POST['possibleGraphs'],
-        "dataComposition" => array(
-          "excludeLines" => $_POST['dataComposition_excludeLines'],
-          "title" => $_POST['dataComposition_title'],
-          "value" => $_POST['dataComposition_value'],
-          "y_axis" => $_POST['dataComposition_y_axis'],
-          "x_axis" => $_POST['dataComposition_x_axis']
-        )
-      ),
-  "table" => array(
-        "dataComposition" => array(
-          "title" => $_POST['table_dataComposition_title'],
-          "keys_list" => $_POST['table_dataComposition_keys_list'],
-          "value_list" => $_POST['table_dataComposition_value_list']
-        )
-      ),
-  "map" => array(
-        "x" => $_POST['map_x'],
-        "y" => $_POST['map_y'],
-        "name" => $_POST['map_name'],
-        "nominateur" => $_POST['map_nominateur'],
-        "denominateur" => $_POST['map_denominateur'],
-        "description_popup" => $_POST['map_description_popup']
-  ),
-  "timeline" => array(
-        "actualDate" => $_POST['actualDate']
-  )
+      )
 );
-$dates_timeline = array();
-foreach( $years as $key=>$value)
-{
-  $dates_timeline[$years[$key]] =  $years_value[$key];
+
+
+
+
+//Grahes :
+$grapheArray = array(
+      "possibleGraphs" => $_POST['possibleGraphs'],
+      "dataComposition" => array(
+        "excludeLines" => $_POST['dataComposition_excludeLines'],
+        "title" => $_POST['dataComposition_title'],
+        "value" => $_POST['dataComposition_value'],
+        "y_axis" => $_POST['dataComposition_y_axis'],
+        "x_axis" => $_POST['dataComposition_x_axis']
+      )
+    );
+//Tableaux :
+$tableauArray = array(
+      "dataComposition" => array(
+        "title" => $_POST['table_dataComposition_title'],
+        "keys_list" => $_POST['table_dataComposition_keys_list'],
+        "value_list" => $_POST['table_dataComposition_value_list']
+      )
+    );
+
+//Cartes :
+$carteArray = array(
+      "x" => $_POST['map_x'],
+      "y" => $_POST['map_y'],
+      "name" => $_POST['map_name'],
+      "nominateur" => $_POST['map_nominateur'],
+      "denominateur" => $_POST['map_denominateur'],
+      "description_popup" => $_POST['map_description_popup'],
+      "kml" => $_POST['map_kml_file'],
+      "value" => $_POST['map_kml_value'],
+      "name" => $_POST['map_kml_file']
+);
+
+// Timeline :
+$timelineArray = array(
+      "actualDate" => $_POST['actualDate']);
+
+
+
+
+// Type d'affichage des données :
+foreach ($datatypeArray as $key => $value) {
+  if ($value == $graphe) {
+    $postArray['graph'] = $grapheArray;
+  }
+  if ($value == $tableau) {
+    $postArray['table'] = $tableauArray;
+  }
+  if ($value == $carte) {
+    $postArray['map'] = $carteArray;
+  }
+  if ($value == $timeline) {
+    $postArray['timeline'] = $timelineArray;
+    $dates_timeline = array();
+    $dates_timelineArray = $postArray['timeline'];
+    foreach( $years as $key=>$value)
+    {
+      $dates_timeline[$years[$key]] =  $years_value[$key];
+
+    }
+    // Add the dates for the timeline :
+    $postArray['timeline']['dates'] = $dates_timeline;
+
+  }
 
 }
-// Add the dates for the timeline :
-$postArray['dates'] = $dates_timeline;
+
+
 
 $json = json_encode( $postArray );
 
