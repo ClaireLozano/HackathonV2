@@ -146,14 +146,29 @@ function mapChoice() {
         document.getElementById('new_map').style.display = 'block';
 				document.getElementById('kmlFile_map').style.display = 'none';
 				$("#new_map :input.form-control").prop('required',true);
+				$("#kmlFile_map :input.form-control").prop('required',false);
+
 
      }
-
-
   	else if(document.getElementById('map_fileKml').checked){
         document.getElementById('kmlFile_map').style.display = 'block';
 				document.getElementById('new_map').style.display = 'none';
 				$("#kmlFile_map :input.form-control").prop('required',true);
+				$("#new_map :input.form-control").prop('required',false);
+
+     }
+}
+
+function addDictionary() {
+    if (document.getElementById('add_dict').checked) {
+        document.getElementById('theDictionary').style.display = 'block';
+
+				$("#theDictionary :input.form-control").prop('required',true);
+
+     }
+  	else if(!document.getElementById('map_fileKml').checked){
+				document.getElementById('theDictionary').style.display = 'none';
+				$("#theDictionary :input.form-control").prop('required',false);
 
      }
 

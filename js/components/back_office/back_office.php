@@ -33,25 +33,35 @@
             <p>Ce bout de lien sert à faire la relation entre la plateforme et le service web. (Ex: "&db=budget&table=bp_2014_fonction&format=json")</p>
             <input type="text" class="form-control" name="link" required>
           </div>
-          <div class="form-group col-md-6">
-            <label for="link">Titre des colonnes (dictionnaire)</label>
-            <p>Lien vers le dictionnaire</p>
-            <input type="text" class="form-control col-md-4" name="link_dictX" required>
-            <p>Valeur initianle qu'on souhaite remplacer</p>
-            <input type="text" class="form-control col-md-4" name="initValue_dictX" required>
-            <p>Nouvelle valeur qui remplacera la valeur initiale</p>
-            <input type="text" class="form-control col-md-4" name="newValue_dictX" required>
+          <div class="form-group col-md-10">
+            <label for="link">Dictionnaire</label>
+            <p>Avez-vous besoin d'un dictionnaire ?</p>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="checkDict" onclick="addDictionary()" id="add_dict" value="add_dictionary">Saisir dictionnaire</label>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="link">Toutes les colonnes (dictionnaire)</label>
-            <p>Lien vers le dictionnaire</p>
-            <input type="text" class="form-control col-md-3" name="link_dictY" required>
-            <p>Valeur de la colonne</p>
-            <input type="text" class="form-control col-md-3" name="value_dictY" required>
-            <p>Valeur initianle qu'on souhaite remplacer</p>
-            <input type="text" class="form-control col-md-3" name="initValue_dictY" required>
-            <p>Nouvelle valeur qui remplacera la valeur initiale</p>
-            <input type="text" class="form-control col-md-3" name="newValue_dictY" required>
+          <!-- The dictionary -->
+          <div id="theDictionary" class="form-row" style="display:none">
+            <div class="form-group col-md-6">
+              <label for="link">Titre des colonnes (dictionnaire)</label>
+              <p>Lien vers le dictionnaire</p>
+              <input type="text" class="form-control col-md-4" name="link_dictX">
+              <p>Valeur initianle qu'on souhaite remplacer</p>
+              <input type="text" class="form-control col-md-4" name="initValue_dictX">
+              <p>Nouvelle valeur qui remplacera la valeur initiale</p>
+              <input type="text" class="form-control col-md-4" name="newValue_dictX">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="link">Toutes les colonnes (dictionnaire)</label>
+              <p>Lien vers le dictionnaire</p>
+              <input type="text" class="form-control col-md-3" name="link_dictY">
+              <p>Valeur de la colonne</p>
+              <input type="text" class="form-control col-md-3" name="value_dictY">
+              <p>Valeur initianle qu'on souhaite remplacer</p>
+              <input type="text" class="form-control col-md-3" name="initValue_dictY">
+              <p>Nouvelle valeur qui remplacera la valeur initiale</p>
+              <input type="text" class="form-control col-md-3" name="newValue_dictY">
+            </div>
           </div>
           <div class="form-group col-md-10">
             <label for="inputDataType">Type d'affichage de données :</label>
@@ -65,6 +75,8 @@
             </div>
           </div>
         </div>
+
+
 
         <!-- The graphe  -->
         <div id ="theGraph" class="form-row" style="display:none">
