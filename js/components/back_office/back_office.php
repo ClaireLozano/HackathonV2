@@ -16,42 +16,42 @@
           <div class="form-group col-md-10">
             <label for="title">Titre de la données</label>
             <p>Correspond au titre à afficher sur la page de visualisation (Ex: "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF - BP 2017 - FONCTION"</p>
-            <input type="text" class="form-control" name="title" >
+            <input type="text" class="form-control" name="title" required>
           </div>
           <div class="form-group col-md-10">
             <label for="inputDescriptionData">Description des données</label>
             <p>Il est possible d'afficher une description de la données et ainsi guider les utilisateurs dans la lecture des données.</p>
-            <textarea form="form" type="text" class="form-control" name="description" ></textarea>
+            <textarea form="form" type="text" class="form-control" name="description" required></textarea>
           </div>
           <div class="form-group col-md-10">
             <label for="fileName">Nom du fichier métadonnées</label>
             <p>Le fichier doit prendre le nom de l'identifiant de la données (Ex: "disponibilite_parking")</p>
-            <input type="text" class="form-control" name="fileName" >
+            <input type="text" class="form-control" name="fileName" required>
           </div>
           <div class="form-group col-md-10">
             <label for="link">Lien vers les données</label>
             <p>Ce bout de lien sert à faire la relation entre la plateforme et le service web. (Ex: "&db=budget&table=bp_2014_fonction&format=json")</p>
-            <input type="text" class="form-control" name="link" >
+            <input type="text" class="form-control" name="link" required>
           </div>
           <div class="form-group col-md-6">
             <label for="link">Titre des colonnes (dictionnaire)</label>
             <p>Lien vers le dictionnaire</p>
-            <input type="text" class="form-control col-md-4" name="link_dictX" >
+            <input type="text" class="form-control col-md-4" name="link_dictX" required>
             <p>Valeur initianle qu'on souhaite remplacer</p>
-            <input type="text" class="form-control col-md-4" name="initValue_dictX" >
+            <input type="text" class="form-control col-md-4" name="initValue_dictX" required>
             <p>Nouvelle valeur qui remplacera la valeur initiale</p>
-            <input type="text" class="form-control col-md-4" name="newValue_dictX" >
+            <input type="text" class="form-control col-md-4" name="newValue_dictX" required>
           </div>
           <div class="form-group col-md-6">
             <label for="link">Toutes les colonnes (dictionnaire)</label>
             <p>Lien vers le dictionnaire</p>
-            <input type="text" class="form-control col-md-3" name="link_dictY" >
+            <input type="text" class="form-control col-md-3" name="link_dictY" required>
             <p>Valeur de la colonne</p>
-            <input type="text" class="form-control col-md-3" name="value_dictY" >
+            <input type="text" class="form-control col-md-3" name="value_dictY" required>
             <p>Valeur initianle qu'on souhaite remplacer</p>
-            <input type="text" class="form-control col-md-3" name="initValue_dictY" >
+            <input type="text" class="form-control col-md-3" name="initValue_dictY" required>
             <p>Nouvelle valeur qui remplacera la valeur initiale</p>
-            <input type="text" class="form-control col-md-3" name="newValue_dictY" >
+            <input type="text" class="form-control col-md-3" name="newValue_dictY" required>
           </div>
           <div class="form-group col-md-10">
             <label for="inputDataType">Type d'affichage de données :</label>
@@ -106,7 +106,7 @@
           <div class="form-group col-md-6">
             <label for="inputGraphTitle">Nom de l'axe des ordonnées</label>
             <p>Le nom de l'axe des ordonnées.</p>
-            <h6>Ex: pour le jeu de données Parking : Nombre de places disponibles</h6>
+            <h6>Ex: pour le jeu de données Parking 'Nombre de places disponibles'</h6>
             <input type="text" class="form-control" name="dataComposition_y_axis" >
           </div>
         </div>

@@ -38,17 +38,17 @@ $postArray = array(
 
 
 
-//Grahes :
-// $grapheArray = array(
-//       "possibleGraphs" => $_POST['possibleGraphs'],
-//       "dataComposition" => array(
-//         "excludeLines" => $_POST['dataComposition_excludeLines'],
-//         "title" => $_POST['dataComposition_title'],
-//         "value" => $_POST['dataComposition_value'],
-//         "y_axis" => $_POST['dataComposition_y_axis'],
-//         "x_axis" => $_POST['dataComposition_x_axis']
-//       )
-//     );
+Grahes :
+$grapheArray = array(
+      "possibleGraphs" => $_POST['possibleGraphs'],
+      "dataComposition" => array(
+        "excludeLines" => $_POST['dataComposition_excludeLines'],
+        "title" => $_POST['dataComposition_title'],
+        "value" => $_POST['dataComposition_value'],
+        "y_axis" => $_POST['dataComposition_y_axis'],
+        "x_axis" => $_POST['dataComposition_x_axis']
+      )
+    );
 
 //Tableaux :
 $tableauArray = array(
@@ -60,17 +60,17 @@ $tableauArray = array(
     );
 
 //Cartes :
-$carteArray = array(
-      "x" => $_POST['map_x'],
-      "y" => $_POST['map_y'],
-      "name" => $_POST['map_name'],
-      "nominateur" => $_POST['map_nominateur'],
-      "denominateur" => $_POST['map_denominateur'],
-      "description_popup" => $_POST['map_description_popup'],
-      "kml" => $_POST['map_kml_file'],
-      "value" => $_POST['map_kml_value'],
-      "name" => $_POST['map_kml_file']
-);
+// $carteArray = array(
+//       "x" => $_POST['map_x'],
+//       "y" => $_POST['map_y'],
+//       "name" => $_POST['map_name'],
+//       "nominateur" => $_POST['map_nominateur'],
+//       "denominateur" => $_POST['map_denominateur'],
+//       "description_popup" => $_POST['map_description_popup'],
+//       "kml" => $_POST['map_kml_file'],
+//       "value" => $_POST['map_kml_value'],
+//       "name" => $_POST['map_kml_file']
+// );
 
 // Timeline :
 $timelineArray = array(
@@ -108,7 +108,7 @@ foreach ($datatypeArray as $key => $value) {
             "value" => $_POST['map_kml_value'],
             "name" => $_POST['map_kml_file']
       );
-      
+
       $postArray['map'] = $carteArray;
     }
 
