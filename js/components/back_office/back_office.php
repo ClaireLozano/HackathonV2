@@ -184,12 +184,12 @@
             </div>
             <div class="form-group col-md-6">
               <label for="inputMapKmlValue">Valeur</label>
-              <!-- <h6>Ex: pour le jeu de données Parking, il faut mettre le champs des places libres "dp_place_disponible"</h6> -->
+              <h6>Ex: pour le jeu de données IRIS "pop_rp_2009"</h6>
               <input type="text" class="form-control" name="map_kml_value" >
             </div>
             <div class="form-group col-md-6">
               <label for="inputMapKmlName">Nom</label>
-              <!-- <h6>Ex: pour le jeu de données Parking, il faut mettre le champs du nombre de toutes les places "dp_nb_places"</h6> -->
+              <h6>Ex: pour le jeu de données IRIS "libellez"</h6>
               <input type="text" class="form-control" name="map_kml_file" >
             </div>
           </div>

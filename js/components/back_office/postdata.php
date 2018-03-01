@@ -12,6 +12,8 @@ $timeline = 'type_timeline';
 
 
 
+
+
 $years = $_POST['timeline_dataComposition_year_list'];
 $years_value = $_POST['timeline_dataComposition_year_value_list'];
 
@@ -37,16 +39,17 @@ $postArray = array(
 
 
 //Grahes :
-$grapheArray = array(
-      "possibleGraphs" => $_POST['possibleGraphs'],
-      "dataComposition" => array(
-        "excludeLines" => $_POST['dataComposition_excludeLines'],
-        "title" => $_POST['dataComposition_title'],
-        "value" => $_POST['dataComposition_value'],
-        "y_axis" => $_POST['dataComposition_y_axis'],
-        "x_axis" => $_POST['dataComposition_x_axis']
-      )
-    );
+// $grapheArray = array(
+//       "possibleGraphs" => $_POST['possibleGraphs'],
+//       "dataComposition" => array(
+//         "excludeLines" => $_POST['dataComposition_excludeLines'],
+//         "title" => $_POST['dataComposition_title'],
+//         "value" => $_POST['dataComposition_value'],
+//         "y_axis" => $_POST['dataComposition_y_axis'],
+//         "x_axis" => $_POST['dataComposition_x_axis']
+//       )
+//     );
+
 //Tableaux :
 $tableauArray = array(
       "dataComposition" => array(
@@ -85,7 +88,30 @@ foreach ($datatypeArray as $key => $value) {
     $postArray['table'] = $tableauArray;
   }
   if ($value == $carte) {
-    $postArray['map'] = $carteArray;
+
+    if ($_POST['maptype'] == 'newmap') {
+      // Nouvelle carte :
+      $carteArray = array(
+            "x" => $_POST['map_x'],
+            "y" => $_POST['map_y'],
+            "name" => $_POST['map_name'],
+            "nominateur" => $_POST['map_nominateur'],
+            "denominateur" => $_POST['map_denominateur'],
+            "description_popup" => $_POST['map_description_popup']
+      );
+
+      $postArray['map'] = $carteArray;
+    } else if ($_POST['maptype'] == 'kmlfile'){
+      // Carte depuis fichier kml :
+      $carteArray = array(
+            "kml" => $_POST['map_kml_file'],
+            "value" => $_POST['map_kml_value'],
+            "name" => $_POST['map_kml_file']
+      );
+      
+      $postArray['map'] = $carteArray;
+    }
+
   }
   if ($value == $timeline) {
     $postArray['timeline'] = $timelineArray;
