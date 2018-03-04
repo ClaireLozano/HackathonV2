@@ -82,7 +82,7 @@ function arcTween(d) {
 }
 
 function initPie(dataToTreat, metadata, box){
-  var params = getParams(dataToTreat,metadata,box)
+  var params = getParams(dataToTreat,metadata)
 
   var vis = d3.select('#' + box)
       .append("svg")
@@ -143,7 +143,7 @@ function initPie(dataToTreat, metadata, box){
             })[0].values;
 
             console.log('newDataToTreat', params.dataToTreat);
-      })
+      });
 
 
   arcs.append("text")
