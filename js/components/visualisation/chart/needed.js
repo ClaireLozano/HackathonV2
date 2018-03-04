@@ -1,4 +1,4 @@
-function getValueTitle(dataToTreat, metadata){
+function getValueTitle(dataToTreat, metadata, level){
     // load the data
     var realTitle = metadata.graph.dataComposition.title
     var realValue = metadata.graph.dataComposition.value
@@ -14,10 +14,10 @@ function getValueTitle(dataToTreat, metadata){
         d[realValue] = +d[realValue]
     })
 
-    if (metadata.graph.dataComposition.category0) {
+    if (catProfondeur[level]) {
         var nested = d3.nest()
             .key(function (d) {
-                return d[catProfondeur[0]]
+                return d[catProfondeur[level]]
             })
             .rollup(function (v) {
                 return d3.sum(v, function (d) {
@@ -27,12 +27,7 @@ function getValueTitle(dataToTreat, metadata){
             })
             .entries(dataToTreat)
 
-        // Premier niveau de filtre
         dataToTreat = nested
-        /*
-        dataToTreat = nested.filter(function (d) {
-            return d.key === "Recette"
-        })[0].values*/
         realTitle = "key"
         realValue = "values"
     }
@@ -62,9 +57,9 @@ function getValueTitle(dataToTreat, metadata){
     }
 }
 
-function getParams(dataToTreat, metadata) {
+function getParams(dataToTreat, metadata, level) {
     var COLORHOVER = "brown"
-    var valueTitle = getValueTitle(dataToTreat,metadata)
+    var valueTitle = getValueTitle(dataToTreat,metadata, level)
     var dataToTreat = valueTitle.dataToTreat
     var originalData = dataToTreat
     var w = 800, h = 500
@@ -78,7 +73,7 @@ function getParams(dataToTreat, metadata) {
     var height = h - margin.top - margin.bottom
     var r = 200;
     var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
-    var newDataToTreat
+
     return {
         "realTitle": valueTitle.realTitle,
         "realValue": valueTitle.realValue,

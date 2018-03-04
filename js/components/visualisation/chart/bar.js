@@ -1,5 +1,5 @@
-function initBar(dataToTreat, metadata, box) {
-    params = getParams(dataToTreat, metadata);
+function initBar(dataToTreat, metadata, box, level) {
+    params = getParams(dataToTreat, metadata, level);
 
     var x = d3.scale.ordinal()
         .domain(dataToTreat.map(function (entry) {

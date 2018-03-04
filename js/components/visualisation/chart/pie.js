@@ -81,8 +81,8 @@ function arcTween(d) {
     };
 }
 
-function initPie(dataToTreat, metadata, box){
-  var params = getParams(dataToTreat,metadata)
+function initPie(dataToTreat, metadata, box, level){
+  var params = getParams(dataToTreat,metadata, level)
 
   var vis = d3.select('#' + box)
       .append("svg")
@@ -121,7 +121,7 @@ function initPie(dataToTreat, metadata, box){
       })
       .attr("d", arc)
       .on("click", function (node, i) {
-        initHorizontalBar(dataToTreat, metadata, box)
+        initHorizontalBar(dataToTreat, metadata, box, level+1)
       });
 
   arcs.append("text")
