@@ -11,7 +11,7 @@
       "excludeLines": [],
       "title": "budg_ss_fction",
       "value": "budg_montant",
-      "category0": "budg_dep_rec",
+      "category0": "budg_cat",
       "category1": "budg_section"
     }
   },

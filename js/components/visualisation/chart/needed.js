@@ -59,9 +59,9 @@ function getValueTitle(dataToTreat, metadata, level) {
 
 function getParams(dataToTreat, metadata, level) {
     var COLORHOVER = "brown"
+    var originalData = dataToTreat
     var valueTitle = getValueTitle(dataToTreat, metadata, level)
     var dataToTreat = valueTitle.dataToTreat
-    var originalData = dataToTreat
     var w = 800, h = 500
     var margin = {
         top: 58,
@@ -90,7 +90,9 @@ function getParams(dataToTreat, metadata, level) {
     }
 }
 
-function initNewGraph(dataToTreat, metadata, box, level) {
+function initNewGraph(dataToTreat, metadata, box, level, previousValue) {
+    console.log(previousValue)
+
     var catProfondeur = []
     for (value in metadata.graph.dataComposition) {
         if (value.substring(0, 8) == "category")
@@ -102,7 +104,14 @@ function initNewGraph(dataToTreat, metadata, box, level) {
         d3.selectAll(".chart>p").remove();
         for (var i = 0; i<=level; i++)
         {
-            console.log(metadata.graph.possibleGraphs[i])
+
+            if(i==1){
+                console.log(dataToTreat)
+                dataToTreat = dataToTreat.filter(function (d) {
+                    return d[metadata.graph.dataComposition.category0] === previousValue
+                })
+                console.log("After filter",dataToTreat)
+            }
             switch (metadata.graph.possibleGraphs[i]) {
                 case "bar":
                     initBar(dataToTreat, metadata, box, i);
