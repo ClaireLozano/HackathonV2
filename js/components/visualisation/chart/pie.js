@@ -81,7 +81,7 @@ function arcTween(d) {
     };
 }
 
-function initPie(dataToTreat, metadata, box){.
+function initPie(dataToTreat, metadata, box){
   var params = getParams(dataToTreat,metadata,box)
 
   var vis = d3.select('#' + box)
