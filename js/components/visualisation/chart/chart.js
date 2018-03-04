@@ -9,8 +9,6 @@ function drawGraph(dataToTreat, metadata, box) {
     if(metadata.graph.dataComposition.category0){
       var originalData = dataToTreat
       initPie(dataToTreat, metadata, box)
-      initHorizontalBar(dataToTreat, metadata, box)
-
     } else {
       var select = d3.select('#' + box)
       .append('select')

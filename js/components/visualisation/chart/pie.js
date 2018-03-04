@@ -121,28 +121,7 @@ function initPie(dataToTreat, metadata, box){
       })
       .attr("d", arc)
       .on("click", function (node, i) {
-        var nested = d3.nest()
-            .key(function (d) {
-                // console.log("nest",d);
-                return d[metadata.graph.dataComposition.category0];
-            })
-            .key(function (d) {
-                // console.log("nest",originalData);
-                return d[metadata.graph.dataComposition.category1];
-            })
-            .rollup(function (v) {
-                return d3.sum(v, function (d) {
-                        return d[metadata.graph.dataComposition.value];
-                    }
-                )
-            })
-            .entries(params.originalData);
-
-            params.dataToTreat = nested.filter(function (d) {
-                return d.key === node.data.key
-            })[0].values;
-
-            console.log('newDataToTreat', params.dataToTreat);
+        initHorizontalBar(dataToTreat, metadata, box)
       });
 
 
