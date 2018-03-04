@@ -39,7 +39,7 @@ function initdoughnut(dataToTreat, metadata, box, level) {
         })
         .attr("d", arc)
         .on("click", function (node, i) {
-          initNewGraph(dataToTreat, metadata, box, level+1)
+          initNewGraph(dataToTreat, metadata, box, level+1, node.data[params.realTitle])
         });
 
     arcs.append("text")

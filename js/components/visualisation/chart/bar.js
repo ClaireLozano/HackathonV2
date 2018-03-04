@@ -121,7 +121,7 @@ function initBar(dataToTreat, metadata, box, level) {
                 d3.select(this).style("fill", params.ordinalScaleColor(i))
             })
             .on("click", function (d, i) {
-              initNewGraph(dataToTreat, metadata, box, level+1)
+              initNewGraph(dataToTreat, metadata, box, level+1, d[params.realTitle])
             });
 
         this.selectAll(".bar-label")
