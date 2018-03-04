@@ -154,8 +154,8 @@ function initPie(dataToTreat, metadata, box){
       })
       .attr("text-anchor", "middle")                          //center the text on it's origin
       .text(function (d, i) {
-          return dataToTreat[i][params.realTitle] +
+          return params.dataToTreat[i][params.realTitle] +
               "\n" +
-              dataToTreat[i][params.realValue]
+              params.dataToTreat[i][params.realValue]
       })        //get the label from our original data array
 }
