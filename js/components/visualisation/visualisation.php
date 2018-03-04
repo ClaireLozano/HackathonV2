@@ -183,6 +183,7 @@
 		<script type="text/javascript" src="map/geoloc.js"></script>
 		<script type="text/javascript" src="map/map.js"></script>
 
+        <script type="text/javascript" src="chart/needed.js"></script>
 		<script type="text/javascript" src="chart/bar.js"></script>
 		<script type="text/javascript" src="chart/horizontalBar.js"></script>
 		<script type="text/javascript" src="chart/pie.js"></script>
