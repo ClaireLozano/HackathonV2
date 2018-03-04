@@ -1,5 +1,5 @@
 function initHorizontalBar(dataToTreat, metadata, box){
-    params = getParams(dataToTreat, metadata, box);
+    params = getParams(dataToTreat, metadata);
     
   var x = d3.scale.linear()
       .domain([0, d3.max(params.dataToTreat, function (d) {
