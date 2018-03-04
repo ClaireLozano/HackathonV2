@@ -124,7 +124,6 @@ function initPie(dataToTreat, metadata, box){
         initHorizontalBar(dataToTreat, metadata, box)
       });
 
-
   arcs.append("text")
       .attr("transform", function (d) {                    //set the label's origin to the center of the arc
           d.innerRadius = 0
