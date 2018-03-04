@@ -96,11 +96,11 @@ function initBar(dataToTreat, metadata, box) {
 
     function plot(parametres) {
 
-        x.domain(dataToTreat.map(function (entry) {
+        x.domain(params.dataToTreat.map(function (entry) {
             return entry.dp_libelle
         }))
 
-        y.domain([0, d3.max(dataToTreat, function (d) {
+        y.domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
 
@@ -175,7 +175,7 @@ function initBar(dataToTreat, metadata, box) {
     }
 
     plot.call(chart, {
-        data: dataToTreat,
+        data: params.dataToTreat,
         axis: {
             x: xAxis,
             y: yAxis

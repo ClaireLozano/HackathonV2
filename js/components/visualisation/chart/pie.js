@@ -86,14 +86,14 @@ function initPie(dataToTreat, metadata, box){
 
   var vis = d3.select('#' + box)
       .append("svg")
-      .data([dataToTreat])
+      .data([params.dataToTreat])
       .attr("width", params.w)
       .attr("height", params.h)
       .append("g")
       .attr("transform", "translate(" + params.r + "," + params.r + ")")
 
   var arc = d3.svg.arc()
-      .outerRadius(params.r)
+      .outerRadius(200)
 
   var pie = d3.layout.pie()
       .value(function (d) {
@@ -111,7 +111,7 @@ function initPie(dataToTreat, metadata, box){
           return params.ordinalScaleColor(i)
       })
       .on("mouseover", function (d, i) {
-          d3.select(this).style("fill", COLORHOVER)
+          d3.select(this).style("fill", params.COLORHOVER)
       })
       .on("mousemove", function (d, i) {
 
@@ -138,11 +138,11 @@ function initPie(dataToTreat, metadata, box){
             })
             .entries(params.originalData);
 
-            dataToTreat = nested.filter(function (d) {
+            params.dataToTreat = nested.filter(function (d) {
                 return d.key === node.data.key
             })[0].values;
 
-            console.log('newDataToTreat', dataToTreat);
+            console.log('newDataToTreat', params.dataToTreat);
       })
 
 
