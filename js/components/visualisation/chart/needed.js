@@ -1,9 +1,7 @@
-function getParams(dataToTreat, metadata, box) {
-// load the data
+function getValueTitle(dataToTreat, metadata){
+    // load the data
     var realTitle = metadata.graph.dataComposition.title
     var realValue = metadata.graph.dataComposition.value
-    var originalData = dataToTreat
-    var COLORHOVER = "brown"
 
     var catProfondeur = []
     for (value in metadata.graph.dataComposition) {
@@ -19,13 +17,8 @@ function getParams(dataToTreat, metadata, box) {
     if (metadata.graph.dataComposition.category0) {
         var nested = d3.nest()
             .key(function (d) {
-                // console.log("nest",d)
-                //return d[metadata.graph.dataComposition.category0]
                 return d[catProfondeur[0]]
             })
-            /*.key(function (d) {
-                return d[metadata.graph.dataComposition.category1]
-            })*/
             .rollup(function (v) {
                 return d3.sum(v, function (d) {
                         return d[realValue]
@@ -62,6 +55,18 @@ function getParams(dataToTreat, metadata, box) {
         })
     }
 
+    return {
+        "realTitle":realTitle,
+        "realValue":realValue,
+        "dataToTreat":dataToTreat
+    }
+}
+
+function getParams(dataToTreat, metadata) {
+    var COLORHOVER = "brown"
+    var valueTitle = getValueTitle(dataToTreat,metadata)
+    var dataToTreat = valueTitle.dataToTreat
+    var originalData = dataToTreat
     var w = 800, h = 500
     var margin = {
         top: 58,
@@ -75,8 +80,8 @@ function getParams(dataToTreat, metadata, box) {
     var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
     var newDataToTreat
     return {
-        "realTitle":realTitle,
-        "realValue":realValue,
+        "realTitle": valueTitle.realTitle,
+        "realValue": valueTitle.realValue,
         "width":width,
         "height":height,
         "ordinalScaleColor":ordinalScaleColor,

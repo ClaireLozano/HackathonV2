@@ -1,5 +1,5 @@
 function initdoughnut(dataToTreat, metadata, box) {
-    params = getParams(dataToTreat, metadata, box);
+    params = getParams(dataToTreat, metadata);
 
     var vis = d3.select('#' + box)
         .append("svg")
