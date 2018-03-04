@@ -7,8 +7,7 @@ function drawGraph(dataToTreat, metadata, box) {
     var level = 0
 
     if (metadata.graph.dataComposition.category0) {
-        var originalData = dataToTreat
-        initPie(dataToTreat, metadata, box, level)
+        initNewGraph(dataToTreat,metadata,box,0)
     }
     else {
         var select = d3.select('#' + box)

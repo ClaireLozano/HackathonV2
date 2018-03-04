@@ -38,7 +38,7 @@ function initPie(dataToTreat, metadata, box, level){
       })
       .attr("d", arc)
       .on("click", function (node, i) {
-        initHorizontalBar(dataToTreat, metadata, box, level+1)
+        initNewGraph(dataToTreat, metadata, box, level+1)
       });
 
   arcs.append("text")
