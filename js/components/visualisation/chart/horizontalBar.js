@@ -1,6 +1,6 @@
 function initHorizontalBar(dataToTreat, metadata, box, level){
     params = getParams(dataToTreat, metadata, level);
-    
+
   var x = d3.scale.linear()
       .domain([0, d3.max(params.dataToTreat, function (d) {
           return d[params.realValue]
@@ -57,6 +57,10 @@ function initHorizontalBar(dataToTreat, metadata, box, level){
           .on("mouseout", function (d, i) {
               d3.select(this).style("fill", params.ordinalScaleColor(i))
           })
+          .on("click", function (d, i) {
+            initNewGraph(dataToTreat, metadata, box, level+1)
+          });
+          
       this.selectAll(".bar-label")
           .data(parametres.data)
           .enter()
