@@ -85,6 +85,7 @@ function getParams(dataToTreat, metadata, box) {
         "h":h,
         "COLORHOVER":COLORHOVER,
         "r":r,
-        "originalData":originalData
+        "originalData":originalData,
+        "dataToTreat":dataToTreat
     }
 }

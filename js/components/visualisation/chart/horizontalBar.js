@@ -2,13 +2,13 @@ function initHorizontalBar(dataToTreat, metadata, box){
     params = getParams(dataToTreat, metadata, box);
     
   var x = d3.scale.linear()
-      .domain([0, d3.max(dataToTreat, function (d) {
+      .domain([0, d3.max(params.dataToTreat, function (d) {
           return d[params.realValue]
       })])
       .range([0, params.width])
 
   var y = d3.scale.ordinal()
-      .domain(dataToTreat.map(function (entry) {
+      .domain(params.dataToTreat.map(function (entry) {
           return entry[params.realTitle]
       }))
       .rangeBands([0, params.height])
@@ -87,7 +87,7 @@ function initHorizontalBar(dataToTreat, metadata, box){
           .call(yAxis)
   }
 
-  plotHorizontal.call(chart, {data: dataToTreat})
+  plotHorizontal.call(chart, {data: params.dataToTreat})
 
 
 }

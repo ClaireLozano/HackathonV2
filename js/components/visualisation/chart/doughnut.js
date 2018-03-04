@@ -3,7 +3,7 @@ function initdoughnut(dataToTreat, metadata, box) {
 
     var vis = d3.select('#' + box)
         .append("svg")
-        .data([dataToTreat])
+        .data([params.dataToTreat])
         .attr("width", params.w)
         .attr("height", params.h)
         .append("g")
@@ -48,7 +48,7 @@ function initdoughnut(dataToTreat, metadata, box) {
         })
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
-            return dataToTreat[i][params.realTitle] +
+            return params.dataToTreat[i][params.realTitle] +
                 "\n" +
                 dataToTreat[i][params.realValue]
         })        //get the label from our original data array
