@@ -98,20 +98,25 @@ function initNewGraph(dataToTreat, metadata, box, level) {
     }
 
     if (catProfondeur[level]) {
-        console.log(metadata.graph.possibleGraphs[level])
-        switch(metadata.graph.possibleGraphs[level]){
-            case "bar":
-                initBar(dataToTreat, metadata, box, level);
-                break;
-            case "pie":
-                initPie(dataToTreat, metadata, box, level);
-                break;
-            case "doughnut":
-                initdoughnut(dataToTreat, metadata, box, level);
-                break;
-            case "horizontalBar":
-                initHorizontalBar(dataToTreat, metadata, box, level);
-                break;
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+        for (var i = 0; i<=level; i++)
+        {
+            console.log(metadata.graph.possibleGraphs[i])
+            switch (metadata.graph.possibleGraphs[i]) {
+                case "bar":
+                    initBar(dataToTreat, metadata, box, i);
+                    break;
+                case "pie":
+                    initPie(dataToTreat, metadata, box, i);
+                    break;
+                case "doughnut":
+                    initdoughnut(dataToTreat, metadata, box, i);
+                    break;
+                case "horizontalBar":
+                    initHorizontalBar(dataToTreat, metadata, box, i);
+                    break;
+            }
         }
     }
 
