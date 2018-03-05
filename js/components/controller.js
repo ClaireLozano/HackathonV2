@@ -10,6 +10,7 @@ function ajaxRequest(endUrl, callback) {
         type: "POST",
         url: '../rest.php',
         data: {functionname: 'getOpenData', arguments: endUrl},
+        async: false, // wait for a response
         success:function(data) {
         }, 
         complete: function (request, textStatus) {
