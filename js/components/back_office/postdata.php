@@ -136,11 +136,6 @@ echo $json;
 
 
 
-// make sure there were no problems
-//if( json_last_error() != JSON_ERROR_NONE ){
-//exit;  // do your error handling here instead of exiting
-// }
-
 //$file = 'output.json';
 //$current = file_get_contents($file);
 
