@@ -18,12 +18,19 @@ function addInputKeyWords(){
   //// addRemoveButton("removeLine");
 }
 
+function requiredInputs(){
+	// theElement = document.getElementById('theGraph');
+	$("#theGraph :input.form-control").prop('required',true);
+
+
+}
+
 function addInput(){
 
       var addto = "#value" + next;
       var addRemove = "#value" + (next);
       next = next + 1;
-      var newIn = '<input autocomplete="off" class="input form-control" id="key' + next + '" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé"><input autocomplete="off" class="input form-control" id="value' + next + '" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur">';
+      var newIn = '<input class="input form-control" id="key' + next + '" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé" required><input autocomplete="off" class="input form-control" id="value' + next + '" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur" required>';
       var newInput = $(newIn);
       var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="key">';
       var removeButton = $(removeBtn);
@@ -38,6 +45,33 @@ function addInput(){
               var keyID = "#key" + keyNum;
               var valueNum = this.id.charAt(this.id.length-1);
               var valueID = "#value" + valueNum;
+              $(this).remove();
+              $(keyID).remove();
+              $(valueID).remove();
+          });
+
+}
+
+function addInput_timeline(){
+
+      var addto = "#year_value" + next;
+      var addRemove = "#year_value" + (next);
+      next = next + 1;
+      var newIn = '<input class="input form-control" id="year' + next + '" name="timeline_dataComposition_year_list[]" type="text" placeholder="Année" required><input class="input form-control" id="year_value' + next + '" name="timeline_dataComposition_year_value_list[]" type="text" placeholder="Valeur" required>';
+      var newInput = $(newIn);
+      var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="key">';
+      var removeButton = $(removeBtn);
+      $(addto).after(newInput);
+      $(addRemove).after(removeButton);
+      $("#year" + next).attr('data-source',$(addto).attr('data-source'));
+      $("#count").val(next);
+
+          $('.remove-me').click(function(e){
+            //  e.preventDefault();
+              var keyNum = this.id.charAt(this.id.length-1);
+              var keyID = "#year" + keyNum;
+              var valueNum = this.id.charAt(this.id.length-1);
+              var valueID = "#year_value" + valueNum;
               $(this).remove();
               $(keyID).remove();
               $(valueID).remove();
@@ -70,30 +104,72 @@ function removeButton(elementId){
 }
 
 function dataTypeChoice() {
-    if (document.getElementById('nH_L').checked) {
+    if (document.getElementById('type_map').checked) {
         document.getElementById('theMap').style.display = 'block';
-        document.getElementById('theGraph').style.display = 'block';
-        document.getElementById('theTable').style.display = 'block';
     }
-    else if(document.getElementById('h_NL').checked){
-        document.getElementById('theMap').style.display = 'none';
-        document.getElementById('theGraph').style.display = 'none';
-        document.getElementById('theTable').style.display = 'block';
-     }
-     else if(document.getElementById('nH_nL').checked){
-        document.getElementById('theMap').style.display = 'none';
-        document.getElementById('theGraph').style.display = 'none';
-        document.getElementById('theTable').style.display = 'block';
-     }
-     else if(document.getElementById('h_l').checked){
-        document.getElementById('theMap').style.display = 'block';
+		if (!document.getElementById('type_map').checked) {
+				document.getElementById('theMap').style.display = 'none';
+		}
+
+    if(document.getElementById('type_graphe').checked){
         document.getElementById('theGraph').style.display = 'block';
-        document.getElementById('theTable').style.display = 'block';
+				$("#theGraph :input.form-control").prop('required',true);
      }
-     else if(document.getElementById('loc').checked){
-        document.getElementById('theMap').style.display = 'block';
-        document.getElementById('theGraph').style.display = 'block';
+		if(!document.getElementById('type_graphe').checked){
+ 				document.getElementById('theGraph').style.display = 'none';
+				$("#theGraph :input.form-control").prop('required',false);
+ 		 }
+
+   	if(document.getElementById('type_table').checked){
         document.getElementById('theTable').style.display = 'block';
+				$("#theTable :input.form-control").prop('required',true);
+     }
+  	if(!document.getElementById('type_table').checked){
+         document.getElementById('theTable').style.display = 'none';
+				 $("#theTable :input.form-control").prop('required',false);
+    }
+
+		if (document.getElementById('type_timeline').checked) {
+        document.getElementById('theTimeline').style.display = 'block';
+				$("#theTimeline :input.form-control").prop('required',true);
+    }
+		if (!document.getElementById('type_timeline').checked) {
+				document.getElementById('theTimeline').style.display = 'none';
+				$("#theTimeline :input.form-control").prop('required',false);
+		}
+
+
+}
+
+function mapChoice() {
+    if (document.getElementById('map_newMap').checked) {
+        document.getElementById('new_map').style.display = 'block';
+				document.getElementById('kmlFile_map').style.display = 'none';
+				$("#new_map :input.form-control").prop('required',true);
+				$("#kmlFile_map :input.form-control").prop('required',false);
+
+
+     }
+  	else if(document.getElementById('map_fileKml').checked){
+        document.getElementById('kmlFile_map').style.display = 'block';
+				document.getElementById('new_map').style.display = 'none';
+				$("#kmlFile_map :input.form-control").prop('required',true);
+				$("#new_map :input.form-control").prop('required',false);
+
+     }
+}
+
+function addDictionary() {
+    if (document.getElementById('add_dict').checked) {
+        document.getElementById('theDictionary').style.display = 'block';
+
+				$("#theDictionary :input.form-control").prop('required',true);
+
+     }
+  	else if(!document.getElementById('map_fileKml').checked){
+				document.getElementById('theDictionary').style.display = 'none';
+				$("#theDictionary :input.form-control").prop('required',false);
+
      }
 
 }
