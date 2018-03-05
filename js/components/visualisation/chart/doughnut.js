@@ -38,7 +38,9 @@ function initdoughnut(dataToTreat, metadata, box, level) {
             d3.select(this).style("fill", params.ordinalScaleColor(i))
         })
         .attr("d", arc)
-
+        .on("click", function (node, i) {
+          initNewGraph(dataToTreat, metadata, box, level+1, node.data[params.realTitle])
+        });
 
     arcs.append("text")
         .attr("transform", function (d) {                    //set the label's origin to the center of the arc

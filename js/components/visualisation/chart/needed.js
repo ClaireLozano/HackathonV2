@@ -1,4 +1,4 @@
-function getValueTitle(dataToTreat, metadata, level){
+function getValueTitle(dataToTreat, metadata, level) {
     // load the data
     var realTitle = metadata.graph.dataComposition.title
     var realValue = metadata.graph.dataComposition.value
@@ -51,17 +51,17 @@ function getValueTitle(dataToTreat, metadata, level){
     }
 
     return {
-        "realTitle":realTitle,
-        "realValue":realValue,
-        "dataToTreat":dataToTreat
+        "realTitle": realTitle,
+        "realValue": realValue,
+        "dataToTreat": dataToTreat
     }
 }
 
 function getParams(dataToTreat, metadata, level) {
     var COLORHOVER = "brown"
-    var valueTitle = getValueTitle(dataToTreat,metadata, level)
-    var dataToTreat = valueTitle.dataToTreat
     var originalData = dataToTreat
+    var valueTitle = getValueTitle(dataToTreat, metadata, level)
+    var dataToTreat = valueTitle.dataToTreat
     var w = 800, h = 500
     var margin = {
         top: 58,
@@ -77,15 +77,56 @@ function getParams(dataToTreat, metadata, level) {
     return {
         "realTitle": valueTitle.realTitle,
         "realValue": valueTitle.realValue,
-        "width":width,
-        "height":height,
-        "ordinalScaleColor":ordinalScaleColor,
-        "margin":margin,
-        "w":w,
-        "h":h,
-        "COLORHOVER":COLORHOVER,
-        "r":r,
-        "originalData":originalData,
-        "dataToTreat":dataToTreat
+        "width": width,
+        "height": height,
+        "ordinalScaleColor": ordinalScaleColor,
+        "margin": margin,
+        "w": w,
+        "h": h,
+        "COLORHOVER": COLORHOVER,
+        "r": r,
+        "originalData": originalData,
+        "dataToTreat": dataToTreat
     }
+}
+
+function initNewGraph(dataToTreat, metadata, box, level, previousValue) {
+    console.log(previousValue)
+
+    var catProfondeur = []
+    for (value in metadata.graph.dataComposition) {
+        if (value.substring(0, 8) == "category")
+            catProfondeur.push(metadata.graph.dataComposition[value])
+    }
+
+    if (catProfondeur[level]) {
+        d3.selectAll("svg").remove();
+        d3.selectAll(".chart>p").remove();
+        for (var i = 0; i<=level; i++)
+        {
+
+            if(i==1){
+                console.log(dataToTreat)
+                dataToTreat = dataToTreat.filter(function (d) {
+                    return d[metadata.graph.dataComposition.category0] === previousValue
+                })
+                console.log("After filter",dataToTreat)
+            }
+            switch (metadata.graph.possibleGraphs[i]) {
+                case "bar":
+                    initBar(dataToTreat, metadata, box, i);
+                    break;
+                case "pie":
+                    initPie(dataToTreat, metadata, box, i);
+                    break;
+                case "doughnut":
+                    initdoughnut(dataToTreat, metadata, box, i);
+                    break;
+                case "horizontalBar":
+                    initHorizontalBar(dataToTreat, metadata, box, i);
+                    break;
+            }
+        }
+    }
+
 }
