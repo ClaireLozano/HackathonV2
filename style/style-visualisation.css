@@ -167,6 +167,10 @@ tbody:hover tr:hover td {
 	text-shadow: 0 1px 0 #fff;
 }*/
 
+#searchTFoot {
+	width: 100%;
+}
+
 #my_table_wrapper>.row {
     margin-right: 0px;
 }

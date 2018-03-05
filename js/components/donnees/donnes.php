@@ -29,7 +29,7 @@
 						<div class="col-sm-4">
 							<div class="card">
 								<div class="card-block">
-									<a href="../visualisation/visualisation.php?type=table&amp;data=budget_2018"><div class="panel-body form-group panelBody" id="budget_2018"></div></a>
+									<a href="../visualisation/visualisation.php?type=table&amp;data=budget_2018"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 								</div>
 							</div>
 						</div>
@@ -47,7 +47,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">INSEE</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=population_2008"><div class="panel-body form-group panelBody" id="population_2008"></div></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=population_2008"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,15 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Archives</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=fiche"><div class="panel-body form-group panelBody" id="fiche"></div></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=fiche"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4" id="block13">
+						<div class="card">
+							<div class="card-block">
+								<h3 class="card-title">Prénoms - 2014</h3>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=acte_naissance_02_2014"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
@@ -72,7 +80,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Parkings</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=disponibilite_parking"><div class="panel-body form-group panelBody" id="disponibilite_parking"></div></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=disponibilite_parking"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
@@ -88,7 +96,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Budget 2017 - Fonction</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=bp_2017_fonction"><div class="panel-body form-group panelBody" id="bp_2017_fonction"></div></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=bp_2017_fonction"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
@@ -98,12 +106,6 @@
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
-	<script type="text/javascript" src="../visualisation/map/popup.js"></script>
-	<script type="text/javascript" src="../visualisation/map/bus.js"></script>
-	<script type="text/javascript" src="../visualisation/map/poste.js"></script>
-	<script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
-	<script type="text/javascript" src="../visualisation/map/map.js"></script>
-	<script type="text/javascript" src="../visualisation/chart/chart.js"></script>
 	<script type="text/javascript" src="../controller.js"></script>
 	<script type="text/javascript" src="../util.js"></script>
 	<script type="text/javascript" src="donnees.js"></script>

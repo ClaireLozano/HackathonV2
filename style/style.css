@@ -156,6 +156,9 @@ table {
     font-size: .85em;
 }
 
+#searchTFoot {
+    width: 100%;
+}
 
 /* CHART */
 

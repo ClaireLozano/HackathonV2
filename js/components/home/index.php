@@ -22,9 +22,7 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box0" class="panel-title pull-left"></p>
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
-                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
-                    </a>
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
 
@@ -40,10 +38,7 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box1" class="panel-title pull-left"></p>
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
-                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
-                    </a>
-                    
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
                 <div id='box1' class="panel-body form-group panelBody">
@@ -59,10 +54,7 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box2" class="panel-title pull-left"></p>
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
-                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
-                    </a>
-
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
 
@@ -78,10 +70,7 @@
             <div class="panel panel-default box">
                 <div class="panel-heading">
                     <p id="panel-title-box3" class="panel-title pull-left"></p>
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
-                        <button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
-                    </a>
-                    
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
                 <div id='box3' class="panel-body form-group panelBody">

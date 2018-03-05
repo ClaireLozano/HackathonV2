@@ -46,7 +46,6 @@ var getUrlPage = function() {
 
     // Si pas de données renseignées dans l'url, return
     if (!url[1]) {
-        console.log('pas de données')
         return null;
     }
 

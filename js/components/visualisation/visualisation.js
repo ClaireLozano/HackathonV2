@@ -76,6 +76,11 @@ $(document).ready(function(){
             $("#tab-nav-5").addClass('active');
         });
 
+        $("#tab-nav-6").click(function() {
+            $("#tab-pane-6").css('display', 'block');
+            $("#tab-nav-6").addClass('active');
+        });
+
         // Reload the page with the new date
         $(".select-list-date").change(function() {
             // Get value of the selected item 
@@ -121,7 +126,9 @@ $(document).ready(function(){
             return "table";
         } else if ($("#tab-nav-2").hasClass("active")) {
             return "graph";
-        } else {
+        } else if ($("#tab-nav-6").hasClass("active")) {
+            return "cloud";
+        }else {
             return "map";
         }
     };
@@ -287,6 +294,11 @@ $(document).ready(function(){
                 $('#tab-pane-4').css('display', 'block');
                 $("#tab-nav-4").addClass('active');
                 break;
+
+            case 'cloud':
+                $('#tab-pane-6').css('display', 'block');
+                $("#tab-nav-6").addClass('active');
+                break;
         }
     };
 
@@ -340,6 +352,12 @@ $(document).ready(function(){
 
             // Set description
             setDescription(metadata);
+        }
+
+        if(metadata.cloud) {
+            drawCloud(data, metadata, 'box6');
+        } else {
+            $("#tab-nav-6").css('display', 'none');
         }
     };
 

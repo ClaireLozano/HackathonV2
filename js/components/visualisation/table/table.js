@@ -37,6 +37,7 @@ function insertRowTitle(data, metadata, idBox, callback) {
 
     // Create table
     var val_html = "<table id='my_table_" + idBox + "' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+    val_tfoot = "";
 
     // Get dictionnary 
     if (metadata.dictionnaireX) {
@@ -58,16 +59,18 @@ function insertRowTitle(data, metadata, idBox, callback) {
                     // If element is on the dictionnary, take the dictionnary value
                     if (d[initValue] === key) {
                         val_html += "<th>" + d[newValue] + "</th>";
+                        val_tfoot += "<th>" + d[newValue] + "</th>";
                         found = true;
                     }
 
                     // If the element isn't found in the dictionnary, keep the keys_list_table value
                     if (i === arr.length - 1 && !found) { 
                         val_html += "<th>" + key + "</th>";
+                        val_tfoot += "<th>" + key + "</th>";
 
                         // Last iteration, return
                         if (j === arrJ.length - 1) { 
-                            val_html += "</tr></thead><tbody id='table_element_" + idBox + "'></tbody></table>";
+                            val_html += "</tr></thead><tfoot><tr>" + val_tfoot + "</tr></tfoot><tbody id='table_element_" + idBox + "'></tbody></table>";
                             document.getElementById(idBox).innerHTML = val_html;
                             return callback();
                         }
@@ -75,7 +78,7 @@ function insertRowTitle(data, metadata, idBox, callback) {
 
                     // If last element, return
                     if (i === arr.length - 1 && j === arrJ.length - 1) { 
-                        val_html += "</tr></thead><tbody id='table_element_" + idBox + "'></tbody></table>";
+                        val_html += "</tr></thead><tfoot><tr>" + val_tfoot + "</tr></tfoot><tbody id='table_element_" + idBox + "'></tbody></table>";
                         document.getElementById(idBox).innerHTML = val_html;
                         return callback();
                     }
@@ -90,10 +93,11 @@ function insertRowTitle(data, metadata, idBox, callback) {
         // Create header table
         value_list_table.forEach(function(d, i, arr) {
             val_html += "<th>" + d + "</th>"
+            val_tfoot += "<th>" + d + "</th>";
 
             // Last iteration, return
             if (i === arr.length - 1) { 
-                val_html += "</tr></thead><tbody id='table_element_" + idBox + "'></tbody></table>";
+                val_html += "</tr></thead><tfoot><tr>" + val_tfoot + "</tr></tfoot><tbody id='table_element_" + idBox + "'></tbody></table>";
                 document.getElementById(idBox).innerHTML = val_html;
                 return callback();
             }
@@ -206,6 +210,28 @@ function setTable(idBox) {
                 "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
             }
         }
+    });
+
+    // Setup - add a text input to each footer cell
+    $('#my_table_' + idBox + ' tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" id="searchTFoot" placeholder="Chercher un(e) ' + title + '" />' );
+    });
+ 
+    // DataTable
+    var table = $('#my_table_' + idBox).DataTable();
+ 
+    // Apply the search
+    table.columns().every(function () {
+        var that = this;
+ 
+        $('input', this.footer()).on('keyup change', function () {
+            if (that.search() !== this.value) {
+                that
+                    .search(this.value)
+                    .draw();
+            }
+        });
     });
 
     $(".dataTables_info").remove();
