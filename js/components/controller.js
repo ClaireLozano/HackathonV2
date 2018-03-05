@@ -11,16 +11,9 @@ function ajaxRequest(endUrl, callback) {
         url: '../rest.php',
         data: {functionname: 'getOpenData', arguments: endUrl},
         success:function(data) {
-        }, 
-        complete: function (request, textStatus) {
-            if (request.responseText !== 'null') {
-                // Parse data in Json
-                var obj = JSON.parse(request.responseText);
-                // Return data
-                return callback(obj.opendata.answer.data);
-            } else {
-                return callback(null);
-            }
+            // Parse data in Json
+            var obj = JSON.parse(data);
+            return callback(obj.opendata.answer.data);
         }
     });
 }; 

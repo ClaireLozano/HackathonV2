@@ -3,11 +3,60 @@
  *
  * @return metadata
  */
+ 
 var getMetadata = function(nomDonnee, callback) {
     var metadata = [];
-    $.getJSON("../../metadata/" + nomDonnee + ".json", function(m) {
-        return callback(m);
-    });
+    switch (nomDonnee) {
+        case 'population_2008':
+            $.getJSON("../../metadata/insee.json", function(m) {
+                return callback(m);
+            });
+            break;
+
+        case 'disponibilite_parking':
+            $.getJSON("../../metadata/parking.json", function(m) {
+                return callback(m);
+            });
+            break;
+
+        case 'fiche':
+            $.getJSON("../../metadata/archive.json", function(m) {
+                return callback(m);
+            });
+            break;
+
+        case 'bp_2017_fonction':
+            $.getJSON("../../metadata/budget.json", function(m) {
+                return callback(m);
+            });
+            break;
+    }
+};
+
+/**
+ * Get end url
+ *
+ * @return end url
+ */
+var getUrl = function(nomDonnee) {
+    var endUrl = "";
+    switch (nomDonnee) {
+        case 'population_2008':
+            return "&db=ecnaissance&table=acte_naissance_02&filter=an_evenement_annee%2520equalto%25202017&format=json";
+            break;
+
+        case 'disponibilite_parking':
+            return "&db=stationnement&table=disponibilite_parking&format=json";
+            break;
+
+        case 'fiche':
+            return "&db=archive&table=fiche&format=json";
+            break;
+
+        case 'bp_2017_fonction':
+            return "&db=budget&table=bp_2017_fonction&format=json";
+            break;
+    }
 };
 
 /**
@@ -19,20 +68,114 @@ var getData = function(endUrl, callback) {
     jQuery.ajax({
         type: "POST",
         url: '../rest.php',
-        async: false, // wait for a response
         data: {functionname: 'getOpenData', arguments: endUrl},
         success:function(data) {
-        },
-        complete: function (request, textStatus) {
-            if (request.responseText !== 'null') {
-                var obj = JSON.parse(request.responseText);
-                // Return data
-                return callback(obj.opendata.answer.data);
-            } else {
-                return callback(null);
-            }
+            // Parse data in Json
+            var obj = JSON.parse(data);
+            // Return data
+            return callback(obj.opendata.answer.data);
         }
     });
+};
+
+/**
+ * Draw table
+ *
+ * @param  {Object}         data                Data from open data la rochelle plateform
+ * @param  {Object}         metadata            Meta data
+ * @param  {Number}         position            Position of random box
+ *
+ * @return null
+ */
+function drawTable(data, metadata, idBox) {
+
+    // Initialization
+    var keys_list_table = [];
+    var value_list_table = [];
+    
+    keys_list_table = metadata.table.dataComposition.keys_list;
+
+    // Get dictionnary 
+    if (metadata.dictionnaire) {
+        urlDict = metadata.dictionnaire[0];
+        initValue = metadata.dictionnaire[1];
+        newValue = metadata.dictionnaire[2];
+
+        getData(urlDict, function(dict) {
+            // Create table
+            val_html = "<table id='my_table' class='table table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+            val_tfoot = "";
+            // Create header table
+            dict.forEach(function(d) {
+                val_html += "<th>" + d[newValue] + "</th>";
+                val_tfoot += "<th>" + d[newValue] + "</th>";
+            });
+            val_html += "</tr></thead><tfoot><tr>"+val_tfoot+"</tr></tfoot><tbody id=\"table_element\"></tbody></table>";
+
+            // Insert Row
+            document.getElementById(idBox).innerHTML = val_html;
+            data.forEach(function(d, i) {
+                var table = document.getElementById("my_table");
+                var tr = table.insertRow(i);
+                keys_list_table.forEach(function(p, j) {
+                    tr.insertCell(j).innerHTML = d[p];
+                    document.getElementById("table_element").appendChild(tr);     
+                });
+            }); 
+            
+        });
+    } else {
+        value_list_table = metadata.table.dataComposition.value_list;
+        
+        // Create table
+            val_html = "<table id='my_table' class='table table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+            val_tfoot = "";
+        // Create header table
+        value_list_table.forEach(function(d) {
+            val_html += "<th>" + d + "</th>";
+            val_tfoot += "<th>" + d + "</th>";
+        });
+        val_html += "</tr></thead><tfoot><tr>"+val_tfoot+"</tr></tfoot><tbody id=\"table_element\"></tbody></table>";
+
+        // Insert Row
+        document.getElementById(idBox).innerHTML = val_html;
+        data.forEach(function(d, i) {
+            var table = document.getElementById("my_table");
+            var tr = table.insertRow(i);
+            keys_list_table.forEach(function(p, j) {
+                tr.insertCell(j).innerHTML = d[p];
+                document.getElementById("table_element").appendChild(tr);     
+            });
+        }); 
+         
+    }
+
+    /******************************************** */
+    $('#my_table').DataTable();
+
+        // Setup - add a text input to each footer cell
+    $('#my_table tfoot th').each( function () {
+    var title = $(this).text();
+    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+
+    // DataTable
+    var table = $('#my_table').DataTable();
+
+    // Apply the search
+    table.columns().every( function () {
+    var that = this;
+
+    $( 'input', this.footer() ).on( 'keyup change', function () {
+    if ( that.search() !== this.value ) {
+        that
+            .search( this.value )
+            .draw();
+    }
+    } );
+    } );
+    /********************************************************* */
+
 };
 
 /**
@@ -46,6 +189,7 @@ var getUrlPage = function() {
 
     // Si pas de données renseignées dans l'url, return
     if (!url[1]) {
+        console.log('pas de données')
         return null;
     }
 
@@ -57,24 +201,3 @@ var getUrlPage = function() {
 
     return [typeVisualisation, nomDonnee];
 };
-
-/**
- * Reload page
- *
- * @return 
- */
-var reloadPage = function(url, endUrl, typeVisualisation) {
-    window.location.replace(url + '?type=' + typeVisualisation + '&data=' + endUrl);
-};
-
-/**
- * Map
- *
- * @return (data)
- */
-function Get(yourUrl) {
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET", yourUrl, false);
-    Httpreq.send(null);
-    return Httpreq.responseText;
-}

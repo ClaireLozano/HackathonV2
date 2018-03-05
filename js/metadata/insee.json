@@ -1,0 +1,28 @@
+
+{
+  "dataType": "HistorisedLocalisable",
+  "link": "population_2008",
+  "dictionnaire": "",
+  "title": "RECENSEMENT DE LA POPULATION – POPULATION",
+  "descritpion": "",
+  "graph":{
+    "possibleGraphs": ["horizontalBar"],
+    "dataComposition": {
+      "excludeLines": ["an_evenement_annee"],
+      "selectList": "an_evenement_annee",
+      "onlyOneElement": ""
+    }
+  },
+  "timeline":{
+    
+  },
+  "map":{
+
+  },
+  "table":{
+    "dataComposition":{
+      "keys_list": ["an_evenement_annee", "an_evenement_mois", "an_enfant_premier_prenom", "an_nombre"],
+      "value_list": ["Année", "Mois", "Prénom", "Occurrence"]
+    }
+  }
+}

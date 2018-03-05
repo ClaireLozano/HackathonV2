@@ -1,0 +1,28 @@
+
+{
+  "dataType": "String",
+  "link": "url",
+  "dictionnaire": "url",
+  "title": "String",
+  "description": "String",
+  "graph":{
+    "possibleGraphs": ["String"],
+    "dataComposition": {
+      "excludeLines": ["String"],
+      "selectList": ["String"],
+      "onlyOneElement": "String"
+    }
+  },
+  "timeline":{
+    "String": "url",
+  },
+  "map":{
+
+  },
+  "table":{
+    "dataComposition":{
+      "keys_list": ["String"],
+      "value_list": ["String"]
+    }
+  }
+}

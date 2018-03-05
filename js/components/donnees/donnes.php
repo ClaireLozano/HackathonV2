@@ -12,20 +12,22 @@
 					<h4><a href="#allcat" class="accordion-toggle" data-toggle="tab">Catégories</a></h4>
 					<ul class="nav tabs">
 						<!-- <li class="active"> -->
-						<li id="tab-nav-1" class=""><a href="#tab1" class="accordion-toggle" data-toggle="tab">Citoyenneté</a></li>
-						<li id="tab-nav-2" class=""><a href="#tab2" class="accordion-toggle" data-toggle="tab">Déplacement</a></li>
-						<li id="tab-nav-3" class=""><a href="#tab4" class="accordion-toggle" data-toggle="tab">Finance</a></li>
+						<li class=""><a href="#tab1" class="accordion-toggle" data-toggle="tab">Citoyenneté</a></li>
+						<li class=""><a href="#tab2" class="accordion-toggle" data-toggle="tab">Déplacement</a></li>
+						<li class=""><a href="#tab4" class="accordion-toggle" data-toggle="tab">Finance</a></li>
 					</ul>
 				</nav>
 			</div>
 
+
 		<!-- tab content -->
+
 		<div class="tab-content" id="allTables">
 			<!-- All data -->
 			<div class="tab-pane text-style active" id="allcat">
 				<p> Toutes les données ...</p>
 				<div class="container" id="moreData">
-					<div class="row" id="block0">
+					<div class="row">
 						<div class="col-sm-4">
 							<div class="card">
 								<div class="card-block">
@@ -37,12 +39,13 @@
 				</div>
 			</div>
 
+
 			<!-- Citoyenneté -->
 			<div class="tab-pane text-style" id="tab1">
 				<h2>Citoyenneté</h2>
 				<p>Cette catégorie contient deux type de données: les données INSEE et les données Archive.</p>
 				<hr>
-				<div class="row" id="block1">
+				<div class="row">
 					<div class="col-sm-4" id="block11">
 						<div class="card">
 							<div class="card-block">
@@ -55,15 +58,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Archives</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=fiche"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4" id="block13">
-						<div class="card">
-							<div class="card-block">
-								<h3 class="card-title">Prénoms - 2014</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=acte_naissance_02_2014"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=archive"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
@@ -75,7 +70,7 @@
 				<h2>Déplacement</h2>
 				<p>Les données concernant le déplacement à la ville de La Rochelle.</p>
 				<hr>
-				<div class="row" id="block2">
+				<div class="row">
 					<div class="col-sm-4" id="block21">
 						<div class="card">
 							<div class="card-block">
@@ -101,13 +96,11 @@
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
-	</body>
+	</div>
+</body>
 
-	<?php include '../footer/footer.php'; ?>
-	<script type="text/javascript" src="../controller.js"></script>
-	<script type="text/javascript" src="../util.js"></script>
-	<script type="text/javascript" src="donnees.js"></script>
+<?php include '../footer/footer.php'; ?>
+<script type="text/javascript" src="donnees.js"></script>
 
 </html>

@@ -1,37 +1,68 @@
 <head>
     <title>Hackathon</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Styles -->
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+	
+ 
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-
-    <!-- Open Layers -->
-    <!-- <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers.js"></script> -->    
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/examples/resources/mapbox-streets-v6-style.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
-
-    <!-- Table -->
-	  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+    <script type="text/javascript" class="init">
+		window.onload = function() {
 
-    <!-- D3js -->
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+             // Setup - add a text input to each footer cell
+    $('#my_table tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#my_table').DataTable();
+ 
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+            
+			
+			/*
+			// Change the selector if needed
+			var $table = $('table'),
+				$bodyCells = $table.find('tbody tr:first').children(),
+				colWidth;
 
-    <!-- Map -->
-    <?php
-      header('Access-Control-Allow-Origin: *');
-      header("Access-Control-Allow-Credentials: true");
-      header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-      header('Access-Control-Max-Age: 1000');
-      header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
-    ?>
+			// Get the tbody columns width array
+			colWidth = $bodyCells.map(function() {
+				return $(this).width();
+			}).get();
+			
+
+			// Set the width of thead columns
+			
+			$table.find('thead tr').children().each(function(i, v) {
+				$(v).width(colWidth[i]);
+			});    
+			*/
+        }
+		
+    </script>
 </head>
 
 <div class="container-fluid">
@@ -47,7 +78,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../home/index.php">Opendata</a>
+          <a class="navbar-brand" href="#">Opendata</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,17 +86,16 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../home/index.php">Accueil</a></li>
             <li><a href="../donnees/donnes.php">Données</a></li>
-            <li><a href="../back_office/back_office.php">Formulaire</a></li>
             <li><a href="../demarche/demarche.php">La démarche</a></li>
             <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
           </ul>
           <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse4">
             <li><a href="#">Support</a></li>
             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="https://pbs.twimg.com/profile_images/588909533428322304/Gxuyp46N.jpg" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
 	            <li><a href="../home/index.php">Accueil</a></li>
 	            <li><a href="../visualisation/visualisation.php">Visualisation</a></li>
-              <li><a href="../back_office/back_office.php">Formulaire</a></li>
 	            <li><a href="../demarche/demarche.php">La démarche</a></li>
 	            <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
               </ul>

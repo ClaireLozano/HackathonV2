@@ -13,27 +13,47 @@ $(document).ready(function(){
         var nomDonnee = result[1];
 
         if (typeVisualisation && nomDonnee) {
-
             // Get metadata
             getMetadata(nomDonnee, function(metadata) {
+                // Remove map panel if the data is not localisable
+                if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'NotHistorisedNotLocalisable') {
+                    $("#tab-nav-3").css('display', 'none');
+                }
 
-                // Set title
-                setTitle(metadata.title);
+                // Set a select list on historisable data
+                if(metadata.dataType === 'HistorisedNotLocalisable' || metadata.dataType === 'HistorisedLocalisable') {
+                    $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
+                    var sel = $('<select>').appendTo('.select-list-date');
+                    sel.addClass("select-list");
+                    sel.addClass("select-list-select");
 
-                // Set active panel
-                setActivePanel(typeVisualisation);
+                    $('.select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
+                    var selCompare = $('<select>').appendTo('.select-list-date-compare');
+                    selCompare.addClass("select-list");
+                    selCompare.addClass("select-list-select");
+                    selCompare.append($("<option>").attr('value','none').text('...'));
 
-                // With end url, get data
-                getData(metadata.link, function(data) {
-                    if (data) {
-                        // Set tab navbar and draw visualisation
-                        setTabNavBarAndDraw(metadata, data);
-                    } else {
-                        alert("Une erreur est survenue: Aucune donnée n'a pu être chargé.");
+                    for (var key in metadata.timeline) {
+                        sel.append($("<option>").attr('value',metadata.timeline[key]).text(key));
+                        selCompare.append($("<option>").attr('value',metadata.timeline[key]).text(key));
                     }
-                });
+                }
+                // Get end url
+                var endUrl = getUrl(nomDonnee);
+                // With end url, get data
+                getData(endUrl, function(data) {
+                    // Draw visualisation
+                    draw(typeVisualisation, metadata, data);
+                    // Set title
+                    setTitle(metadata.title);
+                    // Set active panel
+                    setActivePanel(typeVisualisation);
 
-                setMapButton();
+                    /*console.log('metadata')
+                    console.log(metadata)
+                    console.log('data')
+                    console.log(data)*/
+                });
             });
         }
 	};
@@ -63,7 +83,6 @@ $(document).ready(function(){
         $("#tab-nav-3").click(function() {
             $('#tab-pane-3').css('display', 'block');
             $("#tab-nav-3").addClass('active');
-            showMap();
         });
 
         $("#tab-nav-4").click(function() {
@@ -81,173 +100,43 @@ $(document).ready(function(){
             $("#tab-nav-6").addClass('active');
         });
 
-        // Reload the page with the new date
-        $(".select-list-date").change(function() {
-            // Get value of the selected item 
-            var nomDonnee = $('.select-list-date :selected').val();
-            var url = window.location.href.split("?");
-            var activePanel = getActivePanel();
-            reloadPage(url[0], nomDonnee, activePanel);
-        });
-
-        // Load the compare table
-        $(".select-list-date-compare").change(function() {
-            // Get value of the selected item 
-            var nomDonnee = $("option:selected", this).val();
-            var typeVisualisation = getActivePanel();
-            
-            if (nomDonnee == "none") {
-                removeDrawCompare(typeVisualisation);
-            } else {
-
-                // Get metadata
-                getMetadata(nomDonnee, function(metadata) {
-                    // With end url, get data
-                    getData(metadata.link, function(data) {
-                        if (data) {
-                            // Draw visualisation
-                            drawCompare(typeVisualisation, metadata, data);
-                        } else {
-                            alert("Une erreur est survenue: Aucune donnée n'a pu être chargé.");
-                        }
-                    });
-                });
-            }
-        });
 	};
 
     /**
-     * Get the panel active
-     *
-     * @return type if visualisation 
-     */
-    var getActivePanel = function() {
-        if ($("#tab-nav-1").hasClass("active")) {
-            return "table";
-        } else if ($("#tab-nav-2").hasClass("active")) {
-            return "graph";
-        } else if ($("#tab-nav-6").hasClass("active")) {
-            return "cloud";
-        }else {
-            return "map";
-        }
-    };
-
-    /**
-     * Draw compare visualisation
+     * Draw visualisation
      *
      * @return null
      */
-    var drawCompare = function(typeVisualisation, metadata, data) {
-
-        switch (typeVisualisation) {
-            case 'table':
-                // Remove the table compare if exists
-                if ($("#my_table_box1Compare_wrapper").length) {
-                    $("#my_table_box1Compare_wrapper").remove();
-                
-                // Else, create div compare
-                } else {
-                    var div = document.createElement('div');
-                    div.id = 'box1Compare';
-                    div.className = 'box-visu';
-                    $("#tab-pane-1 .box-wrapper-inner").append(div);
-                }
-
+    var draw = function(typeVisualisation, metadata, data) {
+        switch (metadata.dataType) {
+            case 'HistorisedLocalisable':
                 // Call draw table method
-                drawTable(data, metadata, 'box1Compare');
+                drawTable(data, metadata, 'box1');
+                //drawMap(data, metadata, 'box2');
+                //drawGraph(data, metadata, 'box3');
+                //setSeletList(data, metadata);
                 break;
 
-            case 'graph':
-
-                // Remove the table compare if exists
-                if ($("#box2Compare").length) {
-                    $("#box2Compare").remove();
-                
-                // Else, create div compare
-                } else {
-                    var div = document.createElement('div');
-                    div.id = 'box2Compare';
-                    div.className = 'box-visu';
-                    $("#tab-pane-2 .box-wrapper-inner").append(div);
-                }
-                drawGraph(data, metadata, 'box2Compare');
-                break;
-        }
-    };
-
-    /**
-     * Remove compare visualisation if existe
-     *
-     * @return null
-     */
-    var removeDrawCompare = function(typeVisualisation) {
-        switch (typeVisualisation) {
-            case 'table':
-                // Remove the table compare
-                if ($("#my_table_box1Compare_wrapper").length) {
-                    $("#box1Compare").remove();
-                }
+            case 'HistorisedNotLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawGraph(data, metadata, 'box3');
+                //setSeletList(data, metadata);
                 break;
 
-            case 'graph':
-                // Remove the graph compare
-                if ($("#box2Compare").length) {
-                    $("#box2Compare").remove();
-                }
+            case 'NotHistorisedLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawMap(data, metadata, 'box2');
+                //drawGraph(data, metadata, 'box3');
+                break;
+
+            case 'NotHistorisedNotLocalisable':
+                // Call draw table method
+                drawTable(data, metadata, 'box1');
+                //drawGraph(data, metadata, 'box3');
                 break;
         }
-        
-    };
-
-    /**
-     * Set buttons to map panel
-     *
-     * @return
-     */
-    var setMapButton = function() {
-        $(".button-icone").on("click", function() {
-            // If the marks are visible, hide them
-            if ($(this).val() === "true") {
-                $(this).val("false");
-                $(this).css({opacity: 0.5});
-
-                // Remove bus marks
-                if($(this).attr('id') === "button-icone-bus") {
-                    hideLayerBus();
-                }
-
-                // Remove poste marks
-                if($(this).attr('id') === "button-icone-poste") {
-                    hideLayerPoste();
-                }
-                // Remove yelo marks
-                if($(this).attr('id') === "button-icone-yelo") {
-                    hideLayerYelo();
-                }
-
-
-                // Else, show them
-            } else {
-                $(this).val("true");
-                $(this).css({opacity: 1});
-
-                // Draw bus marks
-                if($(this).attr('id') === "button-icone-bus") {
-                    showLayerBus();
-                }
-
-                // Draw poste marks
-                if($(this).attr('id') === "button-icone-poste") {
-                    showLayerPoste();
-                }
-
-                // Draw yelo marks
-                if($(this).attr('id') === "button-icone-yelo") {
-                    showLayerYelo();
-                }
-            }
-        });
     };
 
     /**
@@ -256,16 +145,7 @@ $(document).ready(function(){
      * @return
      */
     var setTitle = function(title) {
-        $("#title-page").html(title);
-    };
-
-    /**
-     * Set the second title of the page
-     *
-     * @return
-     */
-    var setDescription = function(metadata) {
-        $("#description-page").html(metadata.description);
+        $("h1").html(title);
     };
 
     /**
@@ -289,75 +169,6 @@ $(document).ready(function(){
                 $('#tab-pane-3').css('display', 'block');
                 $("#tab-nav-3").addClass('active');
                 break;
-
-            case 'info':
-                $('#tab-pane-4').css('display', 'block');
-                $("#tab-nav-4").addClass('active');
-                break;
-
-            case 'cloud':
-                $('#tab-pane-6').css('display', 'block');
-                $("#tab-nav-6").addClass('active');
-                break;
-        }
-    };
-
-    /**
-     * Set the tab navbar
-     *
-     * @return type if visualisation 
-     */
-    var setTabNavBarAndDraw = function(metadata, data) {
-
-        if(metadata.table) {
-            drawTable(data, metadata, 'box1');
-        } else {
-            $("#tab-nav-1").css('display', 'none');
-        }
-
-        if(metadata.graph) {
-            drawGraph(data, metadata, 'box2');
-        } else {
-            $("#tab-nav-2").css('display', 'none');
-        }
-
-        if(metadata.map) {
-            drawMap(data, metadata, 'box3', 'popup');
-        } else {
-            $("#tab-nav-3").css('display', 'none');
-        }
-
-        if(metadata.timeline) {
-            // Draw timeline
-            $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
-            var sel = $('<select>').appendTo('.select-list-date');
-            sel.addClass("select-list");
-            sel.addClass("select-list-select");
-            sel.addClass("form-control");
-
-            $('.select-list-date-compare').append("<p class='select-list select-list-text'>La comparer avec : </p>");
-            var selCompare = $('<select>').appendTo('.select-list-date-compare');
-            selCompare.addClass("select-list");
-            selCompare.addClass("select-list-select");
-            selCompare.append($("<option>").attr('value','none').text('...'));
-            selCompare.addClass("form-control");
-
-            for (var key in metadata.timeline.dates) {
-                sel.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
-                selCompare.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
-            }
-
-            // Set active select
-            $(".select-list-date select").val(metadata.timeline.dates[metadata.timeline.actualDate]);
-
-            // Set description
-            setDescription(metadata);
-        }
-
-        if(metadata.cloud) {
-            drawCloud(data, metadata, 'box6');
-        } else {
-            $("#tab-nav-6").css('display', 'none');
         }
     };
 
