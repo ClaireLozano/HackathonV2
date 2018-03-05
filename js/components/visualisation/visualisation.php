@@ -2,31 +2,53 @@
 <html>
 
 	<?php include '../header/header.php'; ?>
+	<link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
+	<style>
+		.modal {
+				display:    none;
+				position:   fixed;
+				z-index:    1000;
+				top:        0;
+				left:       0;
+				height:     100%;
+				width:      100%;
+				background: rgba( 255, 255, 255, .8 ) 
+							url('http://i.stack.imgur.com/FhHRx.gif') 
+							50% 50% 
+							no-repeat;
+			}
+		/* When the body has the loading class, we turn
+			the scrollbar off with overflow:hidden */
+			body.loading {
+				overflow: hidden;   
+			}
 
-    <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
-    <script type="text/javascript" src="../util.js"></script>
-
+			/* Anytime the body has the loading class, our
+			modal element will be visible */
+			body.loading .modal {
+				display: block;
+			}
+	</style>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+    <script src="cloud.js"></script>
 	<body>
+	<div class="modal"></div>
+
 		<div id="content-page">
 
-			<h1 id="title-page"></h1>
+			<h1></h1>
 			<div class="panel panel-default box">
                 <div class="panel-heading">
                     <p class="panel-title pull-left">Visualisation</p>
 
-					<!-- Bouton "un probleme?" -->
-
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
-                    	<button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
-                    </a>
-                    
-                    <!-- <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
+                    <!-- Bouton "un probleme?" -->
+                    <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
 
                     <div class="modal fade" tabindex="-1" role="dialog" id="example">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">?</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     <h4 class="modal-title">Un problème ?</h4>
                                 </div>
                                 <div class="modal-body">
@@ -41,9 +63,9 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
                                 </div>
-                            </div>
-                        </div>
-                    </div> -->
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
 
                     <div class="clearfix"></div>
                 </div>
@@ -57,39 +79,47 @@
 						<ul class="nav nav-tabs nav-visualisation">
 							<li id="tab-nav-1" class="tab-nav"><a href="#tab-pane-1" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Tableau</a></li>
 							<li id="tab-nav-2" class="tab-nav"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
+							<li id="tab-nav-6" class="tab-nav"><a href="#tab-pane-6" data-toggle="tab"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Word Cloud</a></li>
 							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
 							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
 							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
-						<div class="tab-content">
-							<p id="description-page"></p>	
+
+						<div class="tab-content"  id="nav">
 							<div class="tab-pane" id="tab-pane-1">
+							
 								<div class="option-panel">
+								<!--
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>
+									<div class="select-list-date-compare"></div>	
+								-->
 								</div>
-								<div class="box-wrapper-inner">
-									<div id='box1' class="box-visu"> <!-- TABLEAU --></div>
-								</div>
+							
+								<div id='box1' class="box-visu"> <!-- TABLEAU --> </div>
 							</div>
 							<div class="tab-pane" id="tab-pane-2">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>		
+									<div class="select-list-date-compare"></div>	
 								</div>
-								<div class="box-wrapper-inner">
-									<div id='box2' class="box-visu"> <!-- GRAPH --></div>
+								<div id='box2' class="box-visu"> <!-- CHART --></div>
+							</div>
+							
+							<div class="tab-pane" id="tab-pane-6">
+								<div class="option-panel">
+									<div id="select-word-cloud"></div>
 								</div>
+								<div id='box6' class="box-visu"></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-3">
+								<div class="option-panel">
+									<div class="select-list-date"></div>
+									<div class="select-list-date-compare"></div>	
+								</div>
 								<div id='box3' class="box-visu">
 									<!-- MAP -->
-									<div id="popup"></div>
-                                   <!--  <?php #include 'map/map.php'; ?> -->
+									<?php include 'map/map.php'; ?>
 								</div>
-								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.png"/>
-								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
-                                <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_velo.png"/>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
 								<div id='box4' class="box-visu"> <!-- INFO --></div>
@@ -177,27 +207,16 @@
 				</div>
 			</div>
 		</div> <!-- END CONTENT PAGE -->
+		<script type="text/javascript" src="insee.js"></script>
 
-		<script type="text/javascript" src="map/bus.js"></script>
-		<script type="text/javascript" src="map/velo.js"></script>
-		<script type="text/javascript" src="map/poste.js"></script>
-		<script type="text/javascript" src="map/popup.js"></script>
-		<script type="text/javascript" src="map/geoloc.js"></script>
-		<script type="text/javascript" src="map/map.js"></script>
-
-		<script type="text/javascript" src="chart/bar.js"></script>
-		<script type="text/javascript" src="chart/horizontalBar.js"></script>
-		<script type="text/javascript" src="chart/pie.js"></script>
-		<script type="text/javascript" src="chart/doughnut.js"></script>
-        <script type="text/javascript" src="chart/chart.js"></script>
-    	<script type="text/javascript" src="table/table.js"></script>
-
-        <script type="text/javascript" src="../controller.js"></script>
-        <script type="text/javascript" src="visualisation.js"></script>
 	</body>
 
 	<?php include '../footer/footer.php'; ?>
-
-
+	<script type="text/javascript" src="../controller.js"></script>
+	<script type="text/javascript" src="../util.js"></script>
+	<script type="text/javascript" src="visualisation.js"></script>
+	<script  type="text/javascript">
+		
+	</script>
 
 </html>

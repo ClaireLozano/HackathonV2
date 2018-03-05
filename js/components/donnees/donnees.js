@@ -7,19 +7,17 @@ $(document).ready(function(){
 	 *
 	 * @return
 	 */
+	 
+
 	function init() {
-		
 	};
 
-	/**
-	 * Add bind listeners
-	 *
-	 * @return
-	 */
+
+
 	var bindListeners = function() {
-
 	};
 
-    init();
+
+	init();
 	bindListeners();
 });
