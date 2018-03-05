@@ -25,9 +25,12 @@ $(document).ready(function(){
 
                 // With end url, get data
                 getData(metadata.link, function(data) {
-
-                    // Set tab navbar and draw visualisation
-                    setTabNavBarAndDraw(metadata, data);
+                    if (data) {
+                        // Set tab navbar and draw visualisation
+                        setTabNavBarAndDraw(metadata, data);
+                    } else {
+                        alert("Une erreur est survenue: Aucune donnée n'a pu être chargé.");
+                    }
                 });
 
                 setMapButton();

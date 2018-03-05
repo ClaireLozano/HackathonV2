@@ -55,7 +55,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Archives</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=archive_fiche"><div class="panel-body form-group panelBody" id="archive_fiche"></div></a>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=fiche"><div class="panel-body form-group panelBody" id="fiche"></div></a>
 							</div>
 						</div>
 					</div>

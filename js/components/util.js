@@ -19,12 +19,18 @@ var getData = function(endUrl, callback) {
     jQuery.ajax({
         type: "POST",
         url: '../rest.php',
+        async: false, // wait for a response
         data: {functionname: 'getOpenData', arguments: endUrl},
         success:function(data) {
-            // Parse data in Json
-            var obj = JSON.parse(data);
-            // Return data
-            return callback(obj.opendata.answer.data);
+        },
+        complete: function (request, textStatus) {
+            if (request.responseText !== 'null') {
+                var obj = JSON.parse(request.responseText);
+                // Return data
+                return callback(obj.opendata.answer.data);
+            } else {
+                return callback(null);
+            }
         }
     });
 };
