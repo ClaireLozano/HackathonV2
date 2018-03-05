@@ -132,6 +132,7 @@ foreach ($datatypeArray as $key => $value) {
 
 
 $json = json_encode( $postArray );
+echo $json;
 
 
 
@@ -144,19 +145,23 @@ $json = json_encode( $postArray );
 //$current = file_get_contents($file);
 
 // Nom du fichier dynamique:
-// $file = $_POST['fileName'];
-// $file.= ".json";
-// echo $file;
+$file = $_POST['fileName'];
+$file.= ".json";
+
+// Dossier metadata
+$path = "../../metadata";
+$path = realpath ($path);
+
+//Fichier dans le dossier "metadata"
+$filepath = $path . DIRECTORY_SEPARATOR . $file;
 
 
-echo $json;
-
-// echo $_POST['possibleGraphs'];
-
-
-//file_put_contents( $file, $json);
-//
+// chamin statique :
 $fp = fopen('mdfile.json', 'w');
+
+// chemin dynamique :
+// $fp = fopen($filepath, 'w');
+
 fwrite($fp, $json);
 fclose($fp);
 

@@ -66,7 +66,7 @@
           <div class="form-group col-md-10">
             <label for="inputDataType">Type d'affichage de données :</label>
             <p>Choisir un ou plusieurs type(s) d'affichage des données: </p>
-            <div class="form-check">
+            <div class="form-check required">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_graphe" value="type_graphe">Graphe</label>
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_table" value="type_table">Tableau</label>
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_map" value="type_map">Carte</label>
@@ -149,7 +149,7 @@
             <p>Les détails d'une carte peuvent être récupérer depuis un fichier "kml" en choisisant "Carte depuis 'fichier.kml' "" ou peuvent être saisis à l'aide des champs ( il faut choisir "Nouvelle carte").</p>
             <div class="form-check">
               <label class="form-check-label"><input class="form-check-input" type="radio" name="maptype" onclick="mapChoice()" id="map_newMap" value="newmap">Nouvelle carte</label>
-              <label class="form-check-label"><input class="form-check-input" type="radio" name="maptype" onclick="mapChoice()" id="map_fileKml" value="kmlfile">Carte depuis 'fichier.kml'mapChoice</label>
+              <label class="form-check-label"><input class="form-check-input" type="radio" name="maptype" onclick="mapChoice()" id="map_fileKml" value="kmlfile">Carte depuis 'fichier.kml'</label>
             </div>
           </div>
 
