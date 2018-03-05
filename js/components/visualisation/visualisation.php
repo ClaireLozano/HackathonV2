@@ -6,7 +6,35 @@
     <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
     <script type="text/javascript" src="../util.js"></script>
 
+    <style>
+		.modal {
+				display:    none;
+				position:   fixed;
+				z-index:    1000;
+				top:        0;
+				left:       0;
+				height:     100%;
+				width:      100%;
+				background: rgba( 255, 255, 255, .8 ) 
+							url('http://i.stack.imgur.com/FhHRx.gif') 
+							50% 50% 
+							no-repeat;
+			}
+			/* When the body has the loading class, we turn
+			the scrollbar off with overflow:hidden */
+			body.loading {
+				overflow: hidden;   
+			}
+
+			/* Anytime the body has the loading class, our
+			modal element will be visible */
+			body.loading .modal {
+				display: block;
+			}
+	</style>
+
 	<body>
+		<div class="modal"></div>
 		<div id="content-page">
 
 			<h1 id="title-page"></h1>
@@ -15,36 +43,7 @@
                     <p class="panel-title pull-left">Visualisation</p>
 
 					<!-- Bouton "un probleme?" -->
-
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> 
-                    	<button class="btn btn-default label label-warning pull-right"> Un problème ?</button>
-                    </a>
-                    
-                    <!-- <button class="btn btn-default label label-warning pull-right" data-toggle="modal" data-target="#example">Un problème ?</button>
-
-                    <div class="modal fade" tabindex="-1" role="dialog" id="example">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">?</span></button>
-                                    <h4 class="modal-title">Un problème ?</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">Les données vous semble incorrecte ...</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label class="labelModal"> <input class="check_list" name="check_list[]" type="checkbox">La visualisation ne vous convient pas ...</label>
-                                    </div>
-                                    <textarea class="form-control" style="min-width: 100%"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Envoyer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
 
@@ -57,6 +56,7 @@
 						<ul class="nav nav-tabs nav-visualisation">
 							<li id="tab-nav-1" class="tab-nav"><a href="#tab-pane-1" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Tableau</a></li>
 							<li id="tab-nav-2" class="tab-nav"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
+							<li id="tab-nav-6" class="tab-nav"><a href="#tab-pane-6" data-toggle="tab"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Word Cloud</a></li>
 							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
 							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
 							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
@@ -87,14 +87,22 @@
 									<div id="popup"></div>
                                    <!--  <?php #include 'map/map.php'; ?> -->
 								</div>
-								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.svg"/>
+								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.png"/>
 								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
+                                <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_velo.png"/>
 							</div>
 							<div class="tab-pane" id="tab-pane-4">
 								<div id='box4' class="box-visu"> <!-- INFO --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-5">
 								<div id='box5' class="box-visu"> <!-- TELECHARGEMENT --></div>
+							</div>
+							<div class="tab-pane" id="tab-pane-6">
+								<div class="option-panel">
+									<div class="select-list-date"></div>
+									<div class="select-list-date-compare"></div>		
+								</div>
+								<div id='box6' class="box-visu"> <!-- CLOUD --></div>
 							</div>
 						</div>
 					</div>
@@ -178,6 +186,7 @@
 		</div> <!-- END CONTENT PAGE -->
 
 		<script type="text/javascript" src="map/bus.js"></script>
+		<script type="text/javascript" src="map/velo.js"></script>
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/popup.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>
@@ -188,7 +197,12 @@
 		<script type="text/javascript" src="chart/pie.js"></script>
 		<script type="text/javascript" src="chart/doughnut.js"></script>
         <script type="text/javascript" src="chart/chart.js"></script>
+
     	<script type="text/javascript" src="table/table.js"></script>
+
+    	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+		<script type="text/javascript" src="cloud/drawCloud.js"></script>
+		<script type="text/javascript" src="cloud/cloud.js"></script>
 
         <script type="text/javascript" src="../controller.js"></script>
         <script type="text/javascript" src="visualisation.js"></script>

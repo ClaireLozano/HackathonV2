@@ -25,9 +25,12 @@ $(document).ready(function(){
 
                 // With end url, get data
                 getData(metadata.link, function(data) {
-
-                    // Set tab navbar and draw visualisation
-                    setTabNavBarAndDraw(metadata, data);
+                    if (data) {
+                        // Set tab navbar and draw visualisation
+                        setTabNavBarAndDraw(metadata, data);
+                    } else {
+                        alert("Une erreur est survenue: Aucune donnée n'a pu être chargé.");
+                    }
                 });
 
                 setMapButton();
@@ -71,6 +74,11 @@ $(document).ready(function(){
         $("#tab-nav-5").click(function() {
             $("#tab-pane-5").css('display', 'block');
             $("#tab-nav-5").addClass('active');
+        });
+
+        $("#tab-nav-6").click(function() {
+            $("#tab-pane-6").css('display', 'block');
+            $("#tab-nav-6").addClass('active');
         });
 
         // Reload the page with the new date
@@ -118,7 +126,9 @@ $(document).ready(function(){
             return "table";
         } else if ($("#tab-nav-2").hasClass("active")) {
             return "graph";
-        } else {
+        } else if ($("#tab-nav-6").hasClass("active")) {
+            return "cloud";
+        }else {
             return "map";
         }
     };
@@ -211,8 +221,13 @@ $(document).ready(function(){
                 if($(this).attr('id') === "button-icone-poste") {
                     hideLayerPoste();
                 }
+                // Remove yelo marks
+                if($(this).attr('id') === "button-icone-yelo") {
+                    hideLayerYelo();
+                }
 
-            // Else, show them
+
+                // Else, show them
             } else {
                 $(this).val("true");
                 $(this).css({opacity: 1});
@@ -225,6 +240,11 @@ $(document).ready(function(){
                 // Draw poste marks
                 if($(this).attr('id') === "button-icone-poste") {
                     showLayerPoste();
+                }
+
+                // Draw yelo marks
+                if($(this).attr('id') === "button-icone-yelo") {
+                    showLayerYelo();
                 }
             }
         });
@@ -273,6 +293,11 @@ $(document).ready(function(){
             case 'info':
                 $('#tab-pane-4').css('display', 'block');
                 $("#tab-nav-4").addClass('active');
+                break;
+
+            case 'cloud':
+                $('#tab-pane-6').css('display', 'block');
+                $("#tab-nav-6").addClass('active');
                 break;
         }
     };
@@ -327,6 +352,12 @@ $(document).ready(function(){
 
             // Set description
             setDescription(metadata);
+        }
+
+        if(metadata.cloud) {
+            drawCloud(data, metadata, 'box6');
+        } else {
+            $("#tab-nav-6").css('display', 'none');
         }
     };
 
