@@ -8,7 +8,7 @@
     <div id="content-page">
       <h2>Back office</h2>
       <p>Création de métadonnes pour les jeux de données </p>
-      <form id="form" action="postdata.php" method="post">
+      <form onsubmit="return atleast_onecheckbox(event)" id="form" action="postdata.php" method="post">
 
         <div class="form-row">
           <hr>
@@ -21,7 +21,7 @@
           <div class="form-group col-md-10">
             <label for="inputDescriptionData">Description des données</label>
             <p>Il est possible d'afficher une description de la données et ainsi guider les utilisateurs dans la lecture des données.</p>
-            <textarea form="form" type="text" class="form-control" name="description" required></textarea>
+            <textarea form="form" type="text" class="form-control" name="description"></textarea>
           </div>
           <div class="form-group col-md-10">
             <label for="fileName">Nom du fichier métadonnées</label>
@@ -86,7 +86,7 @@
             <p>Un graphe peut-être représenté sous plusieurs formes. Veuillez choisir le type de réprésentation :</p>
             <label for="inputGraphType">Type de graphe : </label>
             <div class="form-check">
-              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="pie" checked>Camembert</label>
+              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="pie" >Camembert</label>
               <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
               <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="line">Ligne</label>
               <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="horizontalBar">Barres horizontales</label>

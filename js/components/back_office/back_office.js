@@ -8,7 +8,13 @@ $(document).ready(function(){
 });
 
 
-
+function atleast_onecheckbox(e) {
+  if ($("input[type=checkbox]:checked").length === 0) {
+      e.preventDefault();
+      alert('Il faut choisir au moins un type de visualisation !');
+      return false;
+  }
+}
 
 
 var id = 0;
