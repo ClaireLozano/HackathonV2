@@ -223,9 +223,12 @@
           <div id="sm" class="form-group col-md-5">
             <label for="inputKeyList">Liste des années</label>
             <br>
-            <input class="input form-control col-md-6" id="year1" name="timeline_dataComposition_year_list[]" type="text" placeholder="Année" />
+            <!-- <input class="input form-control col-md-6" id="year1" name="timeline_dataComposition_year_list[]" type="text" placeholder="Année" />
             <input class="input form-control col-md-6" id="year_value1" name="timeline_dataComposition_year_value_list[]" type="text" placeholder="Valeur" />
-            <button id="b1" class="btn add-more" type="button" onclick="addInput_timeline()">+</button>
+            <button id="b1" class="btn add-more" type="button" onclick="addInput_timeline()">+</button> -->
+            <div id="buildtimeline">
+            </div>
+            <input type="button" id="b_timeline" class="add" value="Ajouter année/ valeur de l'année" />
           </div>
         </div>
 

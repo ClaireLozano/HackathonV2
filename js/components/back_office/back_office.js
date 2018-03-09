@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	//Add the input for the table :
 	$("#b1").click(function() {
     		var lastField = $("#buildyourform div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
@@ -13,6 +14,24 @@ $(document).ready(function(){
         fieldWrapper.append(removeButton);
         $("#buildyourform").append(fieldWrapper);
     });
+
+		//Add the input for the timeline :
+		$("#b_timeline").click(function() {
+					var lastField = $("#buildtimeline div:last");
+					var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+					var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+					fieldWrapper.data("idx", intId);
+					var fName = $("<input type=\"text\" class=\"input form-control\" name=\"timeline_dataComposition_year_list[]\" placeholder=\"Année\" required/><input type=\"text\" class=\"input form-control\" name=\"timeline_dataComposition_year_value_list[]\" placeholder=\"Valeur de l'année\" required/>");
+					var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
+					removeButton.click(function() {
+							$(this).parent().remove();
+					});
+					fieldWrapper.append(fName);
+					fieldWrapper.append(removeButton);
+					$("#buildtimeline").append(fieldWrapper);
+			});
+
+
 	function init() {
 	}
 
