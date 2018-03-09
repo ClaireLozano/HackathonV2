@@ -13,7 +13,6 @@ $timeline = 'type_timeline';
 
 
 
-
 $years = $_POST['timeline_dataComposition_year_list'];
 $years_value = $_POST['timeline_dataComposition_year_value_list'];
 
@@ -130,8 +129,7 @@ foreach ($datatypeArray as $key => $value) {
 }
 
 
-
-$json = json_encode( $postArray );
+$json = json_encode($postArray ,JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE);
 echo $json;
 
 
