@@ -14,6 +14,20 @@ function atleast_onecheckbox(e) {
       alert('Il faut choisir au moins un type de visualisation !');
       return false;
   }
+
+	var inputs = document.getElementById('theGraph').getElementsByTagName('input');
+	var counter = 0;
+	for (var i = 0 ; i < inputs.length ; i++){
+		if(inputs[i].checked){
+			counter ++;
+		}
+	}
+	if(counter == 0){
+		e.preventDefault();
+		alert('Il faut choisir au moins un type de graphe !');
+		return false;
+
+	}
 }
 
 
