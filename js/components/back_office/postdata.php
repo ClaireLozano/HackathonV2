@@ -34,9 +34,6 @@ $postArray = array(
       )
 );
 
-
-
-
 Grahes :
 $grapheArray = array(
       "possibleGraphs" => $_POST['possibleGraphs'],
@@ -74,8 +71,6 @@ $tableauArray = array(
 // Timeline :
 $timelineArray = array(
       "actualDate" => $_POST['actualDate']);
-
-
 
 
 // Type d'affichage des données :
@@ -129,7 +124,7 @@ foreach ($datatypeArray as $key => $value) {
 }
 
 
-$json = json_encode($postArray ,JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE);
+$json = json_encode($postArray, JSON_UNESCAPED_UNICODE);
 echo $json;
 
 

@@ -31,7 +31,6 @@ function requiredInputs(){
 	// theElement = document.getElementById('theGraph');
 	$("#theGraph :input.form-control").prop('required',true);
 
-
 }
 
 function addInput(){
@@ -115,9 +114,13 @@ function removeButton(elementId){
 function dataTypeChoice() {
     if (document.getElementById('type_map').checked) {
         document.getElementById('theMap').style.display = 'block';
+				$("#theMap :input.form-control").prop('required',true);
+
     }
 		if (!document.getElementById('type_map').checked) {
 				document.getElementById('theMap').style.display = 'none';
+				$("#theMap :input.form-control").prop('required',false);
+
 		}
 
     if(document.getElementById('type_graphe').checked){
