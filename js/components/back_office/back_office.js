@@ -1,7 +1,19 @@
 $(document).ready(function(){
-
+	$("#b1").click(function() {
+    		var lastField = $("#buildyourform div:last");
+        var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+        var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+        fieldWrapper.data("idx", intId);
+        var fName = $("<input type=\"text\" class=\"input form-control\" name=\"table_dataComposition_keys_list[]\" placeholder=\"Mot clé\" required/><input type=\"text\" class=\"input form-control\" name=\"table_dataComposition_value_list[]\" placeholder=\"Valeur\" required/>");
+        var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
+        removeButton.click(function() {
+            $(this).parent().remove();
+        });
+        fieldWrapper.append(fName);
+        fieldWrapper.append(removeButton);
+        $("#buildyourform").append(fieldWrapper);
+    });
 	function init() {
-
 	}
 
  	init();
@@ -14,20 +26,22 @@ function atleast_onecheckbox(e) {
       alert('Il faut choisir au moins un type de visualisation !');
       return false;
   }
+  if(document.getElementById('type_graphe').checked){
+		var inputs = document.getElementById('theGraph').getElementsByTagName('input');
+		var counter = 0;
+		for (var i = 0 ; i < inputs.length ; i++){
+			if(inputs[i].checked){
+				counter ++;
+			}
+		}
+		if(counter == 0){
+			e.preventDefault();
+			alert('Il faut choisir au moins un type de graphe !');
+			return false;
 
-	var inputs = document.getElementById('theGraph').getElementsByTagName('input');
-	var counter = 0;
-	for (var i = 0 ; i < inputs.length ; i++){
-		if(inputs[i].checked){
-			counter ++;
 		}
 	}
-	if(counter == 0){
-		e.preventDefault();
-		alert('Il faut choisir au moins un type de graphe !');
-		return false;
 
-	}
 }
 
 

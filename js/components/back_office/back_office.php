@@ -135,9 +135,12 @@
           <div id="sm" class="form-group col-md-5">
             <label for="inputKeyList">Liste des mots clés</label>
             <br>
-            <input autocomplete="off" class="input form-control col-md-6" id="key1" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé" />
-            <input autocomplete="off" class="input form-control col-md-6" id="value1" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur" />
-            <button id="b1" class="btn add-more" type="button" onclick="addInput()">+</button>
+            <!-- <input autocomplete="off" class="input form-control col-md-6" id="key1" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé" />
+            <input autocomplete="off" class="input form-control col-md-6" id="value1" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur" /> -->
+            <!-- <button id="b1" class="btn add-more" type="button" onclick="addInput()">+</button> -->
+            <div id="buildyourform">
+            </div>
+            <input type="button" id="b1" class="add" value="Ajouter mot clé/valuer" />
           </div>
         </div>
 
