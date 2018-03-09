@@ -137,6 +137,7 @@
             <br>
             <!-- <button id="b1" class="btn add-more" type="button" onclick="addInput()">+</button> -->
             <div id="buildyourform">
+              <h6>Mot clé / valeur</h6>
               <input autocomplete="off" class="input form-control col-md-6" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé" />
               <input autocomplete="off" class="input form-control col-md-6" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur" /><br/>
             </div>
@@ -225,6 +226,7 @@
             <br>
                         <!-- <button id="b1" class="btn add-more" type="button" onclick="addInput_timeline()">+</button> -->
             <div id="buildtimeline">
+              <h6>Année / valeur</h6>
               <input class="input form-control col-md-6" name="timeline_dataComposition_year_list[]" type="text" placeholder="Année" />
               <input class="input form-control col-md-6" name="timeline_dataComposition_year_value_list[]" type="text" placeholder="Valeur année" />
               <br/>

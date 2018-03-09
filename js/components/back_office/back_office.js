@@ -1,14 +1,14 @@
 $(document).ready(function(){
 	// var addInputTable = 0;
 	// var addInputTimeline = 0;
-	
+
 	//Add the input for the table :
 	$("#b1").click(function() {
     		var lastField = $("#buildyourform div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
         fieldWrapper.data("idx", intId);
-        var fName = $("<input type=\"text\" class=\"input form-control\" name=\"table_dataComposition_keys_list[]\" placeholder=\"Mot clé\" required/><input type=\"text\" class=\"input form-control\" name=\"table_dataComposition_value_list[]\" placeholder=\"Valeur\" required/>");
+        var fName = $("<h6>Mot clé / valeur</h6><input type=\"text\" class=\"input form-control\" name=\"table_dataComposition_keys_list[]\" placeholder=\"Mot clé\" required/><input type=\"text\" class=\"input form-control\" name=\"table_dataComposition_value_list[]\" placeholder=\"Valeur\" required/>");
         var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
         removeButton.click(function() {
             $(this).parent().remove();
@@ -24,7 +24,7 @@ $(document).ready(function(){
 					var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
 					var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
 					fieldWrapper.data("idx", intId);
-					var fName = $("<input type=\"text\" class=\"input form-control\" name=\"timeline_dataComposition_year_list[]\" placeholder=\"Année\" required/><input type=\"text\" class=\"input form-control\" name=\"timeline_dataComposition_year_value_list[]\" placeholder=\"Valeur de l'année\" required/>");
+					var fName = $("<h6>Année / valeur</h6><input type=\"text\" class=\"input form-control\" name=\"timeline_dataComposition_year_list[]\" placeholder=\"Année\" required/><input type=\"text\" class=\"input form-control\" name=\"timeline_dataComposition_year_value_list[]\" placeholder=\"Valeur de l'année\" required/>");
 					var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
 					removeButton.click(function() {
 							$(this).parent().remove();
