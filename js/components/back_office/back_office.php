@@ -135,7 +135,10 @@
           <div id="sm" class="form-group col-md-5">
             <label for="inputKeyList">Liste des mots clés</label>
             <br>
+            <!-- <button id="b1" class="btn add-more" type="button" onclick="addInput()">+</button> -->
             <div id="buildyourform">
+              <input autocomplete="off" class="input form-control col-md-6" name="table_dataComposition_keys_list[]" type="text" placeholder="Mot clé" />
+              <input autocomplete="off" class="input form-control col-md-6" name="table_dataComposition_value_list[]" type="text" placeholder="Valeur" /><br/>
             </div>
             <input type="button" id="b1" class="add" value="Ajouter mot clé/valuer" />
           </div>
@@ -220,7 +223,11 @@
           <div id="sm" class="form-group col-md-5">
             <label for="inputKeyList">Liste des années</label>
             <br>
+                        <!-- <button id="b1" class="btn add-more" type="button" onclick="addInput_timeline()">+</button> -->
             <div id="buildtimeline">
+              <input class="input form-control col-md-6" name="timeline_dataComposition_year_list[]" type="text" placeholder="Année" />
+              <input class="input form-control col-md-6" name="timeline_dataComposition_year_value_list[]" type="text" placeholder="Valeur année" />
+              <br/>
             </div>
             <input type="button" id="b_timeline" class="add" value="Ajouter année/ valeur de l'année" />
           </div>

@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	// var addInputTable = 0;
+	// var addInputTimeline = 0;
+	
 	//Add the input for the table :
 	$("#b1").click(function() {
     		var lastField = $("#buildyourform div:last");
