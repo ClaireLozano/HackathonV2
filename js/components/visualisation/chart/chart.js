@@ -9,7 +9,7 @@ function drawGraph(dataToTreat, metadata, box) {
     var params = getParams(dataToTreat,metadata,0)
 
     if (metadata.graph.dataComposition.category0) {
-        initNewGraph(params,metadata,box,0, previousValues)
+        initNewGraph(params,box,0, previousValues)
     }
     else {
         var select = d3.select('#' + box)
@@ -35,25 +35,25 @@ function drawGraph(dataToTreat, metadata, box) {
                     //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
-                    initBar(params, metadata, box, level, previousValues);
+                    initBar(params, box, level, previousValues);
                     break;
                 case "pie":
                     //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
-                    initPie(params, metadata, box, level, previousValues);
+                    initPie(params, box, level, previousValues);
                     break;
                 case "doughnut":
                     //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
-                    initdoughnut(params, metadata, box, level, previousValues);
+                    initdoughnut(params, box, level, previousValues);
                     break;
                 case "horizontalBar":
                     //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
-                    initHorizontalBar(params, metadata, box, level, previousValues);
+                    initHorizontalBar(params, box, level, previousValues);
                     break;
                 default:
                     d3.selectAll("svg").remove();

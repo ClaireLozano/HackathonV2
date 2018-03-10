@@ -80,13 +80,13 @@ function getParams(dataToTreat, metadata, level) {
     }
 }
 
-function initNewGraph(params, metadata, box, level, previousValues) {
+function initNewGraph(params, box, level, previousValues) {
     console.log(previousValues);
 
     var catProfondeur = []
-    for (value in metadata.graph.dataComposition) {
+    for (value in params.metadata.graph.dataComposition) {
         if (value.substring(0, 8) == "category")
-            catProfondeur.push(metadata.graph.dataComposition[value])
+            catProfondeur.push(params.metadata.graph.dataComposition[value])
     }
 
     if (catProfondeur[level]) {
@@ -97,7 +97,7 @@ function initNewGraph(params, metadata, box, level, previousValues) {
             params.dataToTreat = params.originalData
             for (var j = 1; j <= i; j++) {
                 params.dataToTreat = params.dataToTreat.filter(function (d) {
-                    return d[metadata.graph.dataComposition["category"+(j-1)]] === previousValues[j - 1]
+                    return d[params.metadata.graph.dataComposition["category"+(j-1)]] === previousValues[j - 1]
                 })
             }
 
@@ -119,18 +119,18 @@ function initNewGraph(params, metadata, box, level, previousValues) {
 
             params.dataToTreat = nested;
 
-            switch (metadata.graph.possibleGraphs[i]) {
+            switch (params.metadata.graph.possibleGraphs[i]) {
                 case "bar":
-                    initBar(params, metadata, box, i, previousValues);
+                    initBar(params,box, i, previousValues);
                     break;
                 case "pie":
-                    initPie(params, metadata, box, i, previousValues);
+                    initPie(params, box, i, previousValues);
                     break;
                 case "doughnut":
-                    initdoughnut(params, metadata, box, i, previousValues);
+                    initdoughnut(params, box, i, previousValues);
                     break;
                 case "horizontalBar":
-                    initHorizontalBar(params, metadata, box, i, previousValues);
+                    initHorizontalBar(params, box, i, previousValues);
                     break;
             }
         }

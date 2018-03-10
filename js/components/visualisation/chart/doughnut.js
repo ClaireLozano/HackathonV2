@@ -1,4 +1,4 @@
-function initdoughnut(params, metadata, box, level, previousValues) {
+function initdoughnut(params, box, level, previousValues) {
 
     var vis = d3.select('#' + box)
         .append("svg")
@@ -39,7 +39,7 @@ function initdoughnut(params, metadata, box, level, previousValues) {
         .attr("d", arc)
         .on("click", function (node, i) {
             previousValues[level]=node.data[params.realTitle]
-            initNewGraph(params, metadata, box, level + 1, previousValues)
+            initNewGraph(params, box, level + 1, previousValues)
         });
 
     arcs.append("text")
