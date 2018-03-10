@@ -1,14 +1,13 @@
-function initBar(dataToTreat, metadata, box, level) {
-    params = getParams(dataToTreat, metadata, level);
+function initBar(params, metadata, box, level, previousValues) {
 
     var x = d3.scale.ordinal()
-        .domain(dataToTreat.map(function (entry) {
+        .domain(params.dataToTreat.map(function (entry) {
             return entry[params.realTitle]
         }))
         .rangeBands([0, params.width])
 
     var y = d3.scale.linear()
-        .domain([0, d3.max(dataToTreat, function (d) {
+        .domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
         .range([params.height, 0])
@@ -121,7 +120,8 @@ function initBar(dataToTreat, metadata, box, level) {
                 d3.select(this).style("fill", params.ordinalScaleColor(i))
             })
             .on("click", function (d, i) {
-              initNewGraph(dataToTreat, metadata, box, level+1, d[params.realTitle])
+                previousValues[level]=d[params.realTitle]
+                initNewGraph(params, metadata, box, level + 1, previousValues)
             });
 
         this.selectAll(".bar-label")
