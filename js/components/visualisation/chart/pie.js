@@ -36,7 +36,6 @@ function initPie(params, box, level, previousValues) {
         })
         .attr("d", arc)
         .on("click", function (node, i) {
-            console.log("Click : "+level + " : "+params.realTitle)
             previousValues[level]=node.data[params.realTitle]
             initNewGraph(params, box, level + 1, previousValues)
         });

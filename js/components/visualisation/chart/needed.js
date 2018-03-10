@@ -81,7 +81,6 @@ function getParams(dataToTreat, metadata, level) {
 }
 
 function initNewGraph(params, box, level, previousValues) {
-    console.log(previousValues);
 
     var catProfondeur = []
     for (value in params.metadata.graph.dataComposition) {
