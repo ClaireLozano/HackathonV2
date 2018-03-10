@@ -3,34 +3,10 @@ function getValueTitle(dataToTreat, metadata, level) {
     var realTitle = metadata.graph.dataComposition.title
     var realValue = metadata.graph.dataComposition.value
 
-    var catProfondeur = []
-    for (value in metadata.graph.dataComposition) {
-        if (value.substring(0, 8) == "category")
-            catProfondeur.push(metadata.graph.dataComposition[value])
-    }
-
     dataToTreat.forEach(function (d) {
         d[realTitle] = d[realTitle]
         d[realValue] = +d[realValue]
     })
-
-    if (catProfondeur[level]) {
-        var nested = d3.nest()
-            .key(function (d) {
-                return d[catProfondeur[level]]
-            })
-            .rollup(function (v) {
-                return d3.sum(v, function (d) {
-                        return d[realValue]
-                    }
-                )
-            })
-            .entries(dataToTreat)
-
-        dataToTreat = nested
-        realTitle = "key"
-        realValue = "values"
-    }
 
     if (metadata.dictionnaireY) {
         var urlDict = metadata.dictionnaireY.link
@@ -55,6 +31,19 @@ function getValueTitle(dataToTreat, metadata, level) {
         "realValue": realValue,
         "dataToTreat": dataToTreat
     }
+}
+
+function updateParams(params, level) {
+    realTitle = params.metadata.graph.dataComposition.title
+    realValue = params.metadata.graph.dataComposition.value
+
+    if(params.metadata.graph.dataComposition['category'+level]){
+        realTitle=params.metadata.graph.dataComposition['category'+level]
+    }
+
+    params.realTitle = realTitle
+    params.realValue = realValue
+    return params
 }
 
 function getParams(dataToTreat, metadata, level) {
@@ -86,12 +75,13 @@ function getParams(dataToTreat, metadata, level) {
         "COLORHOVER": COLORHOVER,
         "r": r,
         "originalData": originalData,
-        "dataToTreat": dataToTreat
+        "dataToTreat": dataToTreat,
+        "metadata": metadata
     }
 }
 
-function initNewGraph(dataToTreat, metadata, box, level, previousValue) {
-    console.log(previousValue)
+function initNewGraph(params, metadata, box, level, previousValues) {
+    console.log(previousValues);
 
     var catProfondeur = []
     for (value in metadata.graph.dataComposition) {
@@ -102,28 +92,45 @@ function initNewGraph(dataToTreat, metadata, box, level, previousValue) {
     if (catProfondeur[level]) {
         d3.selectAll("svg").remove();
         d3.selectAll(".chart>p").remove();
-        for (var i = 0; i<=level; i++)
-        {
-
-            if(i==1){
-                console.log(dataToTreat)
-                dataToTreat = dataToTreat.filter(function (d) {
-                    return d[metadata.graph.dataComposition.category0] === previousValue
+        for (var i = 0; i <= level; i++) {
+            params = updateParams(params, i)
+            params.dataToTreat = params.originalData
+            for (var j = 1; j <= i; j++) {
+                params.dataToTreat = params.dataToTreat.filter(function (d) {
+                    return d[metadata.graph.dataComposition["category"+(j-1)]] === previousValues[j - 1]
                 })
-                console.log("After filter",dataToTreat)
             }
+
+
+            var nested = d3.nest()
+                .key(function (d) {
+                    return d[params.realTitle]
+                })
+                .rollup(function (v) {
+                    return d3.sum(v, function (d) {
+                            return d[params.realValue]
+                        }
+                    )
+                })
+                .entries(params.dataToTreat)
+
+            params.realTitle="key";
+            params.realValue="values";
+
+            params.dataToTreat = nested;
+
             switch (metadata.graph.possibleGraphs[i]) {
                 case "bar":
-                    initBar(dataToTreat, metadata, box, i);
+                    initBar(params, metadata, box, i, previousValues);
                     break;
                 case "pie":
-                    initPie(dataToTreat, metadata, box, i);
+                    initPie(params, metadata, box, i, previousValues);
                     break;
                 case "doughnut":
-                    initdoughnut(dataToTreat, metadata, box, i);
+                    initdoughnut(params, metadata, box, i, previousValues);
                     break;
                 case "horizontalBar":
-                    initHorizontalBar(dataToTreat, metadata, box, i);
+                    initHorizontalBar(params, metadata, box, i, previousValues);
                     break;
             }
         }
