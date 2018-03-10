@@ -1,14 +1,13 @@
-function initBar(dataToTreat, metadata, box, level) {
-    params = getParams(dataToTreat, metadata, level);
+function initBar(params, box, level, previousValues) {
 
     var x = d3.scale.ordinal()
-        .domain(dataToTreat.map(function (entry) {
+        .domain(params.Treat.map(function (entry) {
             return entry[params.realTitle]
         }))
         .rangeBands([0, params.width])
 
     var y = d3.scale.linear()
-        .domain([0, d3.max(dataToTreat, function (d) {
+        .domain([0, d3.max(params.Treat, function (d) {
             return d[params.realValue]
         })])
         .range([params.height, 0])
@@ -76,7 +75,7 @@ function initBar(dataToTreat, metadata, box, level) {
                 .attr("y", 0)
                 .style("text-anchor", "middle")
                 .attr("transform", "translate(-50," + params.height / 2 + ") rotate(-90)")
-                .text(metadata.graph.dataComposition.y_axis)
+                .text(params.metadata.graph.dataComposition.y_axis)
 
             //this is x label
             this.select(".x.axis")
@@ -85,7 +84,7 @@ function initBar(dataToTreat, metadata, box, level) {
                 .attr("y", 0)
                 .style("text-anchor", "middle")
                 .attr("transform", "translate(" + params.width / 2 + ", 130)")
-                .text(metadata.graph.dataComposition.x_axis)
+                .text(params.metadata.graph.dataComposition.x_axis)
         } else {
             this.selectAll("g.x.axis")
                 .call(parametres.axis.x)
@@ -96,11 +95,11 @@ function initBar(dataToTreat, metadata, box, level) {
 
     function plot(parametres) {
 
-        x.domain(params.dataToTreat.map(function (entry) {
+        x.domain(params.Treat.map(function (entry) {
             return entry.dp_libelle
         }))
 
-        y.domain([0, d3.max(params.dataToTreat, function (d) {
+        y.domain([0, d3.max(params.Treat, function (d) {
             return d[params.realValue]
         })])
 
@@ -121,7 +120,8 @@ function initBar(dataToTreat, metadata, box, level) {
                 d3.select(this).style("fill", params.ordinalScaleColor(i))
             })
             .on("click", function (d, i) {
-              initNewGraph(dataToTreat, metadata, box, level+1, d[params.realTitle])
+                previousValues[level]=d[params.realTitle]
+                initNewGraph(params, box, level + 1, previousValues)
             });
 
         this.selectAll(".bar-label")
@@ -178,7 +178,7 @@ function initBar(dataToTreat, metadata, box, level) {
     }
 
     plot.call(chart, {
-        data: params.dataToTreat,
+        data: params.Treat,
         axis: {
             x: xAxis,
             y: yAxis

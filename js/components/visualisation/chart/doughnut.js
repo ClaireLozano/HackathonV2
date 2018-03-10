@@ -1,5 +1,4 @@
-function initdoughnut(dataToTreat, metadata, box, level) {
-    params = getParams(dataToTreat, metadata, level);
+function initdoughnut(params, box, level, previousValues) {
 
     var vis = d3.select('#' + box)
         .append("svg")
@@ -39,7 +38,8 @@ function initdoughnut(dataToTreat, metadata, box, level) {
         })
         .attr("d", arc)
         .on("click", function (node, i) {
-          initNewGraph(dataToTreat, metadata, box, level+1, node.data[params.realTitle])
+            previousValues[level]=node.data[params.realTitle]
+            initNewGraph(params, box, level + 1, previousValues)
         });
 
     arcs.append("text")
@@ -52,7 +52,7 @@ function initdoughnut(dataToTreat, metadata, box, level) {
         .text(function (d, i) {
             return params.dataToTreat[i][params.realTitle] +
                 "\n" +
-                dataToTreat[i][params.realValue]
+                params.dataToTreat[i][params.realValue]
         })        //get the label from our original data array
 
 }
