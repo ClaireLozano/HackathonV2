@@ -1,6 +1,4 @@
-function initPie(dataToTreat, metadata, box, level) {
-    var params = getParams(dataToTreat, metadata, level)
-
+function initPie(params, metadata, box, level, previousValues) {
     var vis = d3.select('#' + box)
         .append("svg")
         .data([params.dataToTreat])
@@ -38,7 +36,9 @@ function initPie(dataToTreat, metadata, box, level) {
         })
         .attr("d", arc)
         .on("click", function (node, i) {
-            initNewGraph(dataToTreat, metadata, box, level + 1, node.data[params.realTitle])
+            console.log("Click : "+level + " : "+params.realTitle)
+            previousValues[level]=node.data[params.realTitle]
+            initNewGraph(params, metadata, box, level + 1, previousValues)
         });
 
     arcs.append("text")
