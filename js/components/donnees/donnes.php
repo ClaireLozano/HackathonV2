@@ -63,7 +63,7 @@
 						<div class="card">
 							<div class="card-block">
 								<h3 class="card-title">Prénoms - 2014</h3>
-								<a href="../visualisation/visualisation.php?type=table&amp;data=acte_naissance_02_2014"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+								<a href="../visualisation/visualisation.php?type=cloud&amp;data=acte_naissance_02_2014"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
 							</div>
 						</div>
 					</div>
