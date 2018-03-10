@@ -1,4 +1,4 @@
-function initHorizontalBar(params, metadata, box, level, previousValues) {
+function initHorizontalBar(params, box, level, previousValues) {
 
     var x = d3.scale.linear()
         .domain([0, d3.max(params.dataToTreat, function (d) {
@@ -58,7 +58,7 @@ function initHorizontalBar(params, metadata, box, level, previousValues) {
             })
             .on("click", function (d, i) {
                 previousValues[level] = d[params.realTitle]
-                initNewGraph(params, metadata, box, level + 1, previousValues)
+                initNewGraph(params, box, level + 1, previousValues)
             });
 
         this.selectAll(".bar-label")
