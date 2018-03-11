@@ -20,21 +20,32 @@ $postArray = array(
 
   "link" => $_POST['link'],
   "title" => $_POST['title'],
-  "description" => $_POST['description'],
-  "dictionnaireX" => array(
-        "link" => $_POST['link_dictX'],
-        "initValue" => $_POST['initValue_dictX'],
-        "newValue" => $_POST['newValue_dictX']
-      ),
-  "dictionnaireY" => array(
-        "link" => $_POST['link_dictY'],
-        "value" => $_POST['value_dictY'],
-        "initValue" => $_POST['initValue_dictY'],
-        "newValue" => $_POST['newValue_dictY']
-      )
+  "description" => $_POST['description']
 );
 
-Grahes :
+// Dictionnaire X
+$dictXArray = array(
+      "link" => $_POST['link_dictX'],
+      "initValue" => $_POST['initValue_dictX'],
+      "newValue" => $_POST['newValue_dictX']
+    );
+
+// Dictionnaire Y
+$dictYArray = array(
+      "link" => $_POST['link_dictY'],
+      "value" => $_POST['value_dictY'],
+      "initValue" => $_POST['initValue_dictY'],
+      "newValue" => $_POST['newValue_dictY']
+    );
+
+// Dictionnaire
+if ($_POST['checkDict'] == 'add_dictionary'){
+  $postArray['dictionnaireX'] = $dictXArray;
+  $postArray['dictionnaireY'] = $dictYArray;
+}
+
+
+// Grahes :
 $grapheArray = array(
       "possibleGraphs" => $_POST['possibleGraphs'],
       "dataComposition" => array(
