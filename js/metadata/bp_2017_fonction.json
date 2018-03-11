@@ -6,7 +6,7 @@
     "possibleGraphs": [
       "pie",
       "horizontalBar",
-      "pie"
+      "table"
     ],
     "dataComposition": {
       "excludeLines": [],
@@ -14,7 +14,7 @@
       "value": "budg_montant",
       "category0": "budg_dep_rec",
       "category1": "budg_ss_fction_code",
-      "category2": "budg_cat"
+      "category2": "table"
     }
   },
   "timeline": {
