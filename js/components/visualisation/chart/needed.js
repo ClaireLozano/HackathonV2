@@ -151,8 +151,8 @@ function initNewGraph(params, box, level, previousValues) {
                     initHorizontalBar(params, box, i, previousValues);
                     break;
                 case "table":
-                    drawTable(params.dataToTreat,params.metadata,box)
-
+                    drawTable(params.dataToTreat,params.metadata,box);
+                    break;
             }
         }
     }
