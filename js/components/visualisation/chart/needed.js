@@ -26,6 +26,21 @@ function getValueTitle(dataToTreat, metadata, level) {
         })
     }
 
+
+    for (value in metadata.graph.dataComposition) {
+        if (value.substring(0, 8) == "category") {
+            console.log(metadata.graph.dataComposition[value])
+            tmp = metadata.graph.dataComposition[value]
+            if (metadata.table.dataComposition[tmp]) {
+                dataToTreat.forEach(function (d) {
+                    var aggreg = d[tmp][0]
+                    d[tmp] = metadata.table.dataComposition[tmp][aggreg]
+                })
+            }
+
+        }
+    }
+
     return {
         "realTitle": realTitle,
         "realValue": realValue,
@@ -39,16 +54,6 @@ function updateParams(params, level) {
 
     if (params.metadata.graph.dataComposition['category' + level]) {
         realTitle = params.metadata.graph.dataComposition['category' + level]
-    }
-
-
-    if (params.metadata.table.dataComposition[realTitle]) {
-        console.log("TRAITEEEEEEMENT")
-        console.log(realTitle)
-        params.originalData.forEach(function (d) {
-            var aggreg = d[realTitle][0]
-            d[realTitle] = params.metadata.table.dataComposition[realTitle][aggreg]
-        })
     }
 
 
@@ -106,28 +111,31 @@ function initNewGraph(params, box, level, previousValues) {
         for (var i = 0; i <= level; i++) {
             params = updateParams(params, i)
             params.dataToTreat = params.originalData
+
             for (var j = 1; j <= i; j++) {
                 params.dataToTreat = params.dataToTreat.filter(function (d) {
                     return d[params.metadata.graph.dataComposition["category" + (j - 1)]] === previousValues[j - 1]
                 })
             }
 
-            var nested = d3.nest()
-                .key(function (d) {
-                    return d[params.realTitle]
-                })
-                .rollup(function (v) {
-                    return d3.sum(v, function (d) {
-                            return d[params.realValue]
-                        }
-                    )
-                })
-                .entries(params.dataToTreat)
+            if (params.metadata.graph.possibleGraphs[i] !== "table") {
+                var nested = d3.nest()
+                    .key(function (d) {
+                        return d[params.realTitle]
+                    })
+                    .rollup(function (v) {
+                        return d3.sum(v, function (d) {
+                                return d[params.realValue]
+                            }
+                        )
+                    })
+                    .entries(params.dataToTreat)
+                params.realTitle = "key";
+                params.realValue = "values";
 
-            params.realTitle = "key";
-            params.realValue = "values";
+                params.dataToTreat = nested;
+            }
 
-            params.dataToTreat = nested;
 
             switch (params.metadata.graph.possibleGraphs[i]) {
                 case "bar":
@@ -142,6 +150,9 @@ function initNewGraph(params, box, level, previousValues) {
                 case "horizontalBar":
                     initHorizontalBar(params, box, i, previousValues);
                     break;
+                case "table":
+                    drawTable(params.dataToTreat,params.metadata,box)
+
             }
         }
     }
