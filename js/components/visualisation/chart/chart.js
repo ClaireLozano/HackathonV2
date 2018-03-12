@@ -29,28 +29,24 @@ function drawGraph(dataToTreat, metadata, box) {
 
         function onChange() {
             var selectValue = d3.select('.selectGraph').property('value');
-            console.log(selectValue);
+
             switch (selectValue) {
                 case "bar":
-                    //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
                     initBar(params, box, level, previousValues);
                     break;
                 case "pie":
-                    //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
                     initPie(params, box, level, previousValues);
                     break;
                 case "doughnut":
-                    //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
                     initdoughnut(params, box, level, previousValues);
                     break;
                 case "horizontalBar":
-                    //exit
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
                     initHorizontalBar(params, box, level, previousValues);
@@ -58,13 +54,11 @@ function drawGraph(dataToTreat, metadata, box) {
                 default:
                     d3.selectAll("svg").remove();
                     d3.selectAll(".chart>p").remove();
-
                     d3.select("'#" + box + "'")
                         .append('p')
                         .text("Veuillez séléctionner un type de graphe avant de continuer.")
             }
         }
-
         onChange()
     }
 }
