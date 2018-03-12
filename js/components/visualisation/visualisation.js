@@ -195,7 +195,8 @@ $(document).ready(function() {
                 }
 
                 // Set div width because we need a width to draw the cloud
-                $("#box6Compare").width($('#box6 svg').width()*2); 
+                $("#box6Compare").width($('#box6').width()*4); 
+                $("#box6Compare").height($('#box6').height()); 
 
                 // Draw cloud
                 drawCloud(data, metadata, 'box6Compare');

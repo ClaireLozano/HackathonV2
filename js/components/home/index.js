@@ -45,10 +45,10 @@ $(document).ready(function(){
     var addVisualizationOnBox = function() {
 
         // Define data to display
-        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction", "disponibilite_parking", "population_2008"];
+        var nomDonnee = ["disponibilite_parking", "bp_2017_fonction", "acte_naissance_02_2014", "population_2008"];
         
         // Define type of visualisation
-        var visu = ["map", "graph", "table", "map"];
+        var visu = ["map", "graph", "cloud", "map"];
 
         nomDonnee.forEach(function(n, i) {
             drawVisualisationIndex(nomDonnee[i], visu[i], i);
@@ -84,6 +84,11 @@ $(document).ready(function(){
                     case "graph":
                         drawGraph(data, metadata, "box" + i);
                         defineLinks("graph", i, nomDonnee)
+                        break;
+
+                    case "cloud":
+                        drawCloud(data, metadata, "box" + i);
+                        defineLinks("cloud", i, nomDonnee)
                         break;
                 }
             });
