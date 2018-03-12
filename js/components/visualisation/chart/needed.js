@@ -131,6 +131,10 @@ function initNewGraph(params, box, level, previousValues) {
                 params.dataToTreat = nested;
             }
 
+            params.dataToTreat.sort(function(a,b){
+                return d3.ascending(a[params.realValue], b[params.realValue]);
+            })
+
             switch (params.metadata.graph.possibleGraphs[i]) {
                 case "bar":
                     initBar(params, box, i, previousValues);
