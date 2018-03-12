@@ -27,7 +27,7 @@ function initBar(params, box, level, previousValues) {
         .orient("left")
 
     var svg = d3.select('#' + box).append("svg")
-        .attr("id", "chart")
+        .attr("id", "chart"+box)
         .attr("width", params.w)
         .attr("height", params.h)
 
