@@ -164,6 +164,9 @@ function initBar(params, box, level, previousValues) {
             .text(function (d, i) {
                 return d[params.realValue]
             })
+
+        updateDimensions(params, window.innerWidth)
+
         //exit
         this.selectAll(".bar")
             .data(parametres.data)

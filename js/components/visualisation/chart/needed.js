@@ -93,6 +93,19 @@ function getParams(dataToTreat, metadata, level) {
     }
 }
 
+function updateDimensions(params, winWidth) {
+    params.margin = {
+        top: 58,
+        bottom: 150,
+        left: 80,
+        right: 40
+    };
+    params.width = winWidth - params.margin.left - params.margin.right;
+    params.height = 500 - params.margin.top - params.margin.bottom;
+
+    console.log('updateDimension', params)
+}
+
 function initNewGraph(params, box, level, previousValues) {
 
     var catProfondeur = []
