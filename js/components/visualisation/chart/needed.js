@@ -96,6 +96,7 @@ function getParams(dataToTreat, metadata, level) {
 function initNewGraph(params, box, level, previousValues) {
 
     var catProfondeur = []
+    var idBox = "myBox"+box
     for (value in params.metadata.graph.dataComposition) {
         if (value.substring(0, 8) == "category")
             catProfondeur.push(params.metadata.graph.dataComposition[value])
@@ -103,6 +104,7 @@ function initNewGraph(params, box, level, previousValues) {
 
     if (catProfondeur[level]) {
         d3.selectAll("#chart"+box).remove();
+        d3.selectAll("#"+idBox).remove();
         //d3.selectAll(".chart>p").remove();
         for (var i = 0; i <= level; i++) {
             params = updateParams(params, i)
@@ -126,10 +128,10 @@ function initNewGraph(params, box, level, previousValues) {
                         )
                     })
                     .entries(params.dataToTreat)
-                params.realTitle = "key";
-                params.realValue = "values";
                 params.dataToTreat = nested;
             }
+            params.realValue = "values";
+            params.realTitle = "key";
 
             params.dataToTreat.sort(function(a,b){
                 return d3.ascending(a[params.realValue], b[params.realValue]);
@@ -149,7 +151,8 @@ function initNewGraph(params, box, level, previousValues) {
                     initHorizontalBar(params, box, i, previousValues);
                     break;
                 case "table":
-                    drawTable(params.dataToTreat, params.metadata, box);
+                    $("#"+box).append("<div id="+idBox+"></div>");
+                    drawTable(params.dataToTreat, params.metadata, idBox);
                     break;
             }
         }
