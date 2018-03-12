@@ -87,6 +87,7 @@
 	<?php include '../footer/footer.php'; ?>
     <script type="text/javascript" src="../visualisation/map/popup.js"></script>
     <script type="text/javascript" src="../visualisation/map/bus.js"></script>
+    <script type="text/javascript" src="../visualisation/map/velo.js"></script>
     <script type="text/javascript" src="../visualisation/map/poste.js"></script>
     <script type="text/javascript" src="../visualisation/map/geoloc.js"></script>
     <script type="text/javascript" src="../visualisation/map/map.js"></script>
