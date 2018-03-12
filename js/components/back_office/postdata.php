@@ -167,4 +167,4 @@ fclose($fp);
 
 ?>
 
-<p>Pour changer les données, <a href="back_office.php">cliquez ici</a> pour revenir à la page du formulaire.</p>
+<p>Créer un <a href="back_office.php">nouveau formulaire</a>.</p>
