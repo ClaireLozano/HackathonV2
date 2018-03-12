@@ -23,7 +23,6 @@ function initHorizontalBar(params, box, level, previousValues) {
     var svg = d3.select('#' + box).append("svg")
         .attr("width", params.w)
         .attr("height", params.h)
-        .attr("id", "chart"+box)
 
     var chart = svg.append("g")
         .classed("display", true)
