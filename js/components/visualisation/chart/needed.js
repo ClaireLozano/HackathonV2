@@ -102,8 +102,8 @@ function initNewGraph(params, box, level, previousValues) {
     }
 
     if (catProfondeur[level]) {
-        d3.selectAll("svg").remove();
-        d3.selectAll(".chart>p").remove();
+        d3.selectAll("#chart"+box).remove();
+        //d3.selectAll(".chart>p").remove();
         for (var i = 0; i <= level; i++) {
             params = updateParams(params, i)
             params.dataToTreat = params.originalData

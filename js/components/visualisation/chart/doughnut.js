@@ -5,6 +5,7 @@ function initdoughnut(params, box, level, previousValues) {
         .data([params.dataToTreat])
         .attr("width", params.w)
         .attr("height", params.h)
+        .attr("id", "chart"+box)
         .append("g")
         .attr("transform", "translate(" + params.r + "," + params.r + ")")
 
