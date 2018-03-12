@@ -23,6 +23,8 @@
 
     <!-- D3js -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="../visualisation/chart/d3.legend.js"></script>
+
 
     <!-- Map -->
     <?php
