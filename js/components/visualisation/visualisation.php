@@ -102,7 +102,9 @@
 									<div class="select-list-date"></div>
 									<div class="select-list-date-compare"></div>		
 								</div>
-								<div id='box6' class="box-visu"> <!-- CLOUD --></div>
+								<div class="box-wrapper-inner">
+									<div id='box6' class="box-visu"> <!-- CLOUD --></div>
+								</div>
 							</div>
 						</div>
 					</div>

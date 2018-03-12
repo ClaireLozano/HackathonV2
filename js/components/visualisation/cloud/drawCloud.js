@@ -28,9 +28,9 @@ var drawCloud = function(data, metadata, nameBox) {
   }
 
   var svg_location = "#" + nameBox;
-  var width = document.getElementById(nameBox).offsetWidth;
+  var width = $(svg_location).width();
   var height = $(document).height();
-
+  
   var fill = d3.scale.category20();
 
   var word_entries = d3.entries(word_count);
@@ -41,7 +41,6 @@ var drawCloud = function(data, metadata, nameBox) {
   })
   ])
   .range([10,100]);
-
   d3.layout.cloud().size([width, height])
   .timeInterval(20)
   .words(word_entries)

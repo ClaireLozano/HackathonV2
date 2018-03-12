@@ -1,6 +1,8 @@
 
 
-$(document).ready(function(){
+$(document).ready(function() {
+
+    var initActivePanel = '';
 
 	/**
 	 * Init
@@ -44,7 +46,6 @@ $(document).ready(function(){
 	 * @return
 	 */
 	var bindListeners = function() {
-        // Oui c'est sale ... chuuuuuut ... si vous avez mieux à proposer GO!
         $(".tab-nav").click(function() {
             $(".tab-pane").css('display', 'none');
             $(".tab-nav").removeClass('active');
@@ -87,17 +88,17 @@ $(document).ready(function(){
             var nomDonnee = $('.select-list-date :selected').val();
             var url = window.location.href.split("?");
             var activePanel = getActivePanel();
-            reloadPage(url[0], nomDonnee, activePanel);
+            reloadPage(url[0], nomDonnee, activePanel[0]);
         });
 
         // Load the compare table
         $(".select-list-date-compare").change(function() {
             // Get value of the selected item 
             var nomDonnee = $("option:selected", this).val();
-            var typeVisualisation = getActivePanel();
+            var activePanel = getActivePanel();
             
             if (nomDonnee == "none") {
-                removeDrawCompare(typeVisualisation);
+                removeDrawCompare(activePanel[0]);
             } else {
 
                 // Get metadata
@@ -106,7 +107,7 @@ $(document).ready(function(){
                     getData(metadata.link, function(data) {
                         if (data) {
                             // Draw visualisation
-                            drawCompare(typeVisualisation, metadata, data);
+                            drawCompare(activePanel[0], metadata, data);
                         } else {
                             alert("Une erreur est survenue: Aucune donnée n'a pu être chargé.");
                         }
@@ -123,13 +124,19 @@ $(document).ready(function(){
      */
     var getActivePanel = function() {
         if ($("#tab-nav-1").hasClass("active")) {
-            return "table";
+            return ["table", "box1"];
         } else if ($("#tab-nav-2").hasClass("active")) {
-            return "graph";
+            return ["graph", "box2"];
+        } else if ($("#tab-nav-3").hasClass("active")) {
+            return ["map", "box3"];
+        } else if ($("#tab-nav-4").hasClass("active")) {
+            return ["info", "box4"];
+        } else if ($("#tab-nav-5").hasClass("active")) {
+            return ["telechargement", "box5"];
         } else if ($("#tab-nav-6").hasClass("active")) {
-            return "cloud";
-        }else {
-            return "map";
+            return ["cloud", "box6"];
+        } else {
+            return "err"
         }
     };
 
@@ -141,6 +148,7 @@ $(document).ready(function(){
     var drawCompare = function(typeVisualisation, metadata, data) {
 
         switch (typeVisualisation) {
+
             case 'table':
                 // Remove the table compare if exists
                 if ($("#my_table_box1Compare_wrapper").length) {
@@ -159,7 +167,6 @@ $(document).ready(function(){
                 break;
 
             case 'graph':
-
                 // Remove the table compare if exists
                 if ($("#box2Compare").length) {
                     $("#box2Compare").remove();
@@ -172,6 +179,30 @@ $(document).ready(function(){
                     $("#tab-pane-2 .box-wrapper-inner").append(div);
                 }
                 drawGraph(data, metadata, 'box2Compare');
+                break;
+
+            case 'cloud':
+                // Remove the table compare if exists
+                if ($("#box2Compare").length) {
+                    $("#box2Compare").remove();
+                
+                // Else, create div compare
+                } else {
+                    var div = document.createElement('div');
+                    div.id = 'box6Compare';
+                    div.className = 'box-visu';
+                    $("#tab-pane-6 .box-wrapper-inner").append(div);
+                }
+
+                // Set div width because we need a width to draw the cloud
+                $("#box6Compare").width($('#box6').width()); 
+
+                // Draw cloud
+                drawCloud(data, metadata, 'box6Compare');
+
+                // Set again div width to make the div responsive
+                $("#box6").width("100%"); 
+                $("#box6Compare").width("100%"); 
                 break;
         }
     };
@@ -194,6 +225,13 @@ $(document).ready(function(){
                 // Remove the graph compare
                 if ($("#box2Compare").length) {
                     $("#box2Compare").remove();
+                }
+                break;
+
+            case 'cloud':
+                // Remove the cloud compare
+                if ($("#box6Compare").length) {
+                    $("#box6Compare").remove();
                 }
                 break;
         }
@@ -354,8 +392,17 @@ $(document).ready(function(){
             setDescription(metadata);
         }
 
-        if(metadata.cloud) {
+        if (metadata.cloud) {
+
+            // Set div width because we need a width to draw the cloud
+            var activePanel = getActivePanel();
+            $("#box6").width($('#' + activePanel[1]).width()); 
+
+            // Draw cloud
             drawCloud(data, metadata, 'box6');
+
+            // Set again div width to make the div responsive
+            $("#box6").width("100%"); 
         } else {
             $("#tab-nav-6").css('display', 'none');
         }
