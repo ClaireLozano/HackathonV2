@@ -1,4 +1,5 @@
 function initPie(params, box, level, previousValues) {
+
     var vis = d3.select('#' + box)
         .append("svg")
         .data([params.dataToTreat])
