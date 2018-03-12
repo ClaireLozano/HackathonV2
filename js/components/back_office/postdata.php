@@ -1,5 +1,5 @@
 <h3>Métadonnées </h3>
-<p>Ceci est un back-office qui vous permet de créer des métadonnées :</p>
+<p>Ceci est un back-office qui vous permet de créer des métadonnées</p>
 
 <?php
 
@@ -161,12 +161,10 @@ $filepath = $path . DIRECTORY_SEPARATOR . $file;
 // chemin dynamique :
 $fp = fopen($filepath, 'w');
 
-// Dans le cas d'erreur du fichier créé, il peut le créer dans ce dossier et le déplacer
-// $fp = fopen($file, 'w');
-
-
 fwrite($fp, $json);
 fclose($fp);
+
+
 ?>
-<p>Les données sont stockées dans le fichier : <?php echo $file ; ?></a></p>
+<p>Les données sont stockées dans le fichier : <i><?php echo $file; ?></i> du dossier "metadata".</p>
 <p>Créer un <a href="back_office.php">nouveau formulaire</a>.</p>
