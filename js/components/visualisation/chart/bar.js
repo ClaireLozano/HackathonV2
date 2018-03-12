@@ -1,13 +1,13 @@
 function initBar(params, box, level, previousValues) {
 
     var x = d3.scale.ordinal()
-        .domain(params.Treat.map(function (entry) {
+        .domain(params.dataToTreat.map(function (entry) {
             return entry[params.realTitle]
         }))
         .rangeBands([0, params.width])
 
     var y = d3.scale.linear()
-        .domain([0, d3.max(params.Treat, function (d) {
+        .domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
         .range([params.height, 0])
@@ -95,11 +95,11 @@ function initBar(params, box, level, previousValues) {
 
     function plot(parametres) {
 
-        x.domain(params.Treat.map(function (entry) {
+        x.domain(params.dataToTreat.map(function (entry) {
             return entry.dp_libelle
         }))
 
-        y.domain([0, d3.max(params.Treat, function (d) {
+        y.domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
 
@@ -178,7 +178,7 @@ function initBar(params, box, level, previousValues) {
     }
 
     plot.call(chart, {
-        data: params.Treat,
+        data: params.dataToTreat,
         axis: {
             x: xAxis,
             y: yAxis
