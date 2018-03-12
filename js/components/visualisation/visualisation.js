@@ -1,13 +1,12 @@
 $(document).ready(function () {
 
-    var initActivePanel = '';
-
-    /**
-     * Init
-     *
-     * @return
-     */
-    function init() {
+	var initActivePanel = '';
+	/**
+	 * Init
+	 *
+	 * @return
+	 */
+	function init() {
         var result = getUrlPage();
         var typeVisualisation = result[0];
         var nomDonnee = result[1];
@@ -94,7 +93,6 @@ $(document).ready(function () {
             // Get value of the selected item 
             var nomDonnee = $("option:selected", this).val();
             var activePanel = getActivePanel();
-
             if (nomDonnee == "none") {
                 removeDrawCompare(activePanel[0]);
             } else {
@@ -165,9 +163,10 @@ $(document).ready(function () {
                 break;
 
             case 'graph':
+
                 // Remove the table compare if exists
-                if ($("#box2Compare").length) {
-                    $("#box2Compare").remove();
+                if ($("#chartbox2Compare").length) {
+                    $("#chartbox2Compare").remove();
 
                     // Else, create div compare
                 } else {
@@ -223,7 +222,7 @@ $(document).ready(function () {
 
             case 'graph':
                 // Remove the graph compare
-                if ($("#box2Compare").length) {
+                if ($("#chartbox2Compare").length) {
                     $("#box2Compare").remove();
                 }
                 break;
@@ -332,11 +331,6 @@ $(document).ready(function () {
             case 'info':
                 $('#tab-pane-4').css('display', 'block');
                 $("#tab-nav-4").addClass('active');
-                break;
-
-            case 'cloud':
-                $('#tab-pane-6').css('display', 'block');
-                $("#tab-nav-6").addClass('active');
                 break;
         }
     };
