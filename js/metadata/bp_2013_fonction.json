@@ -3,13 +3,19 @@
   "link" : "&db=budget&table=bp_2013_fonction&format=json",
   "title": "Budget primitif et compte administratif - BP 2013 - Fonction",
   "description": "Le budget primitif est le budget voté par l'assemblée locale en début d'exercice. Il fixe les enveloppes de crédits permettant d'engager les dépenses pendant la durée de l'exercice. Il détermine aussi les recettes attendues, notamment en matière de fiscalité.",
-  "graph":{
-    "possibleGraphs": ["horizontalBar"],
+  "graph": {
+    "possibleGraphs": [
+      "pie",
+      "horizontalBar",
+      "table"
+    ],
     "dataComposition": {
       "excludeLines": [],
       "title": "budg_ss_fction",
       "value": "budg_montant",
-      "category":"budg_section"
+      "category0": "budg_dep_rec",
+      "category1": "budg_ss_fction_code",
+      "category2": "table"
     }
   },
   "timeline":{
@@ -26,7 +32,19 @@
   "table":{
     "dataComposition":{
       "keys_list": ["budg_cat", "budg_dep_rec", "budg_budget", "budg_section", "budg_ss_fction", "budg_montant"],
-      "value_list": ["Catégorie", "Dépense/recette", "Budget", "Section", "Fonction", "Montant"]
+      "value_list": ["Catégorie", "Dépense/recette", "Budget", "Section", "Fonction", "Montant"],
+      "budg_ss_fction_code": [
+        "ADMINISTRATION GENERALE",
+        "SECURITE",
+        "ENSEIGNEMENT",
+        "CULTURE",
+        "SPORTS ET JEUNESSE",
+        "INTERVENTIONS SOCIALES ET SANTE",
+        "FAMILLE",
+        "LOGEMENT",
+        "AMENAGEMENT ET SERVICES URBAINS",
+        "ACTION ECONOMIQUE"
+      ]
     }
   }
 }
