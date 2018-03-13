@@ -165,7 +165,7 @@ function initBar(params, box, level, previousValues) {
                 return d[params.realValue]
             })
 
-        updateDimensions(params, window.innerWidth)
+        //updateDimensions(params, window.innerWidth)
 
         //exit
         this.selectAll(".bar")
