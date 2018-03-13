@@ -6,31 +6,33 @@
 
   <body>
     <div id="content-page">
-      <h2>Back office</h2>
-      <p>Création de métadonnes pour les jeux de données </p>
+      <h2>Outil de création des fichiers de metadonnées</h2>
+      <p>Afin de faciliter la gestion future d'ajout de nouveaux jeux de données, une interface d'adminsitration a été prévue. Celle-ci doit permettre de décrire les données mises à dispositions, afin d'automatiser le type de visualisation qui sera proposé à l'utilisateur d'une part, et permettre un alignement automatique entre l'organisation des données et celle des outils de visualisation.<br>
+	  Si vous êtes sur cette page, c'est que vous souhaitez ajouter un nouveau jeu de données. Pour cela, nous vous prions de bien vouloir saisir les champs ci-dessous afin de créer les métadonnes nécessaires à son import. Dès la validation de ce formulaire, votre jeu de données sera ajouté à la plateforme et disponible.<br>
+	  </p>
       <form onsubmit="return atleast_onecheckbox(event)" id="form" action="postdata.php" method="post">
 
         <div class="form-row">
           <hr>
-          <h3>Détails jeu de données</h3>
+          <h3>Informations sur le jeu de données</h3>
           <div class="form-group col-md-10">
-            <label for="title">Titre de la données</label>
-            <p>Correspond au titre à afficher sur la page de visualisation (Ex: "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF - BP 2017 - FONCTION"</p>
+            <label for="title">Titre du jeu de données</label>
+            <p>Correspond au titre qui sera affiché sur la page de visualisation (Ex: "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF - BP 2017 - FONCTION"</p>
             <input type="text" class="form-control" name="title" required>
           </div>
           <div class="form-group col-md-10">
-            <label for="inputDescriptionData">Description des données</label>
-            <p>Il est possible d'afficher une description de la données et ainsi guider les utilisateurs dans la lecture des données.</p>
+            <label for="inputDescriptionData">Description du jeu de données</label>
+            <p>Afin de faciliter la compréhension du jeu de données, il est possible d'afficher une description de la donnée. Cela pourra guider les utilisateurs dans la lecture des données, ou la manipulation de l'outil.</p>
             <textarea form="form" type="text" class="form-control" name="description"></textarea>
           </div>
           <div class="form-group col-md-10">
-            <label for="fileName">Nom du fichier métadonnées</label>
-            <p>Le fichier doit prendre le nom de l'identifiant de la données (Ex: "disponibilite_parking")</p>
+            <label for="fileName">Nom du fichier qui contiendra les métadonnées</label>
+            <p>Merci de saisir l'identifiant de la données (Ex: "disponibilite_parking")</p>
             <input type="text" class="form-control" name="fileName" required>
           </div>
           <div class="form-group col-md-10">
             <label for="link">Lien vers les données</label>
-            <p>Ce bout de lien sert à faire la relation entre la plateforme et le service web. (Ex: "&db=budget&table=bp_2014_fonction&format=json")</p>
+            <p>Ce champ doit permettre d'indiquer à la plateforme où trouver exactement le jeu de données. Attention cependant, il ne faut indiquer que la dernière partie de l'URL qui se situe après le premier "&" (Ex: "&db=budget&table=bp_2014_fonction&format=json")</p>
             <input type="text" class="form-control" name="link" required>
           </div>
           <div class="form-group col-md-10">
