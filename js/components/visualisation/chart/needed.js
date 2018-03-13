@@ -104,7 +104,8 @@ function getParams(dataToTreat, metadata, level, callback) {
 
     getValueTitle(dataToTreat, metadata, level, function(valueTitle) {
         var dataToTreat = valueTitle.dataToTreat
-        var w = 800, h = 500
+        var w = 800 //document.getElementsByClassName('box-visu').offsetWidth
+        var h = 500 //document.getElementsByClassName('box-visu').offsetHeight
         var margin = {
             top: 58,
             bottom: 150,
@@ -112,6 +113,8 @@ function getParams(dataToTreat, metadata, level, callback) {
             right: 40
         };
 
+        console.log('w',w)
+        console.log('h',h)
         var width = w - margin.left - margin.right
         var height = h - margin.top - margin.bottom
         var r = 200;
