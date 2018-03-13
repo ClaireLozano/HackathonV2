@@ -17,14 +17,14 @@ function getValueTitle(dataToTreat, metadata, level, callback) {
         // Get dictionnary
         getData(urlDict, function (dict) {
 
-            dataToTreat.forEach(function (d) {
+            dataToTreat.forEach(function (d, j, arrj) {
                 dict.forEach(function (d2, i, arr) {
                     if (d[realTitle] == d2[initValue]) {
                         d[realTitle] = d2[newValue];
                     }
 
                     // If last element
-                    if (arr.length - 1 === i) {
+                    if ((arr.length - 1 === i) && (arrj.length - 1 === j)) {
                         getDataToTreat(metadata, dataToTreat, function(dataToTreat) {
                             return callback({
                                 "realTitle": realTitle,
@@ -38,6 +38,7 @@ function getValueTitle(dataToTreat, metadata, level, callback) {
         })
     } else {
         getDataToTreat(metadata, dataToTreat, function(dataToTreat) {
+
             return callback({
                 "realTitle": realTitle,
                 "realValue": realValue,
@@ -48,21 +49,41 @@ function getValueTitle(dataToTreat, metadata, level, callback) {
 };
 
 function getDataToTreat(metadata, dataToTreat, callback) {
-    if(metadata.graph.dataComposition) {
+
+    if (metadata.graph.dataComposition) {
+
+        // Pourcours chaque value de data composition
+        // Si une de valeur est 
         Object.keys(metadata.graph.dataComposition).forEach(function (value, j, arrj) {
             if (value.substring(0, 8) == "category") {
                 tmp = metadata.graph.dataComposition[value];
-                if (metadata.table.dataComposition[tmp]) {
-                    dataToTreat.forEach(function (d) {
-                        var aggreg = d[tmp][0]
-                        d[tmp] = metadata.table.dataComposition[tmp][aggreg]
-                    })
-                }
-            }
 
-            // If last element
-            if (arrj.length - 1 === j) {
-                return callback(dataToTreat);
+                if (metadata.table.dataComposition[tmp]) {
+                    dataToTreat.forEach(function (d, k, arrk) {
+                        var aggreg = d[tmp][0];
+                        if (d[tmp] === " ") {
+                            d[tmp] = "AUTRE";
+                        } else {
+                            d[tmp] = metadata.table.dataComposition[tmp][aggreg];
+                        }
+
+                        // If last element
+                        if ((arrj.length - 1 === j) && (arrk.length - 1 === k)) {
+                            return callback(dataToTreat);
+                        }
+                    });
+                } else {
+                    // If last element
+                    if (arrj.length - 1 === j) {
+                        return callback(dataToTreat);
+                    }
+                }
+            } else {
+
+                // If last element
+                if (arrj.length - 1 === j) {
+                    return callback(dataToTreat);
+                }
             }
         });
 
@@ -77,12 +98,12 @@ function updateParams(params, level) {
     realValue = params.metadata.graph.dataComposition.value;
 
     if (params.metadata.graph.dataComposition['category' + level]) {
-        realTitle = params.metadata.graph.dataComposition['category' + level]
+        realTitle = params.metadata.graph.dataComposition['category' + level];
     }
 
-    params.realTitle = realTitle
-    params.realValue = realValue
-    return params
+    params.realTitle = realTitle;
+    params.realValue = realValue;
+    return params;
 }
 
 function getParams(dataToTreat, metadata, level, callback) {
