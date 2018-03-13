@@ -194,8 +194,8 @@ $(document).ready(function() {
                     $("#tab-pane-6 .box-wrapper-inner").append(div);
                 }
 
-                // Set div width because we need a width to draw the cloud
-                $("#box6Compare").width($('#box6').width()*4); 
+                // Set div width/height because we need a width to draw the cloud
+                $("#box6Compare").width(($('#box6').width()*2)*2); 
                 $("#box6Compare").height($('#box6').height()); 
 
                 // Draw cloud
@@ -204,6 +204,7 @@ $(document).ready(function() {
                 // Set again div width to make the div responsive
                 $("#box6").width("100%"); 
                 $("#box6Compare").width("100%"); 
+                $("#box6Compare").height("100%"); 
                 break;
         }
     };
@@ -395,15 +396,17 @@ $(document).ready(function() {
 
         if (metadata.cloud) {
 
-            // Set div width because we need a width to draw the cloud
+            // Set div width/height because we need a width to draw the cloud
             var activePanel = getActivePanel();
             $("#box6").width($('#' + activePanel[1]).width()); 
+            $("#box6").height('800px'); 
 
             // Draw cloud
             drawCloud(data, metadata, 'box6');
 
             // Set again div width to make the div responsive
             $("#box6").width("100%"); 
+            $("#box6").height("100%"); 
         } else {
             $("#tab-nav-6").css('display', 'none');
         }

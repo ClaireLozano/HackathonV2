@@ -29,7 +29,7 @@ var drawCloud = function(data, metadata, nameBox) {
 
   var svg_location = "#" + nameBox;
   var width = $(svg_location).width();
-  var height = $(document).height();
+  var height = $(svg_location).height();
   
   var fill = d3.scale.category20();
 
