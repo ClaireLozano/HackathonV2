@@ -10,7 +10,7 @@ function drawGraph(dataToTreat, metadata, box) {
     getParams(dataToTreat, metadata, 0, function(params) {
 
         // Si la donnée est de type budget
-        if (metadata.graph.dataComposition.category0) {
+        if (metadata.graph.dataComposition.category && metadata.graph.dataComposition.category[0]) {
             initNewGraph(params, box, 0, previousValues);
 
         // Pour tout autre type de donnée
