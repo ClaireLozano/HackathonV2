@@ -109,6 +109,7 @@ h2 {
 }
 
 .box-visu {
+	min-height: 500px;
 	margin: 10px;
 	width: 100%;
 	overflow: auto;
@@ -122,13 +123,7 @@ h2 {
     box-flex: 1;
 }
 
-#box2 {
-	margin: 0;
-	min-height: 500px;
-}
-
 #box3 {
-	margin: 0;
 	height: 500px;
 }
 
@@ -255,4 +250,11 @@ tbody:hover tr:hover td {
 .option-panel {
 	margin-bottom: 20px;
 	margin-top: 20px;
+}
+
+/* GRAPH */
+
+.selectGraph {
+	width: 150px;
+	margin-bottom: 30px;
 }
