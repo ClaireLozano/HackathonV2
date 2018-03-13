@@ -15,6 +15,8 @@ function drawGraph(dataToTreat, metadata, box) {
         var select = d3.select('#' + box)
             .append('select')
             .classed('selectGraph', true)
+            .classed('form-control', true)
+            .classed('input-sm', true)
             .on('change', onChange);
 
         var options = select.selectAll('option')
