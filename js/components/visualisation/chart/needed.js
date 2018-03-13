@@ -50,13 +50,12 @@ function getValueTitle(dataToTreat, metadata, level, callback) {
 
 function getDataToTreat(metadata, dataToTreat, callback) {
 
-    if (metadata.graph.dataComposition) {
+    if (metadata.graph.dataComposition.category) {
 
         // Pourcours chaque value de data composition
         // Si une de valeur est 
-        Object.keys(metadata.graph.dataComposition).forEach(function (value, j, arrj) {
-            if (value.substring(0, 8) == "category") {
-                tmp = metadata.graph.dataComposition[value];
+        Object.keys(metadata.graph.dataComposition.category).forEach(function (value, j, arrj) {
+                tmp = metadata.graph.dataComposition.category[value];
 
                 if (metadata.table.dataComposition[tmp]) {
                     dataToTreat.forEach(function (d, k, arrk) {
@@ -78,13 +77,6 @@ function getDataToTreat(metadata, dataToTreat, callback) {
                         return callback(dataToTreat);
                     }
                 }
-            } else {
-
-                // If last element
-                if (arrj.length - 1 === j) {
-                    return callback(dataToTreat);
-                }
-            }
         });
 
     // If no data composition, return the initial data
@@ -97,8 +89,8 @@ function updateParams(params, level) {
     realTitle = params.metadata.graph.dataComposition.title;
     realValue = params.metadata.graph.dataComposition.value;
 
-    if (params.metadata.graph.dataComposition['category' + level]) {
-        realTitle = params.metadata.graph.dataComposition['category' + level];
+    if (params.metadata.graph.dataComposition.category[level]) {
+        realTitle = params.metadata.graph.dataComposition.category[level];
     }
 
     params.realTitle = realTitle;
@@ -156,15 +148,10 @@ function updateDimensions(params, winWidth) {
 
 function initNewGraph(params, box, level, previousValues) {
 
-    var catProfondeur = [];
     var idBox = "myBox" + box;
 
-    for (value in params.metadata.graph.dataComposition) {
-        if (value.substring(0, 8) == "category")
-            catProfondeur.push(params.metadata.graph.dataComposition[value])
-    }
 
-    if (catProfondeur[level]) {
+    if (params.metadata.graph.dataComposition.category && params.metadata.graph.dataComposition.category[level]) {
         d3.selectAll("#chart" + box).remove();
         d3.selectAll("#" + idBox).remove();
         //d3.selectAll(".chart>p").remove();
@@ -174,7 +161,7 @@ function initNewGraph(params, box, level, previousValues) {
 
             for (var j = 1; j <= i; j++) {
                 params.dataToTreat = params.dataToTreat.filter(function (d) {
-                    return d[params.metadata.graph.dataComposition["category" + (j - 1)]] === previousValues[j - 1];
+                    return d[params.metadata.graph.dataComposition.category[j - 1]] === previousValues[j - 1];
                 });
             }
 
