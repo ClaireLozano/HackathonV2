@@ -26,14 +26,17 @@ function initBar(params, box, level, previousValues) {
         .tickFormat("")
         .orient("left")
 
+    console.log('params',params)
     var svg = d3.select('#' + box).append("svg")
         .attr("id", "chart"+box)
-        .attr("width", params.w)
-        .attr("height", params.h)
+        .attr('viewBox','0 0 '+Math.min(params.w,params.h)+' '+Math.min(params.w,params.h))
+        .attr('preserveAspectRatio','xMinYMin')
+        .append("g")
+        .attr("transform", "translate(" + Math.min(params.w,params.h) / 2 + "," + Math.min(params.w,params.h) / 2 + ")");
 
     var chart = svg.append("g")
         .classed("display", true)
-        .attr("transform", "translate(" + params.margin.left + "," + params.margin.top + ")")
+        .attr("transform", "translate(" + -2*params.margin.left + "," + -3*params.margin.top + ")")
 
     function drawAxis(parametres) {
         if (parametres.initialize) {
