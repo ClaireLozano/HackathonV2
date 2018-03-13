@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 
     var initActivePanel = '';
@@ -118,7 +116,7 @@ $(document).ready(function() {
 	};
 
     /**
-     * Get the panel active
+     * Get the panel active + name of id box
      *
      * @return type if visualisation 
      */
@@ -261,6 +259,7 @@ $(document).ready(function() {
                 if($(this).attr('id') === "button-icone-poste") {
                     hideLayerPoste();
                 }
+
                 // Remove yelo marks
                 if($(this).attr('id') === "button-icone-yelo") {
                     hideLayerYelo();
@@ -349,25 +348,25 @@ $(document).ready(function() {
      */
     var setTabNavBarAndDraw = function(metadata, data) {
 
-        if(metadata.table) {
+        if (metadata.table) {
             drawTable(data, metadata, 'box1');
         } else {
             $("#tab-nav-1").css('display', 'none');
         }
 
-        if(metadata.graph) {
+        if (metadata.graph) {
             drawGraph(data, metadata, 'box2');
         } else {
             $("#tab-nav-2").css('display', 'none');
         }
 
-        if(metadata.map) {
+        if (metadata.map) {
             drawMap(data, metadata, 'box3', 'popup');
         } else {
             $("#tab-nav-3").css('display', 'none');
         }
 
-        if(metadata.timeline) {
+        if (metadata.timeline) {
             // Draw timeline
             $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
             var sel = $('<select>').appendTo('.select-list-date');

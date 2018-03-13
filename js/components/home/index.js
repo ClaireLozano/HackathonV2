@@ -1,24 +1,4 @@
-
-
-$(document).ready(function(){
-
-	/**
-	 * Init
-	 *
-	 * @return
-	 */
-	function init() {
-
-	};
-
-	/**
-	 * Init listeners
-	 *
-	 * @return
-	 */
-	var bindListeners = function() {
-        
-	};
+$(document).ready(function() {
 
     /**
      * Definie link
@@ -95,8 +75,5 @@ $(document).ready(function(){
         });
     };
 
-    init();
-    bindListeners();
     addVisualizationOnBox();
-
 });

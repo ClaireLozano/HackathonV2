@@ -77,4 +77,4 @@ function Get(yourUrl) {
     Httpreq.open("GET", yourUrl, false);
     Httpreq.send(null);
     return Httpreq.responseText;
-}
+};
