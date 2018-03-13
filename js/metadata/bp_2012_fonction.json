@@ -11,10 +11,7 @@
     "dataComposition": {
       "excludeLines": [],
       "title": "budg_ss_fction",
-      "value": "budg_montant",
-      "category0": "budg_dep_rec",
-      "category1": "budg_ss_fction_code",
-      "category2": "table"
+      "category": ["budg_dep_rec","budg_ss_fction_code","table"]
     }
   },
   "timeline": {
