@@ -1,17 +1,17 @@
 function getValueTitle(dataToTreat, metadata, level) {
     // load the data
-    var realTitle = metadata.graph.dataComposition.title
-    var realValue = metadata.graph.dataComposition.value
+    var realTitle = metadata.graph.dataComposition.title;
+    var realValue = metadata.graph.dataComposition.value;
 
     dataToTreat.forEach(function (d) {
-        d[realTitle] = d[realTitle]
+        d[realTitle] = d[realTitle];
         d[realValue] = +d[realValue]
-    })
+    });
 
     if (metadata.dictionnaireY) {
-        var urlDict = metadata.dictionnaireY.link
-        var initValue = metadata.dictionnaireY.initValue
-        var newValue = metadata.dictionnaireY.newValue
+        var urlDict = metadata.dictionnaireY.link;
+        var initValue = metadata.dictionnaireY.initValue;
+        var newValue = metadata.dictionnaireY.newValue;
 
         // Get dictionnary
         getData(urlDict, function (dict) {
@@ -26,18 +26,15 @@ function getValueTitle(dataToTreat, metadata, level) {
         })
     }
 
-
     for (value in metadata.graph.dataComposition) {
         if (value.substring(0, 8) == "category") {
-            console.log(metadata.graph.dataComposition[value])
-            tmp = metadata.graph.dataComposition[value]
+            tmp = metadata.graph.dataComposition[value];
             if (metadata.table.dataComposition[tmp]) {
                 dataToTreat.forEach(function (d) {
                     var aggreg = d[tmp][0]
                     d[tmp] = metadata.table.dataComposition[tmp][aggreg]
                 })
             }
-
         }
     }
 
@@ -49,13 +46,12 @@ function getValueTitle(dataToTreat, metadata, level) {
 }
 
 function updateParams(params, level) {
-    realTitle = params.metadata.graph.dataComposition.title
-    realValue = params.metadata.graph.dataComposition.value
+    realTitle = params.metadata.graph.dataComposition.title;
+    realValue = params.metadata.graph.dataComposition.value;
 
     if (params.metadata.graph.dataComposition['category' + level]) {
         realTitle = params.metadata.graph.dataComposition['category' + level]
     }
-
 
     params.realTitle = realTitle
     params.realValue = realValue
@@ -73,7 +69,8 @@ function getParams(dataToTreat, metadata, level) {
         bottom: 150,
         left: 80,
         right: 40
-    }
+    };
+
     var width = w - margin.left - margin.right
     var height = h - margin.top - margin.bottom
     var r = 200;
@@ -96,18 +93,32 @@ function getParams(dataToTreat, metadata, level) {
     }
 }
 
+function updateDimensions(params, winWidth) {
+    params.margin = {
+        top: 58,
+        bottom: 150,
+        left: 80,
+        right: 40
+    };
+    params.width = winWidth - params.margin.left - params.margin.right;
+    params.height = 500 - params.margin.top - params.margin.bottom;
+
+    console.log('updateDimension', params)
+}
+
 function initNewGraph(params, box, level, previousValues) {
 
     var catProfondeur = []
+    var idBox = "myBox"+box
     for (value in params.metadata.graph.dataComposition) {
         if (value.substring(0, 8) == "category")
             catProfondeur.push(params.metadata.graph.dataComposition[value])
     }
-    console.log(params.originalData);
 
     if (catProfondeur[level]) {
-        d3.selectAll("svg").remove();
-        d3.selectAll(".chart>p").remove();
+        d3.selectAll("#chart"+box).remove();
+        d3.selectAll("#"+idBox).remove();
+        //d3.selectAll(".chart>p").remove();
         for (var i = 0; i <= level; i++) {
             params = updateParams(params, i)
             params.dataToTreat = params.originalData
@@ -130,12 +141,14 @@ function initNewGraph(params, box, level, previousValues) {
                         )
                     })
                     .entries(params.dataToTreat)
-                params.realTitle = "key";
-                params.realValue = "values";
-
                 params.dataToTreat = nested;
             }
+            params.realValue = "values";
+            params.realTitle = "key";
 
+            params.dataToTreat.sort(function(a,b){
+                return d3.ascending(a[params.realValue], b[params.realValue]);
+            })
 
             switch (params.metadata.graph.possibleGraphs[i]) {
                 case "bar":
@@ -151,7 +164,8 @@ function initNewGraph(params, box, level, previousValues) {
                     initHorizontalBar(params, box, i, previousValues);
                     break;
                 case "table":
-                    drawTable(params.dataToTreat,params.metadata,box);
+                    $("#"+box).append("<div id="+idBox+"></div>");
+                    drawTable(params.dataToTreat, params.metadata, idBox);
                     break;
             }
         }

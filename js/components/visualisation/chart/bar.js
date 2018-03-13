@@ -1,13 +1,13 @@
 function initBar(params, box, level, previousValues) {
 
     var x = d3.scale.ordinal()
-        .domain(params.Treat.map(function (entry) {
+        .domain(params.dataToTreat.map(function (entry) {
             return entry[params.realTitle]
         }))
         .rangeBands([0, params.width])
 
     var y = d3.scale.linear()
-        .domain([0, d3.max(params.Treat, function (d) {
+        .domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
         .range([params.height, 0])
@@ -27,7 +27,7 @@ function initBar(params, box, level, previousValues) {
         .orient("left")
 
     var svg = d3.select('#' + box).append("svg")
-        .attr("id", "chart")
+        .attr("id", "chart"+box)
         .attr("width", params.w)
         .attr("height", params.h)
 
@@ -95,11 +95,11 @@ function initBar(params, box, level, previousValues) {
 
     function plot(parametres) {
 
-        x.domain(params.Treat.map(function (entry) {
+        x.domain(params.dataToTreat.map(function (entry) {
             return entry.dp_libelle
         }))
 
-        y.domain([0, d3.max(params.Treat, function (d) {
+        y.domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
 
@@ -164,6 +164,9 @@ function initBar(params, box, level, previousValues) {
             .text(function (d, i) {
                 return d[params.realValue]
             })
+
+        updateDimensions(params, window.innerWidth)
+
         //exit
         this.selectAll(".bar")
             .data(parametres.data)
@@ -178,7 +181,7 @@ function initBar(params, box, level, previousValues) {
     }
 
     plot.call(chart, {
-        data: params.Treat,
+        data: params.dataToTreat,
         axis: {
             x: xAxis,
             y: yAxis

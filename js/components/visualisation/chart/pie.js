@@ -1,9 +1,11 @@
 function initPie(params, box, level, previousValues) {
+
     var vis = d3.select('#' + box)
         .append("svg")
         .data([params.dataToTreat])
         .attr("width", params.w)
         .attr("height", params.h)
+        .attr("id", "chart"+box)
         .append("g")
         .attr("transform", "translate(" + params.r + "," + params.r + ")")
 
@@ -35,6 +37,7 @@ function initPie(params, box, level, previousValues) {
             d3.select(this).style("fill", params.ordinalScaleColor(i))
         })
         .attr("d", arc)
+        .attr("data-legend",function(d) { return d.data[params.realTitle]})
         .on("click", function (node, i) {
             previousValues[level]=node.data[params.realTitle];
             initNewGraph(params, box, level + 1, previousValues)
@@ -48,8 +51,12 @@ function initPie(params, box, level, previousValues) {
         })
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
-            return params.dataToTreat[i][params.realTitle] +
-                "\n" +
-                params.dataToTreat[i][params.realValue]
+            return params.dataToTreat[i][params.realValue]
         })        //get the label from our original data array
+
+    var legend = vis.append("g")
+        .attr("class","legend")
+        .attr("transform","translate(215,-10)")
+        .style("font-size","12px")
+        .call(d3.legend)
 }
