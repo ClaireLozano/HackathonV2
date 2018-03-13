@@ -7,15 +7,18 @@
   <body>
     <div id="content-page">
       <h2>Outil de création des fichiers de metadonnées</h2>
-      <p>Afin de faciliter la gestion future d'ajout de nouveaux jeux de données, une interface d'adminsitration a été prévue. Celle-ci doit permettre de décrire les données mises à dispositions, afin d'automatiser le type de visualisation qui sera proposé à l'utilisateur d'une part, et permettre un alignement automatique entre l'organisation des données et celle des outils de visualisation.<br>
-	  Si vous êtes sur cette page, c'est que vous souhaitez ajouter un nouveau jeu de données. Pour cela, nous vous prions de bien vouloir saisir les champs ci-dessous afin de créer les métadonnes nécessaires à son import. Dès la validation de ce formulaire, votre jeu de données sera ajouté à la plateforme et disponible.<br>
-	  </p>
       <form onsubmit="return atleast_onecheckbox(event)" id="form" action="postdata.php" method="post">
 
         <div class="form-row">
           <hr>
-          <h3>Informations sur le jeu de données</h3>
+
           <div class="form-group col-md-10">
+            <p class="textIndent">Afin de faciliter la gestion future d'ajout de nouveaux jeux de données, une interface d'adminsitration a été prévue. Celle-ci doit permettre de décrire les données mises à dispositions, afin d'automatiser le type de visualisation qui sera proposé à l'utilisateur d'une part, et permettre un alignement automatique entre l'organisation des données et celle des outils de visualisation.</p>
+            <p class="textIndent">Si vous êtes sur cette page, c'est que vous souhaitez ajouter un nouveau jeu de données. Pour cela, nous vous prions de bien vouloir saisir les champs ci-dessous afin de créer les métadonnes nécessaires à son import. Dès la validation de ce formulaire, votre jeu de données sera ajouté à la plateforme et disponible.<br></p>
+          </div>
+
+          <div class="form-group col-md-10">
+            <h3>Informations sur le jeu de données</h3>
             <label for="title">Titre du jeu de données</label>
             <p>Correspond au titre qui sera affiché sur la page de visualisation (Ex: "BUDGET PRIMITIF ET COMPTE ADMINISTRATIF - BP 2017 - FONCTION"</p>
             <input type="text" class="form-control" name="title" required>
@@ -38,7 +41,7 @@
           <div class="form-group col-md-10">
             <label for="link">Dictionnaire</label>
             <p>Avez-vous besoin d'un dictionnaire ?</p>
-            <div class="form-check">
+            <div class="form-check checkbox">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="checkDict" onclick="addDictionary()" id="add_dict" value="add_dictionary">Saisir dictionnaire</label>
             </div>
           </div>
@@ -68,11 +71,11 @@
           <div class="form-group col-md-10">
             <label for="inputDataType">Type d'affichage de données :</label>
             <p>Choisir un ou plusieurs type(s) d'affichage des données: </p>
-            <div class="form-check required">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_graphe" value="type_graphe">Graphe</label>
-              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_table" value="type_table">Tableau</label>
-              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_map" value="type_map">Carte</label>
-              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_timeline" value="type_timeline">Timeline</label>
+            <div class="form-check required checkbox">
+              <label class="form-check-label checkbox-inline"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_graphe" value="type_graphe">Graphe</label>
+              <label class="form-check-label checkbox-inline"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_table" value="type_table">Tableau</label>
+              <label class="form-check-label checkbox-inline"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_map" value="type_map">Carte</label>
+              <label class="form-check-label checkbox-inline"><input class="form-check-input" type="checkbox" name="datatype[]" onclick="dataTypeChoice()" id="type_timeline" value="type_timeline">Timeline</label>
 
             </div>
           </div>
@@ -87,11 +90,11 @@
             <h3>Détails du graphe</h3>
             <p>Un graphe peut-être représenté sous plusieurs formes. Veuillez choisir le type de réprésentation :</p>
             <label for="inputGraphType">Type de graphe : </label>
-            <div class="form-check">
-              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="pie" >Camembert</label>
-              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
-              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="line">Ligne</label>
-              <label class="form-check-input"><input type="checkbox" name="possibleGraphs[]" value="horizontalBar">Barres horizontales</label>
+            <div class="form-check checkbox">
+              <label class="form-check-input checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="pie" >Camembert</label>
+              <label class="form-check-input checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="bar">Barres</label>
+              <label class="form-check-input checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="line">Ligne</label>
+              <label class="form-check-input checkbox-inline"><input type="checkbox" name="possibleGraphs[]" value="horizontalBar">Barres horizontales</label>
             </div>
           </div>
           <div class="form-group col-md-8">
@@ -153,7 +156,7 @@
             <hr>
             <h3>Détails de la carte</h3>
             <p>Les détails d'une carte peuvent être récupérer depuis un fichier "kml" en choisisant "Carte depuis 'fichier.kml' "" ou peuvent être saisis à l'aide des champs ( il faut choisir "Nouvelle carte").</p>
-            <div class="form-check">
+            <div class="form-check radio">
               <label class="form-check-label"><input class="form-check-input" type="radio" name="maptype" onclick="mapChoice()" id="map_newMap" value="newmap">Nouvelle carte</label>
               <label class="form-check-label"><input class="form-check-input" type="radio" name="maptype" onclick="mapChoice()" id="map_fileKml" value="kmlfile">Carte depuis 'fichier.kml'</label>
             </div>
@@ -240,7 +243,7 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Valider</button>
+            <button type="submit" id="submitForm" class="btn btn-primary">Valider</button>
           </div>
         </div>
 
