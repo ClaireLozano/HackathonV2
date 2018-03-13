@@ -135,16 +135,17 @@ function updateDimensions(params, winWidth) {
 
 function initNewGraph(params, box, level, previousValues) {
 
-    var catProfondeur = []
-    var idBox = "myBox"+box
+    var catProfondeur = [];
+    var idBox = "myBox" + box;
+
     for (value in params.metadata.graph.dataComposition) {
         if (value.substring(0, 8) == "category")
             catProfondeur.push(params.metadata.graph.dataComposition[value])
     }
 
     if (catProfondeur[level]) {
-        d3.selectAll("#chart"+box).remove();
-        d3.selectAll("#"+idBox).remove();
+        d3.selectAll("#chart" + box).remove();
+        d3.selectAll("#" + idBox).remove();
         //d3.selectAll(".chart>p").remove();
         for (var i = 0; i <= level; i++) {
             params = updateParams(params, i)
@@ -152,8 +153,8 @@ function initNewGraph(params, box, level, previousValues) {
 
             for (var j = 1; j <= i; j++) {
                 params.dataToTreat = params.dataToTreat.filter(function (d) {
-                    return d[params.metadata.graph.dataComposition["category" + (j - 1)]] === previousValues[j - 1]
-                })
+                    return d[params.metadata.graph.dataComposition["category" + (j - 1)]] === previousValues[j - 1];
+                });
             }
 
             if (params.metadata.graph.possibleGraphs[i] !== "table") {
@@ -170,12 +171,13 @@ function initNewGraph(params, box, level, previousValues) {
                     .entries(params.dataToTreat)
                 params.dataToTreat = nested;
             }
+
             params.realValue = "values";
             params.realTitle = "key";
 
             params.dataToTreat.sort(function(a,b){
                 return d3.ascending(a[params.realValue], b[params.realValue]);
-            })
+            });
 
             switch (params.metadata.graph.possibleGraphs[i]) {
                 case "bar":

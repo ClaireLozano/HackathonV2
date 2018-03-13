@@ -8,9 +8,12 @@ function drawGraph(dataToTreat, metadata, box) {
     var previousValues = [];
 
     getParams(dataToTreat, metadata, 0, function(params) {
+
+        // Si la donnée est de type budget
         if (metadata.graph.dataComposition.category0) {
             initNewGraph(params, box, 0, previousValues);
 
+        // Pour tout autre type de donnée
         } else {
             var select = d3.select('#' + box)
                 .append('select')
