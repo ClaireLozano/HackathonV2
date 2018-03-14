@@ -1,4 +1,3 @@
-
 /**
  * Get la poste markers
  *
@@ -25,14 +24,14 @@ function getPosteLayer() {
                 src: '../../../images/icone_poste.png',
                 scale: 0.045
             })),
-            display:'none'
+            display: 'none'
         }));
         poste.push(p2);
     }
 
 
     var vectorLayerPoste = new ol.layer.Vector({
-        name:'BusLayer',
+        name: 'BusLayer',
         source: new ol.source.Vector({
             features: poste
         })
@@ -40,4 +39,4 @@ function getPosteLayer() {
 
     vectorLayerPoste.setVisible(false);
     return vectorLayerPoste;
-};
+}
