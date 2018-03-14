@@ -1,7 +1,7 @@
 // Variables globales
-vectorLayerPoste = [];
-vectorLayerBus = [];
-vectorLayerYelo = [];
+var vectorLayerPoste = [];
+var vectorLayerBus = [];
+var vectorLayerYelo = [];
 var map = new ol.Map();
 
 /**
