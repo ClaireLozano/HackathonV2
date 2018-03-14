@@ -7,7 +7,7 @@
  *
  * @return null
  */
-var drawTable = function(data, metadata, idBox) {
+var drawTable = function (data, metadata, idBox) {
 
     // Be sure to have data
     if (!data) {
@@ -16,9 +16,9 @@ var drawTable = function(data, metadata, idBox) {
     }
 
     // Create table and insert title row on table 
-    insertRowTitle(data, metadata, idBox, function(err) {
+    insertRowTitle(data, metadata, idBox, function (err) {
         // Insert rows on table
-        insertRows(data, metadata, idBox, function(err) {
+        insertRows(data, metadata, idBox, function (err) {
             // Draw table with DataTable
             setTable(idBox);
         });
@@ -28,7 +28,7 @@ var drawTable = function(data, metadata, idBox) {
 /**
  * Create table and th
  *
- * @return 
+ * @return
  */
 function insertRowTitle(data, metadata, idBox, callback) {
 
@@ -46,15 +46,15 @@ function insertRowTitle(data, metadata, idBox, callback) {
         var newValue = metadata.dictionnaireX.newValue;
 
         // Get dictionnary
-        getData(urlDict, function(dict) {
+        getData(urlDict, function (dict) {
 
             // Initialize
             var found = false;
 
             // Create header table
-            keys_list_table.forEach(function(key, j, arrJ) {
+            keys_list_table.forEach(function (key, j, arrJ) {
                 found = false;
-                dict.forEach(function(d, i, arr) {
+                dict.forEach(function (d, i, arr) {
 
                     // If element is on the dictionnary, take the dictionnary value
                     if (d[initValue] === key) {
@@ -64,12 +64,12 @@ function insertRowTitle(data, metadata, idBox, callback) {
                     }
 
                     // If the element isn't found in the dictionnary, keep the keys_list_table value
-                    if (i === arr.length - 1 && !found) { 
+                    if (i === arr.length - 1 && !found) {
                         val_html += "<th>" + key + "</th>";
                         val_tfoot += "<th>" + key + "</th>";
 
                         // Last iteration, return
-                        if (j === arrJ.length - 1) { 
+                        if (j === arrJ.length - 1) {
                             val_html += "</tr></thead><tfoot><tr>" + val_tfoot + "</tr></tfoot><tbody id='table_element_" + idBox + "'></tbody></table>";
                             document.getElementById(idBox).innerHTML = val_html;
                             return callback();
@@ -77,7 +77,7 @@ function insertRowTitle(data, metadata, idBox, callback) {
                     }
 
                     // If last element, return
-                    if (i === arr.length - 1 && j === arrJ.length - 1) { 
+                    if (i === arr.length - 1 && j === arrJ.length - 1) {
                         val_html += "</tr></thead><tfoot><tr>" + val_tfoot + "</tr></tfoot><tbody id='table_element_" + idBox + "'></tbody></table>";
                         document.getElementById(idBox).innerHTML = val_html;
                         return callback();
@@ -91,30 +91,30 @@ function insertRowTitle(data, metadata, idBox, callback) {
         var value_list_table = metadata.table.dataComposition.value_list;
 
         // Create header table
-        value_list_table.forEach(function(d, i, arr) {
+        value_list_table.forEach(function (d, i, arr) {
             val_html += "<th>" + d + "</th>"
             val_tfoot += "<th>" + d + "</th>";
 
             // Last iteration, return
-            if (i === arr.length - 1) { 
+            if (i === arr.length - 1) {
                 val_html += "</tr></thead><tfoot><tr>" + val_tfoot + "</tr></tfoot><tbody id='table_element_" + idBox + "'></tbody></table>";
                 document.getElementById(idBox).innerHTML = val_html;
                 return callback();
             }
         });
     }
-};
+}
 
 /**
  * Insert rows
  *
- * @return 
+ * @return
  */
 function insertRows(data, metadata, idBox, callback) {
 
     // Initialization
-    var keys_list_table = metadata.table.dataComposition.keys_list; 
-    
+    var keys_list_table = metadata.table.dataComposition.keys_list;
+
     // Insert Rows
     if (metadata.dictionnaireY) {
         var urlDict = metadata.dictionnaireY.link;
@@ -123,90 +123,90 @@ function insertRows(data, metadata, idBox, callback) {
         var newValue = metadata.dictionnaireY.newValue;
 
         // Get dictionnary
-        getData(urlDict, function(dict) {
-            data.forEach(function(d, i, arrI) {
+        getData(urlDict, function (dict) {
+            data.forEach(function (d, i, arrI) {
                 var table = document.getElementById('my_table_' + idBox);
                 var tr = table.insertRow(i);
-                keys_list_table.forEach(function(key, j, arrJ) {
+                keys_list_table.forEach(function (key, j, arrJ) {
                     insertValue = d[key];
                     var found = false;
                     if (key === value) {
-                        dict.forEach(function(row, k, arr) {
+                        dict.forEach(function (row, k, arr) {
 
                             // If element is on the dictionnary, take the dictionnary value
                             if (d[key] === row[value]) {
                                 insertValue = row[newValue];
                                 tr.insertCell(j).innerHTML = insertValue;
-                                document.getElementById("table_element_" + idBox).appendChild(tr); 
+                                document.getElementById("table_element_" + idBox).appendChild(tr);
                                 found = true;
-                            } 
+                            }
 
                             // If the element isn't found in the dictionnary, keep the keys_list_table value
-                            if (k === arr.length - 1 && !found) { 
+                            if (k === arr.length - 1 && !found) {
                                 tr.insertCell(j).innerHTML = insertValue;
-                                document.getElementById("table_element_" + idBox).appendChild(tr); 
+                                document.getElementById("table_element_" + idBox).appendChild(tr);
 
                                 // Return if last element
                                 if (j === arrJ.length - 1 && i === arrI.length - 1) {
                                     return callback();
-                                } 
+                                }
                             }
                         });
                     } else {
                         tr.insertCell(j).innerHTML = insertValue;
-                        document.getElementById("table_element_" + idBox).appendChild(tr); 
+                        document.getElementById("table_element_" + idBox).appendChild(tr);
 
                         // Return if last element
                         if (j === arrJ.length - 1 && i === arrI.length - 1) {
                             return callback();
-                        } 
+                        }
                     }
                 });
             });
         });
     } else {
-        data.forEach(function(d, i, arr) {
+        data.forEach(function (d, i, arr) {
             var table = document.getElementById('my_table_' + idBox);
             var tr = table.insertRow(i);
-            keys_list_table.forEach(function(key, j, arrJ) {
+            keys_list_table.forEach(function (key, j, arrJ) {
                 tr.insertCell(j).innerHTML = d[key];
-                document.getElementById("table_element_" + idBox).appendChild(tr); 
-                
+                document.getElementById("table_element_" + idBox).appendChild(tr);
+
                 // Return if last element
                 if (i === arr.length - 1 && j === arrJ.length - 1) {
                     return callback();
-                }    
+                }
             });
         });
     }
-};
+}
 
 /**
  * Get only element we need + translate en french
  *
- * @return type if visualisation 
+ * @return type if visualisation
  */
 function setTable(idBox) {
     $('#my_table_' + idBox).DataTable({
         "language": {
-            "sProcessing":     "Traitement en cours...",
-            "sSearch":         "Rechercher&nbsp;:",
-            "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
-            "sInfo":           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-            "sInfoEmpty":      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-            "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-            "sInfoPostFix":    "",
+            "sProcessing": "Traitement en cours...",
+            "sSearch": "Rechercher&nbsp;:",
+            "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+            "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            "sInfoPostFix": "",
             "sLoadingRecords": "Chargement en cours...",
-            "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-            "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+            "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            "sEmptyTable": "Aucune donn&eacute;e disponible dans le tableau",
             "oPaginate": {
-                "sFirst":      "Premier",
-                "sPrevious":   "←",
-                "sNext":       "→",
-                "sLast":       "Dernier"
+                "sFirst": "Premier",
+                "sPrevious": "←",
+                "sNext": "→",
+                "sLast": "Dernier"
             },
             "oAria": {
-                "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+                "sSortAscending": ": activer pour trier la colonne par ordre croissant",
                 "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
             }
         }
@@ -215,16 +215,16 @@ function setTable(idBox) {
     // Setup - add a text input to each footer cell
     $('#my_table_' + idBox + ' tfoot th').each(function () {
         var title = $(this).text();
-        $(this).html( '<input type="text" id="searchTFoot" placeholder="Chercher un(e) ' + title + '" />' );
+        $(this).html('<input type="text" id="searchTFoot" placeholder="Chercher un(e) ' + title + '" />');
     });
- 
+
     // DataTable
     var table = $('#my_table_' + idBox).DataTable();
- 
+
     // Apply the search
     table.columns().every(function () {
         var that = this;
- 
+
         $('input', this.footer()).on('keyup change', function () {
             if (that.search() !== this.value) {
                 that
@@ -236,4 +236,4 @@ function setTable(idBox) {
 
     $(".dataTables_info").remove();
     // $("#my_table_box1_filter label").html("Rechercher: ");
-};
+}
