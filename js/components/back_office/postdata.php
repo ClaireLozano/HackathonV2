@@ -13,7 +13,6 @@ $timeline = 'type_timeline';
 
 
 
-
 $years = $_POST['timeline_dataComposition_year_list'];
 $years_value = $_POST['timeline_dataComposition_year_value_list'];
 
@@ -21,24 +20,32 @@ $postArray = array(
 
   "link" => $_POST['link'],
   "title" => $_POST['title'],
-  "description" => $_POST['description'],
-  "dictionnaireX" => array(
-        "link" => $_POST['link_dictX'],
-        "initValue" => $_POST['initValue_dictX'],
-        "newValue" => $_POST['newValue_dictX']
-      ),
-  "dictionnaireY" => array(
-        "link" => $_POST['link_dictY'],
-        "value" => $_POST['value_dictY'],
-        "initValue" => $_POST['initValue_dictY'],
-        "newValue" => $_POST['newValue_dictY']
-      )
+  "description" => $_POST['description']
 );
 
+// Dictionnaire X
+$dictXArray = array(
+      "link" => $_POST['link_dictX'],
+      "initValue" => $_POST['initValue_dictX'],
+      "newValue" => $_POST['newValue_dictX']
+    );
+
+// Dictionnaire Y
+$dictYArray = array(
+      "link" => $_POST['link_dictY'],
+      "value" => $_POST['value_dictY'],
+      "initValue" => $_POST['initValue_dictY'],
+      "newValue" => $_POST['newValue_dictY']
+    );
+
+// Dictionnaire
+if ($_POST['checkDict'] == 'add_dictionary'){
+  $postArray['dictionnaireX'] = $dictXArray;
+  $postArray['dictionnaireY'] = $dictYArray;
+}
 
 
-
-Grahes :
+// Grahes :
 $grapheArray = array(
       "possibleGraphs" => $_POST['possibleGraphs'],
       "dataComposition" => array(
@@ -75,8 +82,6 @@ $tableauArray = array(
 // Timeline :
 $timelineArray = array(
       "actualDate" => $_POST['actualDate']);
-
-
 
 
 // Type d'affichage des données :
@@ -130,37 +135,36 @@ foreach ($datatypeArray as $key => $value) {
 }
 
 
+$json = json_encode($postArray, JSON_UNESCAPED_UNICODE);
+echo $json;
 
-$json = json_encode( $postArray );
 
-
-
-// make sure there were no problems
-//if( json_last_error() != JSON_ERROR_NONE ){
-//exit;  // do your error handling here instead of exiting
-// }
 
 //$file = 'output.json';
 //$current = file_get_contents($file);
 
 // Nom du fichier dynamique:
-// $file = $_POST['fileName'];
-// $file.= ".json";
-// echo $file;
+$file = $_POST['fileName'];
+$file.= ".json";
+
+// Dossier metadata
+$path = "../../metadata";
+$path = realpath ($path);
+
+//Fichier dans le dossier "metadata"
+$filepath = $path . DIRECTORY_SEPARATOR . $file;
 
 
-echo $json;
+// chamin statique :
+// $fp = fopen('mdfile.json', 'w');
 
-// echo $_POST['possibleGraphs'];
+// chemin dynamique :
+$fp = fopen($filepath, 'w');
 
-
-//file_put_contents( $file, $json);
-//
-$fp = fopen('mdfile.json', 'w');
 fwrite($fp, $json);
 fclose($fp);
 
 
 ?>
-
-<p>Pour changer les données, <a href="back_office.php">cliquez ici</a> pour revenir à la page du formulaire.</p>
+<p>Les données sont stockées dans le fichier : <i><?php echo $file; ?></i> du dossier "metadata".</p>
+<p>Créer un <a href="back_office.php">nouveau formulaire</a>.</p>
