@@ -28,7 +28,12 @@ var drawTable = function (data, metadata, idBox) {
 /**
  * Create table and th
  *
- * @return
+ * @param  {Object}         data                Data from open data la rochelle plateform
+ * @param  {Object}         metadata            Meta data
+ * @param  {Number}         idBox               Id of the box where the table will be
+ * @param  {callback}       callback               
+ *
+ * @return callback()
  */
 function insertRowTitle(data, metadata, idBox, callback) {
 
@@ -108,7 +113,12 @@ function insertRowTitle(data, metadata, idBox, callback) {
 /**
  * Insert rows
  *
- * @return
+ * @param  {Object}         data                Data from open data la rochelle plateform
+ * @param  {Object}         metadata            Meta data
+ * @param  {Number}         idBox               Id of the box where the table will be
+ * @param  {callback}       callback               
+ *
+ * @return callback()
  */
 function insertRows(data, metadata, idBox, callback) {
 
@@ -184,7 +194,9 @@ function insertRows(data, metadata, idBox, callback) {
 /**
  * Get only element we need + translate en french
  *
- * @return type if visualisation
+ * @param  {Number}         idBox               Id of the box where the table will be
+ *
+ * @return null
  */
 function setTable(idBox) {
     $('#my_table_' + idBox).DataTable({

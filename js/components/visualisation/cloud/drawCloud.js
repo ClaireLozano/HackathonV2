@@ -1,3 +1,12 @@
+/**
+ * Draw word cloud
+ *
+ * @param  {Object}         data                Data from open data la rochelle plateform
+ * @param  {Object}         metadata            Meta data
+ * @param  {Number}         idBox               Id of the box where the table will be
+ *
+ * @return null
+ */
 var drawCloud = function (data, metadata, nameBox) {
     // Set the loading
     $("body").addClass("loading");
@@ -11,8 +20,8 @@ var drawCloud = function (data, metadata, nameBox) {
     });
 
     var word_count = {};
-
     var words = text_string.split(',');
+    
     if (words.length == 1) {
         word_count[words[0]] = 1;
     } else {

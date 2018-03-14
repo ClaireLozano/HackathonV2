@@ -292,7 +292,7 @@ $(document).ready(function () {
     /**
      * Set the title of the page
      *
-     * @return
+     * @return 
      */
     var setTitle = function (title) {
         $("#title-page").html(title);

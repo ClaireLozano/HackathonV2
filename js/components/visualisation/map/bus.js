@@ -35,5 +35,6 @@ function getBusLayer() {
     });
 
     vectorLayerBus.setVisible(false);
+    
     return vectorLayerBus
-}
+};

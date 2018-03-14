@@ -38,5 +38,6 @@ function getPosteLayer() {
     });
 
     vectorLayerPoste.setVisible(false);
+    
     return vectorLayerPoste;
-}
+};

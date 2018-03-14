@@ -55,7 +55,7 @@
                         event.word(d);
                         if (bounds) cloudBounds(bounds, d);
                         else bounds = [{x: d.x + d.x0, y: d.y + d.y0}, {x: d.x + d.x1, y: d.y + d.y1}];
-//                Temporary hack
+                        // Temporary hack
                         d.x -= size[0] >> 1;
                         d.y -= size[1] >> 1;
                     }
@@ -65,7 +65,7 @@
                     event.end(tags, bounds);
                 }
             }
-        }
+        };
 
         cloud.stop = function () {
             if (timer) {
@@ -104,7 +104,7 @@
 
                 if (tag.x + tag.x0 < 0 || tag.y + tag.y0 < 0 ||
                     tag.x + tag.x1 > size[0] || tag.y + tag.y1 > size[1]) continue;
-//            TODO only check for collisions within current bounds.
+
                 if (!bounds || !cloudCollide(tag, board, size[0])) {
                     if (!bounds || collideRects(tag, bounds)) {
                         var sprite = tag.sprite,
@@ -192,34 +192,34 @@
         };
 
         return d3.rebind(cloud, event, "on");
-    }
+    };
 
     function cloudText(d) {
         return d.text;
-    }
+    };
 
     function cloudFont() {
         return "serif";
-    }
+    };
 
     function cloudFontNormal() {
         return "normal";
-    }
+    };
 
     function cloudFontSize(d) {
         return Math.sqrt(d.value);
-    }
+    };
 
     function cloudRotate() {
         return (~~(Math.random() * 6) - 3) * 30;
-    }
+    };
 
     function cloudPadding() {
         return 1;
-    }
+    };
 
-//      Fetches a monochrome sprite bitmap for the specified text.
-//      Load in batches for speed.
+    // Fetches a monochrome sprite bitmap for the specified text.
+    // Load in batches for speed.
     function cloudSprite(d, data, di) {
         if (d.sprite) return;
         c.clearRect(0, 0, (cw << 5) / ratio, ch / ratio);
@@ -304,7 +304,7 @@
         }
     }
 
-//      Use mask-based collision detection.
+    // Use mask-based collision detection.
     function cloudCollide(tag, board, sw) {
         sw >>= 5;
         var sprite = tag.sprite,
@@ -324,7 +324,7 @@
             x += sw;
         }
         return false;
-    }
+    };
 
     function cloudBounds(bounds, d) {
         var b0 = bounds[0],
@@ -333,18 +333,18 @@
         if (d.y + d.y0 < b0.y) b0.y = d.y + d.y0;
         if (d.x + d.x1 > b1.x) b1.x = d.x + d.x1;
         if (d.y + d.y1 > b1.y) b1.y = d.y + d.y1;
-    }
+    };
 
     function collideRects(a, b) {
         return a.x + a.x1 > b[0].x && a.x + a.x0 < b[1].x && a.y + a.y1 > b[0].y && a.y + a.y0 < b[1].y;
-    }
+    };
 
     function archimedeanSpiral(size) {
         var e = size[0] / size[1];
         return function (t) {
             return [e * (t *= .1) * Math.cos(t), t * Math.sin(t)];
         };
-    }
+    };
 
     function rectangularSpiral(size) {
         var dy = 4,
@@ -353,7 +353,7 @@
             y = 0;
         return function (t) {
             var sign = t < 0 ? -1 : 1;
-            //         See triangular numbers: T_n = n * (n + 1) / 2.
+            // See triangular numbers: T_n = n * (n + 1) / 2.
             switch ((Math.sqrt(1 + 4 * sign * t) - sign) & 3) {
                 case 0:
                     x += dx;
@@ -370,15 +370,14 @@
             }
             return [x, y];
         };
-    }
+    };
 
-    //    TODO reuse arrays?
     function zeroArray(n) {
         var a = [],
             i = -1;
         while (++i < n) a[i] = 0;
         return a;
-    }
+    };
 
     var cloudRadians = Math.PI / 180,
         cw = 1 << 11 >> 5,
@@ -394,7 +393,7 @@
         canvas.width = (cw << 5) / ratio;
         canvas.height = ch / ratio;
     } else {
-//        Attempt to use node-canvas.
+        // Attempt to use node-canvas.
         canvas = new Canvas(cw << 5, ch);
     }
 

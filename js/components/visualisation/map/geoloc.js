@@ -37,4 +37,4 @@ function addGeoloc(map) {
             features: [accuracyFeature, positionFeature]
         })
     });
-}
+};

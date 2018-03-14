@@ -10,8 +10,8 @@ var map = new ol.Map();
  * @return null
  */
 function showLayerBus() {
-    vectorLayerBus.setVisible(true)
-}
+    vectorLayerBus.setVisible(true);
+};
 
 /**
  * Hide bus
@@ -19,8 +19,8 @@ function showLayerBus() {
  * @return null
  */
 function hideLayerBus() {
-    vectorLayerBus.setVisible(false)
-}
+    vectorLayerBus.setVisible(false);
+};
 
 /**
  * Show poste
@@ -28,8 +28,8 @@ function hideLayerBus() {
  * @return null
  */
 function showLayerPoste() {
-    vectorLayerPoste.setVisible(true)
-}
+    vectorLayerPoste.setVisible(true);
+};
 
 /**
  * Hide poste
@@ -37,8 +37,8 @@ function showLayerPoste() {
  * @return null
  */
 function hideLayerPoste() {
-    vectorLayerPoste.setVisible(false)
-}
+    vectorLayerPoste.setVisible(false);
+};
 
 /**
  * Show yelo
@@ -46,8 +46,8 @@ function hideLayerPoste() {
  * @return null
  */
 function showLayerYelo() {
-    vectorLayerYelo.setVisible(true)
-}
+    vectorLayerYelo.setVisible(true);
+};
 
 /**
  * Hide yelo
@@ -55,8 +55,8 @@ function showLayerYelo() {
  * @return null
  */
 function hideLayerYelo() {
-    vectorLayerYelo.setVisible(false)
-}
+    vectorLayerYelo.setVisible(false);
+};
 
 /**
  * Show map
@@ -65,12 +65,16 @@ function hideLayerYelo() {
  */
 function showMap() {
     setTimeout(function () {
-        map.updateSize();
+        map.updateSize()
     }, 200);
-}
+};
 
 /**
  * Draw map
+ *
+ * @param  {Object}         data                Data from open data la rochelle plateform
+ * @param  {Object}         metadata            Meta data
+ * @param  {Number}         idBox               Id of the box where the table will be
  *
  * @return null
  */
@@ -98,16 +102,18 @@ function drawMap(data, metadata, myDiv, myPopup) {
         // Define style
         var styleFunction = function (feature) {
             var array = vectorDataLayer.getSource().getFeatures();
-            var array2 = array.map(function (el) {
-                return el.get(metadata.map.value)
-            });
-            array.map(function (el) {
-                return el.get(metadata.map.value)
-            }).reduce(function (el) {
-                return Math.min(el)
-            });
-            var min = Math.min.apply(null, array2);
 
+            var array2 = array.map(function (el) {
+                return el.get(metadata.map.value);
+            });
+
+            array.map(function (el) {
+                return el.get(metadata.map.value);
+            }).reduce(function (el) {
+                return Math.min(el);
+            });
+
+            var min = Math.min.apply(null, array2);
             var max = Math.max.apply(null, array2);
 
             var number = feature.get(metadata.map.value);
@@ -192,5 +198,6 @@ function drawMap(data, metadata, myDiv, myPopup) {
     // Popup
     addPopup(map, metadata, myPopup, metadata.map.description_popup);
 
+    // Finally display the map
     showMap();
-}
+};

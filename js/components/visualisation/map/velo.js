@@ -4,10 +4,10 @@
  * @return vectorLayerYelo
  */
 function getYeloLayer() {
+
     var json_obj = JSON.parse(Get("https://yelo.agglo-larochelle.fr/yelo-api/-/data/bikes/open-data/real-time.json"));
-
-
     var yelo = [];
+
     for (marker in json_obj) {
         p2 = new ol.Feature({
             geometry: new ol.geom.Point([json_obj[marker].longitude, json_obj[marker].latitude]),
@@ -26,6 +26,7 @@ function getYeloLayer() {
         }));
         yelo.push(p2);
     }
+
     var vectorLayerYelo = new ol.layer.Vector({
         name: 'YeloLayer',
         source: new ol.source.Vector({
@@ -34,5 +35,6 @@ function getYeloLayer() {
     });
 
     vectorLayerYelo.setVisible(false);
+    
     return vectorLayerYelo
-}
+};
