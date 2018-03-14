@@ -1,4 +1,3 @@
-
 /**
  * Add the popup
  *
@@ -17,7 +16,7 @@ function addPopup(map, metadata, myPopup, description) {
 
     // display popup on click
     map.on('click', function (evt) {
-        if(!metadata.map.kml) {
+        if (!metadata.map.kml) {
             var feature = map.forEachFeatureAtPixel(evt.pixel,
                 function (feature, layer) {
                     return feature;
@@ -34,7 +33,7 @@ function addPopup(map, metadata, myPopup, description) {
                     $(element).popover('show');
                 }
                 else {
-                    if(feature.get("dispo")) {
+                    if (feature.get("dispo")) {
                         var geometry = feature.getGeometry();
                         var coord = geometry.getCoordinates();
                         popup.setPosition(coord);
@@ -51,4 +50,4 @@ function addPopup(map, metadata, myPopup, description) {
             }
         }
     });
-};
+}
