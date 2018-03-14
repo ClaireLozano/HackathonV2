@@ -3,9 +3,9 @@
  *
  * @return metadata
  */
-var getMetadata = function(nomDonnee, callback) {
+var getMetadata = function (nomDonnee, callback) {
     var metadata = [];
-    $.getJSON("../../metadata/" + nomDonnee + ".json", function(m) {
+    $.getJSON("../../metadata/" + nomDonnee + ".json", function (m) {
         return callback(m);
     });
 };
@@ -15,13 +15,13 @@ var getMetadata = function(nomDonnee, callback) {
  *
  * @return
  */
-var getData = function(endUrl, callback) {
+var getData = function (endUrl, callback) {
     jQuery.ajax({
         type: "POST",
         url: '../rest.php',
         async: false, // wait for a response
         data: {functionname: 'getOpenData', arguments: endUrl},
-        success:function(data) {
+        success: function (data) {
         },
         complete: function (request, textStatus) {
             if (request.responseText !== 'null') {
@@ -40,7 +40,7 @@ var getData = function(endUrl, callback) {
  *
  * @return (type visualisation, nom data)
  */
-var getUrlPage = function() {
+var getUrlPage = function () {
     // Get url pour récupérer le nom de la donnée et le type de visualisation
     var url = window.location.href.split("?");
 
@@ -61,9 +61,9 @@ var getUrlPage = function() {
 /**
  * Reload page
  *
- * @return 
+ * @return
  */
-var reloadPage = function(url, endUrl, typeVisualisation) {
+var reloadPage = function (url, endUrl, typeVisualisation) {
     window.location.replace(url + '?type=' + typeVisualisation + '&data=' + endUrl);
 };
 
