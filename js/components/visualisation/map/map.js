@@ -192,18 +192,5 @@ function drawMap(data, metadata, myDiv, myPopup) {
     // Popup
     addPopup(map, metadata, myPopup, metadata.map.description_popup);
 
-
-    // change mouse cursor when over marker
-    map.on('pointermove', function (e) {
-        if (e.dragging) {
-            if ($(element))
-                $(element).popover('destroy');
-            return;
-        }
-        var pixel = map.getEventPixel(e.originalEvent);
-        var hit = map.hasFeatureAtPixel(pixel);
-        map.getTarget().style.cursor = hit ? 'pointer' : '';
-    });
-
     showMap();
 }
