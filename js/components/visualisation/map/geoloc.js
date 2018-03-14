@@ -1,4 +1,3 @@
-
 /**
  * Add the geolocalization marker
  *
@@ -32,10 +31,10 @@ function addGeoloc(map) {
     });
 
     new ol.layer.Vector({
-        name:'GeolocLayer',
+        name: 'GeolocLayer',
         map: map,
         source: new ol.source.Vector({
             features: [accuracyFeature, positionFeature]
         })
     });
-};
+}
