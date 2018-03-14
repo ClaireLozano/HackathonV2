@@ -1,4 +1,3 @@
-
 /**
  * Get yelo markers
  *
@@ -23,17 +22,17 @@ function getYeloLayer() {
                 src: '../../../images/icone_velo.png',
                 scale: 0.045
             })),
-            display:'none'
+            display: 'none'
         }));
         yelo.push(p2);
     }
     var vectorLayerYelo = new ol.layer.Vector({
-        name:'YeloLayer',
+        name: 'YeloLayer',
         source: new ol.source.Vector({
             features: yelo
         })
     });
-    
+
     vectorLayerYelo.setVisible(false);
     return vectorLayerYelo
-};
+}
