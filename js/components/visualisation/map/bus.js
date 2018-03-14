@@ -1,4 +1,3 @@
-
 /**
  * Get bus markers
  *
@@ -24,17 +23,17 @@ function getBusLayer() {
                 src: '../../../images/icone_bus.png',
                 scale: 0.045
             })),
-            display:'none'
+            display: 'none'
         }));
         bus.push(p2);
     }
     var vectorLayerBus = new ol.layer.Vector({
-        name:'BusLayer',
+        name: 'BusLayer',
         source: new ol.source.Vector({
             features: bus
         })
     });
-    
+
     vectorLayerBus.setVisible(false);
     return vectorLayerBus
-};
+}
