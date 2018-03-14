@@ -11,8 +11,8 @@ function ajaxRequest(endUrl, callback) {
         url: '../rest.php',
         data: {functionname: 'getOpenData', arguments: endUrl},
         async: false, // wait for a response
-        success:function(data) {
-        }, 
+        success: function (data) {
+        },
         complete: function (request, textStatus) {
             if (request.responseText !== 'null') {
                 // Parse data in Json
@@ -24,4 +24,4 @@ function ajaxRequest(endUrl, callback) {
             }
         }
     });
-}; 
+}
