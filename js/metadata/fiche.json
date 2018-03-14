@@ -2,10 +2,54 @@
   "link": "&db=archive&table=fiche&format=json",
   "title": "ARCHIVE MUNICIPALE – DESCRIPTIF",
   "description": "",
-  "table":{
-    "dataComposition":{
-      "keys_list": ["fic_note", "Places fic_fournisseur", "fic_format", "fic_titre", "fic_editeur", "fic_reproductible", "fic_niveau", "fic_auteur", "fic_typo", "fic_theme", "fic_lieux", "fic_ref", "fic_producteur", "fic_couleur", "fic_cote", "fic_categorie", "fic_orientation", "fic_periode_histo", "fic_type_recherche", "fic_mode_entree", "fic_comm"],
-      "value_list": ["fic_note", "Places fic_fournisseur", "fic_format", "fic_titre", "fic_editeur", "fic_reproductible", "fic_niveau", "fic_auteur", "fic_typo", "fic_theme", "fic_lieux", "fic_ref", "fic_producteur", "fic_couleur", "fic_cote", "fic_categorie", "fic_orientation", "fic_periode_histo", "fic_type_recherche", "fic_mode_entree", "fic_comm"]
+  "table": {
+    "dataComposition": {
+      "keys_list": [
+        "fic_note",
+        "Places fic_fournisseur",
+        "fic_format",
+        "fic_titre",
+        "fic_editeur",
+        "fic_reproductible",
+        "fic_niveau",
+        "fic_auteur",
+        "fic_typo",
+        "fic_theme",
+        "fic_lieux",
+        "fic_ref",
+        "fic_producteur",
+        "fic_couleur",
+        "fic_cote",
+        "fic_categorie",
+        "fic_orientation",
+        "fic_periode_histo",
+        "fic_type_recherche",
+        "fic_mode_entree",
+        "fic_comm"
+      ],
+      "value_list": [
+        "fic_note",
+        "Places fic_fournisseur",
+        "fic_format",
+        "fic_titre",
+        "fic_editeur",
+        "fic_reproductible",
+        "fic_niveau",
+        "fic_auteur",
+        "fic_typo",
+        "fic_theme",
+        "fic_lieux",
+        "fic_ref",
+        "fic_producteur",
+        "fic_couleur",
+        "fic_cote",
+        "fic_categorie",
+        "fic_orientation",
+        "fic_periode_histo",
+        "fic_type_recherche",
+        "fic_mode_entree",
+        "fic_comm"
+      ]
     }
   }
 }

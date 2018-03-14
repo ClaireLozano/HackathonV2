@@ -1,24 +1,33 @@
-
 {
   "dataType": "HistorisedNotLocalisable",
   "link": "&db=ecnaissance&table=acte_naissance_02&filter=an_evenement_annee%20equalto%202015&format=json",
   "title": "ETAT CIVIL – ACTE DE NAISSANCE – PAR PREMIER PRÉNOM - 2015",
   "description": "",
-  "cloud":{
+  "cloud": {
     "title": "an_enfant_premier_prenom",
     "value": "an_nombre"
   },
-  "timeline":{
+  "timeline": {
     "actualDate": "2015",
-    "dates" :{ 
-      "2014":"acte_naissance_02_2014",
-      "2015":"acte_naissance_02_2015"
-    }   
+    "dates": {
+      "2014": "acte_naissance_02_2014",
+      "2015": "acte_naissance_02_2015"
+    }
   },
-  "table":{
-    "dataComposition":{
-      "keys_list": ["an_evenement_annee", "an_evenement_mois", "an_enfant_premier_prenom", "an_nombre"],
-      "value_list": ["Année", "Mois", "Prénom", "Occurrence"]
+  "table": {
+    "dataComposition": {
+      "keys_list": [
+        "an_evenement_annee",
+        "an_evenement_mois",
+        "an_enfant_premier_prenom",
+        "an_nombre"
+      ],
+      "value_list": [
+        "Année",
+        "Mois",
+        "Prénom",
+        "Occurrence"
+      ]
     }
   }
 }
