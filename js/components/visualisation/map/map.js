@@ -3,6 +3,7 @@ vectorLayerPoste = [];
 vectorLayerBus = [];
 vectorLayerYelo = [];
 var map = new ol.Map();
+
 /**
  * Show bus
  *
@@ -95,28 +96,34 @@ function drawMap(data, metadata, myDiv, myPopup) {
     if (metadata.map.kml) {
 
         // Define style
-        var styleFunction = function(feature) {
+        var styleFunction = function (feature) {
             var array = vectorDataLayer.getSource().getFeatures();
-            var array2 = array.map(function(el){return el.get(metadata.map.value)});
-            array.map(function(el){return el.get(metadata.map.value)}).reduce(function(el){return Math.min(el)})
-            var min = Math.min.apply(null,array2);
+            var array2 = array.map(function (el) {
+                return el.get(metadata.map.value)
+            });
+            array.map(function (el) {
+                return el.get(metadata.map.value)
+            }).reduce(function (el) {
+                return Math.min(el)
+            });
+            var min = Math.min.apply(null, array2);
 
-            var max = Math.max.apply(null,array2);
+            var max = Math.max.apply(null, array2);
 
             var number = feature.get(metadata.map.value);
-            number = ((number-min) / (max-min)*256)|0;
+            number = ((number - min) / (max - min) * 256) | 0;
 
             return new ol.style.Style({
                 fill: new ol.style.Fill({
-                    color: [number, 0, 255-number, 0.4]
+                    color: [number, 0, 255 - number, 0.4]
                 }),
                 stroke: new ol.style.Stroke({
                     color: '#ffffff'
                 }),
-                text:new ol.style.Text({
-                    text:feature.get(metadata.map.name)+"\n"+feature.get(metadata.map.value),
-                    fill: new ol.style.Fill({ color: "#000000" }),
-                    stroke: new ol.style.Stroke({ color: "#FFFFFF", width: 3 }),
+                text: new ol.style.Text({
+                    text: feature.get(metadata.map.name) + "\n" + feature.get(metadata.map.value),
+                    fill: new ol.style.Fill({color: "#000000"}),
+                    stroke: new ol.style.Stroke({color: "#FFFFFF", width: 3}),
                     font: 12 + 'px Calibri,sans-serif'
                 })
             });
