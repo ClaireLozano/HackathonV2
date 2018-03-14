@@ -1,13 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     var initActivePanel = '';
 
-	/**
-	 * Init
-	 *
-	 * @return
-	 */
-	function init() {
+    /**
+     * Init
+     *
+     * @return
+     */
+    function init() {
         var result = getUrlPage();
         var typeVisualisation = result[0];
         var nomDonnee = result[1];
@@ -15,7 +15,7 @@ $(document).ready(function() {
         if (typeVisualisation && nomDonnee) {
 
             // Get metadata
-            getMetadata(nomDonnee, function(metadata) {
+            getMetadata(nomDonnee, function (metadata) {
 
                 // Set title
                 setTitle(metadata.title);
@@ -24,7 +24,7 @@ $(document).ready(function() {
                 setActivePanel(typeVisualisation);
 
                 // With end url, get data
-                getData(metadata.link, function(data) {
+                getData(metadata.link, function (data) {
                     if (data) {
                         // Set tab navbar and draw visualisation
                         setTabNavBarAndDraw(metadata, data);
@@ -36,52 +36,52 @@ $(document).ready(function() {
                 setMapButton();
             });
         }
-	};
+    }
 
-	/**
-	 * Init listeners
-	 *
-	 * @return
-	 */
-	var bindListeners = function() {
-        $(".tab-nav").click(function() {
+    /**
+     * Init listeners
+     *
+     * @return
+     */
+    var bindListeners = function () {
+        $(".tab-nav").click(function () {
             $(".tab-pane").css('display', 'none');
             $(".tab-nav").removeClass('active');
         });
 
-        $("#tab-nav-1").click(function() {
+        $("#tab-nav-1").click(function () {
             $('#tab-pane-1').css('display', 'block');
             $("#tab-nav-1").addClass('active');
         });
 
-        $("#tab-nav-2").click(function() {
+        $("#tab-nav-2").click(function () {
             $('#tab-pane-2').css('display', 'block');
             $("#tab-nav-2").addClass('active');
         });
 
-        $("#tab-nav-3").click(function() {
+        $("#tab-nav-3").click(function () {
             $('#tab-pane-3').css('display', 'block');
             $("#tab-nav-3").addClass('active');
             showMap();
         });
 
-        $("#tab-nav-4").click(function() {
+        $("#tab-nav-4").click(function () {
             $("#tab-pane-4").css('display', 'block');
             $("#tab-nav-4").addClass('active');
         });
 
-        $("#tab-nav-5").click(function() {
+        $("#tab-nav-5").click(function () {
             $("#tab-pane-5").css('display', 'block');
             $("#tab-nav-5").addClass('active');
         });
 
-        $("#tab-nav-6").click(function() {
+        $("#tab-nav-6").click(function () {
             $("#tab-pane-6").css('display', 'block');
             $("#tab-nav-6").addClass('active');
         });
 
         // Reload the page with the new date
-        $(".select-list-date").change(function() {
+        $(".select-list-date").change(function () {
             // Get value of the selected item 
             var nomDonnee = $('.select-list-date :selected').val();
             var url = window.location.href.split("?");
@@ -90,19 +90,19 @@ $(document).ready(function() {
         });
 
         // Load the compare table
-        $(".select-list-date-compare").change(function() {
+        $(".select-list-date-compare").change(function () {
             // Get value of the selected item 
             var nomDonnee = $("option:selected", this).val();
             var activePanel = getActivePanel();
-            
+
             if (nomDonnee == "none") {
                 removeDrawCompare(activePanel[0]);
             } else {
 
                 // Get metadata
-                getMetadata(nomDonnee, function(metadata) {
+                getMetadata(nomDonnee, function (metadata) {
                     // With end url, get data
-                    getData(metadata.link, function(data) {
+                    getData(metadata.link, function (data) {
                         if (data) {
                             // Draw visualisation
                             drawCompare(activePanel[0], metadata, data);
@@ -113,14 +113,14 @@ $(document).ready(function() {
                 });
             }
         });
-	};
+    };
 
     /**
      * Get the panel active + name of id box
      *
-     * @return type if visualisation 
+     * @return type if visualisation
      */
-    var getActivePanel = function() {
+    var getActivePanel = function () {
         if ($("#tab-nav-1").hasClass("active")) {
             return ["table", "box1"];
         } else if ($("#tab-nav-2").hasClass("active")) {
@@ -143,7 +143,7 @@ $(document).ready(function() {
      *
      * @return null
      */
-    var drawCompare = function(typeVisualisation, metadata, data) {
+    var drawCompare = function (typeVisualisation, metadata, data) {
 
         switch (typeVisualisation) {
 
@@ -151,8 +151,8 @@ $(document).ready(function() {
                 // Remove the table compare if exists
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#my_table_box1Compare_wrapper").remove();
-                
-                // Else, create div compare
+
+                    // Else, create div compare
                 } else {
                     var div = document.createElement('div');
                     div.id = 'box1Compare';
@@ -168,8 +168,8 @@ $(document).ready(function() {
                 // Remove the table compare if exists
                 if ($("#box2Compare").length) {
                     $("#box2Compare").remove();
-                
-                // Else, create div compare
+
+                    // Else, create div compare
                 } else {
                     var div = document.createElement('div');
                     div.id = 'box2Compare';
@@ -183,8 +183,8 @@ $(document).ready(function() {
                 // Remove the table compare if exists
                 if ($("#box2Compare").length) {
                     $("#box2Compare").remove();
-                
-                // Else, create div compare
+
+                    // Else, create div compare
                 } else {
                     var div = document.createElement('div');
                     div.id = 'box6Compare';
@@ -193,16 +193,16 @@ $(document).ready(function() {
                 }
 
                 // Set div width/height because we need a width to draw the cloud
-                $("#box6Compare").width(($('#box6').width()*2)*2); 
-                $("#box6Compare").height($('#box6').height()); 
+                $("#box6Compare").width(($('#box6').width() * 2) * 2);
+                $("#box6Compare").height($('#box6').height());
 
                 // Draw cloud
                 drawCloud(data, metadata, 'box6Compare');
 
                 // Set again div width to make the div responsive
-                $("#box6").width("100%"); 
-                $("#box6Compare").width("100%"); 
-                $("#box6Compare").height("100%"); 
+                $("#box6").width("100%");
+                $("#box6Compare").width("100%");
+                $("#box6Compare").height("100%");
                 break;
         }
     };
@@ -212,7 +212,7 @@ $(document).ready(function() {
      *
      * @return null
      */
-    var removeDrawCompare = function(typeVisualisation) {
+    var removeDrawCompare = function (typeVisualisation) {
         switch (typeVisualisation) {
             case 'table':
                 // Remove the table compare
@@ -235,7 +235,7 @@ $(document).ready(function() {
                 }
                 break;
         }
-        
+
     };
 
     /**
@@ -243,25 +243,25 @@ $(document).ready(function() {
      *
      * @return
      */
-    var setMapButton = function() {
-        $(".button-icone").on("click", function() {
+    var setMapButton = function () {
+        $(".button-icone").on("click", function () {
             // If the marks are visible, hide them
             if ($(this).val() === "true") {
                 $(this).val("false");
                 $(this).css({opacity: 0.5});
 
                 // Remove bus marks
-                if($(this).attr('id') === "button-icone-bus") {
+                if ($(this).attr('id') === "button-icone-bus") {
                     hideLayerBus();
                 }
 
                 // Remove poste marks
-                if($(this).attr('id') === "button-icone-poste") {
+                if ($(this).attr('id') === "button-icone-poste") {
                     hideLayerPoste();
                 }
 
                 // Remove yelo marks
-                if($(this).attr('id') === "button-icone-yelo") {
+                if ($(this).attr('id') === "button-icone-yelo") {
                     hideLayerYelo();
                 }
 
@@ -272,17 +272,17 @@ $(document).ready(function() {
                 $(this).css({opacity: 1});
 
                 // Draw bus marks
-                if($(this).attr('id') === "button-icone-bus") {
+                if ($(this).attr('id') === "button-icone-bus") {
                     showLayerBus();
                 }
 
                 // Draw poste marks
-                if($(this).attr('id') === "button-icone-poste") {
+                if ($(this).attr('id') === "button-icone-poste") {
                     showLayerPoste();
                 }
 
                 // Draw yelo marks
-                if($(this).attr('id') === "button-icone-yelo") {
+                if ($(this).attr('id') === "button-icone-yelo") {
                     showLayerYelo();
                 }
             }
@@ -294,7 +294,7 @@ $(document).ready(function() {
      *
      * @return
      */
-    var setTitle = function(title) {
+    var setTitle = function (title) {
         $("#title-page").html(title);
     };
 
@@ -303,7 +303,7 @@ $(document).ready(function() {
      *
      * @return
      */
-    var setDescription = function(metadata) {
+    var setDescription = function (metadata) {
         $("#description-page").html(metadata.description);
     };
 
@@ -312,7 +312,7 @@ $(document).ready(function() {
      *
      * @return
      */
-    var setActivePanel = function(typeVisualisation) {
+    var setActivePanel = function (typeVisualisation) {
         switch (typeVisualisation) {
             case 'table':
                 $('#tab-pane-1').css('display', 'block');
@@ -344,9 +344,9 @@ $(document).ready(function() {
     /**
      * Set the tab navbar
      *
-     * @return type if visualisation 
+     * @return type if visualisation
      */
-    var setTabNavBarAndDraw = function(metadata, data) {
+    var setTabNavBarAndDraw = function (metadata, data) {
 
         if (metadata.table) {
             drawTable(data, metadata, 'box1');
@@ -378,12 +378,12 @@ $(document).ready(function() {
             var selCompare = $('<select>').appendTo('.select-list-date-compare');
             selCompare.addClass("select-list");
             selCompare.addClass("select-list-select");
-            selCompare.append($("<option>").attr('value','none').text('...'));
+            selCompare.append($("<option>").attr('value', 'none').text('...'));
             selCompare.addClass("form-control");
 
             for (var key in metadata.timeline.dates) {
-                sel.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
-                selCompare.append($("<option>").attr('value',metadata.timeline.dates[key]).text(key));
+                sel.append($("<option>").attr('value', metadata.timeline.dates[key]).text(key));
+                selCompare.append($("<option>").attr('value', metadata.timeline.dates[key]).text(key));
             }
 
             // Set active select
@@ -397,15 +397,15 @@ $(document).ready(function() {
 
             // Set div width/height because we need a width to draw the cloud
             var activePanel = getActivePanel();
-            $("#box6").width($('#' + activePanel[1]).width()); 
-            $("#box6").height('800px'); 
+            $("#box6").width($('#' + activePanel[1]).width());
+            $("#box6").height('800px');
 
             // Draw cloud
             drawCloud(data, metadata, 'box6');
 
             // Set again div width to make the div responsive
-            $("#box6").width("100%"); 
-            $("#box6").height("100%"); 
+            $("#box6").width("100%");
+            $("#box6").height("100%");
         } else {
             $("#tab-nav-6").css('display', 'none');
         }
@@ -413,6 +413,6 @@ $(document).ready(function() {
         return;
     };
 
-	init();
-	bindListeners();
+    init();
+    bindListeners();
 });
