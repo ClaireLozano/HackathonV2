@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     /**
      * Definie link
@@ -12,7 +12,7 @@ $(document).ready(function() {
     function defineLinks(type, position, nomDonnee) {
         var seeMore = "#seeMore" + position;
         $(seeMore).attr("href", "../visualisation/visualisation.php?type=" + type + "&resource=" + nomDonnee);
-       
+
         var info = "#info" + position;
         $(info).attr("href", "../visualisation/visualisation.php?type=info&resource=" + nomDonnee);
     }
@@ -22,15 +22,15 @@ $(document).ready(function() {
      *
      * @return
      */
-    var addVisualizationOnBox = function() {
+    var addVisualizationOnBox = function () {
 
         // Define data to display
         var nomDonnee = ["disponibilite_parking", "bp_2017_fonction", "acte_naissance_02_2014", "population_2008"];
-        
+
         // Define type of visualisation
         var visu = ["map", "graph", "cloud", "map"];
 
-        nomDonnee.forEach(function(n, i) {
+        nomDonnee.forEach(function (n, i) {
             drawVisualisationIndex(nomDonnee[i], visu[i], i);
         });
     };
@@ -40,14 +40,14 @@ $(document).ready(function() {
      *
      * @return
      */
-    var drawVisualisationIndex = function(nomDonnee, visu, i) {
+    var drawVisualisationIndex = function (nomDonnee, visu, i) {
 
         // Get metadata
-        getMetadata(nomDonnee, function(metadata) {
+        getMetadata(nomDonnee, function (metadata) {
             $("#panel-title-box" + i).text(metadata.title);
 
             // With end url, get data
-            getData(metadata.link, function(data) {
+            getData(metadata.link, function (data) {
 
                 // Draw visualisation
                 switch (visu) {
@@ -63,12 +63,12 @@ $(document).ready(function() {
 
                     case "graph":
                         drawGraph(data, metadata, "box" + i);
-                        defineLinks("graph", i, nomDonnee)
+                        defineLinks("graph", i, nomDonnee);
                         break;
 
                     case "cloud":
                         drawCloud(data, metadata, "box" + i);
-                        defineLinks("cloud", i, nomDonnee)
+                        defineLinks("cloud", i, nomDonnee);
                         break;
                 }
             });
