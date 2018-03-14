@@ -27,7 +27,7 @@
     width: 60px;
     border-top-left-radius: 60px;
     border-top-right-radius: 60px;
-    background: rgba(11,61,114,.7);
+    background: rgba(11, 61, 114, .7);
     margin: auto;
     margin-top: 80px;
     margin-bottom: 0;
@@ -41,7 +41,7 @@
     margin-top: 7px;
 }
 
-footer{
+footer {
     margin-top: 0;
     height: 80px;
     background-color: #333;
@@ -72,8 +72,8 @@ footer{
 
 .box {
     width: 100%;
-    margin-right: 10px; 
-    margin-left: 10px; 
+    margin-right: 10px;
+    margin-left: 10px;
     border-radius: 0;
 
     -webkit-box-ordinal-group: 1;
@@ -103,9 +103,9 @@ footer{
     color: white;
 }
 
-.panel-default>.panel-heading {
+.panel-default > .panel-heading {
     border-radius: 0;
-    background-color: rgba(11,61,114,.7);
+    background-color: rgba(11, 61, 114, .7);
 }
 
 .panel-title {
@@ -121,15 +121,18 @@ footer{
     #welcome {
         margin: 5px 10px 5px 10px;
     }
+
     .textDiv {
         margin: 10px;
     }
+
     .box-wrapper-inner {
         -webkit-box-orient: vertical;
         -moz-box-orient: vertical;
         box-orient: vertical;
         margin: 5px 10px 5px 10px;
     }
+
     .box {
         width: 100%;
         margin: auto;
@@ -138,7 +141,7 @@ footer{
 }
 
 /* =============== TABLEAU =============== */
-.pagination>li>a, .pagination>li>span {
+.pagination > li > a, .pagination > li > span {
     line-height: 1.42857;
     position: relative;
     float: left;
@@ -161,7 +164,7 @@ table {
 /* =============== CHART =============== */
 
 .bar {
-  stroke: #FFF;
+    stroke: #FFF;
 }
 
 path {
@@ -175,6 +178,6 @@ path {
 }
 
 .legend rect {
-  fill:white;
-  stroke:black;
+    fill: white;
+    stroke: black;
 }

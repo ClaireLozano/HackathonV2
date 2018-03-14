@@ -1,78 +1,79 @@
 h1 {
-	color: #ef7439;
-	text-transform: uppercase;
-	font-weight: 500;
-	font-size: 20px;
-	margin-bottom: 30px;
+    color: #ef7439;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
 h2 {
-	color: #0b3d72;
-	font-size: 18px;
-	font-weight: 700;
-	margin-top: 40px;
+    color: #0b3d72;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 40px;
 }
 
 /* =============== PANEL =============== */
 
 .container {
-	margin: 0;
+    margin: 0;
 }
 
 .panel {
-	margin: 0;
+    margin: 0;
 }
 
 .panel-content-visualisation {
-	padding: 25px;
+    padding: 25px;
 }
 
 #content-page {
-	margin: 0;
-	margin: 20px 100px 20px 100px;
-	padding: 0;
+    margin: 0;
+    margin: 20px 100px 20px 100px;
+    padding: 0;
 }
 
 .nav-visualisation > li {
-    float:none;
-    display:inline-block;
-    zoom:1;
+    float: none;
+    display: inline-block;
+    zoom: 1;
 }
 
 .nav-visualisation {
-    text-align:left;
+    text-align: left;
 }
 
 #second-title-page {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
 @media (max-width: 1000px) {
-	#content-page {
-		margin: 0;
-		margin: 20px 10px 20px 10px;
-		padding: 0;
-	}
+    #content-page {
+        margin: 0;
+        margin: 20px 10px 20px 10px;
+        padding: 0;
+    }
 }
 
 /* =============== SOCIAL NETWORK =============== */
 
 #rs {
-	display: inline;
+    display: inline;
 }
+
 .rs {
-	float: left;
-	margin-right: 10px;
+    float: left;
+    margin-right: 10px;
 }
 
 /* =============== COMMENTS =============== */
 
 .comment-body {
-	margin-left: 50px;
+    margin-left: 50px;
 }
 
 .comment-heading {
-	display: block;
+    display: block;
     width: 100%;
 }
 
@@ -85,7 +86,7 @@ h2 {
 }
 
 .time {
-	font-size: 12px;
+    font-size: 12px;
     color: #aaa;
     margin-top: 0;
     display: inline;
@@ -98,21 +99,21 @@ h2 {
 }
 
 .input-group-addon {
-	padding: 2px;
+    padding: 2px;
 }
 
 /* =============== BOX VISU =============== */
 
 #description-page {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .box-visu {
-	margin: 10px;
-	width: 100%;
-	overflow: auto;
+    margin: 10px;
+    width: 100%;
+    overflow: auto;
 
-	-webkit-box-ordinal-group: 1;
+    -webkit-box-ordinal-group: 1;
     -moz-box-ordinal-group: 1;
     box-ordinal-group: 1;
 
@@ -122,17 +123,17 @@ h2 {
 }
 
 #box2 {
-	margin: 0;
-	min-height: 500px;
+    margin: 0;
+    min-height: 500px;
 }
 
 #box3 {
-	margin: 0;
-	height: 500px;
+    margin: 0;
+    height: 500px;
 }
 
 .form-control {
-	padding: 0;
+    padding: 0;
     height: 25px;
 }
 
@@ -167,95 +168,96 @@ tbody:hover tr:hover td {
 }*/
 
 #searchTFoot {
-	width: 100%;
+    width: 100%;
 }
 
-#my_table_wrapper>.row {
+#my_table_wrapper > .row {
     margin-right: 0px;
 }
 
 @media screen and (max-width: 767px) {
-	div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info {
-		text-align: left;
-	}
-	div.dataTables_wrapper div.dataTables_paginate {
-		text-align: center;
-	}
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info {
+        text-align: left;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: center;
+    }
 }
 
 /* MAP */
 #map {
-	width: 100%;
-	height: 100%;
-	margin: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .chart {
-	border: solid 1px red;
-	width: 100%;
-	height: 100%;
-	padding-left: 5%;
-	margin: 0 auto;
+    border: solid 1px red;
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+    margin: 0 auto;
 }
 
 .bar {
-	fill:purple;
-	shape-rendering: crispEdges;
+    fill: purple;
+    shape-rendering: crispEdges;
 }
 
-.bar-label{
-	fill:#000;
-	text-anchor: middle;
-	font-size: 24px;
+.bar-label {
+    fill: #000;
+    text-anchor: middle;
+    font-size: 24px;
 }
 
 .axis path,
-.axis line{
-	fill:none;
-	stroke:#000;
-	shape-rendering: crispEdges;
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 
 }
 
 .gridline path,
-.gridline line{
-	fill: none;
-	stroke: #ccc;
-	shape-rendering: crispEdges;
+.gridline line {
+    fill: none;
+    stroke: #ccc;
+    shape-rendering: crispEdges;
 }
 
 .slice text {
- font-size: 10pt;
- font-family: Arial;
+    font-size: 10pt;
+    font-family: Arial;
 }
 
-.selectGraph{
-	float:left;
+.selectGraph {
+    float: left;
 }
 
 .button-icone {
-	width: 30px;
-	height: 30px;
-	margin-top: 10px;
-	opacity: 0.5;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    opacity: 0.5;
 }
 
 /* SELECT LIST DATE */
 .select-list {
-	display: inline;
-	margin-top: 5px;
-	margin-bottom: 5px;
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .select-list-select {
-	width: 200px;
+    width: 200px;
 }
 
 .select-list-text {
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 .option-panel {
-	margin-bottom: 20px;
-	margin-top: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
