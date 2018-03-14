@@ -1,6 +1,8 @@
 
 var drawCloud = function(data, metadata, nameBox) {
-
+  // Set the loading 
+  $("body").addClass("loading");
+  
   var text_string = "";
   data.forEach(function(d, i) {
     for (var i = 0; i<parseInt(d.an_nombre); i++) {
@@ -67,8 +69,8 @@ var drawCloud = function(data, metadata, nameBox) {
     .attr("transform", function(d) {
       return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
     })
-    .text(function(d) { $body = $("body"); $body.removeClass("loading"); return d.key; });
+    .text(function(d) { $("body").removeClass("loading"); return d.key; });
   }
-
+  
   d3.layout.cloud().stop();
 };

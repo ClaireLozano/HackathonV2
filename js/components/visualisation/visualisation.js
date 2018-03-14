@@ -409,6 +409,8 @@ $(document).ready(function() {
         } else {
             $("#tab-nav-6").css('display', 'none');
         }
+
+        return;
     };
 
 	init();
