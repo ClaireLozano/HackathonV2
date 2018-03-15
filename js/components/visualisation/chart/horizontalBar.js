@@ -1,9 +1,12 @@
 function initHorizontalBar(params, box, level, previousValues) {
+    params.margin.bottom = 20;
+    params.height = params.h - params.margin.top - params.margin.bottom;
+
+    params.margin.left = 120
+    params.width = params.w - params.margin.left - params.margin.right;
 
     var x = d3.scale.linear()
-        .domain([0, d3.max(params.dataToTreat, function (d) {
-            return d[params.realValue]
-        })])
+        .domain()
         .range([0, params.width]);
 
     var y = d3.scale.ordinal()

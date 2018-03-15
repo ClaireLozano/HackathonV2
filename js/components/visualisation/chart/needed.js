@@ -104,17 +104,15 @@ function getParams(dataToTreat, metadata, level, callback) {
 
     getValueTitle(dataToTreat, metadata, level, function (valueTitle) {
         var dataToTreat = valueTitle.dataToTreat;
-        var w = 800; //document.getElementsByClassName('box-visu').offsetWidth
-        var h = 500; //document.getElementsByClassName('box-visu').offsetHeight
         var margin = {
-            top: 58,
+            top: 60,
             bottom: 150,
             left: 80,
             right: 40
         };
+        var w = 700; //document.getElementsByClassName('box-visu').offsetWidth
+        var h = 400; //document.getElementsByClassName('box-visu').offsetHeight
 
-        console.log('w', w);
-        console.log('h', h);
         var width = w - margin.left - margin.right;
         var height = h - margin.top - margin.bottom;
         var r = 200;

@@ -1,4 +1,9 @@
 function initBar(params, box, level, previousValues) {
+    params.margin.bottom = 150;
+    params.height = params.h - params.margin.top - params.margin.bottom;
+
+    params.margin.left = 80
+    params.width = params.w - params.margin.left - params.margin.right;
 
     var x = d3.scale.ordinal()
         .domain(params.dataToTreat.map(function (entry) {
