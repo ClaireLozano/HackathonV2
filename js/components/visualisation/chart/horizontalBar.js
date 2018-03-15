@@ -4,30 +4,31 @@ function initHorizontalBar(params, box, level, previousValues) {
         .domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
-        .range([0, params.width])
+        .range([0, params.width]);
 
     var y = d3.scale.ordinal()
         .domain(params.dataToTreat.map(function (entry) {
             return entry[params.realTitle]
         }))
-        .rangeBands([0, params.height])
+        .rangeBands([0, params.height]);
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom")
+        .orient("bottom");
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient("left")
+        .orient("left");
 
     var svg = d3.select('#' + box).append("svg")
-        .attr("width", params.w)
-        .attr("height", params.h)
-        .attr("id", "chart"+box)
+        .attr("id", "chart" + box)
+        .attr('viewBox', '0 0 ' + Math.min(params.w, params.h) + ' ' + Math.min(params.w, params.h))
+        .attr('preserveAspectRatio', 'xMinYMin')
+        .append("g");
 
     var chart = svg.append("g")
         .classed("display", true)
-        .attr("transform", "translate(" + params.margin.left + "," + params.margin.top + ")")
+        .attr("transform", "translate(" + params.margin.left + "," + params.margin.top + ")");
 
     function plotHorizontal(parametres) {
         this.selectAll(".bar")
@@ -58,7 +59,7 @@ function initHorizontalBar(params, box, level, previousValues) {
                 d3.select(this).style("fill", params.ordinalScaleColor(i))
             })
             .on("click", function (d, i) {
-                previousValues[level] = d[params.realTitle]
+                previousValues[level] = d[params.realTitle];
                 initNewGraph(params, box, level + 1, previousValues)
             });
 
@@ -80,11 +81,11 @@ function initHorizontalBar(params, box, level, previousValues) {
             })
             .text(function (d) {
                 return d[params.realValue]
-            })
+            });
         this.append("g")
             .classed("x axis", true)
             .attr("transform", "translate(" + 0 + "," + params.height + ")")
-            .call(xAxis)
+            .call(xAxis);
 
         this.append("g")
             .classed("y axis", true)
@@ -93,6 +94,4 @@ function initHorizontalBar(params, box, level, previousValues) {
     }
 
     plotHorizontal.call(chart, {data: params.dataToTreat})
-
-
 }

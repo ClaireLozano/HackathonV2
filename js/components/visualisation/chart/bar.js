@@ -4,39 +4,39 @@ function initBar(params, box, level, previousValues) {
         .domain(params.dataToTreat.map(function (entry) {
             return entry[params.realTitle]
         }))
-        .rangeBands([0, params.width])
+        .rangeBands([0, params.width]);
 
     var y = d3.scale.linear()
         .domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
         })])
-        .range([params.height, 0])
+        .range([params.height, 0]);
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom")
+        .orient("bottom");
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient("left")
+        .orient("left");
 
     var yGridlines = d3.svg.axis()
         .scale(y)
         .tickSize(-params.width, 0, 0)
         .tickFormat("")
-        .orient("left")
+        .orient("left");
 
-    console.log('params',params)
+    console.log('params', params);
     var svg = d3.select('#' + box).append("svg")
-        .attr("id", "chart"+box)
-        .attr('viewBox','0 0 '+Math.min(params.w,params.h)+' '+Math.min(params.w,params.h))
-        .attr('preserveAspectRatio','xMinYMin')
+        .attr("id", "chart" + box)
+        .attr('viewBox', '0 0 ' + Math.min(params.w, params.h) + ' ' + Math.min(params.w, params.h))
+        .attr('preserveAspectRatio', 'xMinYMin')
         .append("g")
-        .attr("transform", "translate(" + Math.min(params.w,params.h) / 2 + "," + Math.min(params.w,params.h) / 2 + ")");
+        //.attr("transform", "translate(" + Math.min(params.w, params.h) / 2 + "," + Math.min(params.w, params.h) / 2 + ")");
 
     var chart = svg.append("g")
         .classed("display", true)
-        .attr("transform", "translate(" + -2*params.margin.left + "," + -3*params.margin.top + ")")
+        .attr("transform", "translate(" + -2 * params.margin.left + "," + -3 * params.margin.top + ")");
 
     function drawAxis(parametres) {
         if (parametres.initialize) {
@@ -46,13 +46,13 @@ function initBar(params, box, level, previousValues) {
                 .attr("y", 0 - (params.margin.top / 2))
                 .attr("text-anchor", "middle")
                 .style("font-size", "16px")
-                .text("")
+                .text("");
 
             //this is gridline
             this.append("g")
                 .call(parametres.gridlines)
                 .classed("gridline", true)
-                .attr("transform", "translate(0,0)")
+                .attr("transform", "translate(0,0)");
 
             //this is x axis
             this.append("g")
@@ -63,13 +63,13 @@ function initBar(params, box, level, previousValues) {
                 .style("text-anchor", "end")
                 .attr("dx", -8)
                 .attr("dy", 8)
-                .attr("transform", "translate(0,0) rotate(-45)")
+                .attr("transform", "translate(0,0) rotate(-45)");
 
             //this is y axis
             this.append("g")
                 .classed("y axis", true)
                 .attr("transform", "translate(0,0)")
-                .call(parametres.axis.y)
+                .call(parametres.axis.y);
 
             //this is y label
             this.select(".y.axis")
@@ -78,7 +78,7 @@ function initBar(params, box, level, previousValues) {
                 .attr("y", 0)
                 .style("text-anchor", "middle")
                 .attr("transform", "translate(-50," + params.height / 2 + ") rotate(-90)")
-                .text(params.metadata.graph.dataComposition.y_axis)
+                .text(params.metadata.graph.dataComposition.y_axis);
 
             //this is x label
             this.select(".x.axis")
@@ -90,7 +90,7 @@ function initBar(params, box, level, previousValues) {
                 .text(params.metadata.graph.dataComposition.x_axis)
         } else {
             this.selectAll("g.x.axis")
-                .call(parametres.axis.x)
+                .call(parametres.axis.x);
             this.selectAll("g.y.axis")
                 .call(parametres.axis.y)
         }
@@ -100,13 +100,13 @@ function initBar(params, box, level, previousValues) {
 
         x.domain(params.dataToTreat.map(function (entry) {
             return entry.dp_libelle
-        }))
+        }));
 
         y.domain([0, d3.max(params.dataToTreat, function (d) {
             return d[params.realValue]
-        })])
+        })]);
 
-        drawAxis.call(this, parametres)
+        drawAxis.call(this, parametres);
 
         //enter
         this.selectAll(".bar")
@@ -123,7 +123,7 @@ function initBar(params, box, level, previousValues) {
                 d3.select(this).style("fill", params.ordinalScaleColor(i))
             })
             .on("click", function (d, i) {
-                previousValues[level]=d[params.realTitle]
+                previousValues[level] = d[params.realTitle];
                 initNewGraph(params, box, level + 1, previousValues)
             });
 
@@ -131,7 +131,7 @@ function initBar(params, box, level, previousValues) {
             .data(parametres.data)
             .enter().append("text")
             .classed("bar-label", true)
-            .style("font-size", "14px")
+            .style("font-size", "14px");
 
         //update
         this.selectAll(".bar")
@@ -149,7 +149,7 @@ function initBar(params, box, level, previousValues) {
             })
             .style("fill", function (d, i) {
                 return params.ordinalScaleColor(i)
-            })
+            });
 
         this.selectAll(".bar-label")
             .attr("x", function (d, i) {
@@ -166,7 +166,7 @@ function initBar(params, box, level, previousValues) {
             })
             .text(function (d, i) {
                 return d[params.realValue]
-            })
+            });
 
         //updateDimensions(params, window.innerWidth)
 
@@ -174,7 +174,7 @@ function initBar(params, box, level, previousValues) {
         this.selectAll(".bar")
             .data(parametres.data)
             .exit()
-            .remove()
+            .remove();
 
         this.selectAll(".bar-label")
             .data(parametres.data)

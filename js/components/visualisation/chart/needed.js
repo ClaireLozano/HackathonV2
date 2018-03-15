@@ -25,7 +25,7 @@ function getValueTitle(dataToTreat, metadata, level, callback) {
 
                     // If last element
                     if ((arr.length - 1 === i) && (arrj.length - 1 === j)) {
-                        getDataToTreat(metadata, dataToTreat, function(dataToTreat) {
+                        getDataToTreat(metadata, dataToTreat, function (dataToTreat) {
                             return callback({
                                 "realTitle": realTitle,
                                 "realValue": realValue,
@@ -37,7 +37,7 @@ function getValueTitle(dataToTreat, metadata, level, callback) {
             })
         })
     } else {
-        getDataToTreat(metadata, dataToTreat, function(dataToTreat) {
+        getDataToTreat(metadata, dataToTreat, function (dataToTreat) {
 
             return callback({
                 "realTitle": realTitle,
@@ -55,35 +55,35 @@ function getDataToTreat(metadata, dataToTreat, callback) {
         // Pourcours chaque value de data composition
         // Si une de valeur est 
         Object.keys(metadata.graph.dataComposition.category).forEach(function (value, j, arrj) {
-                tmp = metadata.graph.dataComposition.category[value];
+            tmp = metadata.graph.dataComposition.category[value];
 
-                if (metadata.table.dataComposition[tmp]) {
-                    dataToTreat.forEach(function (d, k, arrk) {
-                        var aggreg = d[tmp][0];
-                        if (d[tmp] === " ") {
-                            d[tmp] = "AUTRE";
-                        } else {
-                            d[tmp] = metadata.table.dataComposition[tmp][aggreg];
-                        }
+            if (metadata.table.dataComposition[tmp]) {
+                dataToTreat.forEach(function (d, k, arrk) {
+                    var aggreg = d[tmp][0];
+                    if (d[tmp] === " ") {
+                        d[tmp] = "AUTRE";
+                    } else {
+                        d[tmp] = metadata.table.dataComposition[tmp][aggreg];
+                    }
 
-                        // If last element
-                        if ((arrj.length - 1 === j) && (arrk.length - 1 === k)) {
-                            return callback(dataToTreat);
-                        }
-                    });
-                } else {
                     // If last element
-                    if (arrj.length - 1 === j) {
+                    if ((arrj.length - 1 === j) && (arrk.length - 1 === k)) {
                         return callback(dataToTreat);
                     }
+                });
+            } else {
+                // If last element
+                if (arrj.length - 1 === j) {
+                    return callback(dataToTreat);
                 }
+            }
         });
 
-    // If no data composition, return the initial data
+        // If no data composition, return the initial data
     } else {
         return callback(dataToTreat);
     }
-};
+}
 
 function updateParams(params, level) {
     realTitle = params.metadata.graph.dataComposition.title;
@@ -99,13 +99,13 @@ function updateParams(params, level) {
 }
 
 function getParams(dataToTreat, metadata, level, callback) {
-    var COLORHOVER = "brown"
-    var originalData = dataToTreat
+    var COLORHOVER = "brown";
+    var originalData = dataToTreat;
 
-    getValueTitle(dataToTreat, metadata, level, function(valueTitle) {
-        var dataToTreat = valueTitle.dataToTreat
-        var w = 800 //document.getElementsByClassName('box-visu').offsetWidth
-        var h = 500 //document.getElementsByClassName('box-visu').offsetHeight
+    getValueTitle(dataToTreat, metadata, level, function (valueTitle) {
+        var dataToTreat = valueTitle.dataToTreat;
+        var w = 800; //document.getElementsByClassName('box-visu').offsetWidth
+        var h = 500; //document.getElementsByClassName('box-visu').offsetHeight
         var margin = {
             top: 58,
             bottom: 150,
@@ -113,10 +113,10 @@ function getParams(dataToTreat, metadata, level, callback) {
             right: 40
         };
 
-        console.log('w',w)
-        console.log('h',h)
-        var width = w - margin.left - margin.right
-        var height = h - margin.top - margin.bottom
+        console.log('w', w);
+        console.log('h', h);
+        var width = w - margin.left - margin.right;
+        var height = h - margin.top - margin.bottom;
         var r = 200;
         var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
 
@@ -179,14 +179,14 @@ function initNewGraph(params, box, level, previousValues) {
                             }
                         )
                     })
-                    .entries(params.dataToTreat)
+                    .entries(params.dataToTreat);
                 params.dataToTreat = nested;
             }
 
             params.realValue = "values";
             params.realTitle = "key";
 
-            params.dataToTreat.sort(function(a,b){
+            params.dataToTreat.sort(function (a, b) {
                 return d3.ascending(a[params.realValue], b[params.realValue]);
             });
 
@@ -204,11 +204,10 @@ function initNewGraph(params, box, level, previousValues) {
                     initHorizontalBar(params, box, i, previousValues);
                     break;
                 case "table":
-                    $("#"+box).append("<div id="+idBox+"></div>");
+                    $("#" + box).append("<div id=" + idBox + "></div>");
                     drawTable(params.dataToTreat, params.metadata, idBox);
                     break;
             }
         }
     }
-
 }
