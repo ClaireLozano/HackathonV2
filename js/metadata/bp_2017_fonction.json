@@ -4,15 +4,19 @@
   "description": "Le budget primitif est le budget voté par l'assemblée locale en début d'exercice. Il fixe les enveloppes de crédits permettant d'engager les dépenses pendant la durée de l'exercice. Il détermine aussi les recettes attendues, notamment en matière de fiscalité.",
   "graph": {
     "possibleGraphs": [
+      "horizontalBar",
       "pie",
-      "horizontalBar"
+      "table"
     ],
     "dataComposition": {
       "excludeLines": [],
       "title": "budg_ss_fction",
       "value": "budg_montant",
-      "category0": "budg_dep_rec",
-      "category1": "budg_section"
+      "category": [
+        "budg_dep_rec",
+        "budg_ss_fction_code",
+        "table"
+      ]
     }
   },
   "timeline": {
@@ -43,6 +47,18 @@
         "Section",
         "Fonction",
         "Montant"
+      ],
+      "budg_ss_fction_code": [
+        "ADMINISTRATION GENERALE",
+        "SECURITE",
+        "ENSEIGNEMENT",
+        "CULTURE",
+        "SPORTS ET JEUNESSE",
+        "INTERVENTIONS SOCIALES ET SANTE",
+        "FAMILLE",
+        "LOGEMENT",
+        "AMENAGEMENT ET SERVICES URBAINS",
+        "ACTION ECONOMIQUE"
       ]
     }
   }

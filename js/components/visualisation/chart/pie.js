@@ -1,83 +1,64 @@
-function change(region) {
+function initPie(params, box, level, previousValues) {
 
-    //console.log("region", region);
+    var vis = d3.select('#' + box)
+        .append("svg")
+        .data([params.dataToTreat])
+        .attr("id", "chart" + box)
+        .attr('viewBox', -params.r + ' ' + -params.r + ' ' + 3.5 * params.r + ' ' + 2 * params.r)
+        .attr('preserveAspectRatio', 'xMinYMin')
+        .append("g");
 
-    var data0 = path.data(),
-        data1 = pie(region.values);
+    var arc = d3.svg.arc()
+        .outerRadius(200);
 
-    //console.log("data0",data0);
-    //console.log("data1", data1);
-
-    path = path.data(data1, key);
-
-    path.enter().append("path")
-        .each(function (d, i) {
-            this._current = findNeighborArc(i, data0, data1, key) || d;
-        })
-        .attr("fill", function (d) {
-            return color(d.data.region);
-        })
-        .append("title")
-        .text(function (d) {
-            return d.data.region;
+    var pie = d3.layout.pie()
+        .value(function (d) {
+            return d[params.realValue]
         });
 
-    path.exit()
-        .datum(function (d, i) {
-            return findNeighborArc(i, data1, data0, key) || d;
+    var arcs = vis.selectAll("g.slice")
+        .data(pie)
+        .enter()
+        .append("g")
+        .classed("slice", true);
+
+    arcs.append("path")
+        .style("fill", function (d, i) {
+            return params.ordinalScaleColor(i)
         })
-        .transition()
-        .duration(750)
-        .attrTween("d", arcTween)
-        .remove();
+        .on("mouseover", function (d, i) {
+            d3.select(this).style("fill", params.COLORHOVER)
+        })
+        .on("mousemove", function (d, i) {
 
-    path.transition()
-        .duration(750)
-        .attrTween("d", arcTween);
-}
+        })
+        .on("mouseout", function (d, i) {
+            d3.select(this).style("fill", params.ordinalScaleColor(i))
+        })
+        .attr("d", arc)
+        .attr("data-legend", function (d) {
+            return d.data[params.realTitle]
+        })
+        .on("click", function (node, i) {
+            previousValues[level] = node.data[params.realTitle];
+            initNewGraph(params, box, level + 1, previousValues)
+        });
 
-function key(d) {
-    return d.data.region;
-}
+    arcs.append("text")
+        .attr("transform", function (d) {                    //set the label's origin to the center of the arc
+            d.innerRadius = 0;
+            d.outerRadius = params.r * 2;
+            return "translate(" + arc.centroid(d) + ")"        //this gives us a pair of coordinates like [50, 50]
+        })
+        .attr("text-anchor", "middle")                          //center the text on it's origin
+        .text(function (d, i) {
+            return params.dataToTreat[i][params.realValue]
+        });        //get the label from our original data array
 
-function type(d) {
-    d.count = +d.count;
-    return d;
-}
 
-function findNeighborArc(i, data0, data1, key) {
-    var d;
-    return (d = findPreceding(i, data0, data1, key)) ? {startAngle: d.endAngle, endAngle: d.endAngle}
-        : (d = findFollowing(i, data0, data1, key)) ? {startAngle: d.startAngle, endAngle: d.startAngle}
-            : null;
-}
-
-// Find the element in data0 that joins the highest preceding element in data1.
-function findPreceding(i, data0, data1, key) {
-    var m = data0.length;
-    while (--i >= 0) {
-        var k = key(data1[i]);
-        for (var j = 0; j < m; ++j) {
-            if (key(data0[j]) === k) return data0[j];
-        }
-    }
-}
-
-// Find the element in data0 that joins the lowest following element in data1.
-function findFollowing(i, data0, data1, key) {
-    var n = data1.length, m = data0.length;
-    while (++i < n) {
-        var k = key(data1[i]);
-        for (var j = 0; j < m; ++j) {
-            if (key(data0[j]) === k) return data0[j];
-        }
-    }
-}
-
-function arcTween(d) {
-    var i = d3.interpolate(this._current, d);
-    this._current = i(0);
-    return function (t) {
-        return arc(i(t));
-    };
+    var legend = vis.append("g")
+        .attr("class", "legend")
+        .attr("transform", "translate(" + params.r * 1.2 + ","+ -params.r*9/10 +")")
+        .style("font-size", "12px")
+        .call(d3.legend)
 }
