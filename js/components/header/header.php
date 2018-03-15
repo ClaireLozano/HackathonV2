@@ -57,7 +57,6 @@
             <li><a href="../donnees/donnes.php">Données</a></li>
             <li><a href="../back_office/back_office.php">Formulaire</a></li>
             <li><a href="../demarche/demarche.php">La démarche</a></li>
-            <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
           </ul>
           <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse4">
             <li><a href="#">Support</a></li>
@@ -67,7 +66,6 @@
 	            <li><a href="../visualisation/visualisation.php">Visualisation</a></li>
               <li><a href="../back_office/back_office.php">Formulaire</a></li>
 	            <li><a href="../demarche/demarche.php">La démarche</a></li>
-	            <li><a href="../aide/aide.php">Besoin d'aide ?</a></li>
               </ul>
             </li>
           </ul>

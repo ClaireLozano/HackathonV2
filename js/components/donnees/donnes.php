@@ -2,7 +2,7 @@
 <html>
 
 	<?php include '../header/header.php'; ?>
-	<link rel="stylesheet" type="text/css" href="../../../style/donnees.css">
+	<link rel="stylesheet" type="text/css" href="../../../style/style-donnees.css">
 
 	<body>
 		<!-- The side menu-->

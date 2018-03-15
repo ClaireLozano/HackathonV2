@@ -1,7 +1,9 @@
 /**
  * Get metadata
  *
- * @return metadata
+ * @param   {String}        nomDonnee          File name
+ *
+ * @return  {Object}        metadata
  */
 var getMetadata = function (nomDonnee, callback) {
     var metadata = [];
@@ -11,9 +13,11 @@ var getMetadata = function (nomDonnee, callback) {
 };
 
 /**
- * Get data
+ * Define ajax request
  *
- * @return
+ * @param  {String}     endUrl          End of the URL
+ *
+ * @return {object}     data            Data from opendatalarochelle
  */
 var getData = function (endUrl, callback) {
     jQuery.ajax({
@@ -25,6 +29,7 @@ var getData = function (endUrl, callback) {
         },
         complete: function (request, textStatus) {
             if (request.responseText !== 'null') {
+                // Parse data in Json
                 var obj = JSON.parse(request.responseText);
                 // Return data
                 return callback(obj.opendata.answer.data);
@@ -38,9 +43,10 @@ var getData = function (endUrl, callback) {
 /**
  * Get arguments from url
  *
- * @return (type visualisation, nom data)
+ * @return [String, String]     typeVisualisation, nomDonnee            Return type of visualisation to display and data name
  */
 var getUrlPage = function () {
+    
     // Get url pour récupérer le nom de la donnée et le type de visualisation
     var url = window.location.href.split("?");
 
@@ -61,19 +67,21 @@ var getUrlPage = function () {
 /**
  * Reload page
  *
- * @return
+ * @return null
  */
 var reloadPage = function (url, endUrl, typeVisualisation) {
     window.location.replace(url + '?type=' + typeVisualisation + '&data=' + endUrl);
 };
 
 /**
- * Map
+ * Get data which are not related with the opendata larochelle
  *
- * @return (data)
+ * @param  {String}     endUrl          End of the URL
+ *
+ * @return {object}     data            Data from url
  */
 function Get(yourUrl) {
-    var Httpreq = new XMLHttpRequest(); // a new request
+    var Httpreq = new XMLHttpRequest(); 
     Httpreq.open("GET", yourUrl, false);
     Httpreq.send(null);
     return Httpreq.responseText;

@@ -3,7 +3,7 @@ $(document).ready(function () {
     var initActivePanel = '';
 
     /**
-     * Init
+     * Init 
      *
      * @return
      */
@@ -116,32 +116,13 @@ $(document).ready(function () {
     };
 
     /**
-     * Get the panel active + name of id box
-     *
-     * @return type if visualisation
-     */
-    var getActivePanel = function () {
-        if ($("#tab-nav-1").hasClass("active")) {
-            return ["table", "box1"];
-        } else if ($("#tab-nav-2").hasClass("active")) {
-            return ["graph", "box2"];
-        } else if ($("#tab-nav-3").hasClass("active")) {
-            return ["map", "box3"];
-        } else if ($("#tab-nav-4").hasClass("active")) {
-            return ["info", "box4"];
-        } else if ($("#tab-nav-5").hasClass("active")) {
-            return ["telechargement", "box5"];
-        } else if ($("#tab-nav-6").hasClass("active")) {
-            return ["cloud", "box6"];
-        } else {
-            return "err"
-        }
-    };
-
-    /**
      * Draw compare visualisation
      *
-     * @return null
+     * @param  {String}     typeVisualisation       Actual type of visualisation
+     * @param  {Object}     metadata                The metadata information related to the actual data
+     * @param  {Object}     data                    Data from opendata La Rochelle
+     *
+     * @return 
      */
     var drawCompare = function (typeVisualisation, metadata, data) {
 
@@ -210,32 +191,53 @@ $(document).ready(function () {
     /**
      * Remove compare visualisation if existe
      *
-     * @return null
+     * @param  {String}     typeVisualisation       Actual type of visualisation
+     *
+     * @return 
      */
     var removeDrawCompare = function (typeVisualisation) {
         switch (typeVisualisation) {
             case 'table':
-                // Remove the table compare
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#box1Compare").remove();
                 }
                 break;
 
             case 'graph':
-                // Remove the graph compare
                 if ($("#box2Compare").length) {
                     $("#box2Compare").remove();
                 }
                 break;
 
             case 'cloud':
-                // Remove the cloud compare
                 if ($("#box6Compare").length) {
                     $("#box6Compare").remove();
                 }
                 break;
         }
+    };
 
+    /**
+     * Get the panel active + name of id box
+     *
+     * @return [String, String]    [visualisationType, boxName]     Return type if visualisation
+     */
+    var getActivePanel = function () {
+        if ($("#tab-nav-1").hasClass("active")) {
+            return ["table", "box1"];
+        } else if ($("#tab-nav-2").hasClass("active")) {
+            return ["graph", "box2"];
+        } else if ($("#tab-nav-3").hasClass("active")) {
+            return ["map", "box3"];
+        } else if ($("#tab-nav-4").hasClass("active")) {
+            return ["info", "box4"];
+        } else if ($("#tab-nav-5").hasClass("active")) {
+            return ["telechargement", "box5"];
+        } else if ($("#tab-nav-6").hasClass("active")) {
+            return ["cloud", "box6"];
+        } else {
+            return [];
+        }
     };
 
     /**
@@ -245,43 +247,34 @@ $(document).ready(function () {
      */
     var setMapButton = function () {
         $(".button-icone").on("click", function () {
+
             // If the marks are visible, hide them
             if ($(this).val() === "true") {
                 $(this).val("false");
                 $(this).css({opacity: 0.5});
 
-                // Remove bus marks
                 if ($(this).attr('id') === "button-icone-bus") {
                     hideLayerBus();
                 }
-
-                // Remove poste marks
                 if ($(this).attr('id') === "button-icone-poste") {
                     hideLayerPoste();
                 }
-
-                // Remove yelo marks
                 if ($(this).attr('id') === "button-icone-yelo") {
                     hideLayerYelo();
                 }
 
 
-                // Else, show them
+            // Else, show them
             } else {
                 $(this).val("true");
                 $(this).css({opacity: 1});
 
-                // Draw bus marks
                 if ($(this).attr('id') === "button-icone-bus") {
                     showLayerBus();
                 }
-
-                // Draw poste marks
                 if ($(this).attr('id') === "button-icone-poste") {
                     showLayerPoste();
                 }
-
-                // Draw yelo marks
                 if ($(this).attr('id') === "button-icone-yelo") {
                     showLayerYelo();
                 }
@@ -292,6 +285,8 @@ $(document).ready(function () {
     /**
      * Set the title of the page
      *
+     * @param  {String}     title       Data title
+     *
      * @return 
      */
     var setTitle = function (title) {
@@ -301,6 +296,8 @@ $(document).ready(function () {
     /**
      * Set the second title of the page
      *
+     * @param  {Object}     metadata                The metadata information related to the actual data
+     *
      * @return
      */
     var setDescription = function (metadata) {
@@ -309,6 +306,8 @@ $(document).ready(function () {
 
     /**
      * Set active panel
+     *
+     * @param  {String}     typeVisualisation       Actual type of visualisation
      *
      * @return
      */
@@ -344,6 +343,9 @@ $(document).ready(function () {
     /**
      * Set the tab navbar
      *
+     * @param  {Object}     metadata                The metadata information related to the actual data
+     * @param  {Object}     data                    Data from opendata La Rochelle
+     *
      * @return type if visualisation
      */
     var setTabNavBarAndDraw = function (metadata, data) {
@@ -360,14 +362,8 @@ $(document).ready(function () {
             $("#tab-nav-2").css('display', 'none');
         }
 
-        if (metadata.map) {
-            drawMap(data, metadata, 'box3', 'popup');
-        } else {
-            $("#tab-nav-3").css('display', 'none');
-        }
-
         if (metadata.timeline) {
-            // Draw timeline
+            // Draw select list 
             $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
             var sel = $('<select>').appendTo('.select-list-date');
             sel.addClass("select-list");
@@ -394,7 +390,6 @@ $(document).ready(function () {
         }
 
         if (metadata.cloud) {
-
             // Set div width/height because we need a width to draw the cloud
             var activePanel = getActivePanel();
             $("#box6").width($('#' + activePanel[1]).width());
@@ -408,6 +403,12 @@ $(document).ready(function () {
             $("#box6").height("100%");
         } else {
             $("#tab-nav-6").css('display', 'none');
+        }
+
+        if (metadata.map) {
+            drawMap(data, metadata, 'box3', 'popup');
+        } else {
+            $("#tab-nav-3").css('display', 'none');
         }
 
         return;

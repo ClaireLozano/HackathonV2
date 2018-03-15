@@ -11,6 +11,7 @@
 }
 
 /* =============== NAV ==================*/
+
 .container-fluid {
     padding: 0;
 }
@@ -22,6 +23,7 @@
 }
 
 /* =============== FOOTER ===============*/
+
 .topHalfCircle {
     height: 30px;
     width: 60px;
@@ -48,6 +50,7 @@ footer {
 }
 
 /* =============== BOX ALEATOIRE =============== */
+
 .box-wrapper-inner {
     display: -webkit-box;
     display: -moz-box;
@@ -140,7 +143,7 @@ footer {
     }
 }
 
-/* =============== TABLEAU =============== */
+/* TABLE */
 .pagination > li > a, .pagination > li > span {
     line-height: 1.42857;
     position: relative;
@@ -161,8 +164,7 @@ table {
     width: 100%;
 }
 
-/* =============== CHART =============== */
-
+/* CHART */
 .bar {
     stroke: #FFF;
 }

@@ -5,7 +5,7 @@
  * @param  {Object}         metadata            Meta data
  * @param  {Number}         idBox               Id of the box where the table will be
  *
- * @return null
+ * @return
  */
 var drawTable = function (data, metadata, idBox) {
 
@@ -108,7 +108,7 @@ function insertRowTitle(data, metadata, idBox, callback) {
             }
         });
     }
-}
+};
 
 /**
  * Insert rows
@@ -189,7 +189,7 @@ function insertRows(data, metadata, idBox, callback) {
             });
         });
     }
-}
+};
 
 /**
  * Get only element we need + translate en french
@@ -247,5 +247,4 @@ function setTable(idBox) {
     });
 
     $(".dataTables_info").remove();
-    // $("#my_table_box1_filter label").html("Rechercher: ");
-}
+};

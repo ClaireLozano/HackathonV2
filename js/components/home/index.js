@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         var info = "#info" + position;
         $(info).attr("href", "../visualisation/visualisation.php?type=info&resource=" + nomDonnee);
-    }
+    };
 
     /**
      * Draw visualisation on random box
