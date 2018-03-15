@@ -58,7 +58,7 @@ function initdoughnut(params, box, level, previousValues) {
 
     var legend = vis.append("g")
         .attr("class", "legend")
-        .attr("transform", "translate(" + params.r*1.5+",-10)")
+        .attr("transform", "translate(" + params.r*1.3+",-10)")
         .style("font-size", "12px")
         .call(d3.legend)
 }
