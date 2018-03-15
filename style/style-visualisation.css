@@ -127,7 +127,6 @@ h2 {
 }
 
 #box2 {
-    margin: 0;
     min-height: 500px;
 }
 
@@ -272,4 +271,15 @@ tbody:hover tr:hover td {
 .selectGraph {
 	width: 150px;
 	margin-bottom: 30px;
+}
+
+#box2 #chartbox2, 
+#box2Compare #chartbox2Compare {
+    font-size: 11px;
+    margin-bottom: 50px; 
+}
+
+#chartbox2 > g > g text,
+#chartbox2Compare > g > g text {
+    font-size: 11px;
 }
