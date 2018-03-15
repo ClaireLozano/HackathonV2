@@ -4,7 +4,6 @@
 
 (function () {
     d3.legend = function (g) {
-        console.log(g)
         g.each(function () {
             var g = d3.select(this),
                 items = {},
