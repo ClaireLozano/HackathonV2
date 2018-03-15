@@ -1,5 +1,5 @@
 {
-  "link" : "&db=budget&table=bp_2016_fonction&format=json",
+  "link": "&db=budget&table=bp_2016_fonction&format=json",
   "title": "Budget primitif et compte administratif - BP 2016 - Fonction",
   "description": "Le budget primitif est le budget voté par l'assemblée locale en début d'exercice. Il fixe les enveloppes de crédits permettant d'engager les dépenses pendant la durée de l'exercice. Il détermine aussi les recettes attendues, notamment en matière de fiscalité.",
   "graph": {
@@ -12,24 +12,42 @@
       "excludeLines": [],
       "title": "budg_ss_fction",
       "value": "budg_montant",
-      "category": ["budg_dep_rec","budg_ss_fction_code","table"]
+      "category": [
+        "budg_dep_rec",
+        "budg_ss_fction_code",
+        "table"
+      ]
     }
   },
-  "timeline":{
+  "timeline": {
     "actualDate": "2016",
-    "dates" :{ 
-      "2017":"bp_2017_fonction",
-      "2016":"bp_2016_fonction",
-      "2015":"bp_2015_fonction",
-      "2014":"bp_2014_fonction",
-      "2013":"bp_2013_fonction",
-      "2012":"bp_2012_fonction"
+    "dates": {
+      "2017": "bp_2017_fonction",
+      "2016": "bp_2016_fonction",
+      "2015": "bp_2015_fonction",
+      "2014": "bp_2014_fonction",
+      "2013": "bp_2013_fonction",
+      "2012": "bp_2012_fonction"
     }
   },
-  "table":{
-    "dataComposition":{
-      "keys_list": ["budg_cat", "budg_dep_rec", "budg_budget", "budg_section", "budg_ss_fction", "budg_montant"],
-      "value_list": ["Catégorie", "Dépense/recette", "Budget", "Section", "Fonction", "Montant"],
+  "table": {
+    "dataComposition": {
+      "keys_list": [
+        "budg_cat",
+        "budg_dep_rec",
+        "budg_budget",
+        "budg_section",
+        "budg_ss_fction",
+        "budg_montant"
+      ],
+      "value_list": [
+        "Catégorie",
+        "Dépense/recette",
+        "Budget",
+        "Section",
+        "Fonction",
+        "Montant"
+      ],
       "budg_ss_fction_code": [
         "ADMINISTRATION GENERALE",
         "SECURITE",
