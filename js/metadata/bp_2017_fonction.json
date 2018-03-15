@@ -12,7 +12,11 @@
       "excludeLines": [],
       "title": "budg_ss_fction",
       "value": "budg_montant",
-      "category": ["budg_dep_rec","budg_ss_fction_code","table"]
+      "category": [
+        "budg_dep_rec",
+        "budg_ss_fction_code",
+        "table"
+      ]
     }
   },
   "timeline": {
@@ -26,10 +30,24 @@
       "2012": "bp_2012_fonction"
     }
   },
-  "table":{
-    "dataComposition":{
-      "keys_list": ["budg_cat", "budg_dep_rec", "budg_budget", "budg_section", "budg_ss_fction", "budg_montant"
-      ],"value_list": ["Catégorie", "Dépense/recette", "Budget", "Section", "Fonction", "Montant"],
+  "table": {
+    "dataComposition": {
+      "keys_list": [
+        "budg_cat",
+        "budg_dep_rec",
+        "budg_budget",
+        "budg_section",
+        "budg_ss_fction",
+        "budg_montant"
+      ],
+      "value_list": [
+        "Catégorie",
+        "Dépense/recette",
+        "Budget",
+        "Section",
+        "Fonction",
+        "Montant"
+      ],
       "budg_ss_fction_code": [
         "ADMINISTRATION GENERALE",
         "SECURITE",
@@ -40,7 +58,8 @@
         "FAMILLE",
         "LOGEMENT",
         "AMENAGEMENT ET SERVICES URBAINS",
-        "ACTION ECONOMIQUE"]
+        "ACTION ECONOMIQUE"
+      ]
     }
   }
 }
