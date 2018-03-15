@@ -202,7 +202,6 @@
         <script type="text/javascript" src="chart/chart.js"></script>
     	<script type="text/javascript" src="table/table.js"></script>
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
 		<script type="text/javascript" src="cloud/drawCloud.js"></script>
 		<script type="text/javascript" src="cloud/cloud.js"></script>
 

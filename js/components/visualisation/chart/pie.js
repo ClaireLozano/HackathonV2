@@ -60,5 +60,5 @@ function initPie(params, box, level, previousValues) {
         .attr("class", "legend")
         .attr("transform", "translate(215,-10)")
         .style("font-size", "12px")
-    //.call(d3.legend)
+        .call(d3.legend)
 }
