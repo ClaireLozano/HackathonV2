@@ -22,13 +22,12 @@ function initHorizontalBar(params, box, level, previousValues) {
 
     var svg = d3.select('#' + box).append("svg")
         .attr("id", "chart" + box)
-        .attr('viewBox', '0 0 ' + Math.min(params.w, params.h) + ' ' + Math.min(params.w, params.h))
+        .attr('viewBox', -params.margin.left + ' ' + -params.margin.top + ' ' + params.w + ' ' + params.h)
         .attr('preserveAspectRatio', 'xMinYMin')
         .append("g");
 
     var chart = svg.append("g")
         .classed("display", true)
-        .attr("transform", "translate(" + params.margin.left + "," + params.margin.top + ")");
 
     function plotHorizontal(parametres) {
         this.selectAll(".bar")

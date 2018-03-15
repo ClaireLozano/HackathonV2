@@ -4,7 +4,7 @@ function initdoughnut(params, box, level, previousValues) {
         .append("svg")
         .data([params.dataToTreat])
         .attr("id", "chart" + box)
-        .attr('viewBox', -params.r + ' ' + -params.r + ' ' + 3.5*params.r + ' ' + 2*params.r)
+        .attr('viewBox', -params.r + ' ' + -params.r + ' ' + 3.5 * params.r + ' ' + 2 * params.r)
         .attr('preserveAspectRatio', 'xMinYMin')
         .append("g");
 
@@ -58,7 +58,7 @@ function initdoughnut(params, box, level, previousValues) {
 
     var legend = vis.append("g")
         .attr("class", "legend")
-        .attr("transform", "translate(" + params.r*1.3+",-10)")
+        .attr("transform", "translate(" + params.r * 1.3 + ",-10)")
         .style("font-size", "12px")
         .call(d3.legend)
 }
