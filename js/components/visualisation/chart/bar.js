@@ -13,7 +13,7 @@ function initBar(params, box, level, previousValues) {
 
     var y = d3.scale.linear()
         .domain([0, d3.max(params.dataToTreat, function (d) {
-            return d[params.realValue]
+            return parseInt(d[params.realValue])
         })])
         .range([params.height, 0]);
 

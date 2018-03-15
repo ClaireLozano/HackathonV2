@@ -7,7 +7,7 @@ function initHorizontalBar(params, box, level, previousValues) {
 
     var x = d3.scale.linear()
         .domain([0, d3.max(params.dataToTreat, function (d) {
-            return d[params.realValue]
+            return parseInt(d[params.realValue])
         })])
         .range([0, params.width]);
 
@@ -24,6 +24,12 @@ function initHorizontalBar(params, box, level, previousValues) {
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient("left");
+
+    var xGridlines = d3.svg.axis()
+        .scale(x)
+        .tickSize(-params.height, 0, 0)
+        .tickFormat("")
+        .orient("bottom");
 
     var svg = d3.select('#' + box).append("svg")
         .attr("id", "chart" + box)
