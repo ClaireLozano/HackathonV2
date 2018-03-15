@@ -6,6 +6,7 @@
 function addPopup(map, metadata, myPopup, description) {
     var element = document.getElementById(myPopup);
 
+    // Creation d'une couche de popup
     var popup = new ol.Overlay({
         element: element,
         positioning: 'bottom-center',
@@ -16,12 +17,15 @@ function addPopup(map, metadata, myPopup, description) {
 
     // display popup on click
     map.on('click', function (evt) {
+        // Si KML : On ne clique pas sur une zone
         if (!metadata.map.kml) {
+            // Extraction de la zone cliquee
             var feature = map.forEachFeatureAtPixel(evt.pixel,
                 function (feature, layer) {
                     return feature;
                 });
             if (feature) {
+                // Affichage du marqueur selon son type
                 if (feature.get('type') && feature.get('type') != "openData") {
                     var geometry = feature.getGeometry();
                     var coord = geometry.getCoordinates();

@@ -11,7 +11,7 @@ var map = new ol.Map();
  */
 function showLayerBus() {
     vectorLayerBus.setVisible(true);
-};
+}
 
 /**
  * Hide bus
@@ -20,7 +20,7 @@ function showLayerBus() {
  */
 function hideLayerBus() {
     vectorLayerBus.setVisible(false);
-};
+}
 
 /**
  * Show poste
@@ -29,7 +29,7 @@ function hideLayerBus() {
  */
 function showLayerPoste() {
     vectorLayerPoste.setVisible(true);
-};
+}
 
 /**
  * Hide poste
@@ -38,7 +38,7 @@ function showLayerPoste() {
  */
 function hideLayerPoste() {
     vectorLayerPoste.setVisible(false);
-};
+}
 
 /**
  * Show yelo
@@ -47,7 +47,7 @@ function hideLayerPoste() {
  */
 function showLayerYelo() {
     vectorLayerYelo.setVisible(true);
-};
+}
 
 /**
  * Hide yelo
@@ -56,7 +56,7 @@ function showLayerYelo() {
  */
 function hideLayerYelo() {
     vectorLayerYelo.setVisible(false);
-};
+}
 
 /**
  * Show map
@@ -67,7 +67,7 @@ function showMap() {
     setTimeout(function () {
         map.updateSize()
     }, 200);
-};
+}
 
 /**
  * Draw map
@@ -116,6 +116,8 @@ function drawMap(data, metadata, myDiv, myPopup) {
             var min = Math.min.apply(null, array2);
             var max = Math.max.apply(null, array2);
 
+            // Normalisation des couleur
+            // Degrade de bleu (min) vers rouge (max)
             var number = feature.get(metadata.map.value);
             number = ((number - min) / (max - min) * 256) | 0;
 
@@ -146,13 +148,15 @@ function drawMap(data, metadata, myDiv, myPopup) {
             style: styleFunction
         });
 
-        // Define vectors with coordonnées datas
     } else {
+        // Definition des vectors avec les coordonnees
         data.forEach(function (marker) {
 
             var color = '#ffffff';
             var epsg2154 = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
 
+            // Extraction des donnees de geolocalisation de l'opendata
+            // et projection sur une map
             p2 = new ol.Feature({
                 geometry: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
                 labelPoint: new ol.geom.Point(proj4(epsg2154, "EPSG:4326", [parseFloat(marker[metadata.map.x]), parseFloat(marker[metadata.map.y])])),
@@ -162,6 +166,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
                 type: "openData"
             });
 
+            // Definition des marqueurs
             p2.setStyle(new ol.style.Style({
                 image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
                     color: color,
@@ -192,12 +197,12 @@ function drawMap(data, metadata, myDiv, myPopup) {
         })
     });
 
-    // Geoloc
+    // Ajout de la Geolocalisation
     addGeoloc(map);
 
-    // Popup
+    // Ajout des Popups
     addPopup(map, metadata, myPopup, metadata.map.description_popup);
 
-    // Finally display the map
+    // Finalement, affichage de la map
     showMap();
-};
+}

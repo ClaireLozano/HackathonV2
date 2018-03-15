@@ -5,6 +5,7 @@
  */
 function addGeoloc(map) {
 
+
     var geolocation = new ol.Geolocation({});
 
     geolocation.setTracking(true);
@@ -14,6 +15,7 @@ function addGeoloc(map) {
         accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
     });
 
+    // Definition des attributs du marqueur (position, image, ancrage, taille)
     var positionFeature = new ol.Feature();
     positionFeature.setStyle(new ol.style.Style({
         image: new ol.style.Icon(({
@@ -24,12 +26,15 @@ function addGeoloc(map) {
         }))
     }));
 
+
+    // Changement de position => changer le marqueur
     geolocation.on('change:position', function () {
         var coordinates = geolocation.getPosition();
         positionFeature.setGeometry(coordinates ?
             new ol.geom.Point(coordinates) : null);
     });
 
+    // Creation de la couche contenant la geolocalisation
     new ol.layer.Vector({
         name: 'GeolocLayer',
         map: map,
@@ -37,4 +42,4 @@ function addGeoloc(map) {
             features: [accuracyFeature, positionFeature]
         })
     });
-};
+}
