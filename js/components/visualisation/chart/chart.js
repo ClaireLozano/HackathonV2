@@ -11,6 +11,14 @@ function drawGraph(dataToTreat, metadata, box) {
 
         // Si la donnée est de type budget
         if (metadata.graph.dataComposition.category && metadata.graph.dataComposition.category[0]) {
+
+            var desc = d3.select('#tab-pane-2')
+                .append('p')
+                .text(function (d) {
+                    return "hello world"
+                });
+
+
             initNewGraph(params, box, 0, previousValues);
 
             // Pour tout autre type de donnée

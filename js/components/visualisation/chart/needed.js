@@ -136,21 +136,15 @@ function getParams(dataToTreat, metadata, level, callback) {
     });
 };
 
-function updateDimensions(params, winWidth) {
-    params.margin = {
-        top: 58,
-        bottom: 150,
-        left: 80,
-        right: 40
-    };
-    params.width = winWidth - params.margin.left - params.margin.right;
-    params.height = 500 - params.margin.top - params.margin.bottom;
-};
-
 function initNewGraph(params, box, level, previousValues) {
 
     var idBox = "myBox" + box;
+    var idBoxAnnee = "idBoxAnnee"+ box;
 
+    d3.select("#" + box)
+        .append("div").classed('text-center',true)
+        .attr('id',idBoxAnnee)
+        .text(params.metadata.timeline.actualDate);
 
     if (params.metadata.graph.dataComposition.category && params.metadata.graph.dataComposition.category[level]) {
         d3.selectAll("#chart" + box).remove();
