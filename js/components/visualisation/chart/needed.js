@@ -142,7 +142,8 @@ function initNewGraph(params, box, level, previousValues) {
     var idBoxAnnee = "idBoxAnnee"+ box;
 
     d3.select("#" + box)
-        .append("div").classed('text-center',true)
+        .append("div")
+        .classed('text-center',true)
         .attr('id',idBoxAnnee)
         .text(params.metadata.timeline.actualDate);
 

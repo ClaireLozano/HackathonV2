@@ -302,6 +302,12 @@ $(document).ready(function () {
      */
     var setDescription = function (metadata) {
         $("#description-page").html(metadata.description);
+
+        if(metadata.title.search('Budget') != -1){
+            $("#description-page").append("<p><br/>La section Graphe vous permettra d'avoir une visualisation " +
+                "filtrée et progressive suivant le type de dépense sélectionné. Plusieurs graphes " +
+                "apparaitront au fur et à mesure de votre navigation.</p>")
+        }
     };
 
     /**
@@ -405,8 +411,6 @@ $(document).ready(function () {
         } else {
             $("#tab-nav-3").css('display', 'none');
         }
-
-        return;
     };
 
     init();
