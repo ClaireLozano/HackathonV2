@@ -272,3 +272,28 @@ select.input-sm {
 #chartbox2Compare > g > g text {
     font-size: 11px;
 }
+
+/* COMMENTS */
+
+#name-comment,
+#text-comment {
+    padding: 4px;
+    width: 100%;
+}
+
+#submit-comment {
+    margin-top: 10px;
+}
+
+.add-comment {
+    margin-left: 50px;
+}
+
+.comments-list {
+    margin-bottom: 25px;
+}
+
+.title-comment {
+    margin-bottom: 2px;
+    margin-top: 8px;
+}

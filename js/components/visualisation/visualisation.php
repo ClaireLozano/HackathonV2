@@ -147,40 +147,13 @@
 
 					<h2>Commentaires </h2>
 					<div class="post-footer">
-						<ul class="comments-list">
-							<li class="comment">
-								<div class="comment-body">
-									<div class="comment-heading">
-										<h4 class="user">Annonyme</h4>
-										<h5 class="time">Il y a 8 minutes</h5>
-									</div>
-									<p>Commentaire numéro 1</p>
-								</div>
-							</li>
-							<li class="comment">
-								<div class="comment-body">
-									<div class="comment-heading">
-										<h4 class="user">Open Data La Rochelle</h4>
-										<h5 class="time">Il y a 3 minutes</h5>
-									</div>
-									<p>Commentaire numéro 2</p>
-								</div>
-							</li>
-							<li class="comment">
-								<div class="comment-body">
-									<div class="comment-heading">
-										<h4 class="user">Annonyme</h4>
-										<h5 class="time">Il y a 2 minutes</h5>
-									</div>
-									<p>Commentaire numéro 3</p>
-								</div>
-							</li>
-						</ul>
-						<div class="input-group">
-							<input class="form-control" placeholder="Add a comment" type="text">
-							<span class="input-group-addon">
-								<a href="#"><i class="glyphicon glyphicon-pencil"></i></a>
-							</span>
+						<ul class="comments-list"></ul>
+						<div class="add-comment">
+							<p class="title-comment">Nom</p>
+							<input id="name-comment" class="form-control" placeholder="Ajouter un nom/pseudo..." type="text">
+							<p class="title-comment">Message</p>
+							<textarea id="text-comment" rows="5" class="form-control" placeholder="Ajouter un commentaire..."></textarea>
+							<button id="submit-comment" type="button" class="btn btn-primary active">Envoyer</button>
 						</div>
 					</div>
 				</div>
