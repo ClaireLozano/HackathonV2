@@ -32,7 +32,6 @@ function initBar(params, box, level, previousValues) {
         .tickFormat("")
         .orient("left");
 
-    console.log('params', params);
     var svg = d3.select('#' + box).append("svg")
         .attr("id", "chart" + box)
         .attr('viewBox', -params.margin.left + ' ' + -params.margin.top + ' ' + params.w + ' ' + params.h)

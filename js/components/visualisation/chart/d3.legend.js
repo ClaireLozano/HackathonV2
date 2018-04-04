@@ -39,9 +39,10 @@
                     d.exit().remove()
                 })
                 .attr("y", function (d, i) {
-                    return i + "em"
+                    return i*1.333 + "em"
                 })
                 .attr("x", "1em")
+                .style("font-size","9px")
                 .text(function (d) {
                     return d.key
                 });

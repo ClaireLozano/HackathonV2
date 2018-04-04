@@ -10,7 +10,7 @@ function drawGraph(dataToTreat, metadata, box) {
 
     getParams(dataToTreat, metadata, 0, function (params) {
 
-        if(!document.getElementById(idBoxAnnee)){
+        if(!document.getElementById(idBoxAnnee) && metadata.timeline && metadata.timeline.actualDate){
           d3.select("#" + box)
             .append("div")
             .classed('text-center',true)
