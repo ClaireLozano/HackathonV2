@@ -53,7 +53,7 @@ function getDataToTreat(metadata, dataToTreat, callback) {
     if (metadata.graph.dataComposition.category) {
 
         // Pourcours chaque value de data composition
-        // Si une de valeur est 
+        // Si une de valeur est
         Object.keys(metadata.graph.dataComposition.category).forEach(function (value, j, arrj) {
             tmp = metadata.graph.dataComposition.category[value];
 
@@ -137,15 +137,7 @@ function getParams(dataToTreat, metadata, level, callback) {
 };
 
 function initNewGraph(params, box, level, previousValues) {
-
     var idBox = "myBox" + box;
-    var idBoxAnnee = "idBoxAnnee"+ box;
-
-    d3.select("#" + box)
-        .append("div")
-        .classed('text-center',true)
-        .attr('id',idBoxAnnee)
-        .text(params.metadata.timeline.actualDate);
 
     if (params.metadata.graph.dataComposition.category && params.metadata.graph.dataComposition.category[level]) {
         d3.selectAll("#chart" + box).remove();
