@@ -6,11 +6,21 @@
 function drawGraph(dataToTreat, metadata, box) {
     var level = 0;
     var previousValues = [];
+    var idBoxAnnee = "idBoxAnnee"+ box;
 
     getParams(dataToTreat, metadata, 0, function (params) {
 
+        if(!document.getElementById(idBoxAnnee)){
+          d3.select("#" + box)
+            .append("div")
+            .classed('text-center',true)
+            .attr('id',idBoxAnnee)
+            .text(params.metadata.timeline.actualDate);
+        }
+
         // Si la donnée est de type budget
         if (metadata.graph.dataComposition.category && metadata.graph.dataComposition.category[0]) {
+
             initNewGraph(params, box, 0, previousValues);
             // Pour tout autre type de donnée
         } else {
