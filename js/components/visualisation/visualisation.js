@@ -469,6 +469,7 @@ $(document).ready(function () {
      * @return pretty date
      */
     function formatDate(date) {
+        date = new Date(date);
         var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
         var day = date.getDate();
         var monthIndex = date.getMonth();
