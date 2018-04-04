@@ -26,7 +26,7 @@ function drawGraph(dataToTreat, metadata, box) {
             // Pour tout autre type de donnée
         } else {
 
-          if (d3.select('#' + box + ">select")) {
+          if (d3.select('#'+box+'>select').empty()) {
             var select = d3.select('#' + box)
                 .append('select')
                 .classed('selectGraph', true)
