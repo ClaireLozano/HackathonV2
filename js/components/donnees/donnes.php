@@ -100,6 +100,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-sm-4" id="block31">
+						<div class="card">
+							<div class="card-block">
+								<h3 class="card-title">Budget 2017 - Nature</h3>
+								<a href="../visualisation/visualisation.php?type=table&amp;data=bp_2017_nature"><img src="http://placehold.it/350x250" class="img-rounded pull-left"></a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

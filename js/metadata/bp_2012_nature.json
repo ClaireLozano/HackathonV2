@@ -1,0 +1,31 @@
+{
+  "link" : "&db=budget&table=bp_2012_nature&format=json",
+  "title": "Budget primitif et compte administratif - BP 2012 - Nature",
+  "description": "Le budget primitif est le budget voté par l'assemblée locale en début d'exercice. Il fixe les enveloppes de crédits permettant d'engager les dépenses pendant la durée de l'exercice. Il détermine aussi les recettes attendues, notamment en matière de fiscalité.",
+  "graph":{
+    "possibleGraphs": ["horizontalBar"],
+    "dataComposition": {
+      "excludeLines": [],
+      "title": "bud_nature",
+      "value": "bud_montant",
+      "category":"bud_section"
+    }
+  },
+  "timeline":{
+    "actualDate": "2012",
+    "dates" :{ 
+      "2017":"bp_2017_nature",
+      "2016":"bp_2016_nature",
+      "2015":"bp_2015_nature",
+      "2014":"bp_2014_nature",
+      "2013":"bp_2013_nature",
+      "2012":"bp_2012_nature"
+    }
+  },
+  "table":{
+    "dataComposition":{
+      "keys_list": ["bud_categorie", "bud_dep_rec", "bud_budget", "bud_section", "bud_nature", "bud_montant"],
+      "value_list": ["Catégorie", "Dépense/recette", "Budget", "Section", "Nature", "Montant"]
+    }
+  }
+}
