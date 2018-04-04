@@ -17,6 +17,7 @@ function drawGraph(dataToTreat, metadata, box) {
             .attr('id',idBoxAnnee)
             .text(params.metadata.timeline.actualDate);
         }
+        d3.select("#idBoxAnnee"+box).text(params.metadata.timeline.actualDate);
 
         // Si la donnée est de type budget
         if (metadata.graph.dataComposition.category && metadata.graph.dataComposition.category[0]) {
