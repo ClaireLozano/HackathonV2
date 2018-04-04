@@ -17,7 +17,7 @@ function drawGraph(dataToTreat, metadata, box) {
             .attr('id',idBoxAnnee)
             .text(params.metadata.timeline.actualDate);
         }
-        d3.select("#idBoxAnnee"+box).text(params.metadata.timeline.actualDate);
+        d3.select("#"+idBoxAnnee).text(params.metadata.timeline.actualDate);
 
         // Si la donnée est de type budget
         if (metadata.graph.dataComposition.category && metadata.graph.dataComposition.category[0]) {
@@ -25,6 +25,8 @@ function drawGraph(dataToTreat, metadata, box) {
             initNewGraph(params, box, 0, previousValues);
             // Pour tout autre type de donnée
         } else {
+
+          if (d3.select('#' + box + ">select")) {
             var select = d3.select('#' + box)
                 .append('select')
                 .classed('selectGraph', true)
@@ -41,28 +43,29 @@ function drawGraph(dataToTreat, metadata, box) {
                 .text(function (d) {
                     return d;
                 });
+            }
 
             function onChange() {
                 var selectValue = d3.select('.selectGraph').property('value');
 
                 switch (selectValue) {
                     case "bar":
-                        d3.selectAll("svg").remove();
+                        d3.selectAll("#chart" + box).remove();
                         d3.selectAll(".chart>p").remove();
                         initBar(params, box, level, previousValues);
                         break;
                     case "pie":
-                        d3.selectAll("svg").remove();
+                        d3.selectAll("#chart" + box).remove();
                         d3.selectAll(".chart>p").remove();
                         initPie(params, box, level, previousValues);
                         break;
                     case "doughnut":
-                        d3.selectAll("svg").remove();
+                        d3.selectAll("#chart" + box).remove();
                         d3.selectAll(".chart>p").remove();
                         initdoughnut(params, box, level, previousValues);
                         break;
                     case "horizontalBar":
-                        d3.selectAll("svg").remove();
+                        d3.selectAll("#chart" + box).remove();
                         d3.selectAll(".chart>p").remove();
                         initHorizontalBar(params, box, level, previousValues);
                         break;
