@@ -17,6 +17,7 @@ function initBar(params, box, level, previousValues) {
         })])
         .range([params.height, 0]);
 
+
     var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom");
@@ -107,7 +108,7 @@ function initBar(params, box, level, previousValues) {
         }));
 
         y.domain([0, d3.max(params.dataToTreat, function (d) {
-            return d[params.realValue]
+            return parseInt(d[params.realValue])
         })]);
 
         drawAxis.call(this, parametres);
