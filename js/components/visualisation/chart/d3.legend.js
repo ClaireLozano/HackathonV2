@@ -17,14 +17,16 @@
 
             svg.selectAll("[data-legend]").each(function () {
                 var self = d3.select(this);
+                //console.log(self[0][0].__data__.value);
                 items[self.attr("data-legend")] = {
+                    value:self[0][0].__data__.value,
                     pos: self.attr("data-legend-pos") || this.getBBox().y,
                     color: self.attr("data-legend-color") != undefined ? self.attr("data-legend-color") : self.style("fill") != 'none' ? self.style("fill") : self.style("stroke")
                 }
             });
 
             items = d3.entries(items).sort(function (a, b) {
-                return a.value.pos - b.value.pos
+                return b.value.value - a.value.value
             });
 
 
