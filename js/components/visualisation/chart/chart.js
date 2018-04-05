@@ -6,12 +6,12 @@
 function drawGraph(dataToTreat, metadata, box) {
     var level = 0;
     var previousValues = [];
-    var idBoxAnnee = "idBoxAnnee"+ box;
+    var idBoxAnnee = "idBoxAnnee" + box;
 
     getParams(dataToTreat, metadata, 0, function (params) {
 
         if (metadata.timeline && metadata.timeline.actualDate) {
-            if (!document.getElementById(idBoxAnnee)){
+            if (!document.getElementById(idBoxAnnee)) {
                 d3.select("#" + box)
                     .append("div")
                     .classed('text-center', true)
@@ -27,24 +27,26 @@ function drawGraph(dataToTreat, metadata, box) {
             initNewGraph(params, box, 0, previousValues);
             // Pour tout autre type de donnée
         } else {
+            params.dataToTreat.sort(function (a, b) {
+                return d3.ascending(parseInt(b[params.realValue]), parseInt(a[params.realValue]));
+            });
+            if (d3.select('#' + box + '>select').empty()) {
+                var select = d3.select('#' + box)
+                    .append('select')
+                    .classed('selectGraph', true)
+                    .classed('form-control', true)
+                    .classed('input-sm', true)
+                    .on('change', onChange);
 
-          if (d3.select('#'+box+'>select').empty()) {
-            var select = d3.select('#' + box)
-                .append('select')
-                .classed('selectGraph', true)
-                .classed('form-control', true)
-                .classed('input-sm', true)
-                .on('change', onChange);
-
-            var options = select.selectAll('option')
-                .data(metadata.graph.possibleGraphs).enter()
-                .append('option')
-                .attr("value", function (d) {
-                    return d;
-                })
-                .text(function (d) {
-                    return d;
-                });
+                var options = select.selectAll('option')
+                    .data(metadata.graph.possibleGraphs).enter()
+                    .append('option')
+                    .attr("value", function (d) {
+                        return d;
+                    })
+                    .text(function (d) {
+                        return d;
+                    });
             }
 
             function onChange() {

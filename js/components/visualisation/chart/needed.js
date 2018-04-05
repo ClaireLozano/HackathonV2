@@ -172,7 +172,7 @@ function initNewGraph(params, box, level, previousValues) {
             params.realTitle = "key";
 
             params.dataToTreat.sort(function (a, b) {
-                return d3.ascending(a[params.realValue], b[params.realValue]);
+                return d3.ascending(parseInt(b[params.realValue]), parseInt(a[params.realValue]));
             });
 
             switch (params.metadata.graph.possibleGraphs[i]) {
