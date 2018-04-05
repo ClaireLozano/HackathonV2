@@ -141,6 +141,13 @@ h2 {
     height: 25px;
 }
 
+.box-date {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #ef7439;
+    font-size: 20px;
+}
+
 select.input-sm {
     height: 25px;
 }

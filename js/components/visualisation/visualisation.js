@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     var initActivePanel = '';
+    var actualDate = '';
 
     /**
      * Init 
@@ -161,16 +162,32 @@ $(document).ready(function () {
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#my_table_box1Compare_wrapper").remove();
 
-                    // Else, create div compare
+                // Else, create div compare
                 } else {
                     var div = document.createElement('div');
                     div.id = 'box1Compare';
                     div.className = 'box-visu';
+
+                    // Add first date
+                    var divDate = document.createElement('div');
+                    divDate.id = 'box1date1';
+                    divDate.className = 'box-date';
+                    divDate.innerHTML = actualDate;
+
                     $("#tab-pane-1 .box-wrapper-inner").append(div);
+                    $("#box1").prepend(divDate);
                 }
 
                 // Call draw table method
                 drawTable(data, metadata, 'box1Compare');
+
+                // Add second date
+                var divDate2 = document.createElement('div');
+                divDate2.id = 'box1date2';
+                divDate2.className = 'box-date';
+                divDate2.innerHTML = metadata.timeline.actualDate;
+                $("#box1Compare").prepend(divDate2); 
+
                 break;
 
             case 'graph':
@@ -199,7 +216,15 @@ $(document).ready(function () {
                     var div = document.createElement('div');
                     div.id = 'box6Compare';
                     div.className = 'box-visu';
+                    
+                    // Add first date
+                    var divDate = document.createElement('div');
+                    divDate.id = 'box6date1';
+                    divDate.className = 'box-date';
+                    divDate.innerHTML = actualDate;
+
                     $("#tab-pane-6 .box-wrapper-inner").append(div);
+                    $("#box6").prepend(divDate);
                 }
 
                 // Set div width/height because we need a width to draw the cloud
@@ -213,6 +238,14 @@ $(document).ready(function () {
                 $("#box6").width("100%");
                 $("#box6Compare").width("100%");
                 $("#box6Compare").height("100%");
+
+                // Add second date
+                var divDate2 = document.createElement('div');
+                divDate2.id = 'box6date2';
+                divDate2.className = 'box-date';
+                divDate2.innerHTML = metadata.timeline.actualDate;
+                $("#box6Compare").prepend(divDate2); 
+
                 break;
         }
     };
@@ -367,6 +400,11 @@ $(document).ready(function () {
                 $('#tab-pane-4').css('display', 'block');
                 $("#tab-nav-4").addClass('active');
                 break;
+
+            case 'cloud':
+                $('#tab-pane-6').css('display', 'block');
+                $("#tab-nav-6").addClass('active');
+                break;
         }
     };
 
@@ -417,6 +455,9 @@ $(document).ready(function () {
 
             // Set description
             setDescription(metadata);
+
+            // Set actual date 
+            actualDate = metadata.timeline.actualDate;
         }
 
         if (metadata.cloud) {

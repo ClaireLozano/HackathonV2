@@ -40,15 +40,9 @@ function insertRowTitle(data, metadata, idBox, callback) {
     // Initialization
     var keys_list_table = metadata.table.dataComposition.keys_list;
 
-    var val_html="";
-    if (metadata.timeline && metadata.timeline.actualDate) {
-        var idBoxAnnee = "idBoxAnnee"+ idBox;
-        val_html += "<div class='text-center' id='"+idBoxAnnee+"'>"+metadata.timeline.actualDate+"</div>"
-    }
-
     // Create table
-    val_html += "<table id='my_table_" + idBox + "' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
-    val_tfoot = "";
+    var val_html = "<table id='my_table_" + idBox + "' class='table table-list-search table-striped table-bordered' cellspacing='0' width='100%'><thead><tr>";
+    var val_tfoot = "";
 
     // Get dictionnary 
     if (metadata.dictionnaireX) {
