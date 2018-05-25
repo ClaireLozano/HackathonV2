@@ -4,7 +4,7 @@ $(document).ready(function () {
     var actualDate = '';
 
     /**
-     * Init 
+     * Init
      *
      * @return
      */
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
         // Reload the page with the new date
         $(".select-list-date").change(function () {
-            // Get value of the selected item 
+            // Get value of the selected item
             var nomDonnee = $('.select-list-date :selected').val();
             var url = window.location.href.split("?");
             var activePanel = getActivePanel();
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
         // Load the compare table
         $(".select-list-date-compare").change(function () {
-            // Get value of the selected item 
+            // Get value of the selected item
             var nomDonnee = $("option:selected", this).val();
             var activePanel = getActivePanel();
             if (nomDonnee == "none") {
@@ -111,7 +111,7 @@ $(document).ready(function () {
         $('#submit-comment').attr('disabled',true);
         $('#text-comment').keyup(function(){
             if($(this).val().length !=0)
-                $('#submit-comment').attr('disabled', false);            
+                $('#submit-comment').attr('disabled', false);
             else
                 $('#submit-comment').attr('disabled',true);
         });
@@ -123,13 +123,13 @@ $(document).ready(function () {
 
             // Clear inputs
             $('#text-comment').val("");
-            $('#name-comment').val(""); 
+            $('#name-comment').val("");
 
             // Call function to save data in database
 
             // Add the comment to the list
             $(".comments-list").append('<li class="comment"> <div class="comment-body"> <div class="comment-heading"> <h4 class="user">' + name + '</h4> <h5 class="time">'+ formatDate(date) + '</h5> </div> <p>' + text + '</p> </div> </li>');
-            
+
             return false;
         });
     };
@@ -141,7 +141,7 @@ $(document).ready(function () {
      * @param  {Object}     metadata                The metadata information related to the actual data
      * @param  {Object}     data                    Data from opendata La Rochelle
      *
-     * @return 
+     * @return
      */
     var drawCompare = function (typeVisualisation, metadata, data) {
 
@@ -178,7 +178,7 @@ $(document).ready(function () {
                 divDate2.id = 'box1date2';
                 divDate2.className = 'box-date';
                 divDate2.innerHTML = metadata.timeline.actualDate;
-                $("#box1Compare").prepend(divDate2); 
+                $("#box1Compare").prepend(divDate2);
 
                 break;
 
@@ -208,7 +208,7 @@ $(document).ready(function () {
                     var div = document.createElement('div');
                     div.id = 'box6Compare';
                     div.className = 'box-visu';
-                    
+
                     // Add first date
                     var divDate = document.createElement('div');
                     divDate.id = 'box6date1';
@@ -236,7 +236,7 @@ $(document).ready(function () {
                 divDate2.id = 'box6date2';
                 divDate2.className = 'box-date';
                 divDate2.innerHTML = metadata.timeline.actualDate;
-                $("#box6Compare").prepend(divDate2); 
+                $("#box6Compare").prepend(divDate2);
 
                 break;
         }
@@ -247,7 +247,7 @@ $(document).ready(function () {
      *
      * @param  {String}     typeVisualisation       Actual type of visualisation
      *
-     * @return 
+     * @return
      */
     var removeDrawCompare = function (typeVisualisation) {
         switch (typeVisualisation) {
@@ -348,7 +348,7 @@ $(document).ready(function () {
      *
      * @param  {String}     title       Data title
      *
-     * @return 
+     * @return
      */
     var setTitle = function (title) {
         $("#title-page").html(title);
@@ -367,7 +367,9 @@ $(document).ready(function () {
         if(metadata.title.search('Budget') != -1){
             $("#description-page").append("<p><br/>La section Graphe vous permettra d'avoir une visualisation " +
                 "filtrée et progressive suivant le type de dépense sélectionné. Plusieurs graphes " +
-                "apparaitront au fur et à mesure de votre navigation.</p>")
+                "apparaitront au fur et à mesure de votre navigation. <br/><br/> " +
+                "<b>N'hésitez pas à cliquer sur les différents graphes pour avoir des détails plus affinés !<b>" +
+              "</p>")
         }
     };
 
@@ -425,7 +427,7 @@ $(document).ready(function () {
         }
 
         if (metadata.timeline) {
-            // Draw select list 
+            // Draw select list
             $('.select-list-date').append("<p class='select-list select-list-text'>Choisissez l'année : </p>");
             var sel = $('<select>').appendTo('.select-list-date');
             sel.addClass("select-list");
@@ -450,7 +452,7 @@ $(document).ready(function () {
             // Set description
             setDescription(metadata);
 
-            // Set actual date 
+            // Set actual date
             actualDate = metadata.timeline.actualDate;
         }
 
@@ -482,7 +484,7 @@ $(document).ready(function () {
      *
      * @param  {String}     nomDonnee                Name of the data
      *
-     * @return 
+     * @return
      */
     var setComments = function (nomDonnee) {
 
@@ -514,7 +516,7 @@ $(document).ready(function () {
     };
 
     var getFakeComments = function (nomDonnee, callback) {
-        return callback(null,  [{'name': 'Annonyme', 'date': 'Tue Mar 20 2018 10:29:30 GMT+0100 (CET)', 'text': 'Commentaire numéro 1'}, 
+        return callback(null,  [{'name': 'Annonyme', 'date': 'Tue Mar 20 2018 10:29:30 GMT+0100 (CET)', 'text': 'Commentaire numéro 1'},
                                 {'name': 'Annonyme', 'date': 'Tue Mar 20 2018 11:30:01 GMT+0100 (CET)', 'text': 'Commentaire numéro 2'},
                                 {'name': 'Open data ville la rochelle', 'date': 'Tue Mar 20 2018 12:31:25 GMT+0100 (CET)', 'text': 'Commentaire numéro 3'}]);
     };
