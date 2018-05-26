@@ -99,6 +99,8 @@ footer {
 .label-warning {
     background-color: white;
     color: black;
+    font-size: 12px;
+    padding: 5px;
 }
 
 .label-warning:hover {
