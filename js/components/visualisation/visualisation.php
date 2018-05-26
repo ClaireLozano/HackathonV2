@@ -58,8 +58,6 @@
 							<li id="tab-nav-2" class="tab-nav"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
 							<li id="tab-nav-6" class="tab-nav"><a href="#tab-pane-6" data-toggle="tab"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Word Cloud</a></li>
 							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
-							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
-							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
 						<div class="tab-content">
 							<p id="description-page"></p>	
@@ -90,12 +88,6 @@
 								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.png"/>
 								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
                                 <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_velo.png"/>
-							</div>
-							<div class="tab-pane" id="tab-pane-4">
-								<div id='box4' class="box-visu"> <!-- INFO --></div>
-							</div>
-							<div class="tab-pane" id="tab-pane-5">
-								<div id='box5' class="box-visu"> <!-- TELECHARGEMENT --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-6">
 								<div class="option-panel">

@@ -69,16 +69,6 @@ $(document).ready(function () {
             showMap();
         });
 
-        $("#tab-nav-4").click(function () {
-            $("#tab-pane-4").css('display', 'block');
-            $("#tab-nav-4").addClass('active');
-        });
-
-        $("#tab-nav-5").click(function () {
-            $("#tab-pane-5").css('display', 'block');
-            $("#tab-nav-5").addClass('active');
-        });
-
         $("#tab-nav-6").click(function () {
             $("#tab-pane-6").css('display', 'block');
             $("#tab-nav-6").addClass('active');
@@ -394,11 +384,6 @@ $(document).ready(function () {
             case 'map':
                 $('#tab-pane-3').css('display', 'block');
                 $("#tab-nav-3").addClass('active');
-                break;
-
-            case 'info':
-                $('#tab-pane-4').css('display', 'block');
-                $("#tab-nav-4").addClass('active');
                 break;
 
             case 'cloud':
