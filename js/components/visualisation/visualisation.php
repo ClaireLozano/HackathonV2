@@ -43,7 +43,7 @@
                     <p class="panel-title pull-left">Visualisation</p>
 
 					<!-- Bouton "un probleme?" -->
-                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
+                    <a href="mailto:opendata@ville-larochelle.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisation vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right">Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
 
