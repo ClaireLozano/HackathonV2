@@ -314,6 +314,9 @@ $(document).ready(function () {
                 if ($(this).attr('id') === "button-icone-yelo") {
                     hideLayerYelo();
                 }
+                if ($(this).attr('id') === "button-icone-piste-cyclable") {
+                    hideLayerPisteCyclable();
+                }
 
 
             // Else, show them
@@ -329,6 +332,9 @@ $(document).ready(function () {
                 }
                 if ($(this).attr('id') === "button-icone-yelo") {
                     showLayerYelo();
+                }
+                if ($(this).attr('id') === "button-icone-piste-cyclable") {
+                    showLayerPisteCyclable();
                 }
             }
         });

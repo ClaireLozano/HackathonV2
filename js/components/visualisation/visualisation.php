@@ -88,6 +88,7 @@
 								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.png"/>
 								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
                                 <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_velo.png"/>
+                                <input id="button-icone-piste-cyclable" class="button-icone" value="false" type="image" src="../../../images/icone_piste_cyclable.png"/>
 							</div>
 							<div class="tab-pane" id="tab-pane-6">
 								<div class="option-panel">
@@ -154,6 +155,7 @@
 
 		<script type="text/javascript" src="map/bus.js"></script>
 		<script type="text/javascript" src="map/velo.js"></script>
+		<script type="text/javascript" src="map/piste_cyclable.js"></script>
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/popup.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>
