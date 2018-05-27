@@ -32,8 +32,6 @@ function initPie(params, box, level, previousValues) {
 	 					var xPosition = parseFloat(d3.event.pageX);
 	 					var yPosition = parseFloat(d3.event.pageY);
 
-            console.log(params)
-
 	 					//Update the tooltip position and value
 	 					d3.select("#tooltip")
 	 						.style("left", xPosition + "px")
