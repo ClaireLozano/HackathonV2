@@ -28,12 +28,38 @@ function initPie(params, box, level, previousValues) {
         })
         .on("mouseover", function (d, i) {
             d3.select(this).style("fill", params.COLORHOVER)
+            //Get this bar's x/y values, then augment for the tooltip
+	 					var xPosition = parseFloat(d3.event.pageX);
+	 					var yPosition = parseFloat(d3.event.pageY);
+
+	 					//Update the tooltip position and value
+	 					d3.select("#tooltip")
+	 						.style("left", xPosition + "px")
+	 						.style("top", yPosition + "px")
+
+
+						d3.select("#tooltip")
+							.select("#value_nb_places")
+							.text(d.data.dp_nb_places);
+
+						d3.select("#tooltip")
+							.select("#value_nb_places_disponibles")
+							.text(d.data.dp_place_disponible);
+
+	 					d3.select("#tooltip")
+	 						.select("#title")
+						   .text(d.data.dp_libelle);
+
+	 					//Show the tooltip
+	 					d3.select("#tooltip").classed("hidden", false);
         })
         .on("mousemove", function (d, i) {
 
         })
         .on("mouseout", function (d, i) {
             d3.select(this).style("fill", params.ordinalScaleColor(i))
+            //Hide the tooltip
+	 					d3.select("#tooltip").classed("hidden", true)
         })
         .attr("d", arc)
         .attr("data-legend", function (d) {
