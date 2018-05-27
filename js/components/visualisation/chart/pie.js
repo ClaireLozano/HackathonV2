@@ -42,7 +42,12 @@ function initPie(params, box, level, previousValues) {
         .on("click", function (node, i) {
             previousValues[level] = node.data[params.realTitle];
             initNewGraph(params, box, level + 1, previousValues)
-        });
+        })
+        .attr('opacity', 0)
+        .transition()
+            .delay(function(d,i){return i *300;})
+            .duration(1000)
+            .attr("opacity", 1);
 
     arcs.append("text")
         .attr("transform", function (d) {                    //set the label's origin to the center of the arc
@@ -53,7 +58,12 @@ function initPie(params, box, level, previousValues) {
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
             return params.dataToTreat[i][params.realValue]
-        });        //get the label from our original data array
+        })
+        .attr('opacity', 0)
+        .transition()
+            .delay(function(d,i){return i *300;})
+            .duration(1000)
+            .attr("opacity", 1);       //get the label from our original data array
 
 
     var legend = vis.append("g")
