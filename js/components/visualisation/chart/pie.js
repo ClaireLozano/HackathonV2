@@ -32,23 +32,24 @@ function initPie(params, box, level, previousValues) {
 	 					var xPosition = parseFloat(d3.event.pageX);
 	 					var yPosition = parseFloat(d3.event.pageY);
 
+            console.log(params)
+
 	 					//Update the tooltip position and value
 	 					d3.select("#tooltip")
 	 						.style("left", xPosition + "px")
 	 						.style("top", yPosition + "px")
 
 
-						d3.select("#tooltip")
-							.select("#value_nb_places")
-							.text(d.data.dp_nb_places);
+   					d3.select("#tooltip")
+   						.select("#title")
+  					  .text(params.dataToTreat[i][params.realTitle]);
+
 
 						d3.select("#tooltip")
-							.select("#value_nb_places_disponibles")
-							.text(d.data.dp_place_disponible);
-
-	 					d3.select("#tooltip")
-	 						.select("#title")
-						   .text(d.data.dp_libelle);
+							.select("#value")
+							.text(function(d,i){
+                return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
+              });
 
 	 					//Show the tooltip
 	 					d3.select("#tooltip").classed("hidden", false);

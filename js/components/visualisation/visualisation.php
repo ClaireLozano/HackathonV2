@@ -9,8 +9,7 @@
 
 			<div id = "tooltip" class="hidden">
 			<p><center><strong><span id="title">  </span></strong></center></p>
-			<p>Nombre de places restantes: <span id="value_nb_places">  </span></p>
-			<p>Nombre de places total: <span id="value_nb_places_disponibles">  </span></p>
+			<p>Valeur : <span id="value">  </span></p>
 
 		</div>
 

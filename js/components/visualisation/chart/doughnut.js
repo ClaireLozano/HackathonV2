@@ -38,18 +38,16 @@ function initdoughnut(params, box, level, previousValues) {
 	 						.style("left", xPosition + "px")
 	 						.style("top", yPosition + "px")
 
+   					d3.select("#tooltip")
+   						.select("#title")
+  					  .text(params.dataToTreat[i][params.realTitle]);
+
 
 						d3.select("#tooltip")
-							.select("#value_nb_places")
-							.text(d.data.dp_nb_places);
-
-						d3.select("#tooltip")
-							.select("#value_nb_places_disponibles")
-							.text(d.data.dp_place_disponible);
-
-	 					d3.select("#tooltip")
-	 						.select("#title")
-						   .text(d.data.dp_libelle);
+							.select("#value")
+							.text(function(d,i){
+                return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
+              });
 
 	 					//Show the tooltip
 	 					d3.select("#tooltip").classed("hidden", false);
@@ -84,7 +82,7 @@ function initdoughnut(params, box, level, previousValues) {
         })
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
-            return params.dataToTreat[i][params.realValue]
+          return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
         })
         .attr('opacity', 0)
         .transition()
