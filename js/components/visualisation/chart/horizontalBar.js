@@ -75,7 +75,7 @@ function initHorizontalBar(params, box, level, previousValues) {
             .attr('opacity', 0)
             .transition()
                 .delay(function(d,i){return i *300;})
-                .duration(1000)
+                .duration(500)
                 .attr("opacity", 1);
 
         this.selectAll(".bar-label")
@@ -100,9 +100,9 @@ function initHorizontalBar(params, box, level, previousValues) {
             .attr('opacity', 0)
             .transition()
                 .delay(function(d,i){return i *300;})
-                .duration(1000)
+                .duration(500)
                 .attr("opacity", 1);
-                
+
         this.append("g")
             .classed("x axis", true)
             .attr("transform", "translate(" + 0 + "," + params.height + ")")

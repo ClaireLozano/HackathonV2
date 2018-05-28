@@ -71,7 +71,7 @@ function initPie(params, box, level, previousValues) {
         .attr('opacity', 0)
         .transition()
             .delay(function(d,i){return i *300;})
-            .duration(1000)
+            .duration(500)
             .attr("opacity", 1);
 
     arcs.append("text")
@@ -87,7 +87,7 @@ function initPie(params, box, level, previousValues) {
         .attr('opacity', 0)
         .transition()
             .delay(function(d,i){return i *300;})
-            .duration(1000)
+            .duration(500)
             .attr("opacity", 1);       //get the label from our original data array
 
 
