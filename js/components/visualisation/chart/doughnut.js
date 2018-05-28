@@ -28,29 +28,29 @@ function initdoughnut(params, box, level, previousValues) {
             return params.ordinalScaleColor(i)
         })
         .on("mouseover", function (d, i) {
-            d3.select(this).style("fill", params.COLORHOVER)
-            //Get this bar's x/y values, then augment for the tooltip
-	 					var xPosition = parseFloat(d3.event.pageX);
-	 					var yPosition = parseFloat(d3.event.pageY);
+          d3.select(this).style("fill", params.COLORHOVER)
+          //Get this bar's x/y values, then augment for the tooltip
+ 					var xPosition = parseFloat(d3.event.pageX);
+ 					var yPosition = parseFloat(d3.event.pageY);
 
-	 					//Update the tooltip position and value
-	 					d3.select("#tooltip")
-	 						.style("left", xPosition + "px")
-	 						.style("top", yPosition + "px")
+ 					//Update the tooltip position and value
+ 					d3.select("#tooltip")
+ 						.style("left", xPosition + "px")
+ 						.style("top", yPosition + "px")
 
-   					d3.select("#tooltip")
-   						.select("#title")
-  					  .text(params.dataToTreat[i][params.realTitle]);
+ 					d3.select("#tooltip")
+ 						.select("#title")
+					  .text(params.dataToTreat[i][params.realTitle]);
 
 
-						d3.select("#tooltip")
-							.select("#value")
-							.text(function(d,i){
-                return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
-              });
+					d3.select("#tooltip")
+						.select("#value")
+						.text(function(d,i){
+              return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
+            });
 
-	 					//Show the tooltip
-	 					d3.select("#tooltip").classed("hidden", false);
+ 					//Show the tooltip
+ 					d3.select("#tooltip").classed("hidden", false);
         })
         .on("mousemove", function (d, i) {
 
@@ -82,7 +82,7 @@ function initdoughnut(params, box, level, previousValues) {
         })
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
-          return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
+          return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
         })
         .attr('opacity', 0)
         .transition()

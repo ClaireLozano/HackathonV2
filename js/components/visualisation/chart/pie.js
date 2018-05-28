@@ -46,7 +46,7 @@ function initPie(params, box, level, previousValues) {
 						d3.select("#tooltip")
 							.select("#value")
 							.text(function(d,i){
-                return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
+                return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
               });
 
 	 					//Show the tooltip
@@ -82,7 +82,7 @@ function initPie(params, box, level, previousValues) {
         })
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
-            return params.euros ? params.dataToTreat[i][params.realValue] + params.euros : params.dataToTreat[i][params.realValue]
+            return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
         })
         .attr('opacity', 0)
         .transition()
