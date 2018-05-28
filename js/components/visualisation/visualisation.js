@@ -157,6 +157,7 @@ $(document).ready(function () {
                     var div = document.createElement('div');
                     div.id = 'box1Compare';
                     div.className = 'box-visu';
+                    div.style = "border: 1px solid; padding: 10px;";
 
                     // Add first date
                     var divDate = document.createElement('div');
@@ -166,6 +167,7 @@ $(document).ready(function () {
 
                     $("#tab-pane-1 .box-wrapper-inner").append(div);
                     $("#box1").prepend(divDate);
+                    $("#box1").css({ 'border': "1px solid", 'padding': "10px" })
                 }
 
                 // Call draw table method
@@ -252,6 +254,7 @@ $(document).ready(function () {
             case 'table':
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#box1Compare").remove();
+                    $("#box1").css({ 'border': "", 'padding': "" });
                 }
                 break;
 

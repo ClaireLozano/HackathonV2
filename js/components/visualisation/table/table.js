@@ -232,6 +232,16 @@ function setTable(idBox) {
 
     // DataTable
     var table = $('#my_table_' + idBox).DataTable();
+   
+    $('#my_table_' + idBox).on( 'click', 'tr', function () {
+         if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
 
     // Apply the search
     table.columns().every(function () {
