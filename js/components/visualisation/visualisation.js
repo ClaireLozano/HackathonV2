@@ -254,6 +254,7 @@ $(document).ready(function () {
             case 'table':
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#box1Compare").remove();
+                    $("#box1date1").remove();
                     $("#box1").css({ 'border': "", 'padding': "" });
                 }
                 break;
