@@ -28,12 +28,37 @@ function initPie(params, box, level, previousValues) {
         })
         .on("mouseover", function (d, i) {
             d3.select(this).style("fill", params.COLORHOVER)
+            //Get this bar's x/y values, then augment for the tooltip
+	 					var xPosition = parseFloat(d3.event.pageX);
+	 					var yPosition = parseFloat(d3.event.pageY);
+
+	 					//Update the tooltip position and value
+	 					d3.select("#tooltip")
+	 						.style("left", xPosition + "px")
+	 						.style("top", yPosition + "px")
+
+
+   					d3.select("#tooltip")
+   						.select("#title")
+  					  .text(params.dataToTreat[i][params.realTitle]);
+
+
+						d3.select("#tooltip")
+							.select("#value")
+							.text(function(d,i){
+                return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
+              });
+
+	 					//Show the tooltip
+	 					d3.select("#tooltip").classed("hidden", false);
         })
         .on("mousemove", function (d, i) {
 
         })
         .on("mouseout", function (d, i) {
             d3.select(this).style("fill", params.ordinalScaleColor(i))
+            //Hide the tooltip
+	 					d3.select("#tooltip").classed("hidden", true)
         })
         .attr("d", arc)
         .attr("data-legend", function (d) {
@@ -42,7 +67,12 @@ function initPie(params, box, level, previousValues) {
         .on("click", function (node, i) {
             previousValues[level] = node.data[params.realTitle];
             initNewGraph(params, box, level + 1, previousValues)
-        });
+        })
+        .attr('opacity', 0)
+        .transition()
+            .delay(function(d,i){return i *300;})
+            .duration(500)
+            .attr("opacity", 1);
 
     arcs.append("text")
         .attr("transform", function (d) {                    //set the label's origin to the center of the arc
@@ -52,8 +82,13 @@ function initPie(params, box, level, previousValues) {
         })
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function (d, i) {
-            return params.dataToTreat[i][params.realValue]
-        });        //get the label from our original data array
+            return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
+        })
+        .attr('opacity', 0)
+        .transition()
+            .delay(function(d,i){return i *300;})
+            .duration(500)
+            .attr("opacity", 1);       //get the label from our original data array
 
 
     var legend = vis.append("g")

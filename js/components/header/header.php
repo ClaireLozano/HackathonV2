@@ -8,11 +8,40 @@
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
+    <script type="text/javascript" src="../util.js"></script>
+
+    <style>
+    .modal {
+        display:    none;
+        position:   fixed;
+        z-index:    1000;
+        top:        0;
+        left:       0;
+        height:     100%;
+        width:      100%;
+        background: rgba( 255, 255, 255, .8 )
+              url('http://i.stack.imgur.com/FhHRx.gif')
+              50% 50%
+              no-repeat;
+      }
+      /* When the body has the loading class, we turn
+      the scrollbar off with overflow:hidden */
+      body.loading {
+        overflow: hidden;
+      }
+
+      /* Anytime the body has the loading class, our
+      modal element will be visible */
+      body.loading .modal {
+        display: block;
+      }
+  </style>
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
 
     <!-- Open Layers -->
-    <!-- <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers.js"></script> -->    
+    <!-- <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers.js"></script> -->
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
     <script src="https://openlayers.org/en/v4.6.4/examples/resources/mapbox-streets-v6-style.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>

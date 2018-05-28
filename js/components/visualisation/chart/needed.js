@@ -116,7 +116,8 @@ function getParams(dataToTreat, metadata, level, callback) {
         var width = w - margin.left - margin.right;
         var height = h - margin.top - margin.bottom;
         var r = 200;
-        var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
+        var ordinalScaleColor = d3.scale.category10();
+        //var ordinalScaleColor = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
 
         return callback({
             "realTitle": valueTitle.realTitle,
@@ -170,6 +171,7 @@ function initNewGraph(params, box, level, previousValues) {
 
             params.realValue = "values";
             params.realTitle = "key";
+            params.devise = "€"
 
             params.dataToTreat.sort(function (a, b) {
                 return d3.ascending(parseInt(b[params.realValue]), parseInt(a[params.realValue]));

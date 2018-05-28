@@ -3,39 +3,15 @@
 
 	<?php include '../header/header.php'; ?>
 
-    <link rel="stylesheet" type="text/css" href="../../../style/style-visualisation.css">
-    <script type="text/javascript" src="../util.js"></script>
-
-    <style>
-		.modal {
-				display:    none;
-				position:   fixed;
-				z-index:    1000;
-				top:        0;
-				left:       0;
-				height:     100%;
-				width:      100%;
-				background: rgba( 255, 255, 255, .8 )
-							url('http://i.stack.imgur.com/FhHRx.gif')
-							50% 50%
-							no-repeat;
-			}
-			/* When the body has the loading class, we turn
-			the scrollbar off with overflow:hidden */
-			body.loading {
-				overflow: hidden;
-			}
-
-			/* Anytime the body has the loading class, our
-			modal element will be visible */
-			body.loading .modal {
-				display: block;
-			}
-	</style>
-
 	<body>
 		<div class="modal"></div>
 		<div id="content-page">
+
+			<div id = "tooltip" class="hidden">
+			<p><center><strong><span id="title">  </span></strong></center></p>
+			<p>Valeur : <span id="value">  </span></p>
+
+		</div>
 
 			<h1 id="title-page"></h1>
 			<div class="panel panel-default box">
@@ -60,7 +36,7 @@
 							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
 						</ul>
 						<div class="tab-content">
-							<p id="description-page"></p>	
+							<p id="description-page"></p>
 							<div class="tab-pane" id="tab-pane-1">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
@@ -73,7 +49,7 @@
 							<div class="tab-pane" id="tab-pane-2">
 								<div class="option-panel">
 									<div class="select-list-date"></div>
-									<div class="select-list-date-compare"></div>		
+									<div class="select-list-date-compare"></div>
 								</div>
 								<div class="box-wrapper-inner">
 									<div id='box2' class="box-visu"> <!-- GRAPH --></div>

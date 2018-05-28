@@ -71,7 +71,12 @@ function initHorizontalBar(params, box, level, previousValues) {
             .on("click", function (d, i) {
                 previousValues[level] = d[params.realTitle];
                 initNewGraph(params, box, level + 1, previousValues)
-            });
+            })
+            .attr('opacity', 0)
+            .transition()
+                .delay(function(d,i){return i *300;})
+                .duration(500)
+                .attr("opacity", 1);
 
         this.selectAll(".bar-label")
             .data(parametres.data)
@@ -91,7 +96,13 @@ function initHorizontalBar(params, box, level, previousValues) {
             })
             .text(function (d) {
                 return d[params.realValue]
-            });
+            })
+            .attr('opacity', 0)
+            .transition()
+                .delay(function(d,i){return i *300;})
+                .duration(500)
+                .attr("opacity", 1);
+
         this.append("g")
             .classed("x axis", true)
             .attr("transform", "translate(" + 0 + "," + params.height + ")")
