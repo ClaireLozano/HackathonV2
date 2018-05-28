@@ -99,8 +99,6 @@ footer {
 .label-warning {
     background-color: white;
     color: black;
-    font-size: 12px;
-    padding: 5px;
 }
 
 .label-warning:hover {
@@ -184,4 +182,8 @@ path {
 .legend rect {
     fill: white;
     stroke: black;
+}
+
+tbody tr.selected {
+    background-color: #B0BED9 !important;
 }

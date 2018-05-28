@@ -43,7 +43,7 @@
                     <p class="panel-title pull-left">Visualisation</p>
 
 					<!-- Bouton "un probleme?" -->
-                    <a href="mailto:opendata@ville-larochelle.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisation vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right">Un problème ?</button> </a>
+                    <a href="mailto:claire.lozano@live.fr?subject=Problème sur la plateforme&body=Les données vous semble incorrectes ? La visualisationne vous convient pas ? Aidez-nous à améliorer la plateforme !"> <button class="btn btn-default label label-warning pull-right"> Un problème ?</button> </a>
                     <div class="clearfix"></div>
                 </div>
 
@@ -58,6 +58,8 @@
 							<li id="tab-nav-2" class="tab-nav"><a href="#tab-pane-2" data-toggle="tab"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphe</a></li>
 							<li id="tab-nav-6" class="tab-nav"><a href="#tab-pane-6" data-toggle="tab"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Word Cloud</a></li>
 							<li id="tab-nav-3" class="tab-nav"><a href="#tab-pane-3" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Carte</a></li>
+							<li id="tab-nav-4" class="tab-nav"><a href="#tab-pane-4" data-toggle="tab"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infos</a></li>
+							<li id="tab-nav-5" class="tab-nav"><a href="#tab-pane-5" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Télécharger</a></li>
 						</ul>
 						<div class="tab-content">
 							<p id="description-page"></p>	
@@ -88,7 +90,12 @@
 								<input id="button-icone-bus" class="button-icone" value="false" type="image" src="../../../images/icone_bus.png"/>
 								<input id="button-icone-poste" class="button-icone" value="false" type="image" src="../../../images/icone_poste.png"/>
                                 <input id="button-icone-yelo" class="button-icone" value="false" type="image" src="../../../images/icone_velo.png"/>
-                                <input id="button-icone-piste-cyclable" class="button-icone" value="false" type="image" src="../../../images/icone_piste_cyclable.png"/>
+							</div>
+							<div class="tab-pane" id="tab-pane-4">
+								<div id='box4' class="box-visu"> <!-- INFO --></div>
+							</div>
+							<div class="tab-pane" id="tab-pane-5">
+								<div id='box5' class="box-visu"> <!-- TELECHARGEMENT --></div>
 							</div>
 							<div class="tab-pane" id="tab-pane-6">
 								<div class="option-panel">
@@ -155,7 +162,6 @@
 
 		<script type="text/javascript" src="map/bus.js"></script>
 		<script type="text/javascript" src="map/velo.js"></script>
-		<script type="text/javascript" src="map/piste_cyclable.js"></script>
 		<script type="text/javascript" src="map/poste.js"></script>
 		<script type="text/javascript" src="map/popup.js"></script>
 		<script type="text/javascript" src="map/geoloc.js"></script>

@@ -2,7 +2,6 @@
 var vectorLayerPoste = [];
 var vectorLayerBus = [];
 var vectorLayerYelo = [];
-var vectorLayerPisteCyclable = [];
 var map = new ol.Map();
 
 /**
@@ -60,24 +59,6 @@ function hideLayerYelo() {
 }
 
 /**
- * Show piste cyclable
- *
- * @return null
- */
-function showLayerPisteCyclable() {
-    vectorLayerPisteCyclable.setVisible(true);
-}
-
-/**
- * Hide piste cyclable
- *
- * @return null
- */
-function hideLayerPisteCyclable() {
-    vectorLayerPisteCyclable.setVisible(false);
-}
-
-/**
  * Show map
  *
  * @return null
@@ -111,8 +92,6 @@ function drawMap(data, metadata, myDiv, myPopup) {
     vectorLayerBus = getBusLayer();
     vectorLayerYelo = getYeloLayer();
     vectorLayerPoste = getPosteLayer();
-    vectorLayerPisteCyclable = getPisteCyclableLayer();
-
 
 
     var coordonnees = [];
@@ -209,7 +188,7 @@ function drawMap(data, metadata, myDiv, myPopup) {
     map = new ol.Map({
         layers: [new ol.layer.Tile({
             source: new ol.source.OSM()
-        }), vectorDataLayer, vectorLayerBus, vectorLayerPoste, vectorLayerYelo, vectorLayerPisteCyclable],
+        }), vectorDataLayer, vectorLayerBus, vectorLayerPoste, vectorLayerYelo],
         target: document.getElementById(myDiv),
         view: new ol.View({
             center: [-1.1571302, 46.1476461],

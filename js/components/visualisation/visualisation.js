@@ -69,6 +69,16 @@ $(document).ready(function () {
             showMap();
         });
 
+        $("#tab-nav-4").click(function () {
+            $("#tab-pane-4").css('display', 'block');
+            $("#tab-nav-4").addClass('active');
+        });
+
+        $("#tab-nav-5").click(function () {
+            $("#tab-pane-5").css('display', 'block');
+            $("#tab-nav-5").addClass('active');
+        });
+
         $("#tab-nav-6").click(function () {
             $("#tab-pane-6").css('display', 'block');
             $("#tab-nav-6").addClass('active');
@@ -157,6 +167,7 @@ $(document).ready(function () {
                     var div = document.createElement('div');
                     div.id = 'box1Compare';
                     div.className = 'box-visu';
+                    div.style = "border: 1px solid; padding: 10px;";
 
                     // Add first date
                     var divDate = document.createElement('div');
@@ -166,6 +177,8 @@ $(document).ready(function () {
 
                     $("#tab-pane-1 .box-wrapper-inner").append(div);
                     $("#box1").prepend(divDate);
+                    //document.getElementById("#box1")
+                    $("#box1").css({ 'border': "1px solid", 'padding': "10px" })
                 }
 
                 // Call draw table method
@@ -252,6 +265,7 @@ $(document).ready(function () {
             case 'table':
                 if ($("#my_table_box1Compare_wrapper").length) {
                     $("#box1Compare").remove();
+                    $("#box1").css({ 'border': "", 'padding': "" })
                 }
                 break;
 
@@ -314,9 +328,6 @@ $(document).ready(function () {
                 if ($(this).attr('id') === "button-icone-yelo") {
                     hideLayerYelo();
                 }
-                if ($(this).attr('id') === "button-icone-piste-cyclable") {
-                    hideLayerPisteCyclable();
-                }
 
 
             // Else, show them
@@ -332,9 +343,6 @@ $(document).ready(function () {
                 }
                 if ($(this).attr('id') === "button-icone-yelo") {
                     showLayerYelo();
-                }
-                if ($(this).attr('id') === "button-icone-piste-cyclable") {
-                    showLayerPisteCyclable();
                 }
             }
         });
@@ -390,6 +398,11 @@ $(document).ready(function () {
             case 'map':
                 $('#tab-pane-3').css('display', 'block');
                 $("#tab-nav-3").addClass('active');
+                break;
+
+            case 'info':
+                $('#tab-pane-4').css('display', 'block');
+                $("#tab-nav-4").addClass('active');
                 break;
 
             case 'cloud':
