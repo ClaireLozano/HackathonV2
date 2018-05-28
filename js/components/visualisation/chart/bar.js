@@ -135,9 +135,6 @@ function initBar(params, box, level, previousValues) {
                 .delay(function(d,i){return i *300;})
                 .duration(1000)
                 .attr("opacity", 1);
-// TODO: Ajout transition fade in
-// TODO: ajout popup avec donnee
-// TODO: changement des couleurs
 
 
         this.selectAll(".bar-label")

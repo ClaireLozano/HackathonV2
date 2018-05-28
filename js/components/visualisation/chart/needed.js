@@ -171,7 +171,7 @@ function initNewGraph(params, box, level, previousValues) {
 
             params.realValue = "values";
             params.realTitle = "key";
-            params.euros = "€"
+            params.devise = "€"
 
             params.dataToTreat.sort(function (a, b) {
                 return d3.ascending(parseInt(b[params.realValue]), parseInt(a[params.realValue]));
