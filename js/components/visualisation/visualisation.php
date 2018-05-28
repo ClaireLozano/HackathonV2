@@ -184,6 +184,4 @@
 
 	<?php include '../footer/footer.php'; ?>
 
-
-
 </html>
