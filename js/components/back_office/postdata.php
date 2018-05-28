@@ -1,5 +1,3 @@
-<h3>Métadonnées </h3>
-<p>Ceci est un back-office qui vous permet de créer des métadonnées</p>
 
 <?php
 
@@ -48,12 +46,15 @@ if ($_POST['checkDict'] == 'add_dictionary'){
 // Grahes :
 $grapheArray = array(
       "possibleGraphs" => $_POST['possibleGraphs'],
+      "panelPosion" => $_POST['panelPosion_graphe'],
       "dataComposition" => array(
         "excludeLines" => $_POST['dataComposition_excludeLines'],
         "title" => $_POST['dataComposition_title'],
         "value" => $_POST['dataComposition_value'],
         "y_axis" => $_POST['dataComposition_y_axis'],
-        "x_axis" => $_POST['dataComposition_x_axis']
+        "x_axis" => $_POST['dataComposition_x_axis'],
+        "unity_x_axis" => $_POST['dataComposition_unity_x_axis'],
+        "unity_y_axis" => $_POST['dataComposition_unity_y_axis']
       )
     );
 
@@ -61,6 +62,7 @@ $grapheArray = array(
 $tableauArray = array(
       "dataComposition" => array(
         "title" => $_POST['table_dataComposition_title'],
+        "panelPosion" => $_POST['panelPosion_table'],
         "keys_list" => $_POST['table_dataComposition_keys_list'],
         "value_list" => $_POST['table_dataComposition_value_list']
       )
@@ -81,6 +83,7 @@ $tableauArray = array(
 
 // Timeline :
 $timelineArray = array(
+      "panelPosion" => $_POST['panelPosion_timeline'],
       "actualDate" => $_POST['actualDate']);
 
 
@@ -97,6 +100,7 @@ foreach ($datatypeArray as $key => $value) {
     if ($_POST['maptype'] == 'newmap') {
       // Nouvelle carte :
       $carteArray = array(
+            "panelPosion" => $_POST['panelPosion_map'],
             "x" => $_POST['map_x'],
             "y" => $_POST['map_y'],
             "name" => $_POST['map_name'],
@@ -109,6 +113,7 @@ foreach ($datatypeArray as $key => $value) {
     } else if ($_POST['maptype'] == 'kmlfile'){
       // Carte depuis fichier kml :
       $carteArray = array(
+            "panelPosion" => $_POST['panelPosion_map'],
             "kml" => $_POST['map_kml_file'],
             "value" => $_POST['map_kml_value'],
             "name" => $_POST['map_kml_file']
@@ -158,11 +163,36 @@ $filepath = $path . DIRECTORY_SEPARATOR . $file;
 // chamin statique :
 // $fp = fopen('mdfile.json', 'w');
 
-// chemin dynamique :
-$fp = fopen($filepath, 'w');
+// // chemin dynamique :
+//$fp = fopen($filepath, 'w');
+//
+// fwrite($fp, $json);
+// fclose($fp);
 
-fwrite($fp, $json);
-fclose($fp);
+
+//$full_path = '...'; // chemin système (local) vers le fichier
+$file_name = basename($filepath);
+
+ini_set('zlib.output_compression', 0);
+$date = gmdate(DATE_RFC1123);
+
+header('Pragma: public');
+header('Cache-Control: must-revalidate, pre-check=0, post-check=0, max-age=0');
+
+header('Content-Tranfer-Encoding: none');
+header('Content-Length: '.filesize($filepath));
+header('Content-MD5: '.base64_encode(md5_file($filepath)));
+header('Content-Type: application/octetstream; name="'.$file_name.'"');
+header('Content-Disposition: attachment; filename="'.$file_name.'"');
+
+header('Date: '.$date);
+header('Expires: '.gmdate(DATE_RFC1123, time()+1));
+header('Last-Modified: '.gmdate(DATE_RFC1123, filemtime($filepath)));
+// header('Location: back_office.php');
+readfile($filepath);
+// header('Location: back_office.php');
+// Essayer d'enlever le exit
+exit;
 
 
 ?>

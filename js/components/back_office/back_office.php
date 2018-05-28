@@ -31,7 +31,7 @@
         <div class="form-group col-md-10">
           <label for="fileName">Nom du fichier qui contiendra les métadonnées</label>
           <p>Merci de saisir l'identifiant de la données (Ex: "disponibilite_parking")</p>
-          <input type="text" class="form-control" name="fileName" required>
+          <input type="text" value="" class="form-control" name="fileName" required>
         </div>
         <div class="form-group col-md-10">
           <label for="link">Lien vers les données</label>
@@ -102,29 +102,44 @@
           <p>Description des données affichées dans le graphe</p>
           <input type="text" class="form-control" name="dataComposition_excludeLines" >
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-10">
+          <label for="inputGraphPosition">Position de l'affichage du graphe</label>
+          <input type="text" class="form-control" name="panelPosion_graphe" >
+        </div>
+        <div class="form-group col-md-4">
           <label for="inputGraphLibelle">Axe des abcisses</label>
           <p>Pour un graphe avec des axes, il faut préciser les données qui seront sur l'axe des abcisses.</p>
           <h6>Ex: pour le jeu de données Parking : dp_libelle</h6>
           <input type="text" class="form-control" name="dataComposition_title" >
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="inputGraphLibelleName">Nom de l'axe des abcisses</label>
           <p>Le nom de l'axe des abcisses qui sera visible sur le graphe.</p>
           <h6>Ex: pour le jeu de données Parking : Parking</h6>
           <input type="text" class="form-control" name="dataComposition_x_axis" >
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
+          <label for="inputGraphLibelleName">Unité de l'axe des abcisses</label>
+          <p>L'unité de l'axe des abcisses qui sera visible sur le graphe.</p>
+          <input type="text" class="form-control" name="dataComposition_unity_x_axis" >
+        </div>
+
+        <div class="form-group col-md-4">
           <label for="inputGraphTitle">Axe des ordonnées</label>
           <p>Pour un graphe avec des axes, il faut préciser les données qui seront sur l'axe des ordonnées.</p>
           <h6>Ex: pour le jeu de données Parking : dp_place_disponible</h6>
           <input type="text" class="form-control" name="dataComposition_value" >
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="inputGraphTitle">Nom de l'axe des ordonnées</label>
           <p>Le nom de l'axe des ordonnées.</p>
           <h6>Ex: pour le jeu de données Parking 'Nombre de places disponibles'</h6>
           <input type="text" class="form-control" name="dataComposition_y_axis" >
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputGraphTitle">Unité de l'axe des ordonnées</label>
+          <p>L'unité de l'axe des ordonnées.</p>
+          <input type="text" class="form-control" name="dataComposition_unity_y_axis" >
         </div>
       </div>
 
@@ -136,6 +151,10 @@
           <p>Dans un premier temps, veuillez lister toutes les colonnes à afficher ainsi que la valeur à afficher sur l'interface utilisateur.</p>
           <label for="inputTableTitle">Titre du tableau</label>
           <input type="text" class="form-control" name="table_dataComposition_title" >
+        </div>
+        <div class="form-group col-md-8">
+          <label for="inputTablePositon">Position de l'affichage du tableau</label>
+          <input type="text" class="form-control" name="panelPosion_table" >
         </div>
         <div id="sm" class="form-group col-md-5">
           <label for="inputKeyList">Liste des mots clés</label>
@@ -164,6 +183,10 @@
 
         <!-- Nouvelle carte  -->
         <div id="new_map" style="display:none">
+          <div class="form-group col-md-6">
+            <label for="inputMapPosition">Position de la carte</label>
+            <input type="text" class="form-control" name="panelPosion_map" >
+          </div>
           <div class="form-group col-md-6">
             <label for="inputMapTitle">Titre de la carte</label>
             <input type="text" class="form-control" name="map_name" >
@@ -197,6 +220,10 @@
           <div class="form-group col-md-10">
             <h3>KML file</h3>
           </div>
+          <div class="form-group col-md-6">
+            <label for="inputMapPosition">Position de la carte</label>
+            <input type="text" class="form-control" name="panelPosion_map" >
+          </div>
           <div class="form-group col-md-8">
             <label for="inputMapKmlfile">Fichier 'kml'</label>
             <p> Entrer le fichier kml. </p>
@@ -222,10 +249,16 @@
           <hr>
           <h3>Timeline</h3>
         </div>
+
+        <div id="sm" class="form-group col-md-5">
+          <label for="inputTimelinePosition">Position de la "Timeline"</label>
+          <input type="text" class="form-control" name="panelPosion_timeline" >
+        </div>
         <div id="sm" class="form-group col-md-5">
           <label for="inputKeyList">Date initiale</label>
           <input type="text" class="form-control" name="actualDate" >
         </div>
+
         <div id="sm" class="form-group col-md-5">
           <label for="inputKeyList">Liste des années</label>
           <br>
