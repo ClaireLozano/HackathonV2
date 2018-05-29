@@ -18,14 +18,8 @@ $(document).ready(function () {
             // Get metadata
             getMetadata(nomDonnee, function (metadata) {
 
-                // Set title
-                setTitle(metadata.title);
-
                 // Set active panel
                 setActivePanel(typeVisualisation);
-
-                // Set comments
-                setComments(nomDonnee);
 
                 // With end url, get data
                 getData(metadata.link, function (data) {
@@ -345,17 +339,6 @@ $(document).ready(function () {
     };
 
     /**
-     * Set the title of the page
-     *
-     * @param  {String}     title       Data title
-     *
-     * @return
-     */
-    var setTitle = function (title) {
-        $("#title-page").html(title);
-    };
-
-    /**
      * Set the second title of the page
      *
      * @param  {Object}     metadata                The metadata information related to the actual data
@@ -478,48 +461,6 @@ $(document).ready(function () {
         } else {
             $("#tab-nav-3").css('display', 'none');
         }
-    };
-
-    /**
-     * Set comments
-     *
-     * @param  {String}     nomDonnee                Name of the data
-     *
-     * @return
-     */
-    var setComments = function (nomDonnee) {
-
-        // Call server and remove this function
-        getFakeComments(nomDonnee, function(err, comments) {
-
-            // Display all comments related to a data
-            comments.forEach(function(comment) {
-                $(".comments-list").append('<li class="comment"> <div class="comment-body"> <div class="comment-heading"> <h4 class="user">' + comment.name + '</h4> <h5 class="time">'+ formatDate(comment.date) + '</h5> </div> <p>' + comment.text + '</p> </div> </li>');
-            });
-        });
-    };
-
-    /**
-     * Get pretty date
-     *
-     * @param  {Date}       date                    A comment date
-     *
-     * @return pretty date
-     */
-    function formatDate(date) {
-        date = new Date(date);
-        var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
-        var day = date.getDate();
-        var monthIndex = date.getMonth();
-        var year = date.getFullYear();
-
-        return day + ' ' + monthNames[monthIndex] + ' ' + year;
-    };
-
-    var getFakeComments = function (nomDonnee, callback) {
-        return callback(null,  [{'name': 'Annonyme', 'date': 'Tue Mar 20 2018 10:29:30 GMT+0100 (CET)', 'text': 'Commentaire numéro 1'},
-                                {'name': 'Annonyme', 'date': 'Tue Mar 20 2018 11:30:01 GMT+0100 (CET)', 'text': 'Commentaire numéro 2'},
-                                {'name': 'Open data ville la rochelle', 'date': 'Tue Mar 20 2018 12:31:25 GMT+0100 (CET)', 'text': 'Commentaire numéro 3'}]);
     };
 
     init();

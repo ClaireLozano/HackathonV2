@@ -1,9 +1,0 @@
-body {
-    padding-top: 10px;
-}
-
-[class^="col-"], [class*="col-"] {
-    border-radius: 6px;
-    line-height: 40px;
-    text-align: center;
-}

@@ -1,99 +1,77 @@
-#welcome {
-    margin: 10px;
+h1 {
+    color: #ef7439;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
-.textDiv {
-    margin: 40px;
+h2 {
+    color: #0b3d72;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 40px;
 }
 
-#panel-welcome {
-    padding: 5px;
+/* =============== MODAL =============== */
+
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 )
+          url('http://i.stack.imgur.com/FhHRx.gif')
+          50% 50%
+          no-repeat;
+}
+/* When the body has the loading class, we turn
+the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;
 }
 
-/* =============== NAV ==================*/
-
-.container-fluid {
-    padding: 0;
+/* Anytime the body has the loading class, our
+modal element will be visible */
+body.loading .modal {
+    display: block;
 }
+
+/* =============== PANEL =============== */
 
 .container {
+    margin: 0;
+}
+
+.panel {
+    margin: 0;
+}
+
+.panel-content-visualisation {
+    padding: 25px;
+}
+
+#content-page {
+    margin: 0;
+    margin: 20px 100px 20px 100px;
     padding: 0;
-    margin: 0 20px 0 20px;
-    width: auto;
 }
 
-/* =============== FOOTER ===============*/
-
-.topHalfCircle {
-    height: 30px;
-    width: 60px;
-    border-top-left-radius: 60px;
-    border-top-right-radius: 60px;
-    background: rgba(11, 61, 114, .7);
-    margin: auto;
-    margin-top: 80px;
-    margin-bottom: 0;
-    text-align: center;
+.nav-visualisation > li {
+    float: none;
+    display: inline-block;
+    zoom: 1;
 }
 
-#arrowFooter {
-    font-size: 23px;
-    color: white;
-    margin: auto;
-    margin-top: 7px;
+.nav-visualisation {
+    text-align: left;
 }
 
-footer {
-    margin-top: 0;
-    height: 80px;
-    background-color: #333;
-}
-
-/* =============== BOX ALEATOIRE =============== */
-
-.box-wrapper-inner {
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    box-orient: horizontal;
-
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    box-pack: center;
-
-    -webkit-box-direction: normal;
-    -moz-box-direction: normal;
-    box-direction: normal;
-
-    -webkit-box-align: stretch;
-    -moz-box-align: stretch;
-    box-align: stretch;
-}
-
-.box {
-    width: 100%;
-    margin-right: 10px;
-    margin-left: 10px;
-    border-radius: 0;
-
-    -webkit-box-ordinal-group: 1;
-    -moz-box-ordinal-group: 1;
-    box-ordinal-group: 1;
-
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    box-flex: 1;
-}
-
-.bottomButton {
-    border-radius: 0;
-    font-size: 20px;
-    margin-bottom: 3px;
-    margin-right: 2px;
-    margin-left: 2px;
+#second-title-page {
+    margin-top: 50px;
 }
 
 .label-warning {
@@ -122,26 +100,86 @@ footer {
     overflow: auto;
 }
 
-@media (max-width: 620px) {
-    #welcome {
-        margin: 5px 10px 5px 10px;
+@media (max-width: 1000px) {
+    #content-page {
+        margin: 0;
+        margin: 20px 10px 20px 10px;
+        padding: 0;
     }
+}
 
-    .textDiv {
-        margin: 10px;
-    }
+/* =============== SOCIAL NETWORK =============== */
 
+#rs {
+    display: inline;
+}
+
+.rs {
+    float: left;
+    margin-right: 10px;
+}
+
+/* =============== BOX VISU =============== */
+
+#description-page {
+    margin-top: 20px;
+}
+
+.box-visu {
+    min-height: 500px;
+    margin: 10px;
+    width: 100%;
+    overflow: auto;
+    margin: 10px;
+    width: 100%;
+    overflow: auto;
+
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    box-ordinal-group: 1;
+
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+}
+
+#box2 {
+    min-height: 500px;
+}
+
+#box3 {
+    height: 500px;
+    margin: 0;
+    height: 500px;
+}
+
+.form-control {
+    padding: 0;
+    height: 25px;
+}
+
+.box-date {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #ef7439;
+    font-size: 20px;
+}
+
+select.input-sm {
+    height: 25px;
+}
+
+@media (max-width: 900px) {
     .box-wrapper-inner {
         -webkit-box-orient: vertical;
         -moz-box-orient: vertical;
         box-orient: vertical;
-        margin: 5px 10px 5px 10px;
     }
 
-    .box {
+    .box-visu {
         width: 100%;
         margin: auto;
-        margin-top: 10px;
+        margin-top: 50px;
     }
 }
 
@@ -164,6 +202,114 @@ table {
 
 #searchTFoot {
     width: 100%;
+}
+
+#my_table_wrapper > .row {
+    margin-right: 0px;
+}
+
+@media screen and (max-width: 767px) {
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info {
+        text-align: left;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: center;
+    }
+}
+
+/* MAP */
+#map {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.chart {
+    border: solid 1px red;
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+    margin: 0 auto;
+}
+
+.bar {
+    fill: purple;
+    shape-rendering: crispEdges;
+}
+
+.bar-label {
+    fill: #000;
+    text-anchor: middle;
+    font-size: 24px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+
+}
+
+.gridline path,
+.gridline line {
+    fill: none;
+    stroke: #ccc;
+    shape-rendering: crispEdges;
+}
+
+.slice text {
+    font-size: 10pt;
+    font-family: Arial;
+}
+
+.selectGraph {
+    float: left;
+}
+
+.button-icone {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    opacity: 0.5;
+}
+
+/* SELECT LIST DATE */
+.select-list {
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.select-list-select {
+    width: 200px;
+}
+
+.select-list-text {
+    margin-right: 10px;
+}
+
+.option-panel {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* GRAPH */
+.selectGraph {
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+#box2 #chartbox2,
+#box2Compare #chartbox2Compare {
+    font-size: 11px;
+    margin-bottom: 50px;
+}
+
+#chartbox2 > g > g text,
+#chartbox2Compare > g > g text {
+    font-size: 11px;
 }
 
 /* CHART */
