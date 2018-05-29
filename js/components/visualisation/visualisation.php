@@ -28,21 +28,11 @@
 	    <!-- D3js -->
 	    <script src="http://d3js.org/d3.v3.min.js"></script>
 	    <script type="text/javascript" src="../visualisation/chart/d3.legend.js"></script>
-
-
-	    <!-- Map -->
-	    <?php
-	      header('Access-Control-Allow-Origin: *');
-	      header("Access-Control-Allow-Credentials: true");
-	      header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-	      header('Access-Control-Max-Age: 1000');
-	      header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
-	    ?>
 	</head>
 
 	<body>
 		<div class="modal"></div>
-
+		
 		<div id="content-page">
 			<h1 id="title-page"></h1>
 			<div class="panel panel-default box">
