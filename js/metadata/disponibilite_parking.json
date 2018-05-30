@@ -1,6 +1,5 @@
 {
   "link": "&db=stationnement&table=disponibilite_parking&format=json",
-  "title": "Stationnement - Disponibilité des parkings",
   "description": "",
   "graph": {
     "panelPosition": "2",

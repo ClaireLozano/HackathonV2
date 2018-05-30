@@ -1,7 +1,6 @@
 {
   "dataType": "HistorisedNotLocalisable",
   "link": "&db=ecnaissance&table=acte_naissance_02&filter=an_evenement_annee%20equalto%202015&format=json",
-  "title": "ETAT CIVIL – ACTE DE NAISSANCE – PAR PREMIER PRÉNOM - 2015",
   "description": "",
   "cloud": {
     "panelPosition": "2",

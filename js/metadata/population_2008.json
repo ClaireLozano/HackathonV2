@@ -1,6 +1,5 @@
 {
   "link": "&db=insee&table=population_2008&format=json",
-  "title": "Recensement de la population - Population - 2008",
   "descritpion": "",
   "dictionnaireX": {
     "link": "&db=insee&table=population_dico_2008&format=json",
