@@ -3,6 +3,7 @@
   "title": "Stationnement - Disponibilité des parkings",
   "description": "",
   "graph": {
+    "panelPosition": "2",
     "possibleGraphs": [
       "bar",
       "pie",
@@ -18,6 +19,7 @@
     }
   },
   "map": {
+    "panelPosition": "1",
     "x": "dp_x",
     "y": "dp_y",
     "name": "dp_libelle",
@@ -26,6 +28,7 @@
     "description_popup": "Places :"
   },
   "table": {
+    "panelPosition": "3",
     "dataComposition": {
       "keys_list": [
         "dp_libelle",

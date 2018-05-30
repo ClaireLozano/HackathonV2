@@ -19,6 +19,9 @@ $(document).ready(function () {
             getMetadata(nomDonnee, function (metadata) {
 
                 // Set active panel
+                setPositionPanel(metadata);
+
+                // Set active panel
                 setActivePanel(typeVisualisation);
 
                 // With end url, get data
@@ -354,6 +357,54 @@ $(document).ready(function () {
                 "apparaitront au fur et à mesure de votre navigation. <br/><br/> " +
                 "<b>N'hésitez pas à cliquer sur les différents graphes pour avoir des détails plus affinés !<b>" +
               "</p>")
+        }
+    };
+
+    /**
+     * Set position panel
+     *
+     * @param  {Object}     metadata                The metadata information related to the actual data
+     *
+     * @return
+     */
+    var setPositionPanel = function (metadata) {
+        // Get position from metadata file
+        var position = [];
+        if (metadata.graph) {
+            position.push({'dataType' : 'graph', 'position' : metadata.graph.panelPosition});
+        }
+        if (metadata.table) {
+            position.push({'dataType' : 'table', 'position' : metadata.table.panelPosition});
+        }
+        if (metadata.cloud) {
+            position.push({'dataType' : 'cloud', 'position' : metadata.cloud.panelPosition});
+        }
+        if (metadata.map) {
+            position.push({'dataType' : 'map', 'position' : metadata.map.panelPosition});
+        }
+        
+        // Sort the position
+        var sortedPosition = position.sort(function(a,b) {return (a.position > b.position) ? 1 : ((b.position > a.position) ? -1 : 0);} ); 
+        sortedPosition = sortedPosition.reverse();
+
+        for (var i = 0; i < sortedPosition.length; i++) {
+            switch (sortedPosition[i].dataType) {
+                case 'table':
+                    $('#tab-nav-1').prependTo('.nav-visualisation');
+                    break;
+
+                case 'graph':
+                    $('#tab-nav-2').prependTo('.nav-visualisation');
+                    break;
+
+                case 'map':
+                    $('#tab-nav-3').prependTo('.nav-visualisation');
+                    break;
+
+                case 'cloud':
+                    $('#tab-nav-6').prependTo('.nav-visualisation');
+                    break;
+                }
         }
     };
 

@@ -3,6 +3,7 @@
   "title": "Budget primitif et compte administratif - BP 2012 - Fonction",
   "description": "Le budget primitif est le budget voté par l'assemblée locale en début d'exercice. Il fixe les enveloppes de crédits permettant d'engager les dépenses pendant la durée de l'exercice. Il détermine aussi les recettes attendues, notamment en matière de fiscalité.",
   "graph": {
+    "panelPosition": "1",
     "possibleGraphs": [
       "horizontalBar",
       "pie",
@@ -31,6 +32,7 @@
     }
   },
   "table": {
+    "panelPosition": "2",
     "dataComposition": {
       "keys_list": [
         "budg_cat",

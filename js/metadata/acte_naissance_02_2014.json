@@ -4,6 +4,7 @@
   "title": "ETAT CIVIL – ACTE DE NAISSANCE – PAR PREMIER PRÉNOM - 2014",
   "description": "",
   "cloud": {
+    "panelPosition": "2",
     "title": "an_enfant_premier_prenom",
     "value": "an_nombre"
   },
@@ -15,6 +16,7 @@
     }
   },
   "table": {
+    "panelPosition": "1",
     "dataComposition": {
       "keys_list": [
         "an_evenement_annee",
