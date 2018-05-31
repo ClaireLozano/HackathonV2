@@ -103,32 +103,6 @@ $(document).ready(function () {
                 });
             }
         });
-
-        // Disable submit button if empty textarea
-        $('#submit-comment').attr('disabled',true);
-        $('#text-comment').keyup(function(){
-            if($(this).val().length !=0)
-                $('#submit-comment').attr('disabled', false);
-            else
-                $('#submit-comment').attr('disabled',true);
-        });
-
-        $('#submit-comment').click(function() {
-            var text = $('#text-comment').val();
-            var name = $('#name-comment').val();
-            var date = new Date();
-
-            // Clear inputs
-            $('#text-comment').val("");
-            $('#name-comment').val("");
-
-            // Call function to save data in database
-
-            // Add the comment to the list
-            $(".comments-list").append('<li class="comment"> <div class="comment-body"> <div class="comment-heading"> <h4 class="user">' + name + '</h4> <h5 class="time">'+ formatDate(date) + '</h5> </div> <p>' + text + '</p> </div> </li>');
-
-            return false;
-        });
     };
 
     /**
