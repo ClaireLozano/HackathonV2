@@ -243,9 +243,12 @@ table {
     text-anchor: middle;
     font-size: 24px;
 }
+.bar-label text{
+    color: #fff;
+}
 
-.axis path,
-.axis line {
+.x_axis path, .y_axis path,
+.x_axis line, .y_axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
@@ -309,7 +312,7 @@ table {
 
 #chartbox2 > g > g text,
 #chartbox2Compare > g > g text {
-    font-size: 11px;
+    font-size: 9px;
 }
 
 /* CHART */
@@ -334,4 +337,20 @@ path {
 
 tbody tr.selected {
     background-color: #B0BED9 !important;
+}
+
+.tooltip {
+	background: #eee;
+	box-shadow: 0 0 5px #999999;
+	color: #333;
+	font-size: 12px;
+	top: 130px;
+	left: 95px;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	width: 150px;
+	z-index: 10;
+	display: block;
+	opacity: 0;
 }

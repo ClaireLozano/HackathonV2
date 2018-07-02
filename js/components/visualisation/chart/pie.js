@@ -22,43 +22,50 @@ function initPie(params, box, level, previousValues) {
         .append("g")
         .classed("slice", true);
 
+    var format = d3.format(".1s");
+
+    var tooltip = d3
+      .select("#box2")
+      .append("div")
+      .attr("class", "tooltip");
+
+    tooltip.append('div')
+        .attr('class', 'title');
+
+    tooltip.append('div')
+        .attr('class', 'value');
+
     arcs.append("path")
         .style("fill", function (d, i) {
             return params.ordinalScaleColor(i)
         })
         .on("mouseover", function (d, i) {
             d3.select(this).style("fill", params.COLORHOVER)
-            //Get this bar's x/y values, then augment for the tooltip
-	 					var xPosition = parseFloat(d3.event.pageX);
-	 					var yPosition = parseFloat(d3.event.pageY);
 
-	 					//Update the tooltip position and value
-	 					d3.select("#tooltip")
-	 						.style("left", xPosition + "px")
-	 						.style("top", yPosition + "px")
+            tooltip
+              .select(".title")
+              .html(params.dataToTreat[i][params.realTitle])
+              .style("font-weight", "bold");
 
+            tooltip
+                .select('.value')
+                .html(params.devise ? 
+                    params.dataToTreat[i][params.realValue] + " " + params.devise : 
+                    params.dataToTreat[i][params.realValue]
+                );
 
-   					d3.select("#tooltip")
-   						.select("#title")
-  					  .text(params.dataToTreat[i][params.realTitle]);
-
-
-						d3.select("#tooltip")
-							.select("#value")
-							.text(function(d,i){
-                return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
-              });
-
-	 					//Show the tooltip
-	 					d3.select("#tooltip").classed("hidden", false);
+            tooltip.style('display', 'block');
+            tooltip.style('opacity', 2)
         })
         .on("mousemove", function (d, i) {
-
+            tooltip
+                .style('top', (d3.event.layerY + 300) + 'px')
+                .style('left', (d3.event.layerX - 10) + 'px');
         })
         .on("mouseout", function (d, i) {
             d3.select(this).style("fill", params.ordinalScaleColor(i))
-            //Hide the tooltip
-	 					d3.select("#tooltip").classed("hidden", true)
+            tooltip.style('display', 'none');
+            tooltip.style('opacity', 0);
         })
         .attr("d", arc)
         .attr("data-legend", function (d) {
@@ -74,21 +81,29 @@ function initPie(params, box, level, previousValues) {
             .duration(500)
             .attr("opacity", 1);
 
-    arcs.append("text")
-        .attr("transform", function (d) {                    //set the label's origin to the center of the arc
-            d.innerRadius = 0;
-            d.outerRadius = params.r * 2;
-            return "translate(" + arc.centroid(d) + ")"        //this gives us a pair of coordinates like [50, 50]
+    arcs
+      .append("text")
+      .attr("transform", function(d) {
+        //set the label's origin to the center of the arc
+        d.innerRadius = 0;
+        d.outerRadius = params.r * 2;
+        return "translate(" + arc.centroid(d) + ")"; //this gives us a pair of coordinates like [50, 50]
+      })
+      .attr("text-anchor", "middle") //center the text on it's origin
+      .text(function(d, i) {
+            if (params.dataToTreat[i][params.realValue] < 4e6){
+            return ''
+            } else {
+            return params.devise ? format(params.dataToTreat[i][params.realValue]) + params.devise : params.dataToTreat[i][params.realValue];
+            }      
         })
-        .attr("text-anchor", "middle")                          //center the text on it's origin
-        .text(function (d, i) {
-            return params.devise ? params.dataToTreat[i][params.realValue] + params.devise : params.dataToTreat[i][params.realValue]
-        })
-        .attr('opacity', 0)
-        .transition()
-            .delay(function(d,i){return i *300;})
-            .duration(500)
-            .attr("opacity", 1);       //get the label from our original data array
+      .attr("opacity", 0)
+      .transition()
+      .delay(function(d, i) {
+        return i * 300;
+      })
+      .duration(500)
+      .attr("opacity", 1);       //get the label from our original data array
 
 
     var legend = vis.append("g")

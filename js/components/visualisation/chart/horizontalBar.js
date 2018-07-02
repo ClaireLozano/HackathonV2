@@ -1,8 +1,8 @@
 function initHorizontalBar(params, box, level, previousValues) {
-    params.margin.bottom = 20;
+    params.margin.bottom = 50;
     params.height = params.h - params.margin.top - params.margin.bottom;
 
-    params.margin.left = 120
+    params.margin.left = 140
     params.width = params.w - params.margin.left - params.margin.right;
 
     var x = d3.scale.linear()
@@ -19,7 +19,8 @@ function initHorizontalBar(params, box, level, previousValues) {
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom");
+        .orient("bottom")
+        .tickFormat(d3.format("s"));
 
     var yAxis = d3.svg.axis()
         .scale(y)
@@ -28,7 +29,6 @@ function initHorizontalBar(params, box, level, previousValues) {
     var xGridlines = d3.svg.axis()
         .scale(x)
         .tickSize(-params.height, 0, 0)
-        .tickFormat("")
         .orient("bottom");
 
     var svg = d3.select('#' + box).append("svg")
@@ -39,6 +39,8 @@ function initHorizontalBar(params, box, level, previousValues) {
 
     var chart = svg.append("g")
         .classed("display", true)
+
+    var format = d3.format(".1s");
 
     function plotHorizontal(parametres) {
         this.selectAll(".bar")
@@ -83,19 +85,19 @@ function initHorizontalBar(params, box, level, previousValues) {
             .enter()
             .append("text")
             .classed("bar-label", true)
-            .style("font-size", "14px")
+            .style("font-size", "12px")
             .attr("x", function (d) {
                 return x(d[params.realValue])
             })
-            .attr("dx", 15)
+            .attr("dx", -40)
             .attr("y", function (d, i) {
                 return y(d[params.realTitle])
             })
             .attr("dy", function (d, i) {
-                return y.rangeBand() / 1.5 + 2
+                return y.rangeBand() / 2
             })
             .text(function (d) {
-                return d[params.realValue]
+                return d[params.realValue] + " €"
             })
             .attr('opacity', 0)
             .transition()
@@ -104,14 +106,19 @@ function initHorizontalBar(params, box, level, previousValues) {
                 .attr("opacity", 1);
 
         this.append("g")
-            .classed("x axis", true)
+            .classed("x_axis", true)
             .attr("transform", "translate(" + 0 + "," + params.height + ")")
             .call(xAxis);
 
         this.append("g")
-            .classed("y axis", true)
+            .classed("y_axis", true)
             .attr("transform", "translate(0,0)")
             .call(yAxis)
+
+        this.selectAll(".x_axis text")  // select all the text elements for the xaxis
+            .attr("transform", function (d) {
+                return "translate(" + this.getBBox().height * -1.5 + "," + this.getBBox().height + ")rotate(-45)";
+            });
     }
 
     plotHorizontal.call(chart, {data: params.dataToTreat})
