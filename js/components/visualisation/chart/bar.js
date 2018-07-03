@@ -132,8 +132,8 @@ function initBar(params, box, level, previousValues) {
             })
             .attr('opacity', 0)
             .transition()
-                .delay(function(d,i){return i *300;})
-                .duration(500)
+                .delay(function (d, i) { return i * 75; })
+                .duration(50)
                 .attr("opacity", 1);
 
 
@@ -179,8 +179,8 @@ function initBar(params, box, level, previousValues) {
             })
             .attr('opacity', 0)
             .transition()
-                .delay(function(d,i){return i *300;})
-                .duration(500)
+                .delay(function (d, i) { return i * 75; })
+                .duration(50)
                 .attr("opacity", 1);
 
         //updateDimensions(params, window.innerWidth)
