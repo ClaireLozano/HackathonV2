@@ -128,6 +128,7 @@ function insertRows(data, metadata, idBox, callback) {
     // Insert Rows
     if (metadata.dictionnaireY) {
         var urlDict = metadata.dictionnaireY.link;
+        var value = metadata.dictionnaireY.value;
         var initValue = metadata.dictionnaireY.initValue;
         var newValue = metadata.dictionnaireY.newValue;
 

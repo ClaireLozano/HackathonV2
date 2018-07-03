@@ -325,12 +325,14 @@ $(document).ready(function () {
     var setDescription = function (metadata) {
         $("#description-page").html(metadata.description);
 
-        if(metadata.title.search('Budget') != -1){
-            $("#description-page").append("<p><br/>La section Graphe vous permettra d'avoir une visualisation " +
-                "filtrée et progressive suivant le type de dépense sélectionné. Plusieurs graphes " +
-                "apparaitront au fur et à mesure de votre navigation. <br/><br/> " +
-                "<b>N'hésitez pas à cliquer sur les différents graphes pour avoir des détails plus affinés !<b>" +
-              "</p>")
+        if (metadata.type){
+            if (metadata.type !== 'budget'){
+                $("#description-page").append("<p><br/>La section Graphe vous permettra d'avoir une visualisation " +
+                    "filtrée et progressive suivant le type de dépense sélectionné. Plusieurs graphes " +
+                    "apparaitront au fur et à mesure de votre navigation. <br/><br/> " +
+                    "<b>N'hésitez pas à cliquer sur les différents graphes pour avoir des détails plus affinés !<b>" +
+                  "</p>")
+            }
         }
     };
 
