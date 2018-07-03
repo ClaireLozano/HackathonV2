@@ -97,7 +97,11 @@ function initHorizontalBar(params, box, level, previousValues) {
                 return y.rangeBand() / 2
             })
             .text(function (d) {
-                return d[params.realValue] + " €"
+                if (d[params.realValue] > 1000){
+                    return d[params.realValue] + " €"
+                } else {
+                    return ''
+                }
             })
             .attr('opacity', 0)
             .transition()
