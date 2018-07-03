@@ -44,14 +44,14 @@ function initPie(params, box, level, previousValues) {
 
             tooltip
               .select(".title")
-              .html(params.dataToTreat[i][params.realTitle])
+              .html(d.data.key)
               .style("font-weight", "bold");
 
             tooltip
                 .select('.value')
                 .html(params.devise ? 
-                    params.dataToTreat[i][params.realValue] + " " + params.devise : 
-                    params.dataToTreat[i][params.realValue]
+                    d.value + " " + params.devise : 
+                    d.value
                 );
 
             tooltip.style('display', 'block');
@@ -73,6 +73,7 @@ function initPie(params, box, level, previousValues) {
         })
         .on("click", function (node, i) {
             previousValues[level] = node.data[params.realTitle];
+            d3.selectAll(".tooltip").remove();
             initNewGraph(params, box, level + 1, previousValues)
         })
         .attr('opacity', 0)
@@ -92,9 +93,9 @@ function initPie(params, box, level, previousValues) {
       .attr("text-anchor", "middle") //center the text on it's origin
       .text(function(d, i) {
             if (params.dataToTreat[i][params.realValue] < 4e6){
-            return ''
+                return ''
             } else {
-            return params.devise ? format(params.dataToTreat[i][params.realValue]) + params.devise : params.dataToTreat[i][params.realValue];
+                return params.devise ? format(params.dataToTreat[i][params.realValue]) + params.devise : params.dataToTreat[i][params.realValue];
             }      
         })
       .attr("opacity", 0)

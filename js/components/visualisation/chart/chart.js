@@ -61,6 +61,7 @@ function drawGraph(dataToTreat, metadata, box) {
                     case "pie":
                         d3.selectAll("#chart" + box).remove();
                         d3.selectAll(".chart>p").remove();
+                        d3.selectAll(".tooltip").remove();
                         initPie(params, box, level, previousValues);
                         break;
                     case "doughnut":
