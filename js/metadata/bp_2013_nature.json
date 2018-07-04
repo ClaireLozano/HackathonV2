@@ -6,13 +6,15 @@
     "panelPosition": "1",
     "possibleGraphs": [
       "horizontalBar",
+      "pie",
       "table"
-    ],
+    ],      
     "dataComposition": {
       "excludeLines": [],
       "title": "bud_nature",
       "value": "bud_montant",
       "category": [
+        "bud_dep_rec",
         "bud_section",
         "table"
       ]

@@ -74,7 +74,7 @@ $(document).ready(function () {
         // Reload the page with the new date
         $(".select-list-date").change(function () {
             // Get value of the selected item
-            var nomDonnee = $('.select-list-date :selected').val();
+            var nomDonnee = $("option:selected", this).val();
             var url = window.location.href.split("?");
             var activePanel = getActivePanel();
             reloadPage(url[0], nomDonnee, activePanel[0]);

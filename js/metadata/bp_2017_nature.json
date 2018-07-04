@@ -5,8 +5,8 @@
   "graph": {
     "panelPosition": "1",
     "possibleGraphs": [
-      "pie",
       "horizontalBar",
+      "pie",
       "table"
     ],
     "dataComposition": {
